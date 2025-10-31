@@ -1,0 +1,120 @@
+<header class="absolute z-50 hidden w-full md:block" x-data="{ open: false, showBar: false, activeAccordion: null, pageUrl: '{{ page.url }}' }" x-on:click.outside="open = false">
+  <!-- Navbar -->
+  <nav class="fixed top-0 left-0 right-0 z-50 grid items-center w-full grid-flow-col grid-cols-12 px-10 py-2 transition-all"
+    :class="{ 'bg-black shadow-md transition duration-100': showBar, 'bg-gradient-to-b from-black to-black/40': !showBar }" @scroll.window="showBar = (window.pageYOffset > 40) ? true : false">
+
+    <!-- Logo -->
+    <a :class="{ 'h-12': showBar, 'h-16': !showBar }" class="col-span-4 transition-all" href="/" aria-label="{{ site.name }} - home">
+      <img class="h-full py-2" src="/images/logo/logo-header.svg" alt="L3 Networks, Inc.">
+    </a>
+
+    <!-- Navigation Links -->
+    <div class="relative flex flex-col col-span-8 ml-auto">
+      <!-- Top Links -->
+      <ul :class="{ 'hidden': showBar, 'block': !showBar }" class="relative flex flex-row mb-2 ml-auto text-xs transition-all">
+        <li class="px-3 text-slate-400">(888) 282-5353</li>
+        <!-- <li class="px-3 text-slate-400">
+          <a href="https://l3networks.com/resources/" class="cursor-pointer hover:underline">Resource Center</a>
+        </li> -->
+        <li class="px-3 text-slate-400">
+          <a href="https://support.l3networks.com/" class="cursor-pointer hover:underline">Ticketing & Support</a>
+        </li>
+      </ul>
+
+      <!-- Main Links -->
+      <ul class="relative flex flex-row ml-auto">
+        <li class="px-6 py-3">
+          <button @click="activeAccordion = activeAccordion === 'solutions' ? null : 'solutions'" class="inline-flex items-center text-center text-slate-100 hover:text-slate-300" type="button">
+            Our Solutions
+            <svg class="w-4 h-4 ml-2 transition-transform duration-300" :class="{'rotate-180': activeAccordion === 'solutions'}" aria-hidden="true" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+        </li>
+        <li class="px-6 py-3"><a class="text-slate-100 hover:text-slate-300" href="/why-l3/">Why L3?</a></li>
+        <li class="px-6 py-3"><a class="text-slate-100 hover:text-slate-300" href="/elevate/">Elevate</a></li>
+        <li class="px-6 py-3"><a class="text-slate-100 hover:text-slate-300" href="/about-us/">About Us</a></li>
+        <li class="py-2 pl-3">
+          <a class="block px-5 py-1 mx-auto text-base text-white transition-all ease-in-out bg-teal-500 rounded-full hover:bg-teal-700" href="https://l3networks.timezest.com/sales/meeting-15">
+            <div class="flex items-center gap-2">
+              Book An Appointment
+              <img class="h-4" src="/images/icons/ArrowUpRightWhite.svg" alt="Book An Appointment">
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Bento Grid Accordion -->
+  <div x-show="activeAccordion === 'solutions'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-y-4" x-cloak
+    x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0"
+    x-transition:leave-end="opacity-0 transform -translate-y-4" class="fixed right-0 w-3/4 p-6 mt-2 mr-10 overflow-hidden text-white rounded-xl bg-slate-900/95 backdrop-blur-sm"
+    :class="{ 'top-16': showBar, 'top-20': !showBar }" @click.away="activeAccordion = null">
+
+    <div class="grid grid-cols-3 gap-4">
+      {% for main in navSolutions.items %}
+      <div class="p-4 transition-all duration-300 rounded-lg hover:bg-slate-800/50 group">
+        <a href="{{ main.url }}" class="block space-y-1">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold tracking-tight text-white group-hover:text-teal-400">
+              {{ main.text }}
+            </h3>
+            <svg class="w-5 h-5 transition-transform duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+          {% if main.text == "Cyber Security" %}
+          <p class="text-sm text-slate-400">
+            Safeguard your business with proactive threat detection, robust firewalls, and compliance strategies that protect your most valuable assets.
+          </p>
+          {% elseif main.text == "Cloud Solutions" %}
+          <p class="text-sm text-slate-400">
+            Achieve flexibility and scalability with tailored cloud solutions that optimize performance and reduce downtime.
+          </p>
+          {% elseif main.text == "Networks & Connectivity" %}
+          <p class="text-sm text-slate-400">
+            Ensure smooth and reliable communication between your systems with our managed network solutions.
+          </p>
+          {% elseif main.text == "Users & Devices" %}
+          <p class="text-sm text-slate-400">
+            Streamline your IT environment with comprehensive support for devices, users, and access controls.
+          </p>
+          {% elseif main.text == "Professional Services" %}
+          <p class="text-sm text-slate-400">
+            Transform your IT infrastructure with expert guidance, strategic planning, and seamless implementation tailored to your business needs.
+          </p>
+          {% endif %}
+        </a>
+      </div>
+      {% endfor %}
+      
+      <div class="relative inline-flex transition-all duration-300 ease-in-out border border-teal-500 rounded-lg group hover:text-teal-400">
+        <div
+            class="absolute duration-1000 rounded-lg transitiona-all opacity-70 -inset-px bg-gradient-to-b from-teal-400 via-teal-200 to-teal-500 blur-xs group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+        </div>
+          <a href="/alldeskai" class="relative block p-4 space-y-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 bg-slate-900">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl font-bold tracking-tight text-white group-hover:text-teal-400">
+                AllDesk Ai
+              </h3>
+              <svg class="w-5 h-5 transition-transform duration-300 opacity-0 group-hover:opacity-100 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+            
+            <p class="text-sm text-slate-400 ">
+              Deliver smarter support with AI-assisted ticketing, sentiment insights, and resolution suggestions.
+            </p>
+            
+          </a>
+      </div>
+
+
+     
+
+    </div>
+  </div>
+
+</header>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  {% include "partials/meta-info.html" %}
+  <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Match Testing home typography and scale */
+    html { font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important; }
+    h1, h2, h3, h4, .heading-xl, .heading-lg, .heading-md { font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important; }
+    :root{
+      --heading-xl: clamp(34px, 6.4vw, 60px);
+      --heading-lg: clamp(28px, 5.2vw, 46px);
+      --heading-md: clamp(22px, 4.4vw, 34px);
+      --body-lead: clamp(16px, 2.4vw, 21px);
+      --body-text: clamp(16px, 2vw, 18px);
+      --body-sm: clamp(14px, 1.8vw, 15px);
+    }
+    .heading-xl{ font-size: var(--heading-xl); line-height:1.1; letter-spacing:-.01em; font-weight:700; }
+    .heading-lg{ font-size: var(--heading-lg); line-height:1.1; letter-spacing:-.01em; font-weight:700; }
+    .heading-md{ font-size: var(--heading-md); line-height:1.1; letter-spacing:-.01em; font-weight:700; }
+    .body-lead{ font-size: var(--body-lead); }
+    html, body { overflow-x: clip; }
+    /* (removed section seam blending) */
+    /* Force all section titles on home (h2) to 60px Montserrat, weight 600 */
+    main h2{ font-size:60px !important; line-height:1.1; letter-spacing:-.01em; font-weight:600 !important; }
+    /* Exception: smaller heading variant for select titles */
+    main h2.heading-36{ font-size:36px !important; line-height:1.15; font-weight:600 !important; }
+  </style>
+  {% include "partials/happierleads.html" %}
+</head> 
+
+
+<body class="relative font-inter bg-black" x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+  {% include "partials/site-headB.html" %}
+  {% include "partials/site-head-mobile.html" %}
+  <main tabindex="-1" id="main-content">{% block content %}{% endblock %}</main>
+  <script defer src="/js/anime.js"></script>
+  <script defer src="/js/alpinecollapse-cdn.min.js"></script>
+  <script defer src="/js/alpine-cdn.min.js"></script>
+
+  <script defer src="/js/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="/js/animate.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const heroswiper = new Swiper('#hero', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        autoplay: {
+          delay: 8000,
+        },
+
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        }
+      });
+
+      const swiper = new Swiper('#swiper', {
+        loop: true,
+        loopFillGroupWithBlank: true,
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loopedSlides: 10,
+        autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true },
+        speed: 12000,
+        allowTouchMove: false,
+
+        breakpoints: {
+          640: { slidesPerView: 3 },
+          768: { slidesPerView: 4 },
+          1024: { slidesPerView: 6 },
+          1280: { slidesPerView: 7 },
+        },
+        // no navigation arrows for brand marquee
+      });
+      const homeswiper = new Swiper('#homeswiper', {
+        loop: true,
+
+        // Navigation arrows
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+
+      });
+
+    });
+
+
+  </script>
+
+  {% include "partials/tracking.html" %}
+</body>
+
+</html>

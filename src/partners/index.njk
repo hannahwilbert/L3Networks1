@@ -1,0 +1,918 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+
+<!-- Partners — Hero -->
+<section class="partnerHero relative w-full px-6 pt-32 text-white overflow-hidden md:px-10 md:pt-24" style="background:#020617;">
+  <div class="absolute inset-0 bg-gradient-to-br from-black via-slate-950/85 to-slate-900/65"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_0%,_rgba(45,212,191,0.12),_transparent_70%)] pointer-events-none"></div>
+
+  <div class="container relative max-w-screen-xl px-0 md:mx-auto">
+    <div class="hero-grid relative z-10">
+      <!-- Left: Big headline -->
+      <div class="text-left">
+        <h1 class="partnerTitle title">
+          <span class="small">Partner with</span>
+          <span class="big brand">L3 Networks</span>
+        </h1>
+      </div>
+      <!-- Right: Supporting lines -->
+      <div class="partnerPoints md:pt-4">
+        <p class="lede">Build deeper client relationships.</p>
+        <p class="lede">Expand your capabilities.</p>
+        <p class="lede">Lead with structure and strategy.</p>
+      </div>
+    </div>
+
+    <!-- Intro panel -->
+    <div class="partnerIntro cardSurface mt-10 md:mt-16">
+      <div class="partnerIntro__inner">
+        <p class="body-text">The L3 Partner Program is built for proven professionals: vCIOs, advisors, MSSPs and MSPs who want to scale without compromising quality. We invest in a select group of partners who share our standards of execution, maturity, and measurable delivery.</p>
+        <p class="body-text">For more than two decades, L3 Networks has helped organizations stabilize, secure, and modernize their IT environments. Now, we’re extending that same proven capability to our partners, enabling you to deliver enterprise‑grade results without the overhead of building it all yourself.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-8 md:mt-10 text-center">
+      <a href="#partner-apply" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full font-semibold text-white transition-all ease-in-out bg-teal-500 hover:bg-teal-600">
+        Become a Partner
+        <img src="/images/icons/ArrowUpRightWhite.svg" alt="">
+      </a>
+    </div>
+
+    <!-- Down chevron -->
+    <div class="mt-6 md:mt-8 grid place-items-center">
+      <span class="partnerChevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" opacity=".22"></circle>
+          <path d="M8 11l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* HERO — matches screenshot layout */
+  .partnerHero{ margin-top:clamp(8px, 1.2vw, 16px); padding:180px 40px 40px; background:radial-gradient(1200px 500px at 50% -200px, rgba(0,187,167,.10), transparent 60%), linear-gradient(180deg,#030B16 0%, #071326 100%) !important; }
+  .partnerHero .hero-grid{ display:grid; grid-template-columns:minmax(520px,1fr) 520px; gap:clamp(8px,1vw,12px); align-items:end; max-width:1200px; margin:0 auto; }
+  /* Use the same heading font/weight as Home hero (Montserrat, 700) */
+  .partnerHero .title{ font-weight:700; line-height:1.03; margin:0; letter-spacing:-.02em; font-family:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  /* Match Home hero title sizing */
+  .partnerHero .title .small,
+  .partnerHero .title .big{ display:block; font-size:clamp(36px, 6.5vw, 84px); line-height:1.03; }
+  .partnerHero .brand{ background:linear-gradient(180deg,#6FE9D4 0%, #00BBA7 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+
+  .partnerPoints{ color:#E7EEF6; padding-top:0 !important; margin:0; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .partnerPoints .lede{ font-size:clamp(18px, 3vw, 24px); line-height:1.65; margin:0; font-weight:300; }
+  .partnerPoints .lede{ font-size:28px; line-height:1.35; margin:0; }
+  .partnerPoints .lede + .lede{ margin-top:6px; }
+
+  .cardSurface{ position:relative; border-radius:22px; border:1px solid rgba(0,187,167,.28); padding:clamp(18px,2.4vw,28px); }
+  .cardSurface::before{ content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; box-shadow:inset 0 0 0 1px rgba(102,199,232,.18); }
+  .partnerIntro{ background:
+      radial-gradient(220px 140px at 85% 0%, rgba(102,199,232,.12), rgba(102,199,232,0) 70%),
+      linear-gradient(150deg, rgba(102,199,232,.06), rgba(102,199,232,0) 60%),
+      linear-gradient(135deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,0.06) 40%),
+      linear-gradient(315deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,0.04) 44%),
+      linear-gradient(210deg, rgba(2,6,23,.66) 0%, rgba(2,6,23,.72) 55%, rgba(2,6,23,.80) 100%);
+    box-shadow:0 24px 56px rgba(8,18,35,.52), inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .partnerIntro__inner{ max-width:none; width:100%; margin:0 auto; color:rgba(226,232,240,.95); display:grid; gap:.75rem; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  /* Hero intro card copy: fixed 18px Inter */
+  .partnerIntro__inner .body-text{
+    margin: 0; /* remove default p margins for even paddings */
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.65;
+    font-weight: 300;
+    color: rgba(214,224,236,.9);
+    max-width: none; /* allow wider copy as requested */
+  }
+  /* Add extra space between the two intro paragraphs inside the hero card */
+  .partnerIntro__inner .body-text + .body-text{ margin-top:clamp(14px, 1.8vw, 22px); }
+  .partnerChevron{ color:#e2e8f0; opacity:.65; }
+  
+  @media (prefers-reduced-motion: reduce){ .partnerChevron{ transition:none !important; } }
+  @media (max-width:1200px){
+    .partnerHero .hero-grid{ grid-template-columns:1fr; text-align:left; }
+    .partnerHero .title{ margin-bottom:12px; }
+  }
+  @media (max-width:700px){
+    .partnerHero .title .small{ font-size:56px; }
+    .partnerHero .title .big{ font-size:68px; }
+  }
+</style>
+
+
+<!-- Why Partner section -->
+<section class="partnerWhy text-white" aria-labelledby="why-title" style="background:transparent;">
+  <div class="container max-w-screen-xl mx-auto px-6 md:px-10 2xl:px-0 py-14 md:py-20">
+    <header class="mb-6 md:mb-8">
+      <h2 id="why-title" class="pwTitle">
+        Why Partner With <span class="pwBrand">L3 Networks</span><span class="pwQ">?</span>
+      </h2>
+      <p class="pwLede">When you join the L3 Partner Program, you gain more than a portfolio of IT services.<br/>You gain a strategic ally committed to helping you deliver measurable business outcomes and sustained client success.</p>
+    </header>
+    <div class="pwGrid">
+      <!-- Feature grid -->
+      <div class="pwFeatureGrid" role="list">
+        <!-- 1) Shield -->
+        <article class="pwFeat" role="listitem">
+          <img class="pwFeatIcon" src="/images/icons/svg/shield-check.svg" alt="Security shield icon" />
+          <h3 class="pwFeatTitle">Seamless Integration</h3>
+          <p class="pwFeatCopy">Turnkey operations and defined processes that align effortlessly with your team.</p>
+        </article>
+        <!-- 2) Medal -->
+        <article class="pwFeat" role="listitem">
+          <img class="pwFeatIcon" src="/images/icons/svg/medal.svg" alt="Trusted reputation icon" />
+          <h3 class="pwFeatTitle">Trusted Market Reputation</h3>
+          <p class="pwFeatCopy">A respected track record serving both SMB and enterprise clients.</p>
+        </article>
+        <!-- 3) Workflow -->
+        <article class="pwFeat" role="listitem">
+          <img class="pwFeatIcon" src="/images/icons/svg/workflow.svg" alt="Workflow icon" />
+          <h3 class="pwFeatTitle">Broad Technical Mastery</h3>
+          <p class="pwFeatCopy">Proven expertise across cybersecurity, cloud, infrastructure, and helpdesk operations.</p>
+        </article>
+        <!-- 4) Handshake -->
+        <article class="pwFeat" role="listitem">
+          <img class="pwFeatIcon" src="/images/icons/svg/handshake.svg" alt="Handshake icon" />
+          <h3 class="pwFeatTitle">Flexible Partnership Models</h3>
+          <p class="pwFeatCopy">Choose from co‑managed or referral‑based engagements to fit your business strategy.</p>
+        </article>
+        <!-- 5) Monitor/Smartphone -->
+        <article class="pwFeat" role="listitem">
+          <img class="pwFeatIcon" src="/images/icons/svg/monitor-smartphone.svg" alt="Tools and automation icon" />
+          <h3 class="pwFeatTitle">Tools That Empower Delivery</h3>
+          <p class="pwFeatCopy">Access to proprietary automation, monitoring, and reporting frameworks that enhance service quality.</p>
+        </article>
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .pwTitle{ margin:0 0 8px; font-weight:800; letter-spacing:-.02em; font-size:38px; line-height:1.1; font-family:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pwTitle{ font-weight:700; letter-spacing:-.01em; line-height:1.2; }
+  
+  .pwBrand{ color:transparent; background:linear-gradient(180deg,#6FE9D4 0%, #00BBA7 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .pwQ{ color:var(--brand, #00BBA7); }
+  .pwLede{ margin:0; color:#E7EEF6; font-family:'Montserrat', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:22px !important; line-height:1.65; font-weight:300; max-width:75ch; margin-top:1rem; }
+  /* Place card under the bullet list, aligned to the right */
+  .pwGrid{ display:grid; grid-template-columns: 1fr; gap:clamp(16px,3vw,28px); align-items:start; margin-top:clamp(18px,3vw,26px); }
+  /* Feature grid (icon + title + copy) */
+  .pwFeatureGrid{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:clamp(16px,2.2vw,22px); }
+  @media(max-width:1200px){ .pwFeatureGrid{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  @media(max-width:720px){ .pwFeatureGrid{ grid-template-columns:repeat(1,minmax(0,1fr)); } }
+  /* Left-align, with icon stacked above title/copy */
+  .pwFeat{
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-rows:64px auto auto; /* lock icon row so all titles align */
+    align-items:start;
+    justify-items:start;
+    gap:10px;
+    padding:16px 0;
+    text-align:left;
+  }
+  .pwFeatIcon{
+    grid-column:1;
+    width:64px; /* fixed size to ensure title baselines align */
+    height:64px;
+    object-fit:contain;
+    display:block;
+    filter:drop-shadow(0 12px 26px rgba(0,187,167,.32));
+  }
+  .pwFeatTitle{
+    grid-column:1;
+    margin:0 0 2px 0;
+    color:#e6edf6;
+    font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight:800;
+    letter-spacing:-.01em;
+    font-size:18px;
+    line-height:1.2; /* normalize line height */
+    min-height:2.4em; /* reserve space for up to 2 lines */
+    display:flex; /* bottom-align one-line titles to match two-line baselines */
+    align-items:flex-end;
+    text-align:left;
+  }
+  .pwFeatCopy{
+    grid-column:1;
+    margin:0;
+    color:rgba(214,224,236,.9);
+    font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight:300;
+    line-height:1.65;
+    font-size:18px;
+    text-align:left;
+  }
+  .pwQuote{ align-self:start; justify-self:end; max-width:640px; border-radius:20px; border:1px solid rgba(0,187,167,.28); padding:20px 22px; background:rgba(4,18,28,.35); box-shadow:0 1px 0 rgba(255,255,255,.05), inset 0 0 0 1px rgba(0,0,0,.25); }
+  .pwQuote h3{ margin:0 0 8px; font-size:20px; font-weight:800; }
+  .pwQuote p{ margin:0 0 8px; color:#E2E8F0; }
+  .pwQuote .pwAttr{ margin:8px 0 0; color:#6FE9D4; font-style:italic; }
+  @media(max-width: 1024px){ .pwGrid{ grid-template-columns:1fr; } .pwQuote{ justify-self:end; } }
+</style>
+
+<!-- Who We Partner With (accordion like Why L3 is Different) -->
+<section class="partnerWho text-white" aria-labelledby="who-title" style="background:transparent;">
+  <div class="container max-w-screen-xl mx-auto px-6 md:px-10 2xl:px-0 py-14 md:py-20">
+    <header class="mb-6 md:mb-8">
+      <h2 id="who-title" class="pwTitle">Who We Partner With</h2>
+      <p class="pwLede">Our channel program is built for experienced professionals who already manage active client relationships and want to deliver more value through structure, maturity, and scale.</p>
+    </header>
+
+    <div class="whoGrid">
+      <div class="whoList" x-data="{ open: 0 }">
+      <!-- Item 1 -->
+      <article class="whoItem">
+        <div class="relative z-40 mb-0">
+          <button
+            @click="open = open===1 ? 0 : 1"
+            :aria-expanded="open===1"
+            class="whoBtn w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg px-5 sm:px-6 md:px-8 ring-1 ring-[#1b2d46]/60"
+            :class="open===1 ? 'whoBtn--open bg-teal-500 text-white ring-1 ring-teal-500 shadow-xl' : 'whoBtnOff hover:shadow-teal-500/10'"
+          >
+            <div class="flex items-center justify-between pt-4 sm:pt-6" :class="open===1 ? 'pb-2 sm:pb-3' : 'pb-4 sm:pb-6'">
+              <div class="flex items-center flex-1 min-w-0 pr-6 sm:pr-8">
+                <h3 class="text-xl sm:text-2xl md:text-3xl tracking-tighter font-semibold">vCISOs and MSSP’s</h3>
+              </div>
+              <!-- Triangle when open (down) -->
+              <svg x-show="open===1" class="flex-shrink-0 accIcon accIcon--triDown" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+                <polygon points="8,5 18,12 8,19"></polygon>
+              </svg>
+              <!-- Triangle when closed (right) -->
+              <svg x-show="open!==1" class="flex-shrink-0 accIcon accIcon--triRight" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+                <polygon points="8,5 18,12 8,19"></polygon>
+              </svg>
+            </div>
+
+            <div
+              x-show="open===1"
+              x-transition:enter="transition ease-out duration-500"
+              x-transition:enter-start="opacity-0 transform translate-y-4"
+              x-transition:enter-end="opacity-100 transform translate-y-0"
+              class="whoPanel bg-teal-600 rounded-2xl sm:rounded-3xl p-3 sm:p-4 -mx-5 sm:-mx-6 md:-mx-8 mt-2 sm:mt-3"
+            >
+              <p>Deepen your client engagements and earn commissions for services delivered through L3. Gain access to our Elevate framework, standardized reporting, and enterprise-class engineering resources.</p>
+            </div>
+          </button>
+        </div>
+      </article>
+
+      <!-- Item 2 -->
+      <article class="whoItem">
+        <div class="relative z-40 mb-0">
+          <button
+            @click="open = open===2 ? 0 : 2"
+            :aria-expanded="open===2"
+            class="whoBtn w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg px-5 sm:px-6 md:px-8 ring-1 ring-[#1b2d46]/60"
+            :class="open===2 ? 'whoBtn--open bg-teal-500 text-white ring-1 ring-teal-500 shadow-xl' : 'whoBtnOff hover:shadow-teal-500/10'"
+          >
+            <div class="flex items-center justify-between pt-4 sm:pt-6" :class="open===2 ? 'pb-2 sm:pb-3' : 'pb-4 sm:pb-6'">
+              <div class="flex items-center flex-1 min-w-0 pr-6 sm:pr-8">
+                <h3 class="text-xl sm:text-2xl md:text-3xl tracking-tighter font-semibold">MSPs and Technology Advisors</h3>
+              </div>
+              <svg x-show="open===2" class="flex-shrink-0 accIcon accIcon--triDown" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+                <polygon points="8,5 18,12 8,19"></polygon>
+              </svg>
+              <svg x-show="open!==2" class="flex-shrink-0 accIcon accIcon--triRight" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+                <polygon points="8,5 18,12 8,19"></polygon>
+              </svg>
+            </div>
+
+            <div
+              x-show="open===2"
+              x-transition:enter="transition ease-out duration-500"
+              x-transition:enter-start="opacity-0 transform translate-y-4"
+              x-transition:enter-end="opacity-100 transform translate-y-0"
+              class="whoPanel bg-teal-600 rounded-2xl sm:rounded-3xl p-3 sm:p-4 -mx-5 sm:-mx-6 md:-mx-8 mt-2 sm:mt-3"
+            >
+              <p>Collaborate on co-managed opportunities that extend your capabilities across advanced cybersecurity, cloud, Infrastructure as Code, or enterprise network operations.</p>
+            </div>
+          </button>
+        </div>
+      </article>
+
+      <!-- Item 3 -->
+      <article class="whoItem">
+        <div class="relative z-40 mb-0">
+          <button
+            @click="open = open===3 ? 0 : 3"
+            :aria-expanded="open===3"
+            class="whoBtn w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg px-5 sm:px-6 md:px-8 ring-1 ring-[#1b2d46]/60"
+            :class="open===3 ? 'whoBtn--open bg-teal-500 text-white ring-1 ring-teal-500 shadow-xl' : 'whoBtnOff hover:shadow-teal-500/10'"
+          >
+            <div class="flex items-center justify-between pt-4 sm:pt-6" :class="open===3 ? 'pb-2 sm:pb-3' : 'pb-4 sm:pb-6'">
+              <div class="flex items-center flex-1 min-w-0 pr-6 sm:pr-8">
+                <h3 class="text-xl sm:text-2xl md:text-3xl tracking-tighter font-semibold">Technology Providers and Agents</h3>
+              </div>
+              <svg x-show="open===3" class="flex-shrink-0 accIcon accIcon--triDown" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+                <polygon points="8,5 18,12 8,19"></polygon>
+              </svg>
+              <svg x-show="open!==3" class="flex-shrink-0 accIcon accIcon--triRight" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+                <polygon points="8,5 18,12 8,19"></polygon>
+              </svg>
+            </div>
+
+            <div
+              x-show="open===3"
+              x-transition:enter="transition ease-out duration-500"
+              x-transition:enter-start="opacity-0 transform translate-y-4"
+              x-transition:enter-end="opacity-100 transform translate-y-0"
+              class="whoPanel bg-teal-600 rounded-2xl sm:rounded-3xl p-3 sm:p-4 -mx-5 sm:-mx-6 md:-mx-8 mt-2 sm:mt-3"
+            >
+              <p>Move beyond carrier-only portfolios by offering managed IT and cloud services built on measurable outcomes.</p>
+            </div>
+          </button>
+        </div>
+      </article>
+      </div>
+      <div class="whoSpacer" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Stack all accordion cards vertically (single column on all viewports) */
+  .whoGrid{ display:grid; grid-template-columns:1fr; gap:clamp(6px,.8vw,12px); }
+  .whoList{ display:grid; gap:8px; grid-template-columns:1fr; grid-column:1; }
+  .whoSpacer{ display:none; }
+  @media(min-width:980px){
+    .whoGrid{ grid-template-columns:1fr 1fr; }
+    .whoSpacer{ display:block; grid-column:2; }
+  }
+  .whoItem{ margin:0; padding:0; }
+  /* Accordion trigger/button and panel styles (match Home dropdown cards) */
+  .whoBtn{ cursor:pointer; }
+  .whoBtnOff{
+    background:
+      radial-gradient(280px 160px at 85% 0%, rgba(102,199,232,.12), rgba(102,199,232,0) 70%),
+      linear-gradient(150deg, rgba(102,199,232,.06), rgba(102,199,232,0) 60%),
+      linear-gradient(135deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,0.06) 40%),
+      linear-gradient(315deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,0.04) 44%),
+      linear-gradient(210deg, rgba(2,6,23,.60) 0%, rgba(2,6,23,.66) 55%, rgba(2,6,23,.75) 100%);
+    border:1px solid #1b2d46;
+    color:#e2e8f0;
+    box-shadow:0 24px 56px rgba(8,18,35,.52), inset 0 1px 0 rgba(255,255,255,.06);
+  }
+  .whoBtn--open{ box-shadow:0 30px 60px rgba(17,94,89,0.45) !important; border-color:rgba(20,184,166,0.45) !important; }
+  /* Match card typography used below (Inter for headings and body) */
+  .whoBtn h3{ margin:0; color:#e6edf6; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight:700; letter-spacing:-.01em; font-size:clamp(18px, 2.6vw, 22px); }
+  .whoPanel p{ margin:0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size:clamp(16px, 2.2vw, 18px); font-weight:300; line-height:1.65; color:#ffffff; }
+  /* Triangle icon styles (match Home) */
+  .accIcon{ display:inline-block; width:36px !important; height:36px !important; transform:translateY(-3px) scale(1.18) !important; transform-origin:center; }
+  .accIcon.accIcon--triRight polygon,
+  .accIcon.accIcon--triDown polygon{ fill:#ffffff !important; }
+  .accIcon.accIcon--triRight,
+  .accIcon.accIcon--triDown{ width:30px !important; height:30px !important; opacity:.82; }
+  .accIcon.accIcon--triRight{ transform:translateY(-2px) scale(1.06) !important; }
+  .accIcon.accIcon--triDown{ transform:translateY(-2px) scale(1.06) rotate(90deg) !important; }
+  /* No breakpoint change: always single column */
+</style>
+
+<!-- Partnership Model cards section -->
+<section class="partnerModel text-white" aria-labelledby="model-title" style="background:transparent;">
+  <div class="container max-w-screen-xl mx-auto px-6 md:px-10 2xl:px-0 py-14 md:py-20">
+    <header class="mb-6 md:mb-8">
+      <h2 id="model-title" class="pmTitle">A Purpose‑Built Partnership Model</h2>
+      <p class="pmLede">Our partner program isn’t about volume, it’s about alignment. We work with partners who are already successful and want to expand responsibly, supported by structure, predictability, and proven execution.</p>
+    </header>
+
+    <div class="pmGrid">
+      <!-- Card 1 -->
+      <article class="pmCard">
+        <div class="pmCard__head">
+          <h3>Strategic Partnership Models</h3>
+        </div>
+        <img class="pmArrowImg" src="/images/icons/ArrowUpRightWhite.svg" alt="">
+        <p>Choose from referral, co‑managed, or strategic alliance models that fit your business model and client ownership goals.</p>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="pmCard">
+        <div class="pmCard__head">
+          <h3>Shared Growth, Not Volume</h3>
+        </div>
+        <img class="pmArrowImg" src="/images/icons/ArrowUpRightWhite.svg" alt="">
+        <p>Access high‑margin, recurring services and joint go‑to‑market opportunities designed for long‑term value, not short‑term quotas.</p>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="pmCard">
+        <div class="pmCard__head">
+          <h3>Dedicated Enablement &amp; Support</h3>
+        </div>
+        <img class="pmArrowImg" src="/images/icons/ArrowUpRightWhite.svg" alt="">
+        <p>Every partner receives guidance from a dedicated Channel Success Manager along with access to technical and marketing resources that accelerate sales and delivery.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pmTitle{ margin:0 0 8px; font-weight:700; letter-spacing:-.01em; font-size:38px; line-height:1.2; font-family:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pmLede{ margin:0; color:#E7EEF6; font-family:'Montserrat', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:22px !important; line-height:1.65; font-weight:300; max-width:75ch; margin-top:1rem; }
+  .pmGrid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(16px,2.2vw,24px); }
+  @media(max-width:1100px){ .pmGrid{ grid-template-columns:1fr; } }
+  .pmCard{
+    position:relative; border-radius:24px; padding:clamp(26px,3vw,34px); color:#E2E8F0;
+    background:
+      linear-gradient(180deg,#0B1220 0%, #0A1628 100%);
+    border:1px solid rgba(255,255,255,.10);
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+  /* Leave space on the right so the big arrow does not overlap the title */
+  .pmCard__head{ display:flex; align-items:center; justify-content:flex-start; gap:14px; margin-bottom:12px; padding-right:clamp(56px,6vw,92px); }
+  .pmCard h3{ margin:0; color:#ffffff; font-size:clamp(20px, 2.6vw, 28px); font-weight:800; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pmCard p{ margin:0; font-size:clamp(16px, 2.2vw, 18px); line-height:1.7; color:#AAB4C2; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pmArrowImg{ position:absolute; top:16px; right:16px; width:clamp(34px, 3.6vw, 56px); height:auto; opacity:.95; pointer-events:none; }
+</style>
+
+<!-- Partner Journey section -->
+<section class="partnerJourney text-white" aria-labelledby="journey-title" style="background:transparent;">
+  <div class="container max-w-screen-xl mx-auto px-6 md:px-10 2xl:px-0 py-14 md:py-20">
+    <header class="mb-6 md:mb-8">
+      <h2 id="journey-title" class="pjTitle">The Partner Journey</h2>
+      <p class="pjLede">Our onboarding process is simple, transparent, and structured to help you scale quickly and confidently.</p>
+    </header>
+
+    <ol class="pjList" role="list">
+      <li class="pjItem">
+        <div class="pjCard">
+          <span class="pjNum">.01</span>
+          <div class="pjCopy">
+            <h3>Apply &amp; Onboard</h3>
+            <p>Complete the partner application and meet our channel leadership team.</p>
+          </div>
+        </div>
+      </li>
+      <li class="pjItem">
+        <div class="pjCard">
+          <span class="pjNum">.02</span>
+          <div class="pjCopy">
+            <h3>Enablement &amp; Training</h3>
+            <p>Access partner kits, solution guides, and training sessions tailored to your market.</p>
+          </div>
+        </div>
+      </li>
+      <li class="pjItem">
+        <div class="pjCard">
+          <span class="pjNum">.03</span>
+          <div class="pjCopy">
+            <h3>Register &amp; Sell</h3>
+            <p>Use the partner portal to register opportunities, quote services, and track progress.</p>
+          </div>
+        </div>
+      </li>
+      <li class="pjItem">
+        <div class="pjCard">
+          <span class="pjNum">.04</span>
+          <div class="pjCopy">
+            <h3>Deliver Together</h3>
+            <p>Our engineers and support staff work alongside your team to ensure seamless execution.</p>
+          </div>
+        </div>
+      </li>
+      <li class="pjItem">
+        <div class="pjCard">
+          <span class="pjNum">.05</span>
+          <div class="pjCopy">
+            <h3>Grow &amp; Scale</h3>
+            <p>Gain access to joint marketing initiatives, co‑branded campaigns, and performance analytics.</p>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  .pjTitle{ margin:0 0 8px; font-weight:700; letter-spacing:-.01em; font-size:38px; line-height:1.2; font-family:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pjLede{ margin:0; color:#E7EEF6; font-family:'Montserrat', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:22px !important; line-height:1.65; font-weight:300; }
+  .pjList{ display:grid; gap:clamp(14px,2vw,18px); margin:0; padding:0; list-style:none; }
+  .pjCard{
+    display:flex; align-items:center; gap:20px;
+    border-radius:24px; padding:22px 24px; border:1px solid rgba(255,255,255,.10);
+    background:linear-gradient(180deg,#0B1220 0%, #0A1628 100%);
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+  }
+  .pjNum{ display:inline-block; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight:800; color:var(--brand, #00BBA7); font-size:clamp(28px, 3vw, 40px); letter-spacing:.02em; }
+  .pjCopy h3{ margin:0 0 4px; color:#ffffff; font-size:clamp(18px, 2.6vw, 22px); font-weight:700; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pjCopy p{ margin:0; color:#C8D3E0; font-size:clamp(16px, 2.2vw, 18px); line-height:1.7; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+</style>
+
+<!-- Benefits section -->
+<section class="partnerBenefits text-white" aria-labelledby="benefits-title" style="background:transparent;">
+  <div class="container max-w-screen-xl mx-auto px-6 md:px-10 2xl:px-0 py-14 md:py-20">
+    <header class="mb-6 md:mb-8">
+      <h2 id="benefits-title" class="pbTitle">Benefits of Partnering With L3</h2>
+      <p class="pbLede">When you partner with L3 Networks, you gain the tools, systems, and leadership to strengthen your client base and grow recurring revenue with confidence.</p>
+    </header>
+
+    <div class="pbGrid">
+      <ul class="pbList" role="list">
+        <li>Recurring revenue from managed IT, cybersecurity, and cloud</li>
+        <li>High margins and flexible pricing models tailored to your market</li>
+        <li>Portfolio expansion without hiring or training new staff</li>
+        <li>Access to enterprise engineering, design, and implementation teams</li>
+        <li>Co-branded marketing materials, webinars, and collateral</li>
+        <li>Partner portal for deal registration, quoting, and project tracking</li>
+        <li>Customer ownership retention. You remain the face of the relationship.</li>
+        <li>Dedicated Channel Success Manager for ongoing enablement</li>
+        <li>AI Enhanced Helpdesk and automation platforms to reduce support workload</li>
+        <li>Strategic Maturity Framework (Elevate). Structure client success through a measurable path: Stabilize, Optimize, and Transform.</li>
+      </ul>
+
+      <aside class="pbNote">
+        <h3>No Quotas or Commitments</h3>
+        <p>Partners are free to engage at their own pace. We invest in quality relationships, not sign‑ups.</p>
+        <img class="pbArrow" src="/images/icons/ArrowUpRightWhite.svg" alt="">
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pbTitle{ margin:0 0 8px; font-weight:700; letter-spacing:-.01em; font-size:38px; line-height:1.2; font-family:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pbLede{ margin:0; color:#E7EEF6; font-family:'Montserrat', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:22px !important; line-height:1.65; font-weight:300; max-width:75ch; margin-top:1rem; }
+  .pbGrid{ display:grid; grid-template-columns: minmax(0,1.6fr) minmax(0,.9fr); gap:clamp(18px,3vw,26px); align-items:start; }
+  @media(max-width: 1100px){ .pbGrid{ grid-template-columns:1fr; } .pbNote{ justify-self:start; } }
+  .pbList{ list-style:none; padding:0; margin:0; display:grid; gap:16px; }
+  /* Checkmark boxes (square outline + check) */
+  .pbList li{
+    position:relative;
+    padding-left:42px;
+    font-size:clamp(16px, 2.4vw, 20px);
+    color:rgba(214,224,236,.9);
+    font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .pbList li::before{
+    content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+    width:22px; height:22px; border-radius:6px;
+    background:rgba(2,6,23,.35);
+    border:2px solid rgba(20,184,166,.85);
+    box-shadow: 0 6px 14px rgba(0,187,167,.18), inset 0 0 0 1px rgba(0,187,167,.10);
+  }
+  .pbList li::after{
+    content:""; position:absolute; left:5px; top:50%; transform:translateY(-60%) rotate(-45deg);
+    width:10px; height:6px; border:2px solid rgba(20,184,166,.95);
+    border-top:none; border-right:none;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.35));
+  }
+  .pbNote{ position:relative; align-self:start; justify-self:end; max-width:520px; border-radius:24px; padding:24px 28px; background:linear-gradient(180deg,#0B1220 0%, #0A1628 100%); border:1px solid rgba(255,255,255,.10); box-shadow:0 10px 30px rgba(0,0,0,.4); }
+  .pbNote h3{ margin:0 0 8px; color:#ffffff; font-size:clamp(22px, 2.8vw, 32px); font-weight:800; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pbNote p{ margin:0; color:#E2E8F0; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pbArrow{ position:absolute; top:16px; right:16px; width:clamp(34px, 3.6vw, 56px); height:auto; opacity:.95; }
+</style>
+
+<!-- Solutions You Can Offer -->
+<section class="partnerSolutions text-white" aria-labelledby="solutions-title" style="background:transparent;">
+  <div class="container max-w-screen-xl mx-auto px-6 md:px-10 2xl:px-0 py-14 md:py-20">
+    <header class="mb-6 md:mb-8">
+      <h2 id="solutions-title" class="psTitle">Solutions You Can Offer</h2>
+      <p class="psLede">Deliver enterprise‑level IT maturity to your clients through L3’s proven Elevate framework and service portfolio.</p>
+    </header>
+
+    <div class="psGrid">
+      <article class="psCard">
+        <img src="/images/home/icons/teal/ShieldCheckered.svg" alt="Security icon" class="psIcon">
+        <h3>Cybersecurity &amp; Risk Management</h3>
+        <p>Zero Trust, MDR, compliance, and risk mitigation services.</p>
+      </article>
+      <article class="psCard">
+        <img src="/images/home/icons/teal/Network.svg" alt="Network icon" class="psIcon">
+        <h3>Network Infrastructure &amp; Connectivity</h3>
+        <p>Scalable, high‑availability network design and management.</p>
+      </article>
+      <article class="psCard">
+        <img src="/images/home/icons/teal/CloudCheck.svg" alt="Cloud icon" class="psIcon">
+        <h3>Cloud Platforms &amp; Data Protection</h3>
+        <p>Hybrid and multi‑cloud environments built for performance and control.</p>
+      </article>
+      <article class="psCard">
+        <img src="/images/home/icons/teal/Devices.svg" alt="Helpdesk icon" class="psIcon">
+        <h3>AI‑Enhanced Helpdesk</h3>
+        <p>24/7 support, combining automation and expert human response.</p>
+      </article>
+      <article class="psCard">
+        <img src="/images/home/icons/teal/TrendUp.svg" alt="Leadership icon" class="psIcon">
+        <h3>Strategic IT Leadership</h3>
+        <p>Structured technology governance and roadmap execution.</p>
+      </article>
+      <article class="psCard">
+        <img src="/images/home/icons/teal/simplify-operations.svg" alt="Infrastructure icon" class="psIcon">
+        <h3>Infrastructure as Code</h3>
+        <p>Codified, compliant, and repeatable cloud deployments that deliver consistency and auditability.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .psTitle{ margin:0 0 8px; font-weight:700; letter-spacing:-.01em; font-size:38px; line-height:1.2; font-family:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .psLede{ margin:0; color:#E7EEF6; font-family:'Montserrat', Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size:22px !important; line-height:1.65; font-weight:300; }
+  .psGrid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(16px,2vw,22px); }
+  @media(max-width:1100px){ .psGrid{ grid-template-columns:1fr; } }
+  .psCard{ border-radius:24px; padding:24px 26px; background:linear-gradient(180deg,#0B1220 0%, #0A1628 100%); border:1px solid rgba(255,255,255,.10); box-shadow:0 10px 30px rgba(0,0,0,.4); }
+  .psIcon{ width:42px; height:auto; margin-bottom:12px; filter:drop-shadow(0 12px 30px rgba(0,187,167,.28)); }
+  .psCard h3{ margin:0 0 6px; color:#ffffff; font-size:clamp(18px, 2.6vw, 22px); font-weight:700; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .psCard p{ margin:0; color:#C8D3E0; font-size:clamp(16px, 2.2vw, 18px); line-height:1.7; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+</style>
+
+<!-- Partner Success Stories -->
+<section class="partnerStories text-white" aria-labelledby="stories-title" style="background:transparent;">
+  <div class="container max-w-screen-xl mx-auto px-6 md:px-10 2xl:px-0 py-14 md:py-20">
+    <header class="mb-6 md:mb-8">
+      <h2 id="stories-title" class="pssTitle">Partner Success Stories</h2>
+    </header>
+
+    <div class="pssGrid">
+      <!-- Testimonial 1 -->
+      <article class="tsCard">
+        <img class="tsAvatar" src="https://t4.ftcdn.net/jpg/03/16/87/77/360_F_316877700_FFoXaAcUEYsPNmaYli3BrSRZo3xMCyqI.jpg" alt="Team hands together">
+        <div class="tsStars" aria-hidden="true">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <h3>Flawless Expertise</h3>
+        <p>L3’s IaC and cloud architecture expertise allowed us to take on a client we previously couldn’t support. Their engineers handled it flawlessly.</p>
+        <p class="tsAttr">Co‑Managed MSP, Pacific Northwest</p>
+      </article>
+
+      <!-- Testimonial 2 -->
+      <article class="tsCard">
+        <img class="tsAvatar" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=400&auto=format&fit=crop" alt="Handshake">
+        <div class="tsStars" aria-hidden="true">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <h3>Credibility with Strategic IT Leadership</h3>
+        <p>The vCIO partnership gave our advisory team new credibility. L3’s Elevate framework brought structure to every client conversation.</p>
+        <p class="tsAttr">Technology Advisor Partner</p>
+      </article>
+    </div>
+
+    <!-- CTA panel -->
+    <div class="pssCta">
+      <!-- Left column: all copy and buttons, left-aligned -->
+      <div class="pssCtaLeft">
+        <h3>Ready to Join a Select Network of Strategic Partners?</h3>
+        <p>We’re not building a channel of volume, we’re building a network of excellence. If you’re an experienced MSP, advisor, or vCIO ready to scale through partnership, let’s talk.</p>
+        <p>Join us and deliver enterprise-grade IT, cybersecurity, and cloud maturity programs that help your clients advance through every stage of their journey.</p>
+        <div class="pssBtns">
+          <a href="mailto:partners@l3networks.com" class="pssBtnGhost">Contact Our Channel Team</a>
+        </div>
+        <p class="pssSubtext pssContact">
+          <span class="pssContact__label">Questions?</span>
+          <a class="pssContact__link" href="tel:+18882825353">(888) 282‑5353</a>
+          <span class="pssContact__sep" aria-hidden="true">•</span>
+          <a class="pssContact__link" href="mailto:partners@l3networks.com">partners@l3networks.com</a>
+        </p>
+      </div>
+
+      <!-- Right column: HubSpot embed -->
+      <div class="pssCtaRight">
+        <div id="partner-apply" class="pssFormWrap threeSteps__ctaEmbed" style="border-radius:16px; overflow:hidden; clip-path:inset(0 round 16px); -webkit-mask-image:-webkit-radial-gradient(white, black); scroll-margin-top: 96px;">
+          <div class="meetings-iframe-container" data-src="https://meetings-na2.hubspot.com/brandon-williams/right-fit-intro?embed=true&embedType=inline&hideEventTypeDetails=false&hideGdprBanner=true" style="border-radius:16px; overflow:hidden; clip-path:inset(0 round 16px); -webkit-mask-image:-webkit-radial-gradient(white, black);"></div>
+        </div>
+        <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+        <script>
+          // Enforce rounded corners on HubSpot iframe after it mounts
+          (function(){
+            var RADIUS = '16px';
+            function round(node){
+              if (!node) return;
+              try{
+                node.style.setProperty('border-radius', RADIUS, 'important');
+                node.style.setProperty('overflow', 'hidden', 'important');
+                node.style.setProperty('clip-path', 'inset(0 round '+RADIUS+')', 'important');
+                node.style.setProperty('-webkit-mask-image', '-webkit-radial-gradient(white, black)', 'important');
+                node.style.setProperty('background', 'transparent', 'important');
+              }catch(e){}
+            }
+            function init(){
+              var host = document.querySelector('.pssCtaRight .meetings-iframe-container');
+              if (!host) return;
+              var iframe = host.querySelector('iframe');
+              if (iframe) round(iframe);
+              var mo = new MutationObserver(function(muts){
+                muts.forEach(function(m){
+                  if (m.type === 'attributes' && m.target && m.target.tagName === 'IFRAME') round(m.target);
+                  if (m.addedNodes) m.addedNodes.forEach(function(n){
+                    if (n && n.tagName === 'IFRAME') round(n);
+                    else if (n && n.querySelector){ var f=n.querySelector('iframe'); if (f) round(f); }
+                  });
+                });
+              });
+              mo.observe(host, { childList:true, subtree:true, attributes:true, attributeFilter:['style','class'] });
+              if (iframe) iframe.addEventListener('load', function(){ round(iframe); });
+            }
+            if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', init, { once:true }); else init();
+          })();
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pssTitle{ margin:0 0 clamp(16px, 3vw, 28px); font-weight:700; letter-spacing:-.01em; font-size:38px; line-height:1.2; font-family:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pssGrid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(16px,2.4vw,22px); }
+  @media(max-width:1100px){ .pssGrid{ grid-template-columns:1fr; } }
+  .tsCard{ position:relative; border-radius:24px; padding:26px 26px 22px; background:linear-gradient(180deg,#0B1220 0%, #0A1628 100%); border:1px solid rgba(255,255,255,.10); box-shadow:0 10px 30px rgba(0,0,0,.4); margin-top:clamp(80px, 10vw, 120px); --tsAvatarSize: clamp(120px, 12vw, 160px); }
+  /* Center avatar and star row */
+  .tsAvatar{ position:absolute; left:50%; transform:translateX(-50%); top:calc(var(--tsAvatarSize) * -0.42); width:var(--tsAvatarSize); height:var(--tsAvatarSize); object-fit:cover; border-radius:50%; border:6px solid #0A1628; box-shadow:0 10px 30px rgba(0,0,0,.45); }
+  .tsStars{ margin-top:calc(var(--tsAvatarSize) * 0.66); color:#fbbf24; letter-spacing:4px; text-align:center; }
+  .tsStars span{ display:inline-block; font-size:24px; line-height:1; }
+  .tsStars span:nth-child(3){ font-size:32px; }
+  .tsCard h3{ margin:6px 0 8px; color:#ffffff; font-size:clamp(18px,2.6vw,22px); font-weight:700; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .tsCard p{ margin:0 0 6px; color:#C8D3E0; font-size:clamp(16px,2.2vw,18px); line-height:1.7; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .tsAttr{ color:#6FE9D4; font-style:italic; margin-top:6px; }
+
+  .pssCta{ margin-top:clamp(24px,4vw,36px); border-radius:20px; border:1px solid rgba(0,187,167,.28); background:rgba(4,18,28,.35); box-shadow:0 1px 0 rgba(255,255,255,.05), inset 0 0 0 1px rgba(0,0,0,.25); padding:clamp(22px,3vw,28px); display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:clamp(20px,3vw,32px); align-items:start; }
+  @media(max-width:1100px){ .pssCta{ grid-template-columns:1fr; } }
+  .pssCtaLeft{ max-width:60ch; }
+  .pssCtaLeft h3{ margin:0 0 8px; font-size:clamp(22px,2.8vw,32px); font-weight:800; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pssCtaLeft p:not(.pssSubtext){ margin:0 0 10px; color:#C8D3E0; font-size:clamp(16px,2.2vw,18px); line-height:1.7; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .pssCtaLeft .pssSubtext{ margin:clamp(12px, 2.4vw, 18px) 0 0; color:#94A3B8; font-size:clamp(13px,1.9vw,15px); line-height:1.6; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  /* Partner CTA contact line formatting */
+  .pssContact{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .pssContact__label{ font-weight:600; color:#cbd5e1; }
+  .pssContact__sep{ color:#64748b; margin:0 2px; }
+  .pssContact__link{ color:#6FE9D4; text-decoration:underline; text-underline-offset:2px; }
+  .pssContact__link:hover{ color:#9FEDE1; }
+  .pssBtns{ display:flex; gap:12px; flex-wrap:wrap; margin-top:clamp(12px, 2.2vw, 20px); }
+  .pssBtn{ display:inline-flex; align-items:center; gap:10px; padding:12px 20px; border-radius:999px; background:var(--brand, #00BBA7); color:#061021; font-weight:700; text-decoration:none; box-shadow:0 6px 22px rgba(0,187,167,.25); }
+  .pssBtnGhost{ display:inline-flex; align-items:center; gap:10px; padding:12px 20px; border-radius:999px; background:transparent; color:#6FE9D4; text-decoration:none; border:1px solid rgba(0,187,167,.35); }
+
+  /* HubSpot meetings embed styling (right column) */
+  .pssCtaRight{ display:flex; align-items:stretch; justify-content:center; }
+  /* Use the exact Home page embed rules for a pixel‑match */
+  .pssCtaRight .threeSteps__ctaEmbed .meetings-iframe-container{
+    --form-visible-height: clamp(640px, 66vh, 920px);
+    --form-trim-top: 28px;
+    --form-trim-sides: 3px;
+    width:100%;
+    max-width:clamp(560px, 64vw, 900px);
+    height:var(--form-visible-height);
+    border:0; border-radius:16px; display:block; overflow:hidden; position:relative; margin:0; padding:0; box-sizing:border-box;
+    /* Extra enforcement for Chrome */
+    overflow:clip; contain:paint; isolation:isolate; transform:translateZ(0);
+    clip-path: inset(0 round 16px);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    background:transparent;
+  }
+  .pssCtaRight .threeSteps__ctaEmbed .meetings-iframe-container iframe{
+    display:block;
+    width:calc(100% + (var(--form-trim-sides) * 2));
+    height:calc(100% + var(--form-trim-top));
+    transform:translate(calc(-1 * var(--form-trim-sides)), calc(-1 * var(--form-trim-top)));
+    border:0; border-radius:inherit;
+  }
+  /* Force all immediate children to inherit clipping */
+  .pssCtaRight .pssFormWrap > *{ border-radius:16px !important; overflow:hidden !important; overflow:clip !important; clip-path: inset(0 round 16px) !important; -webkit-mask-image: -webkit-radial-gradient(white, black) !important; }
+  .pssCtaRight .pssFormWrap{
+    /* Match Home page sizing exactly */
+    --form-visible-height: clamp(640px, 66vh, 920px);
+    --form-trim-top: 28px;
+    --form-trim-sides: 3px;
+    width:100%;
+    max-width:clamp(560px, 64vw, 900px);
+    height:var(--form-visible-height);
+    border:0; border-radius:16px; overflow:hidden; clip-path: inset(0 round 16px);
+    /* Match home page rounding reliability (Safari/WebKit) */
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    display:block; position:relative;
+    background:transparent; margin:0; padding:0; box-sizing:border-box;
+  }
+  .pssCtaRight .pssFormWrap > iframe,
+  .pssCtaRight .pssFormWrap > .meetings-iframe-container{ width:100%; height:100%; border:0; border-radius:inherit; display:block; }
+  .pssCtaRight .pssFormWrap > .meetings-iframe-container iframe{
+    width:calc(100% + (var(--form-trim-sides) * 2));
+    height:calc(100% + var(--form-trim-top));
+    transform:translate(calc(-1 * var(--form-trim-sides)), calc(-1 * var(--form-trim-top)));
+    border:0; border-radius:inherit; display:block;
+  }
+  /* Extra insurance: if HubSpot replaces the container or nests differently */
+  .pssCtaRight .meetings-iframe-container{
+    border-radius:16px !important;
+    overflow:hidden !important;
+    clip-path: inset(0 round 16px) !important;
+    -webkit-mask-image: -webkit-radial-gradient(white, black) !important;
+    position:relative;
+    display:block;
+  }
+  /* Final fallback: round the HubSpot iframe itself */
+  .pssCtaRight iframe{ 
+    border-radius:16px !important; 
+    overflow:hidden !important; 
+    clip-path: inset(0 round 16px) !important; 
+    -webkit-mask-image: -webkit-radial-gradient(white, black) !important; 
+    background:transparent !important; 
+    display:block; 
+  }
+</style>
+
+<!-- Unify card styling with Home page cards -->
+<style>
+  /* Shared card surface matching Home `.svcCard` look */
+  .homeCardSurface,
+  .pmCard,
+  .pjCard,
+  .psCard,
+  .tsCard,
+  .pbNote,
+  .pwQuote,
+  .cardSurface,
+  .pssCta{
+    border-radius:16px !important;
+    border:1px solid #1b2d46 !important;
+    color:#e2e8f0;
+    background:
+      radial-gradient(280px 160px at 85% 0%, rgba(102,199,232,.12), rgba(102,199,232,0) 70%),
+      linear-gradient(150deg, rgba(102,199,232,.06), rgba(102,199,232,0) 60%),
+      linear-gradient(135deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,0.06) 40%),
+      linear-gradient(315deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,0.04) 44%),
+      linear-gradient(210deg, rgba(2,6,23,.60) 0%, rgba(2,6,23,.66) 55%, rgba(2,6,23,.75) 100%) !important;
+    box-shadow:0 24px 56px rgba(8,18,35,.52), inset 0 1px 0 rgba(255,255,255,.06) !important;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+
+  /* Remove extra inner stroke from older surface helper */
+  .cardSurface::before{ content:none !important; }
+
+  /* Hover accents only on clickable controls (not static cards) */
+  a[data-cta]:hover, a[data-cta]:focus-visible,
+  .pssBtn:hover, .pssBtn:focus-visible,
+  .whoBtn:hover, .whoBtn:focus-visible{
+    box-shadow:0 20px 52px rgba(5,12,22,.54) !important;
+    transform:translate3d(0,-1px,0);
+  }
+  /* Remove hover drop shadow for the ghost button */
+  .pssBtnGhost:hover, .pssBtnGhost:focus-visible{
+    box-shadow:none !important;
+    transform:none !important;
+  }
+
+  /* Preserve specific paddings where needed after radius unification */
+  .pmCard{ padding:clamp(26px,3vw,34px); }
+  .pjCard{ padding:22px 24px; }
+  .psCard{ padding:24px 26px; }
+  .tsCard{ padding:26px 26px 22px; }
+  .pbNote{ padding:24px 28px; }
+  .pwQuote{ padding:20px 22px; }
+  /* removed old whoToggle/whoBody paddings */
+
+  /* Who We Partner With: simplified container (button holds surface) */
+  .whoItem{ overflow:visible !important; position:relative; }
+
+  /* Hero intro card: force teal border like Home hero request */
+  .partnerHero .partnerIntro.cardSurface{ border-color: var(--brand, #00BBA7) !important; }
+  /* Tighten hero intro card padding specifically */
+  .partnerHero .partnerIntro.cardSurface{ padding:clamp(16px, 2vw, 24px) !important; }
+  /* Make hero intro card background transparent */
+  .partnerHero .partnerIntro{ background: transparent !important; box-shadow: none !important; }
+
+  /* Keep arrow/icon visibility as before for partners cards */
+  .pmArrowImg{ opacity:.95; }
+
+  /* Fading teal dividers scoped to containers */
+  section[class^="partner"] > .container{ position:relative; }
+
+  /* Top fade divider between partner sections */
+  section[class^="partner"] + section[class^="partner"] > .container::before{
+    content:""; position:absolute; left:0; right:0; top:0; height:1px;
+    background:linear-gradient(90deg,
+      rgba(0,187,167,0) 0%, rgba(0,187,167,.55) 12%, rgba(0,187,167,.55) 88%, rgba(0,187,167,0) 100%);
+  }
+
+  /* Bottom fade dividers for key sections */
+  .partnerWhy > .container::after,
+  .partnerWho > .container::after,
+  .partnerJourney > .container::after,
+  .partnerModel > .container::after,
+  .partnerBenefits > .container::after,
+  .partnerSolutions > .container::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:linear-gradient(90deg,
+      rgba(0,187,167,0) 0%, rgba(0,187,167,.55) 12%, rgba(0,187,167,.55) 88%, rgba(0,187,167,0) 100%);
+  }
+
+  /* Avoid double lines at seams: hide the next section's top divider */
+  section.partnerWhy + section[class^="partner"] > .container::before,
+  section.partnerWho + section[class^="partner"] > .container::before,
+  section.partnerJourney + section[class^="partner"] > .container::before,
+  section.partnerModel + section[class^="partner"] > .container::before,
+  section.partnerBenefits + section[class^="partner"] > .container::before,
+  section.partnerSolutions + section[class^="partner"] > .container::before{
+    content:none;
+  }
+
+  /* Also prefer bottom divider on Who over its top when preceded by any partner */
+  section[class^="partner"] + section.partnerWho > .container::before{ content:none; }
+</style>
+
+{% include "partials/footer.html" %}
+
+{% endblock %}

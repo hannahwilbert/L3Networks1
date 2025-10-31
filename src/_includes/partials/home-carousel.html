@@ -1,0 +1,64 @@
+<!-- Slider main container -->
+<div class="w-full swiper h-28" id="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/cjc.svg" alt="CJC"></div>
+    </div>
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/atm.svg" alt="ATM"></div>
+    </div>
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/maxpost.svg" alt="MaxPost"></div>
+    </div>
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/exodus.svg" alt="Exodus Recovery"></div>
+    </div>
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/dga.svg" alt="DGA"></div>
+    </div>
+    
+
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/razor.svg" alt="Razor logo"></div>
+    </div>
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/roland.svg" alt="Roland logo"></div>
+    </div>
+    <div class="swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/axs.svg" alt="AXS logo"></div>
+    </div>
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/computacenter.svg" alt="Computacenter logo"></div>
+    </div>
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/fremantle.svg" alt="Fremantle logo"></div>
+    </div>
+
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/mnx.svg" alt="MNX logo"></div>
+    </div>
+    <div class="flex align-middle swiper-slide">
+      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="images/home/clients/op.svg" alt="ORIGINAL Productions by Fremantle Company logo"></div>
+    </div>
+
+
+ 
+  </div>
+
+  <!-- arrows removed for continuous marquee -->
+
+</div>
+
+<!-- Uniform card styling + linear marquee effect -->
+<style>
+  /* Equal-sized cards + center */
+  #swiper{ mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+           -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
+  #swiper .swiper-wrapper{ transition-timing-function: linear !important; }
+  #swiper .swiper-slide{ display:flex; align-items:center; }
+  #swiper .swiper-slide > div{ height:auto; min-height:64px; border:1px solid rgba(255,255,255,.10); border-radius:12px; background:rgba(2,6,23,.45); box-shadow:inset 0 1px 0 rgba(255,255,255,.06); padding:8px; }
+  #swiper .swiper-slide img{ display:block; max-height:36px; width:auto; opacity:.95; }
+</style>
