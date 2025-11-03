@@ -570,36 +570,36 @@
     </header>
 
     <div class="psGrid">
-      <a class="psCard psCardLink" href="/products/cyber-security" aria-label="Cybersecurity &amp; Risk Management">
+      <article class="psCard">
         <img src="/images/home/icons/teal/ShieldCheckered.svg" alt="Security icon" class="psIcon">
         <h3>Cybersecurity &amp; Risk Management</h3>
         <p>Zero Trust, MDR, compliance, and risk mitigation services.</p>
-      </a>
-      <a class="psCard psCardLink" href="/products/managed-networks" aria-label="Network Infrastructure &amp; Connectivity">
+      </article>
+      <article class="psCard">
         <img src="/images/home/icons/teal/Network.svg" alt="Network icon" class="psIcon">
         <h3>Network Infrastructure &amp; Connectivity</h3>
         <p>Scalable, high‑availability network design and management.</p>
-      </a>
-      <a class="psCard psCardLink" href="/products/cloud-and-systems-services" aria-label="Cloud Platforms &amp; Data Protection">
+      </article>
+      <article class="psCard">
         <img src="/images/home/icons/teal/CloudCheck.svg" alt="Cloud icon" class="psIcon">
         <h3>Cloud Platforms &amp; Data Protection</h3>
         <p>Hybrid and multi‑cloud environments built for performance and control.</p>
-      </a>
-      <a class="psCard psCardLink" href="/products/user-and-device-management" aria-label="AI‑Enhanced Helpdesk">
+      </article>
+      <article class="psCard">
         <img src="/images/home/icons/teal/Devices.svg" alt="Helpdesk icon" class="psIcon">
         <h3>AI‑Enhanced Helpdesk</h3>
         <p>24/7 support, combining automation and expert human response.</p>
-      </a>
-      <a class="psCard psCardLink" href="/products/professional-services" aria-label="Strategic IT Leadership">
+      </article>
+      <article class="psCard">
         <img src="/images/home/icons/teal/TrendUp.svg" alt="Leadership icon" class="psIcon">
         <h3>Strategic IT Leadership</h3>
         <p>Structured technology governance and roadmap execution.</p>
-      </a>
-      <a class="psCard psCardLink" href="/products/cloud-and-systems-services" aria-label="Infrastructure as Code">
+      </article>
+      <article class="psCard">
         <img src="/images/home/icons/teal/simplify-operations.svg" alt="Infrastructure icon" class="psIcon">
         <h3>Infrastructure as Code</h3>
         <p>Codified, compliant, and repeatable cloud deployments that deliver consistency and auditability.</p>
-      </a>
+      </article>
     </div>
   </div>
 </section>
@@ -610,22 +610,6 @@
   .psGrid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(16px,2vw,22px); }
   @media(max-width:1100px){ .psGrid{ grid-template-columns:1fr; } }
   .psCard{ border-radius:24px; padding:24px 26px; background:linear-gradient(180deg,#0B1220 0%, #0A1628 100%); border:1px solid rgba(255,255,255,.10); box-shadow:0 10px 30px rgba(0,0,0,.4); }
-  .psCardLink{
-    display:block; text-decoration:none; color:inherit;
-    will-change: transform, box-shadow, border-color; backface-visibility:hidden; transform:translateZ(0);
-    transition:
-      transform .28s cubic-bezier(.22,1,.36,1),
-      border-color .28s cubic-bezier(.22,1,.36,1),
-      box-shadow .28s cubic-bezier(.22,1,.36,1);
-  }
-  .psCardLink:hover,
-  .psCardLink:focus-visible{
-    border-color: rgba(0,187,167,.45);
-    transform: translate3d(0,-2px,0);
-    box-shadow:0 14px 40px rgba(0,0,0,.45);
-    outline:none;
-  }
-  @media (prefers-reduced-motion: reduce){ .psCardLink{ transition:none !important; } }
   .psIcon{ width:42px; height:auto; margin-bottom:12px; filter:drop-shadow(0 12px 30px rgba(0,187,167,.28)); }
   .psCard h3{ margin:0 0 6px; color:#ffffff; font-size:clamp(18px, 2.6vw, 22px); font-weight:700; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
   .psCard p{ margin:0; color:#C8D3E0; font-size:clamp(16px, 2.2vw, 18px); line-height:1.7; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
