@@ -783,13 +783,34 @@
               function pause(){ if (timer){ clearInterval(timer); timer=null; } }
               function resume(){ pause(); timer=setInterval(next, interval); }
               wrap.setAttribute('tabindex','0');
+              // Always initialize dots and state but don't start rotation until visible
               setActive(0);
               wrap.addEventListener('keydown', function(e){ if (e.key==='ArrowRight' || e.key==='Right'){ e.preventDefault(); pause(); next(); resume(); } else if (e.key==='ArrowLeft' || e.key==='Left'){ e.preventDefault(); pause(); setActive(current-1<0?slides.length-1:current-1); resume(); } });
               wrap.addEventListener('pointerenter', pause, { passive:true });
               wrap.addEventListener('pointerleave', resume, { passive:true });
               window.addEventListener('resize', setHeights);
               setHeights();
-              resume();
+
+              // Start auto-rotation from the first slide when carousel becomes visible
+              var started = false;
+              if ('IntersectionObserver' in window) {
+                try {
+                  var io = new IntersectionObserver(function(entries){
+                    var entry = entries && entries[0];
+                    if (!entry) return;
+                    if (entry.isIntersecting && entry.intersectionRatio > 0) {
+                      if (!started) { setActive(0); started = true; }
+                      resume();
+                    } else {
+                      pause();
+                    }
+                  }, { root: null, threshold: 0.15 });
+                  io.observe(wrap);
+                } catch(_) { resume(); }
+              } else {
+                // Fallback: start after a short delay
+                resume();
+              }
             });
           })();
         </script>
