@@ -78,10 +78,50 @@ document.addEventListener("DOMContentLoaded", () => {
   var type2element = document.getElementById('type2');
   if (!type1element || !type2element) return;
 
+  // Only apply typing on md+ where the typed elements are visible
+  var mediaMd = window.matchMedia ? window.matchMedia('(min-width: 768px)') : { matches: true };
+
   var titleHTML = 'Trust Your IT. Empower Your <span class="text-teal-500">Business</span>.';
   var subtitleText = 'Partner with L3 Networks for Secure, Reliable IT Services. 24/7.';
 
+  // Reserve final height so the hero never shifts while typing
+  function reserveHeight(el, content, isHtml) {
+    try {
+      if (!el || !mediaMd.matches) return; // skip on mobile where it's hidden
+      var rect = el.getBoundingClientRect();
+      var width = Math.max(1, rect.width);
+      // Offscreen clone with same classes and width
+      var probe = document.createElement('span');
+      probe.className = el.className || '';
+      probe.style.cssText = [
+        'position:absolute',
+        'visibility:hidden',
+        'pointer-events:none',
+        'left:-9999px',
+        'top:-9999px',
+        'display:block',
+        'width:' + width + 'px',
+        'white-space:normal',
+      ].join(';');
+      if (isHtml) probe.innerHTML = content; else probe.textContent = content;
+      // Append to body to avoid parent overflow affecting measurement
+      document.body.appendChild(probe);
+      var h = Math.ceil(probe.getBoundingClientRect().height);
+      document.body.removeChild(probe);
+      if (h > 0) {
+        el.style.minHeight = h + 'px';
+        el.style.display = 'block'; // ensure block context
+      }
+    } catch (_) { /* no-op */ }
+  }
+
+  function applyReservations() {
+    reserveHeight(type1element, titleHTML, true);
+    reserveHeight(type2element, subtitleText, false);
+  }
+
   function startTyping() {
+    if (!mediaMd.matches) return; // don't run on mobile
     // Guard against multiple inits
     if (!window.Typed) { return; }
     new Typed(type1element, {
@@ -91,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showCursor: false,
       smartBackspace: true,
       contentType: 'html',
+      onBegin: applyReservations,
       onComplete: function () {
         new Typed(type2element, {
           strings: [subtitleText],
@@ -98,6 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
           backSpeed: 0,
           showCursor: false,
           smartBackspace: true,
+          onBegin: applyReservations,
         });
       },
     });
@@ -110,6 +152,19 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(startTyping, 0);
     }
   }
+
+  // Initial reservation after layout
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyReservations, { once:true });
+  } else {
+    applyReservations();
+  }
+  // Re-reserve on resize (debounced)
+  var timer;
+  window.addEventListener('resize', function(){
+    clearTimeout(timer);
+    timer = setTimeout(applyReservations, 150);
+  });
 
   if (window.Typed) {
     scheduleTyping();
