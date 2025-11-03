@@ -1,53 +1,6 @@
 {% extends "layouts/base-home.html" %}
 {% block content %}
 
-<style>
-  /* Home-only: smoother hover/focus animations for all button-like elements */
-  :where(header, section, article) :is(
-    button,
-    .ctaRF__button,
-    a[role="button"],
-    a[class*="rounded-"][class*="px-"][class*="py-"],
-    a[class*="btn"]
-  ){
-    will-change: transform, box-shadow, background-color, filter, color, border-color;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    transition:
-      transform .28s cubic-bezier(.22,1,.36,1),
-      background-color .28s cubic-bezier(.22,1,.36,1),
-      color .28s cubic-bezier(.22,1,.36,1),
-      border-color .28s cubic-bezier(.22,1,.36,1),
-      box-shadow .28s cubic-bezier(.22,1,.36,1),
-      filter .28s cubic-bezier(.22,1,.36,1);
-  }
-  :where(header, section, article) :is(
-    button,
-    .ctaRF__button,
-    a[role="button"],
-    a[class*="rounded-"][class*="px-"][class*="py-"],
-    a[class*="btn"]
-  ):hover,
-  :where(header, section, article) :is(
-    button,
-    .ctaRF__button,
-    a[role="button"],
-    a[class*="rounded-"][class*="px-"][class*="py-"],
-    a[class*="btn"]
-  ):focus-visible{
-    transform: translate3d(0,-1.5px,0);
-    box-shadow: 0 10px 28px rgba(0,0,0,.25);
-    outline: none;
-  }
-  @media (prefers-reduced-motion: reduce){
-    :where(header, section, article) :is(button, .ctaRF__button, a[role="button"], a[class*="rounded-"][class*="px-"][class*="py-"], a[class*="btn"]) {
-      transition: none !important;
-      transform: none !important;
-      box-shadow: none !important;
-    }
-  }
-</style>
-
 <header class="relative z-0 flex items-center justify-center overflow-hidden text-white bg-black" style="height:80svh;">
   <!-- Content Container -->
   <div class="container absolute z-30 max-w-screen-xl px-4 py-16 mx-auto">
