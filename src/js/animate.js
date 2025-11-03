@@ -89,7 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       if (!el || !mediaMd.matches) return; // skip on mobile where it's hidden
       var rect = el.getBoundingClientRect();
-      var width = Math.max(1, rect.width);
+      var width = Math.max(
+        1,
+        el.offsetWidth || (el.parentElement ? el.parentElement.clientWidth : 0) || rect.width
+      );
       // Offscreen clone with same classes and width
       var probe = document.createElement('span');
       probe.className = el.className || '';
@@ -109,8 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
       var h = Math.ceil(probe.getBoundingClientRect().height);
       document.body.removeChild(probe);
       if (h > 0) {
-        el.style.minHeight = h + 'px';
-        el.style.display = 'block'; // ensure block context
+        el.style.minHeight = h + 'px'; // reserve space only; don't change display/positioning
       }
     } catch (_) { /* no-op */ }
   }
