@@ -1205,14 +1205,14 @@
   
   <section id="techWorks" class="w-full relative pt-32 pb-44" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
     <!-- Top fade handled by previous section; removed to avoid overlap seams -->
-    <!-- Animated waves canvases (full-width, behind the card) -->
+    <!-- Animated waves canvases (background) relocated here -->
     <canvas id="diffWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none;"></canvas>
     <canvas id="highlightsWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:overlay; opacity:.25;"></canvas>
     
     <div class="mx-2 md:px-8 2xl:px-0 md:container md:max-w-screen-xl md:mx-auto" style="position:relative; z-index:1;">
     <!-- Single surface wrapping title, copy, and cards -->
-    <div class="w-full rounded-2xl overflow-hidden" style="position:relative; background:rgba(0,0,0,0.82); border:1px solid rgba(75,85,99,.35);">
-      <div class="flex flex-col divide-y divide-gray-700/50" style="position:relative; z-index:1;">
+    <div class="w-full rounded-2xl overflow-hidden" style="background:rgba(0,0,0,0.82); border:1px solid rgba(75,85,99,.35);">
+      <div class="flex flex-col divide-y divide-gray-700/50">
         <!-- Intro block inside surface -->
         <div class="p-8 md:p-12 text-center">
           <h2 class="relative mb-3 text-3xl font-semibold tracking-tighter md:text-6xl font-mont">Technology That <a href="/elevate/" class="text-current underline decoration-dotted decoration-teal-400 underline-offset-8 decoration-2 hover:decoration-teal-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-sm">Elevates</a></h2>
@@ -1227,34 +1227,42 @@
         <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
           {% set s0 = services[0] %}
           {% set s1 = services[1] %}
-          <article class="p-8 md:p-10">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6" src="{{ s0.icon }}" alt="{{ s0.title }}" aria-hidden="true">
-            <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s0.title }}</h3>
-            <p class="text-slate-300 mt-2 md:mt-3">{{ s0.description }}</p>
-            <a class="inline-block mt-3 font-semibold text-teal-400 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-sm" href="{{ s0.link }}">{{ s0.linkText }}</a>
+          <article class="p-8 md:p-10 flex flex-row justify-between gap-8">
+            <img class="w-24 h-24 mb-4 md:mb-6" src="{{ s0.icon }}" alt="{{ s0.title }}" aria-hidden="true">
+            <div>
+              <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s0.title }}</h3>
+              <p class="text-slate-300 mt-2 md:mt-3">{{ s0.description }}</p>
+              <a href="{{ s0.link }}" class="text-teal-400 hover:text-teal-300 transition-all ease-in-out hover:underline mt-4 block">{{ s0.linkText }}</a>
+            </div>
           </article>
-          <article class="p-8 md:p-10">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6" src="{{ s1.icon }}" alt="{{ s1.title }}" aria-hidden="true">
-            <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s1.title }}</h3>
-            <p class="text-slate-300 mt-2 md:mt-3">{{ s1.description }}</p>
-            <a class="inline-block mt-3 font-semibold text-teal-400 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-sm" href="{{ s1.link }}">{{ s1.linkText }}</a>
+          <article class="p-8 md:p-10 flex flex-row justify-between gap-8">
+            <img class="w-24 h-24 mb-4 md:mb-6" src="{{ s1.icon }}" alt="{{ s1.title }}" aria-hidden="true">
+            <div>
+              <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s1.title }}</h3>
+              <p class="text-slate-300 mt-2 md:mt-3">{{ s1.description }}</p>
+              <a href="{{ s1.link }}" class="text-teal-400 hover:text-teal-300 transition-all ease-in-out hover:underline mt-4 block">{{ s1.linkText }}</a>
+            </div>
           </article>
         </div>
         <!-- Row 2 -->
         <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
           {% set s2 = services[2] %}
           {% set s3 = services[3] %}
-          <article class="p-8 md:p-10">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6" src="{{ s2.icon }}" alt="{{ s2.title }}" aria-hidden="true">
-            <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s2.title }}</h3>
-            <p class="text-slate-300 mt-2 md:mt-3">{{ s2.description }}</p>
-            <a class="inline-block mt-3 font-semibold text-teal-400 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-sm" href="{{ s2.link }}">{{ s2.linkText }}</a>
+          <article class="p-8 md:p-10 flex flex-row justify-between gap-8">
+            <img class="w-24 h-24 mb-4 md:mb-6" src="{{ s2.icon }}" alt="{{ s2.title }}" aria-hidden="true">
+            <div>
+              <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s2.title }}</h3>
+              <p class="text-slate-300 mt-2 md:mt-3">{{ s2.description }}</p>
+              <a href="{{ s2.link }}" class="text-teal-400 hover:text-teal-300 transition-all ease-in-out hover:underline mt-4 block">{{ s2.linkText }}</a>
+            </div>
           </article>
-          <article class="p-8 md:p-10">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-4 md:mb-6" src="{{ s3.icon }}" alt="{{ s3.title }}" aria-hidden="true">
-            <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s3.title }}</h3>
-            <p class="text-slate-300 mt-2 md:mt-3">{{ s3.description }}</p>
-            <a class="inline-block mt-3 font-semibold text-teal-400 hover:text-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-sm" href="{{ s3.link }}">{{ s3.linkText }}</a>
+          <article class="p-8 md:p-10 flex flex-row justify-between gap-8">
+            <img class="w-24 h-24 mb-4 md:mb-6" src="{{ s3.icon }}" alt="{{ s3.title }}" aria-hidden="true">
+            <div>
+              <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s3.title }}</h3>
+              <p class="text-slate-300 mt-2 md:mt-3">{{ s3.description }}</p>
+              <a href="{{ s3.link }}" class="text-teal-400 hover:text-teal-300 transition-all ease-in-out hover:underline mt-4 block">{{ s3.linkText }}</a>
+            </div>
           </article>
         </div>
       </div>
