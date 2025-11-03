@@ -1205,14 +1205,13 @@
   
   <section id="techWorks" class="w-full relative pt-32 pb-44" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
     <!-- Top fade handled by previous section; removed to avoid overlap seams -->
-    <!-- Animated waves canvases will be placed inside the card surface so they appear behind it and are clipped by the rounded corners. -->
+    <!-- Animated waves canvases (full-width, behind the card) -->
+    <canvas id="diffWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none;"></canvas>
+    <canvas id="highlightsWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:overlay; opacity:.25;"></canvas>
     
     <div class="mx-2 md:px-8 2xl:px-0 md:container md:max-w-screen-xl md:mx-auto" style="position:relative; z-index:1;">
     <!-- Single surface wrapping title, copy, and cards -->
     <div class="w-full rounded-2xl overflow-hidden" style="position:relative; background:rgba(0,0,0,0.82); border:1px solid rgba(75,85,99,.35);">
-      <!-- Waves canvases inside the card to sit behind content and clip to border radius -->
-      <canvas id="diffWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none;"></canvas>
-      <canvas id="highlightsWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:overlay; opacity:.25;"></canvas>
       <div class="flex flex-col divide-y divide-gray-700/50" style="position:relative; z-index:1;">
         <!-- Intro block inside surface -->
         <div class="p-8 md:p-12 text-center">
