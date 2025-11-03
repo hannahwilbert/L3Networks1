@@ -7,17 +7,17 @@
       {% for cust in custSuccess.items %} 
       {% if cust.buttonUrl == "#" %}
       <a href="#" class="relative block group h-72">
-        <span class="absolute inset-0 transition-opacity bg-gray-300 opacity-0 blur group-hover:opacity-100 "></span>
+        <span class="absolute inset-0 transition-opacity bg-gray-300 opacity-0 group-hover:opacity-100"></span>
         <div
-          class="relative flex items-end h-full transition-transform transform group-hover:-translate-x-2 group-hover:-translate-y-2">
+          class="relative flex items-end h-full transition-transform transform group-hover:-translate-x-2 group-hover:-translate-y-2 gpu smooth dur-240">
           <!-- front side -->
           <div role="img" aria-label="{{ cust.imgAlt }}" style="background-image: url('{{ cust.img }}') ;"
-            class="w-full h-full px-8 pb-8 transition-opacity bg-center bg-no-repeat bg-cover group-hover:opacity-0 group-hover:absolute">
+            class="w-full h-full px-8 pb-8 transition-opacity bg-center bg-no-repeat bg-cover group-hover:opacity-0 group-hover:absolute smooth dur-240">
 
           </div>
           <!-- back side -->
           <div
-            class="absolute w-full h-full p-8 transition-opacity bg-white opacity-0 group-hover:opacity-100 group-hover:relative">
+            class="absolute w-full h-full p-8 transition-opacity bg-white opacity-0 group-hover:opacity-100 group-hover:relative smooth dur-240">
             <div class="relative h-full">
               <div class="flex flex-col text-center">
                 <p class="mb-5 text-2xl font-bold">{{ cust.category }}</p>
@@ -34,17 +34,17 @@
       </a>
       {% else %}
       <a href="/public/{{ cust.buttonUrl }}" class="relative block group h-72">
-        <span class="absolute inset-0 transition-opacity bg-gray-300 opacity-0 blur group-hover:opacity-100 "></span>
+        <span class="absolute inset-0 transition-opacity bg-gray-300 opacity-0 group-hover:opacity-100"></span>
         <div
-          class="relative flex items-end h-full transition-transform transform group-hover:-translate-x-2 group-hover:-translate-y-2">
+          class="relative flex items-end h-full transition-transform transform group-hover:-translate-x-2 group-hover:-translate-y-2 gpu smooth dur-240">
           <!-- front side -->
           <div role="img" aria-label="{{ cust.imgAlt }}" style="background-image: url('{{ cust.img }}') ;"
-            class="w-full h-full px-8 pb-8 transition-opacity bg-center bg-no-repeat bg-cover group-hover:opacity-0 group-hover:absolute">
+            class="w-full h-full px-8 pb-8 transition-opacity bg-center bg-no-repeat bg-cover group-hover:opacity-0 group-hover:absolute smooth dur-240">
 
           </div>
           <!-- back side -->
           <div
-            class="absolute w-full h-full p-8 transition-opacity bg-white opacity-0 group-hover:opacity-100 group-hover:relative">
+            class="absolute w-full h-full p-8 transition-opacity bg-white opacity-0 group-hover:opacity-100 group-hover:relative smooth dur-240">
             <div class="relative h-full">
               <div class="flex flex-col text-center">
                 <p class="mb-5 text-2xl font-bold">{{ cust.category }}</p>

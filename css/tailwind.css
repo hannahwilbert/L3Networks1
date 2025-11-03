@@ -14,6 +14,18 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Global hover performance helpers */
+:root{ --hover-ease:cubic-bezier(0.22,1,0.36,1); }
+
+/* Hint the browser to composite transforms/opacity and keep transitions short/smooth */
+.group .transition-transform, .transition-transform{ will-change: transform; backface-visibility: hidden; transition-timing-function: var(--hover-ease); }
+.group .transition-opacity, .transition-opacity{ will-change: opacity; transition-timing-function: var(--hover-ease); }
+
+/* Utility hooks if needed in markup */
+.gpu{ will-change: transform, opacity; backface-visibility: hidden; }
+.smooth{ transition-timing-function: var(--hover-ease) !important; }
+.dur-240{ transition-duration: 240ms !important; }
 .benefit {
   @apply hover:text-white transition-all duration-500
 }

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="/images/home/home1.webp" fetchpriority="high">
   {% if env.isProd %}
   <link rel="preconnect" href="https://www.googletagmanager.com">
   <link rel="preconnect" href="https://snap.licdn.com">
@@ -61,7 +62,12 @@
   <script defer src="/js/animate.js"></script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      const heroswiper = new Swiper('#hero', {
+      const initSwiper = (sel, opts) => {
+        if (window.Swiper && document.querySelector(sel)) {
+          return new Swiper(sel, opts);
+        }
+      };
+      initSwiper('#hero', {
         slidesPerView: 1,
         spaceBetween: 0,
         autoplay: {
@@ -77,14 +83,15 @@
         }
       });
 
-      const swiper = new Swiper('#swiper', {
+      initSwiper('#swiper', {
         loop: true,
         loopFillGroupWithBlank: true,
         slidesPerView: 1,
         spaceBetween: 24,
-        loopedSlides: 10,
+        loopedSlides: 16,
+        loopAdditionalSlides: 8,
         autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true },
-        speed: 12000,
+        speed: 10000,
         allowTouchMove: false,
 
         breakpoints: {
@@ -95,7 +102,7 @@
         },
         // no navigation arrows for brand marquee
       });
-      const homeswiper = new Swiper('#homeswiper', {
+      initSwiper('#homeswiper', {
         loop: true,
 
         // Navigation arrows

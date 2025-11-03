@@ -32,11 +32,37 @@
     </div>
   </div>
 
-  <!-- Background Video -->
-  <video autoplay loop muted playsinline preload="metadata" class="absolute inset-0 w-auto min-w-full min-h-full max-w-none">
-    <source src="/videos/herovid.mp4" type="video/mp4" />
+  <!-- Background Video (lazy start with poster) -->
+  <video id="heroVideo" autoplay loop muted playsinline preload="none" poster="/images/home/home1.webp" class="absolute inset-0 w-auto min-w-full min-h-full max-w-none">
+    <source data-src="/videos/herovid.webm" type="video/webm" />
+    <source data-src="/videos/herovid.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
+  <script>
+    (function(){
+      var v = document.getElementById('heroVideo');
+      if (!v) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function start(){
+        if (reduce) return;
+        var sources = v.querySelectorAll('source[data-src]');
+        var hasSet = false;
+        sources.forEach(function(s){
+          if (!s.src){ s.src = s.getAttribute('data-src'); hasSet = true; }
+        });
+        if (hasSet){
+          v.load();
+          var p = v.play && v.play();
+          if (p && p.catch) { /* ignore autoplay block */ }
+        }
+      }
+      if ('requestIdleCallback' in window){
+        requestIdleCallback(start, { timeout: 2000 });
+      } else {
+        window.addEventListener('load', start, { once: true });
+      }
+    })();
+  </script>
 
   <!-- Background Gradient -->
   <div class="absolute inset-0 w-full h-full bg-linear-to-l from-slate-900/10 to-black/70"></div>
@@ -69,6 +95,8 @@
   <script>
     (function () {
       var CANVAS_IDS = ['diffWaves', 'highlightsWaves'];
+      // Re-enable interactivity with strict performance caps
+      var INTERACTIVE = true;
 
       function initCanvas(cv) {
         if (!cv || cv.__wavesInitialized) return;
@@ -84,7 +112,8 @@
           root.style.position = 'relative';
         }
 
-        var DPR_CAP = 1.5;
+        // Cap device pixel ratio a bit lower to reduce canvas cost
+        var DPR_CAP = 1.25;
         var dpr = Math.min(DPR_CAP, Math.max(1, window.devicePixelRatio || 1));
         var W = 0;
         var H = 0;
@@ -95,7 +124,9 @@
         var C2 = '#FFFFFF';
         var C3 = '#FFFFFF';
 
-        var LINES  = 40; // reduced from 63 for better performance
+        // Adaptive detail: add more lines while keeping perf balanced
+        var LINES_IDLE  = Math.round(window.innerWidth < 768 ? 32 : 48);
+        var LINES_ACTIVE = Math.round(window.innerWidth < 768 ? 24 : 36);
         var AMP    = 35;
         var FREQ   = 2.0;
         var SPEED  = 0.3;
@@ -109,24 +140,30 @@
 
         var target = { x: 0.5, y: 0.5, active: false };
         var smooth = { x: 0.5, y: 0.5 };
-        var EASE = 0.10;
+        // Adaptive smoothing: faster when interacting
+        // Slightly higher ease so it feels responsive even at 30fps
+        var EASE_BASE = 0.14, EASE_ACTIVE = 0.26;
         var pressure = 0;
-        var PRESS_EASE = 0.12;
+        var PRESS_EASE_BASE = 0.12, PRESS_EASE_ACTIVE = 0.24;
+        var boostUntil = 0; // timestamp to run at higher responsiveness after interaction
 
-        var PRESS_STRENGTH = 0.60;
+        var PRESS_STRENGTH = INTERACTIVE ? 0.20 : 0;
         var PRESS_RADIUS = 0.10;
         var PRESS_FALLOFF_Y = 0.55;
 
-        root.addEventListener('pointermove', function (e) {
-          var r = root.getBoundingClientRect();
-          target.x = (e.clientX - r.left) / r.width;
-          target.y = (e.clientY - r.top) / r.height;
-          target.active = true;
-        }, { passive: true });
+        if (INTERACTIVE) {
+          root.addEventListener('pointermove', function (e) {
+            var r = root.getBoundingClientRect();
+            target.x = (e.clientX - r.left) / r.width;
+            target.y = (e.clientY - r.top) / r.height;
+            target.active = true;
+            try { boostUntil = (performance.now ? performance.now() : Date.now()) + 1200; } catch(_) {}
+          }, { passive: true });
 
-        root.addEventListener('pointerleave', function () {
-          target.active = false;
-        }, { passive: true });
+          root.addEventListener('pointerleave', function () {
+            target.active = false;
+          }, { passive: true });
+        }
 
         function size() {
           var r = root.getBoundingClientRect();
@@ -162,7 +199,7 @@
           return toward * gauss * PRESS_STRENGTH * pressure * attenuation;
         }
 
-        function drawWave(u, baseY) {
+        function drawWave(u, baseY, GRAD) {
           var w = 1 - Math.abs(u);
           var amp = AMP * (0.65 + 0.55 * w);
           var freq = FREQ * (1.0 + u * 0.22);
@@ -170,12 +207,13 @@
           var alpha = ALPHA * (0.6 + 0.5 * w);
 
           ctx.lineWidth = lw;
-          ctx.strokeStyle = grad();
+          ctx.strokeStyle = GRAD;
           ctx.globalAlpha = alpha;
           ctx.beginPath();
 
           var phaseShift = u * 1.25;
-          var step = Math.max(1.4, W / 220);
+          // Larger step (fewer points per line) to offset higher line count
+          var step = Math.max(2.0, W / (target.active ? 150 : 190));
           for (var x = 0; x <= W; x += step) {
             var nx = x / W;
             var xTwist = x + (TWIST * u) * Math.sin(t * 0.7 + nx * 2.2);
@@ -199,14 +237,40 @@
           ctx.stroke();
         }
 
+        // Frame throttling and visibility/viewport awareness
+        var MAX_FPS = 30; // hard cap when idle
+        var MAX_ACTIVE_FPS = 45; // moderate boost during interaction with reduced detail
+        var FRAME_MS = 1000 / MAX_FPS;
+        var lastTime = 0;
+        var isOnscreen = true;
+        var pageHidden = document.hidden;
+        if ('IntersectionObserver' in window) {
+          try {
+            var visObserver = new IntersectionObserver(function(entries){
+              if (entries && entries[0]) isOnscreen = !!entries[0].isIntersecting;
+            }, { root: null, threshold: 0.01 });
+            visObserver.observe(root);
+          } catch(_){}
+        }
+        document.addEventListener('visibilitychange', function(){ pageHidden = document.hidden; });
+
         function render() {
+          // Skip heavy work if page hidden or canvas offscreen
+          if (pageHidden || !isOnscreen) { requestAnimationFrame(render); return; }
+          var now = (window.performance && performance.now) ? performance.now() : Date.now();
+          var isBoost = (now < boostUntil) && INTERACTIVE; // allow brief boost window if we ever enable it
+          var frameBudget = (target.active ? (1000/Math.max(1, MAX_ACTIVE_FPS)) : FRAME_MS);
+          if (now - lastTime < frameBudget) { requestAnimationFrame(render); return; }
+          lastTime = now;
           var gx = target.active ? target.x : 0.5;
           var gy = target.active ? target.y : 0.5;
-          smooth.x += (gx - smooth.x) * EASE;
-          smooth.y += (gy - smooth.y) * EASE;
+          var ease = (target.active ? EASE_ACTIVE : EASE_BASE);
+          smooth.x += (gx - smooth.x) * ease;
+          smooth.y += (gy - smooth.y) * ease;
 
           var pTarget = target.active ? 1 : 0;
-          pressure += (pTarget - pressure) * PRESS_EASE;
+          var pressEase = isBoost ? PRESS_EASE_ACTIVE : PRESS_EASE_BASE;
+          pressure += (pTarget - pressure) * pressEase;
 
           ctx.clearRect(0, 0, W, H);
           if (BG) {
@@ -217,10 +281,11 @@
 
           var center = H * (0.56 + 0.04 * Math.sin(t * 0.6));
           var spread = H * SPREAD;
-
-          for (var i = 0; i < LINES; i++) {
-            var u = (i / (LINES - 1)) * 2 - 1;
-            drawWave(u, center + u * spread);
+          var GRAD = grad();
+          var LINES_CUR = target.active ? LINES_ACTIVE : LINES_IDLE;
+          for (var i = 0; i < LINES_CUR; i++) {
+            var u = (i / (LINES_CUR - 1)) * 2 - 1;
+            drawWave(u, center + u * spread, GRAD);
           }
 
           t += 0.016;
@@ -276,7 +341,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
           <!-- Card 1 -->
           <article class="flex items-start gap-4 p-6 md:p-10">
-            <img src="/images/icons/ban.svg" alt="" class="shrink-0 w-6 h-6 mt-1" aria-hidden="true">
+            <img src="/images/icons/ban.svg" alt="" class="shrink-0 w-6 h-6 mt-1" aria-hidden="true" loading="lazy" decoding="async">
             <div>
               <h3 class="text-red-500 font-extrabold text-xl md:text-2xl tracking-tight">Lacking Specific Expertise</h3>
               <p class="text-slate-300 mt-1 md:mt-2">Do you have the right skillsets when you need them to support your technology needs?</p>
@@ -284,7 +349,7 @@
           </article>
           <!-- Card 2 -->
           <article class="flex items-start gap-4 p-6 md:p-10">
-            <img src="/images/icons/ban.svg" alt="" class="shrink-0 w-6 h-6 mt-1" aria-hidden="true">
+            <img src="/images/icons/ban.svg" alt="" class="shrink-0 w-6 h-6 mt-1" aria-hidden="true" loading="lazy" decoding="async">
             <div>
               <h3 class="text-red-500 font-extrabold text-xl md:text-2xl tracking-tight">Missing ROI Expectations</h3>
               <p class="text-slate-300 mt-1 md:mt-2">When was the last time you checked to make sure you are not overpaying for IT services?</p>
@@ -296,7 +361,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
           <!-- Card 3 -->
           <article class="flex items-start gap-4 p-6 md:p-10">
-            <img src="/images/icons/ban.svg" alt="" class="shrink-0 w-6 h-6 mt-1" aria-hidden="true">
+            <img src="/images/icons/ban.svg" alt="" class="shrink-0 w-6 h-6 mt-1" aria-hidden="true" loading="lazy" decoding="async">
             <div>
               <h3 class="text-red-500 font-extrabold text-xl md:text-2xl tracking-tight">Behind with New Initiatives</h3>
               <p class="text-slate-300 mt-1 md:mt-2">Are you confident with how Technologies are planned and implemented in your business?</p>
@@ -304,7 +369,7 @@
           </article>
           <!-- Card 4 -->
           <article class="flex items-start gap-4 p-6 md:p-10">
-            <img src="/images/icons/ban.svg" alt="" class="shrink-0 w-6 h-6 mt-1" aria-hidden="true">
+            <img src="/images/icons/ban.svg" alt="" class="shrink-0 w-6 h-6 mt-1" aria-hidden="true" loading="lazy" decoding="async">
             <div>
               <h3 class="text-red-500 font-extrabold text-xl md:text-2xl tracking-tight">Unpredictable IT Experience</h3>
               <p class="text-slate-300 mt-1 md:mt-2">Are performance, security and ease of use challenges impacting your business?</p>
@@ -331,7 +396,7 @@
     <p class="body-lead measure mb-md" style="color:#ffffff;">Technology challenges can be frustrating—we deliver tailored solutions and 24/7 support to reduce downtime and secure your systems.</p>
 
     <!-- Testimonials carousel (one full-width card at a time) -->
-    <div class="resultsCarousel" id="resultsCarousel" aria-label="Client testimonials" role="region">
+    <div class="resultsCarousel" id="resultsCarousel" aria-label="Client testimonials" role="region" style="content-visibility:auto; contain-intrinsic-size: 1000px 720px;">
       <!-- Slide 1 -->
       <article class="resultsSlide" role="group" aria-roledescription="slide" aria-label="1 of 3">
         <div class="resultsGrid">
@@ -424,7 +489,11 @@
     .resultsImage::after{ content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(315deg, rgba(0,187,167,.45) 0%, rgba(102,199,232,.28) 35%, rgba(102,199,232,0) 80%); mix-blend-mode:normal; }
     .resultsSlide{ position:absolute; left:0; right:0; top:0; opacity:0; transition:opacity .5s cubic-bezier(.4,0,.2,1); pointer-events:none; will-change:opacity; }
     .resultsSlide.is-active{ opacity:1; pointer-events:auto; }
-    @media (max-width: 860px){ .resultsCarousel{ height:auto !important; } .resultsSlide{ position:relative; opacity:1; pointer-events:auto; } .resultsCarousel .resultsSlide:not(:first-child){ display:none; } }
+    @media (max-width: 860px){
+      .resultsCarousel{ height:auto !important; }
+      .resultsSlide{ position:relative; opacity:1; pointer-events:auto; display:none; }
+      .resultsSlide.is-active{ display:block; }
+    }
     .resultsCarousel .resultsCard{ transition:none; }
     .resultsCarousel .resultsCard:hover, .resultsCarousel .resultsCard:focus-within{ transform:none; border-color:#1b2d46; box-shadow:0 24px 56px rgba(8,18,35,0.52), inset 0 1px 0 rgba(255,255,255,0.06); }
     .resultsDots{ display:flex; justify-content:center; align-items:center; gap:10px; padding-top:0; margin-top:8px; }
@@ -463,9 +532,9 @@
         function next(){ setActive(current+1 >= slides.length ? 0 : current+1); }
         function pause(){ if (timer){ clearInterval(timer); timer=null; } }
         function resume(){ pause(); timer=setInterval(next, interval); }
-        setActive(0);
-        if (slides.length <= 1) { dotsWraps.forEach(function(dw){ dw.style.display='none'; dw.innerHTML=''; }); return; }
+        if (slides.length <= 1) { dotsWraps.forEach(function(dw){ dw.style.display='none'; dw.innerHTML=''; }); setActive(0); return; }
         buildDots();
+        setActive(0);
         wrap.setAttribute('tabindex','0');
         wrap.addEventListener('keydown', function(e){ if (e.key==='ArrowRight' || e.key==='Right'){ e.preventDefault(); pause(); next(); resume(); } else if (e.key==='ArrowLeft' || e.key==='Left'){ e.preventDefault(); pause(); setActive(current-1<0?slides.length-1:current-1); resume(); } });
         wrap.addEventListener('pointerenter', pause, { passive:true });
@@ -523,12 +592,12 @@
           {% set f0 = keyFeatures.features[0] %}
           {% set f1 = keyFeatures.features[1] %}
           <article class="p-8 md:p-10">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f0.icon }}" alt="{{ f0.alt }}" aria-hidden="true">
+            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f0.icon }}" alt="{{ f0.alt }}" aria-hidden="true" loading="lazy" decoding="async">
             <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f0.heading }}</h3>
             <p class="text-slate-300 mt-2 md:mt-3">{{ f0.description }}</p>
           </article>
           <article class="p-8 md:p-10">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f1.icon }}" alt="{{ f1.alt }}" aria-hidden="true">
+            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f1.icon }}" alt="{{ f1.alt }}" aria-hidden="true" loading="lazy" decoding="async">
             <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f1.heading }}</h3>
             <p class="text-slate-300 mt-2 md:mt-3">{{ f1.description }}</p>
           </article>
@@ -538,12 +607,12 @@
           {% set f2 = keyFeatures.features[2] %}
           {% set f3 = keyFeatures.features[3] %}
           <article class="p-8 md:p-10">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f2.icon }}" alt="{{ f2.alt }}" aria-hidden="true">
+            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f2.icon }}" alt="{{ f2.alt }}" aria-hidden="true" loading="lazy" decoding="async">
             <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f2.heading }}</h3>
             <p class="text-slate-300 mt-2 md:mt-3">{{ f2.description }}</p>
           </article>
           <article class="p-8 md:p-10">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f3.icon }}" alt="{{ f3.alt }}" aria-hidden="true">
+            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f3.icon }}" alt="{{ f3.alt }}" aria-hidden="true" loading="lazy" decoding="async">
             <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f3.heading }}</h3>
             <p class="text-slate-300 mt-2 md:mt-3">{{ f3.description }}</p>
           </article>
@@ -563,7 +632,7 @@
 
 <article class="px-2 pt-24 pb-32 text-white lg:px-8" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
   
-  <div class="container max-w-screen-xl mx-auto">
+  <div class="container max-w-screen-xl mx-auto" style="content-visibility:auto; contain-intrinsic-size: 1200px 1100px;">
   
     <div class="grid grid-cols-1 gap-8">
       <section class="col-span-1">
@@ -574,7 +643,7 @@
         <!-- Legacy three-card grid removed to reduce DOM weight -->
 
         <!-- Auto-rotating testimonials carousel (matches Testing site) -->
-        <div class="resultsCarousel" id="resultsCarousel2" aria-label="Client testimonials" role="region">
+        <div class="resultsCarousel" id="resultsCarousel2" aria-label="Client testimonials" role="region" style="content-visibility:auto; contain-intrinsic-size: 820px 680px;">
           <!-- Slide 1 -->
           <article class="resultsSlide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
             <div class="resultsGrid">
@@ -699,8 +768,8 @@
               function next(){ setActive(current+1 >= slides.length ? 0 : current+1); }
               function pause(){ if (timer){ clearInterval(timer); timer=null; } }
               function resume(){ pause(); timer=setInterval(next, interval); }
-              setActive(0);
               wrap.setAttribute('tabindex','0');
+              setActive(0);
               wrap.addEventListener('keydown', function(e){ if (e.key==='ArrowRight' || e.key==='Right'){ e.preventDefault(); pause(); next(); resume(); } else if (e.key==='ArrowLeft' || e.key==='Left'){ e.preventDefault(); pause(); setActive(current-1<0?slides.length-1:current-1); resume(); } });
               wrap.addEventListener('pointerenter', pause, { passive:true });
               wrap.addEventListener('pointerleave', resume, { passive:true });
@@ -715,49 +784,65 @@
   </div>
 
   <!-- Industries grid under testimonials (visible) -->
-  <div class="container max-w-screen-xl mx-auto pt-12">
+  <div class="container max-w-screen-xl mx-auto pt-12" style="content-visibility:auto; contain-intrinsic-size: 900px 720px;">
     <h2 class="relative font-mont font-semibold tracking-tighter heading-36">Our Customers Mission, is Our Mission</h2>
     <p class="text-xl font-light text-slate-300 mb-8">We help every industry turn IT into a strategic advantage.</p>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <div class="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800">
-        <img src="/images/home/Manufacturing.png" alt="Manufacturing" class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white font-semibold text-lg md:text-xl">Manufacturing</h3></div>
+    <style>
+      /* Smooth, GPU-accelerated hover without jank */
+      .industryGrid{ display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:1.25rem; }
+      @media(min-width:640px){ .industryGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+      @media(min-width:1024px){ .industryGrid{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
+      .industryCard{ position:relative; overflow:hidden; border-radius:1rem; background:rgba(15,23,42,.4); border:1px solid #1f2937; contain:paint; }
+      /* Disable hover shadow pseudo-element */
+      .industryCard::after{ content:none; }
+      .industryImg{ width:100%; height:12rem; object-fit:cover; }
+      @media(min-width:768px){ .industryImg{ height:14rem; } }
+      .industryShade{ position:absolute; inset:0; opacity:.6; }
+      .industryLabel{ position:absolute; left:0; bottom:0; padding:1rem; }
+      @media (prefers-reduced-motion: reduce){
+        .industryImg, .industryShade, .industryLabel, .industryCard{ transition-duration:0ms !important; transform:none !important; }
+      }
+    </style>
+    <div class="industryGrid">
+      <div class="industryCard">
+        <img src="/images/home/Manufacturing.png" alt="Manufacturing" class="industryImg" loading="lazy" decoding="async"/>
+        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Manufacturing</h3></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800">
-        <img src="/images/home/Entertainment.png" alt="Entertainment" class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white font-semibold text-lg md:text-xl">Entertainment</h3></div>
+      <div class="industryCard">
+        <img src="/images/home/Entertainment.png" alt="Entertainment" class="industryImg" loading="lazy" decoding="async"/>
+        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Entertainment</h3></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800">
-        <img src="/images/home/Logistics.png" alt="Logistics" class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white font-semibold text-lg md:text-xl">Logistics</h3></div>
+      <div class="industryCard">
+        <img src="/images/home/Logistics.png" alt="Logistics" class="industryImg" loading="lazy" decoding="async"/>
+        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Logistics</h3></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800">
-        <img src="/images/home/Financial Services.png" alt="Financial Services" class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white font-semibold text-lg md:text-xl">Financial Services</h3></div>
+      <div class="industryCard">
+        <img src="/images/home/Financial Services.png" alt="Financial Services" class="industryImg" loading="lazy" decoding="async"/>
+        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Financial Services</h3></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800">
-        <img src="/images/home/B2B Services.png" alt="B2B Services" class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white font-semibold text-lg md:text-xl">B2B Services</h3></div>
+      <div class="industryCard">
+        <img src="/images/home/B2B Services.png" alt="B2B Services" class="industryImg" loading="lazy" decoding="async"/>
+        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">B2B Services</h3></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800">
-        <img src="/images/home/designbuild.webp" alt="Design &amp; Construction" class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white font-semibold text-lg md:text-xl">Design &amp; Construction</h3></div>
+      <div class="industryCard">
+        <img src="/images/home/designbuild.webp" alt="Design &amp; Construction" class="industryImg" loading="lazy" decoding="async"/>
+        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Design &amp; Construction</h3></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800">
-        <img src="/images/home/Healthcare.png" alt="Healthcare" class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white font-semibold text-lg md:text-xl">Healthcare</h3></div>
+      <div class="industryCard">
+        <img src="/images/home/Healthcare.png" alt="Healthcare" class="industryImg" loading="lazy" decoding="async"/>
+        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Healthcare</h3></div>
       </div>
-      <div class="group relative overflow-hidden rounded-2xl bg-slate-900/40 border border-slate-800">
-        <img src="/images/home/Legal Services.png" alt="Legal Services" class="w-full h-48 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="absolute bottom-0 left-0 p-4"><h3 class="text-white font-semibold text-lg md:text-xl">Legal Services</h3></div>
+      <div class="industryCard">
+        <img src="/images/home/Legal Services.png" alt="Legal Services" class="industryImg" loading="lazy" decoding="async"/>
+        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Legal Services</h3></div>
       </div>
     </div>
   </div>
@@ -787,9 +872,8 @@
             Schedule a 15-minute Right-Fit Call and get a fast read on what it will take to stabilize, optimize, or transform your environment.
           </p>
           <div class="ctaRF__actions">
-            <a href="#" class="ctaRF__button">
-              <span>Schedule a Right-Fit Call</span>
-              <img src="/images/icons/ArrowUpRightWhite.svg" alt="Schedule a Right-Fit Call">
+            <a href="https://l3networks.timezest.com/sales/meeting-15" class="inline-flex w-auto px-6 py-2.5 text-lg font-semibold text-white transition-all ease-in-out bg-teal-500 rounded-full hover:bg-teal-600">
+              <div class="flex items-center gap-2">Schedule a Right-Fit Call <img src="/images/icons/ArrowUpRightWhite.svg" alt="Schedule a Right-Fit Call"></div>
             </a>
           </div>
         </div>
@@ -1045,25 +1129,31 @@
       color:#fff;
       background:var(--brand, #00BBA7); /* ensure teal */
       box-shadow:none; /* remove teal glow */
-      transition:transform .18s ease, filter .18s ease;
+      will-change: transform;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      transition: transform .22s cubic-bezier(.22,1,.36,1), filter .22s cubic-bezier(.22,1,.36,1);
     }
 
     .ctaRF__button img{
       width:18px;
       height:18px;
-      transition:transform .18s ease;
+      will-change: transform;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      transition: transform .22s cubic-bezier(.22,1,.36,1);
     }
 
     .ctaRF__button:hover,
     .ctaRF__button:focus-visible{
-      transform:translateY(-1px) scale(1.02);
+      transform: translate3d(0,-1px,0); /* no scale to avoid shimmer */
       box-shadow:none; /* no glow on hover */
       filter:none;
     }
 
     .ctaRF__button:hover img,
     .ctaRF__button:focus-visible img{
-      transform:translateX(3px);
+      transform: translate3d(3px,0,0);
     }
 
     .ctaRF__button:focus-visible{
@@ -1453,9 +1543,8 @@
       </div>
 
       <div class="insightsCTA rcDemo__ctaWrap">
-        <a href="/resources/" class="rcDemo__cta">
-          Visit Resource Center
-          <img src="/images/icons/ArrowUpRightWhite.svg" alt="Visit Resource Center" style="height:18px;">
+        <a href="/resources/" class="inline-flex w-auto px-6 py-2.5 text-lg font-semibold text-white transition-all ease-in-out bg-teal-500 rounded-full hover:bg-teal-600">
+          <div class="flex items-center gap-2">Visit Resource Center <img src="/images/icons/ArrowUpRightWhite.svg" alt="Visit Resource Center"></div>
         </a>
       </div>
     </div>

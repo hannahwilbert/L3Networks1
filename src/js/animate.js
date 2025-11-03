@@ -103,11 +103,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function scheduleTyping(){
+    if ('requestIdleCallback' in window){
+      requestIdleCallback(startTyping, { timeout: 2000 });
+    } else {
+      setTimeout(startTyping, 0);
+    }
+  }
+
   if (window.Typed) {
-    startTyping();
+    scheduleTyping();
   } else {
     // Fallback: try after DOM is fully loaded
-    window.addEventListener('load', startTyping, { once: true });
+    window.addEventListener('load', scheduleTyping, { once: true });
   }
 })();
 
