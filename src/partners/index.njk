@@ -241,28 +241,19 @@
             class="whoBtn w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg px-5 sm:px-6 md:px-8 ring-1 ring-[#1b2d46]/60"
             :class="open===1 ? 'whoBtn--open bg-teal-500 text-white ring-1 ring-teal-500 shadow-xl' : 'whoBtnOff hover:shadow-teal-500/10'"
           >
-            <div class="flex items-center justify-between pt-4 sm:pt-6" :class="open===1 ? 'pb-2 sm:pb-3' : 'pb-4 sm:pb-6'">
+            <div class="flex items-center justify-between pt-4 sm:pt-6 pb-4 sm:pb-6">
               <div class="flex items-center flex-1 min-w-0 pr-6 sm:pr-8">
                 <h3 class="text-xl sm:text-2xl md:text-3xl tracking-tighter font-semibold">vCISOs and MSSP’s</h3>
               </div>
-              <!-- Triangle when open (down) -->
-              <svg x-show="open===1" class="flex-shrink-0 accIcon accIcon--triDown" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
-                <polygon points="8,5 18,12 8,19"></polygon>
-              </svg>
-              <!-- Triangle when closed (right) -->
-              <svg x-show="open!==1" class="flex-shrink-0 accIcon accIcon--triRight" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="flex-shrink-0 accIcon transition-transform duration-200" :class="open===1 ? 'rotate-90' : ''" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
                 <polygon points="8,5 18,12 8,19"></polygon>
               </svg>
             </div>
 
-            <div
-              x-show="open===1"
-              x-transition:enter="transition ease-out duration-500"
-              x-transition:enter-start="opacity-0 transform translate-y-4"
-              x-transition:enter-end="opacity-100 transform translate-y-0"
-              class="whoPanel bg-teal-600 rounded-2xl sm:rounded-3xl p-3 sm:p-4 -mx-5 sm:-mx-6 md:-mx-8 mt-2 sm:mt-3"
-            >
-              <p>Deepen your client engagements and earn commissions for services delivered through L3. Gain access to our Elevate framework, standardized reporting, and enterprise-class engineering resources.</p>
+            <div x-show="open===1" x-collapse.duration.300ms x-transition.opacity class="whoPanelWrap -mx-5 sm:-mx-6 md:-mx-8 overflow-hidden">
+              <div class="whoPanel rounded-2xl sm:rounded-3xl p-3 sm:p-4 mt-2 sm:mt-3 bg-teal-600">
+                <p>Deepen your client engagements and earn commissions for services delivered through L3. Gain access to our Elevate framework, standardized reporting, and enterprise-class engineering resources.</p>
+              </div>
             </div>
           </button>
         </div>
@@ -277,26 +268,19 @@
             class="whoBtn w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg px-5 sm:px-6 md:px-8 ring-1 ring-[#1b2d46]/60"
             :class="open===2 ? 'whoBtn--open bg-teal-500 text-white ring-1 ring-teal-500 shadow-xl' : 'whoBtnOff hover:shadow-teal-500/10'"
           >
-            <div class="flex items-center justify-between pt-4 sm:pt-6" :class="open===2 ? 'pb-2 sm:pb-3' : 'pb-4 sm:pb-6'">
+            <div class="flex items-center justify-between pt-4 sm:pt-6 pb-4 sm:pb-6">
               <div class="flex items-center flex-1 min-w-0 pr-6 sm:pr-8">
                 <h3 class="text-xl sm:text-2xl md:text-3xl tracking-tighter font-semibold">MSPs and Technology Advisors</h3>
               </div>
-              <svg x-show="open===2" class="flex-shrink-0 accIcon accIcon--triDown" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
-                <polygon points="8,5 18,12 8,19"></polygon>
-              </svg>
-              <svg x-show="open!==2" class="flex-shrink-0 accIcon accIcon--triRight" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="flex-shrink-0 accIcon transition-transform duration-200" :class="open===2 ? 'rotate-90' : ''" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
                 <polygon points="8,5 18,12 8,19"></polygon>
               </svg>
             </div>
 
-            <div
-              x-show="open===2"
-              x-transition:enter="transition ease-out duration-500"
-              x-transition:enter-start="opacity-0 transform translate-y-4"
-              x-transition:enter-end="opacity-100 transform translate-y-0"
-              class="whoPanel bg-teal-600 rounded-2xl sm:rounded-3xl p-3 sm:p-4 -mx-5 sm:-mx-6 md:-mx-8 mt-2 sm:mt-3"
-            >
-              <p>Collaborate on co-managed opportunities that extend your capabilities across advanced cybersecurity, cloud, Infrastructure as Code, or enterprise network operations.</p>
+            <div x-show="open===2" x-collapse.duration.300ms x-transition.opacity class="whoPanelWrap -mx-5 sm:-mx-6 md:-mx-8 overflow-hidden">
+              <div class="whoPanel rounded-2xl sm:rounded-3xl p-3 sm:p-4 mt-2 sm:mt-3 bg-teal-600">
+                <p>Collaborate on co-managed opportunities that extend your capabilities across advanced cybersecurity, cloud, Infrastructure as Code, or enterprise network operations.</p>
+              </div>
             </div>
           </button>
         </div>
@@ -311,26 +295,19 @@
             class="whoBtn w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg px-5 sm:px-6 md:px-8 ring-1 ring-[#1b2d46]/60"
             :class="open===3 ? 'whoBtn--open bg-teal-500 text-white ring-1 ring-teal-500 shadow-xl' : 'whoBtnOff hover:shadow-teal-500/10'"
           >
-            <div class="flex items-center justify-between pt-4 sm:pt-6" :class="open===3 ? 'pb-2 sm:pb-3' : 'pb-4 sm:pb-6'">
+            <div class="flex items-center justify-between pt-4 sm:pt-6 pb-4 sm:pb-6">
               <div class="flex items-center flex-1 min-w-0 pr-6 sm:pr-8">
                 <h3 class="text-xl sm:text-2xl md:text-3xl tracking-tighter font-semibold">Technology Providers and Agents</h3>
               </div>
-              <svg x-show="open===3" class="flex-shrink-0 accIcon accIcon--triDown" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
-                <polygon points="8,5 18,12 8,19"></polygon>
-              </svg>
-              <svg x-show="open!==3" class="flex-shrink-0 accIcon accIcon--triRight" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
+              <svg class="flex-shrink-0 accIcon transition-transform duration-200" :class="open===3 ? 'rotate-90' : ''" width="36" height="36" viewBox="0 0 24 24" aria-hidden="true">
                 <polygon points="8,5 18,12 8,19"></polygon>
               </svg>
             </div>
 
-            <div
-              x-show="open===3"
-              x-transition:enter="transition ease-out duration-500"
-              x-transition:enter-start="opacity-0 transform translate-y-4"
-              x-transition:enter-end="opacity-100 transform translate-y-0"
-              class="whoPanel bg-teal-600 rounded-2xl sm:rounded-3xl p-3 sm:p-4 -mx-5 sm:-mx-6 md:-mx-8 mt-2 sm:mt-3"
-            >
-              <p>Move beyond carrier-only portfolios by offering managed IT and cloud services built on measurable outcomes.</p>
+            <div x-show="open===3" x-collapse.duration.300ms x-transition.opacity class="whoPanelWrap -mx-5 sm:-mx-6 md:-mx-8 overflow-hidden">
+              <div class="whoPanel rounded-2xl sm:rounded-3xl p-3 sm:p-4 mt-2 sm:mt-3 bg-teal-600">
+                <p>Move beyond carrier-only portfolios by offering managed IT and cloud services built on measurable outcomes.</p>
+              </div>
             </div>
           </button>
         </div>
@@ -353,6 +330,8 @@
   .whoItem{ margin:0; padding:0; }
   /* Accordion trigger/button and panel styles (match Home dropdown cards) */
   .whoBtn{ cursor:pointer; }
+  /* Reduce visual jitter during state changes */
+  .whoBtn{ transition: border-color .3s ease, box-shadow .3s ease, background-color .3s ease; will-change: border-color, box-shadow, background-color; }
   .whoBtnOff{
     background:
       radial-gradient(280px 160px at 85% 0%, rgba(102,199,232,.12), rgba(102,199,232,0) 70%),
@@ -365,17 +344,19 @@
     box-shadow:0 24px 56px rgba(8,18,35,.52), inset 0 1px 0 rgba(255,255,255,.06);
   }
   .whoBtn--open{ box-shadow:0 30px 60px rgba(17,94,89,0.45) !important; border-color:rgba(20,184,166,0.45) !important; }
+  /* Active state mirrors Elevate Core Commitments cards */
+  /* remove hard bg override; styling controlled in markup */
+  /* .whoBtn--open { } */
+  .whoBtn--open h3{ color:#0a0a0a !important; }
+  .whoBtn--open .accIcon.accIcon--triDown polygon,
+  .whoBtn--open .accIcon.accIcon--triRight polygon{ fill:#0a0a0a !important; }
   /* Match card typography used below (Inter for headings and body) */
   .whoBtn h3{ margin:0; color:#e6edf6; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-weight:700; letter-spacing:-.01em; font-size:clamp(18px, 2.6vw, 22px); }
+  .whoPanel{ will-change: height, opacity; transform:translateZ(0); }
   .whoPanel p{ margin:0; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size:clamp(16px, 2.2vw, 18px); font-weight:300; line-height:1.65; color:#ffffff; }
-  /* Triangle icon styles (match Home) */
-  .accIcon{ display:inline-block; width:36px !important; height:36px !important; transform:translateY(-3px) scale(1.18) !important; transform-origin:center; }
-  .accIcon.accIcon--triRight polygon,
-  .accIcon.accIcon--triDown polygon{ fill:#ffffff !important; }
-  .accIcon.accIcon--triRight,
-  .accIcon.accIcon--triDown{ width:30px !important; height:30px !important; opacity:.82; }
-  .accIcon.accIcon--triRight{ transform:translateY(-2px) scale(1.06) !important; }
-  .accIcon.accIcon--triDown{ transform:translateY(-2px) scale(1.06) rotate(90deg) !important; }
+  /* Triangle icon: single SVG rotates; reduce reflow */
+  .accIcon{ display:inline-block; width:30px; height:30px; opacity:.9; transform:translateY(-2px) scale(1.06); transform-origin:center; }
+  .accIcon polygon{ fill:#ffffff; }
   /* No breakpoint change: always single column */
 </style>
 
@@ -835,18 +816,21 @@
     border-radius:16px !important;
     border:1px solid #1b2d46 !important;
     color:#e2e8f0;
-    background:
-      radial-gradient(280px 160px at 85% 0%, rgba(102,199,232,.12), rgba(102,199,232,0) 70%),
-      linear-gradient(150deg, rgba(102,199,232,.06), rgba(102,199,232,0) 60%),
-      linear-gradient(135deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,0.06) 40%),
-      linear-gradient(315deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,0.04) 44%),
-      linear-gradient(210deg, rgba(2,6,23,.60) 0%, rgba(2,6,23,.66) 55%, rgba(2,6,23,.75) 100%) !important;
+    background: transparent !important;
     box-shadow:0 24px 56px rgba(8,18,35,.52), inset 0 1px 0 rgba(255,255,255,.06) !important;
     transition:border-color .3s ease, box-shadow .3s ease;
   }
 
   /* Remove extra inner stroke from older surface helper */
   .cardSurface::before{ content:none !important; }
+
+  /* Make accordion surfaces transparent as well */
+  .whoBtnOff{ background: transparent !important; }
+  /* Default panel transparent; turns teal when parent is active */
+  /* restore default panel background behavior */
+  /* .whoPanel{ background: transparent !important; } */
+  .whoBtn--open .whoPanel{ background:#0d9488 !important; }
+  .whoBtn--open .whoPanel, .whoBtn--open .whoPanel p{ color:#0a0a0a !important; }
 
   /* Hover accents only on clickable controls (not static cards) */
   a[data-cta]:hover, a[data-cta]:focus-visible,
