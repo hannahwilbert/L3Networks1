@@ -1206,14 +1206,15 @@ x
   
   <section id="techWorks" class="w-full relative pt-32 pb-44" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
     <!-- Top fade handled by previous section; removed to avoid overlap seams -->
-    <!-- Animated waves canvases (background) relocated here -->
-    <canvas id="diffWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none;"></canvas>
-    <canvas id="highlightsWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:overlay; opacity:.25;"></canvas>
+    <!-- Animated waves canvases will be placed inside the card surface so they appear behind it and are clipped by the rounded corners. -->
     
     <div class="mx-2 md:px-8 2xl:px-0 md:container md:max-w-screen-xl md:mx-auto" style="position:relative; z-index:1;">
     <!-- Single surface wrapping title, copy, and cards -->
-    <div class="w-full rounded-2xl overflow-hidden" style="background:rgba(0,0,0,0.82); border:1px solid rgba(75,85,99,.35);">
-      <div class="flex flex-col divide-y divide-gray-700/50">
+    <div class="w-full rounded-2xl overflow-hidden" style="position:relative; background:rgba(0,0,0,0.82); border:1px solid rgba(75,85,99,.35);">
+      <!-- Waves canvases inside the card to sit behind content and clip to border radius -->
+      <canvas id="diffWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none;"></canvas>
+      <canvas id="highlightsWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:overlay; opacity:.25;"></canvas>
+      <div class="flex flex-col divide-y divide-gray-700/50" style="position:relative; z-index:1;">
         <!-- Intro block inside surface -->
         <div class="p-8 md:p-12 text-center">
           <h2 class="relative mb-3 text-3xl font-semibold tracking-tighter md:text-6xl font-mont">Technology That <a href="/elevate/" class="text-current underline decoration-dotted decoration-teal-400 underline-offset-8 decoration-2 hover:decoration-teal-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-sm">Elevates</a></h2>
