@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  {% if env.isProd %}
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://snap.licdn.com">
+  <link rel="preconnect" href="https://js-na2.hs-scripts.com">
+  <link rel="preconnect" href="https://mm-uxrv.com">
+  {% endif %}
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="//unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -36,7 +44,7 @@
     /* Exception: smaller heading variant for select titles */
     main h2.heading-36{ font-size:36px !important; line-height:1.15; font-weight:600 !important; }
   </style>
-  {% include "partials/happierleads.html" %}
+  {% if env.isProd %}{% include "partials/tracking.html" %}{% endif %}
 </head> 
 
 
@@ -49,8 +57,8 @@
   <script defer src="/js/alpine-cdn.min.js"></script>
 
   <script defer src="/js/swiper-bundle.min.js"></script>
-  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-  <script src="/js/animate.js"></script>
+  <script defer src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script defer src="/js/animate.js"></script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const heroswiper = new Swiper('#hero', {
@@ -103,7 +111,7 @@
 
   </script>
 
-  {% include "partials/tracking.html" %}
+  {# tracking loaded via happierleads partial in <head> #}
 </body>
 
 </html>

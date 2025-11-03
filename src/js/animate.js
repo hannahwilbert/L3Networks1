@@ -72,23 +72,44 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const type1element = document.getElementById("type1");
-const typed1 = new Typed(type1element, {
-  strings: ['Trust Your IT.^300 Empower Your <span class="text-teal-500">Business</span>.^300 '], // Text to animate
-  typeSpeed: 10,
-  showCursor: false,
-  smartBackspace: true, // This is a default
-  onComplete: () => {
-    // When typed1 completes, initialize typed2
-    const type2element = document.getElementById("type2");
-    const typed2 = new Typed(type2element, {
-      strings: ["Partner with L3 Networks for Secure,^200 Reliable^200 IT Services. 24/7."], // Text to animate
-      typeSpeed: 10,
+// Home hero title/subtitle: always use typing effect
+(function () {
+  var type1element = document.getElementById('type1');
+  var type2element = document.getElementById('type2');
+  if (!type1element || !type2element) return;
+
+  var titleHTML = 'Trust Your IT. Empower Your <span class="text-teal-500">Business</span>.';
+  var subtitleText = 'Partner with L3 Networks for Secure, Reliable IT Services. 24/7.';
+
+  function startTyping() {
+    // Guard against multiple inits
+    if (!window.Typed) { return; }
+    new Typed(type1element, {
+      strings: [titleHTML],
+      typeSpeed: 22,
+      backSpeed: 0,
       showCursor: false,
-      smartBackspace: true, // This is a default
+      smartBackspace: true,
+      contentType: 'html',
+      onComplete: function () {
+        new Typed(type2element, {
+          strings: [subtitleText],
+          typeSpeed: 22,
+          backSpeed: 0,
+          showCursor: false,
+          smartBackspace: true,
+        });
+      },
     });
-  },
-});
+  }
+
+  if (window.Typed) {
+    startTyping();
+  } else {
+    // Fallback: try after DOM is fully loaded
+    window.addEventListener('load', startTyping, { once: true });
+  }
+})();
 
 document.addEventListener('alpine:init', () => {
   Alpine.data('dropdownAnimation', () => ({

@@ -170,7 +170,8 @@
   .pwFeat{
     display:grid;
     grid-template-columns:1fr;
-    grid-template-rows:64px auto auto; /* lock icon row so all titles align */
+    /* Fixed two-line space for title to equalize copy start across columns */
+    grid-template-rows:64px 2.4em auto;
     align-items:start;
     justify-items:start;
     gap:10px;
@@ -187,17 +188,22 @@
   }
   .pwFeatTitle{
     grid-column:1;
-    margin:0 0 2px 0;
+    margin:0; /* equalize spacing; rely on grid row gap */
     color:#e6edf6;
     font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-weight:800;
     letter-spacing:-.01em;
-    font-size:18px;
+    font-size:16px;
     line-height:1.2; /* normalize line height */
-    min-height:2.4em; /* reserve space for up to 2 lines */
-    display:flex; /* bottom-align one-line titles to match two-line baselines */
+    height:2.4em; /* exactly two lines for consistent copy start */
+    display:flex; /* bottom-align one-line titles within the fixed row */
     align-items:flex-end;
     text-align:left;
+  }
+  /* On narrow screens, allow titles to grow naturally (avoid clipping) */
+  @media(max-width:720px){
+    .pwFeat{ grid-template-rows:64px auto auto; }
+    .pwFeatTitle{ height:auto; }
   }
   .pwFeatCopy{
     grid-column:1;
@@ -206,7 +212,7 @@
     font-family:'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-weight:300;
     line-height:1.65;
-    font-size:18px;
+    font-size:14px;
     text-align:left;
   }
   .pwQuote{ align-self:start; justify-self:end; max-width:640px; border-radius:20px; border:1px solid rgba(0,187,167,.28); padding:20px 22px; background:rgba(4,18,28,.35); box-shadow:0 1px 0 rgba(255,255,255,.05), inset 0 0 0 1px rgba(0,0,0,.25); }

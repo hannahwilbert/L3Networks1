@@ -22,7 +22,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
-  {% include "partials/happierleads.html" %}
+  {% if env.isProd %}{% include "partials/tracking.html" %}{% endif %}
   
 </head>
 
@@ -37,7 +37,7 @@
   <script>
     lucide.createIcons();
   </script>
-  {% include "partials/tracking.html" %}
+  {# tracking loaded via happierleads partial in <head> #}
 </body>
 
 </html>

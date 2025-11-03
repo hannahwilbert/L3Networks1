@@ -33,7 +33,7 @@
   </div>
 
   <!-- Background Video -->
-  <video autoplay loop muted playsinline class="absolute inset-0 w-auto min-w-full min-h-full max-w-none">
+  <video autoplay loop muted playsinline preload="metadata" class="absolute inset-0 w-auto min-w-full min-h-full max-w-none">
     <source src="/videos/herovid.mp4" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
@@ -45,21 +45,21 @@
 <div class="bg-slate-900/95 md:pt-0">
   <section class="relative z-10 grid grid-cols-1 gap-4 py-6 mx-2 text-lg font-semibold text-center text-white md:container md:max-w-screen-xl md:mx-auto md:gap-12 font-inter md:text-3xl md:grid-cols-3 md:px-8 2xl:px-0">
     <div class="flex flex-row items-center justify-start gap-4 py-2 pl-4 md:py-6 md:justify-center rounded-xl top-feature-ani md:pl-0">
-      <img src="/images/home/icons/ShieldCheck.svg" alt="ShieldCheck">
+      <img src="/images/home/icons/ShieldCheck.svg" alt="ShieldCheck" decoding="async">
       <div class="text-left">
         <p>Tailored Solutions</p>
         <p class="text-sm font-light tracking-normal font-open">We build and manage solutions for your exact business needs to deliver on your vision</p>
       </div>
     </div>
     <div class="flex flex-row items-center justify-start gap-4 py-2 pl-4 md:py-6 md:justify-center rounded-xl top-feature-ani md:pl-0">
-      <img src="/images/home/icons/Trophy.svg" alt="Trophy">
+      <img src="/images/home/icons/Trophy.svg" alt="Trophy" decoding="async">
       <div class="text-left">
         <p>Expert Team</p>
         <p class="text-sm font-light tracking-normal font-open">Our culture is to foster a client relationship built on strong relationships, expertise and trust</p>
       </div>
     </div>
     <div class="flex flex-row items-center justify-start gap-4 py-2 pl-4 md:py-6 md:justify-center rounded-xl top-feature-ani md:pl-0">
-      <img src="/images/home/icons/Stars.svg" alt="Stars">
+      <img src="/images/home/icons/Stars.svg" alt="Stars" decoding="async">
       <div class="text-left">
         <p>Dedicated to Service</p>
         <p class="text-sm font-light tracking-normal font-open">Your vision is our success - and our 20+ years of long-term client relationships is proof</p>
@@ -95,7 +95,7 @@
         var C2 = '#FFFFFF';
         var C3 = '#FFFFFF';
 
-        var LINES  = 63;
+        var LINES  = 40; // reduced from 63 for better performance
         var AMP    = 35;
         var FREQ   = 2.0;
         var SPEED  = 0.3;
