@@ -610,8 +610,22 @@
   .psGrid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(16px,2vw,22px); }
   @media(max-width:1100px){ .psGrid{ grid-template-columns:1fr; } }
   .psCard{ border-radius:24px; padding:24px 26px; background:linear-gradient(180deg,#0B1220 0%, #0A1628 100%); border:1px solid rgba(255,255,255,.10); box-shadow:0 10px 30px rgba(0,0,0,.4); }
-  .psCardLink{ display:block; text-decoration:none; color:inherit; transition:border-color .2s ease, transform .2s ease; }
-  .psCardLink:hover{ border-color: rgba(0,187,167,.45); transform: translateY(-1px); }
+  .psCardLink{
+    display:block; text-decoration:none; color:inherit;
+    will-change: transform, box-shadow, border-color; backface-visibility:hidden; transform:translateZ(0);
+    transition:
+      transform .28s cubic-bezier(.22,1,.36,1),
+      border-color .28s cubic-bezier(.22,1,.36,1),
+      box-shadow .28s cubic-bezier(.22,1,.36,1);
+  }
+  .psCardLink:hover,
+  .psCardLink:focus-visible{
+    border-color: rgba(0,187,167,.45);
+    transform: translate3d(0,-2px,0);
+    box-shadow:0 14px 40px rgba(0,0,0,.45);
+    outline:none;
+  }
+  @media (prefers-reduced-motion: reduce){ .psCardLink{ transition:none !important; } }
   .psIcon{ width:42px; height:auto; margin-bottom:12px; filter:drop-shadow(0 12px 30px rgba(0,187,167,.28)); }
   .psCard h3{ margin:0 0 6px; color:#ffffff; font-size:clamp(18px, 2.6vw, 22px); font-weight:700; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
   .psCard p{ margin:0; color:#C8D3E0; font-size:clamp(16px, 2.2vw, 18px); line-height:1.7; font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
