@@ -544,8 +544,14 @@
     box-shadow: 0 6px 14px rgba(0,187,167,.18), inset 0 0 0 1px rgba(0,187,167,.10);
   }
   .pbList li::after{
-    content:""; position:absolute; left:5px; top:50%; transform:translateY(-60%) rotate(-45deg);
-    width:10px; height:6px; border:2px solid rgba(20,184,166,.95);
+    content:"";
+    position:absolute;
+    /* Center the check within the 22x22 box drawn by ::before */
+    left:11px; /* center of the 22px box */
+    top:50%;
+    width:10px; height:6px;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    border:2px solid rgba(20,184,166,.95);
     border-top:none; border-right:none;
     filter: drop-shadow(0 1px 1px rgba(0,0,0,.35));
   }
