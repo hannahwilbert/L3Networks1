@@ -44,7 +44,12 @@
       if (!v) return;
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       function start(){
-        if (reduce) return;
+        // Skip autoplay on low-power or constrained devices/networks
+        var conn = (navigator.connection || navigator.mozConnection || navigator.webkitConnection || {});
+        var saveData = !!conn.saveData || /(^|[^a-z])(2g|slow-2g)([^a-z]|$)/i.test(conn.effectiveType || '');
+        var lowPower = (navigator.deviceMemory && navigator.deviceMemory <= 2)
+                        || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2);
+        if (reduce || saveData || lowPower) return;
         var sources = v.querySelectorAll('source[data-src]');
         var hasSet = false;
         sources.forEach(function(s){
@@ -68,7 +73,7 @@
   <div class="absolute inset-0 w-full h-full bg-linear-to-l from-slate-900/10 to-black/70"></div>
 </header>
 
-<div class="bg-slate-900/95 md:pt-0">
+  <div class="bg-slate-900/95 md:pt-0">
   <section class="relative z-10 grid grid-cols-1 gap-4 py-6 mx-2 text-lg font-semibold text-center text-white md:container md:max-w-screen-xl md:mx-auto md:gap-12 font-inter md:text-3xl md:grid-cols-3 md:px-8 2xl:px-0">
     <div class="flex flex-row items-center justify-start gap-4 py-2 pl-4 md:py-6 md:justify-center rounded-xl top-feature-ani md:pl-0">
       <img src="/images/home/icons/ShieldCheck.svg" alt="ShieldCheck" decoding="async">
@@ -95,6 +100,13 @@
   <script>
     (function () {
       var CANVAS_IDS = ['diffWaves', 'highlightsWaves'];
+      function isLowPower(){
+        var conn = (navigator.connection || navigator.mozConnection || navigator.webkitConnection || {});
+        var saveData = !!conn.saveData || /(^|[^a-z])(2g|slow-2g)([^a-z]|$)/i.test(conn.effectiveType || '');
+        var mem = navigator.deviceMemory || 4;
+        var cores = navigator.hardwareConcurrency || 4;
+        return saveData || mem <= 2 || cores <= 2;
+      }
       // Re-enable interactivity with strict performance caps
       var INTERACTIVE = true;
 
@@ -113,7 +125,7 @@
         }
 
         // Cap device pixel ratio a bit lower to reduce canvas cost
-        var DPR_CAP = 1.25;
+        var DPR_CAP = isLowPower() ? 1.0 : 1.25;
         var dpr = Math.min(DPR_CAP, Math.max(1, window.devicePixelRatio || 1));
         var W = 0;
         var H = 0;
@@ -125,14 +137,17 @@
         var C3 = '#FFFFFF';
 
         // Adaptive detail: add more lines while keeping perf balanced
-        var LINES_IDLE  = Math.round(window.innerWidth < 768 ? 32 : 48);
-        var LINES_ACTIVE = Math.round(window.innerWidth < 768 ? 24 : 36);
+        var LOW = isLowPower();
+        var LINES_IDLE  = LOW ? Math.round(window.innerWidth < 768 ? 18 : 28)
+                              : Math.round(window.innerWidth < 768 ? 28 : 40);
+        var LINES_ACTIVE = LOW ? Math.round(window.innerWidth < 768 ? 14 : 22)
+                               : Math.round(window.innerWidth < 768 ? 22 : 32);
         var AMP    = 35;
         var FREQ   = 2.0;
-        var SPEED  = 0.3;
+        var SPEED  = LOW ? 0.25 : 0.3;
         var THICK  = 1.3;
         var SPREAD = 0.18;
-        var ALPHA  = 0.18;
+        var ALPHA  = LOW ? 0.16 : 0.18;
 
         var TWIST  = 2;
         var CURL   = 2;
@@ -212,7 +227,7 @@
 
           var phaseShift = u * 1.25;
           // Larger step (fewer points per line) to offset higher line count
-          var step = Math.max(2.0, W / (target.active ? 150 : 190));
+          var step = Math.max(2.4, W / (target.active ? (LOW ? 110 : 150) : (LOW ? 140 : 190)));
           for (var x = 0; x <= W; x += step) {
             var nx = x / W;
             var xTwist = x + (TWIST * u) * Math.sin(t * 0.7 + nx * 2.2);
@@ -237,8 +252,8 @@
         }
 
         // Frame throttling and visibility/viewport awareness
-        var MAX_FPS = 30; // hard cap when idle
-        var MAX_ACTIVE_FPS = 45; // moderate boost during interaction with reduced detail
+        var MAX_FPS = LOW ? 25 : 30; // hard cap when idle
+        var MAX_ACTIVE_FPS = LOW ? 35 : 45; // moderate boost during interaction with reduced detail
         var FRAME_MS = 1000 / MAX_FPS;
         var lastTime = 0;
         var isOnscreen = true;
@@ -306,8 +321,8 @@
       function bootAll() {
         var reduceMotion = window.matchMedia && typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduceMotion) return;
-
-        CANVAS_IDS.forEach(function (id) {
+        var ids = isLowPower() ? ['diffWaves'] : CANVAS_IDS; // run a single canvas on low-power
+        ids.forEach(function (id) {
           var cv = document.getElementById(id);
           if (cv) initCanvas(cv);
         });
@@ -324,7 +339,7 @@
   
 </div>
 
-<article class="flex flex-col justify-center pt-24 text-white pb-44" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
+<article class="flex flex-col justify-center pt-24 text-white pb-44" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%); content-visibility:auto; contain-intrinsic-size: 1200px 1000px;">
   <div class="mx-2 md:container md:max-w-screen-xl md:mx-auto md:p-8">
     <h2 class="text-center mb-10 md:mb-16 text-3xl md:text-6xl font-extrabold tracking-tight font-mont">Are Gaps in Your IT Costing You <br> Time, Money, &amp; Reputation?</h2>
 
@@ -1206,8 +1221,8 @@
   <section id="techWorks" class="w-full relative pt-32 pb-44" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
     <!-- Top fade handled by previous section; removed to avoid overlap seams -->
     <!-- Animated waves canvases (background) relocated here -->
-    <canvas id="diffWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none;"></canvas>
-    <canvas id="highlightsWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:overlay; opacity:.25;"></canvas>
+    <canvas id="diffWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; will-change:transform; transform:translateZ(0);"></canvas>
+    <canvas id="highlightsWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:overlay; opacity:.25; will-change:transform; transform:translateZ(0);"></canvas>
     
     <div class="mx-2 md:px-8 2xl:px-0 md:container md:max-w-screen-xl md:mx-auto" style="position:relative; z-index:1;">
     <!-- Single surface wrapping title, copy, and cards -->
