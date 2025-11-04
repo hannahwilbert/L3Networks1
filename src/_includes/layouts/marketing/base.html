@@ -9,6 +9,13 @@
   {% include "partials/meta-info.html" %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Speed up HubSpot Meetings embed: warm up connections -->
+  <link rel="preconnect" href="https://static.hsappstatic.net" crossorigin>
+  <link rel="preconnect" href="https://meetings-na2.hubspot.com" crossorigin>
+  <link rel="dns-prefetch" href="//static.hsappstatic.net">
+  <link rel="dns-prefetch" href="//meetings-na2.hubspot.com">
+  <!-- Preload the Meetings embed script so it starts fetching ASAP -->
+  <link rel="preload" as="script" href="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
@@ -24,7 +31,8 @@
   {% include "partials/footer.html" %}
   <script defer src="/js/alpinecollapse-cdn.min.js"></script>
   <script defer src="/js/alpine-cdn.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <!-- Defer non-critical script to avoid competing with embed load -->
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
 
 </html>
