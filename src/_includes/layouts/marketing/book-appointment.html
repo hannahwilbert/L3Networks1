@@ -4,7 +4,7 @@
 <article class="text-white" style="position:relative; isolation:isolate; overflow:hidden; background:#000;">
 
   <!-- Top header panel (exact copy from screenshot) -->
-  <section class="container max-w-6xl px-3 mx-auto md:px-8 2xl:px-0 mt-28 md:mt-32">
+  <section class="container max-w-screen-xl px-3 mx-auto md:px-8 2xl:px-0 mt-28 md:mt-32">
     <div class="px-6 py-8 md:px-10 md:py-12 text-center">
       <h1 class="font-mont font-semibold tracking-tight text-4xl md:text-6xl">Ready to Get Started?</h1>
       <p class="mt-4 text-lg md:text-xl text-slate-300">Choose a convenient time slot below to schedule your consultation.</p>
@@ -12,11 +12,11 @@
   </section>
 
   <!-- Two-column: Left copy card, Right calendar embed -->
-  <section class="container max-w-6xl px-3 pb-24 mx-auto md:px-8 2xl:px-0 bookCtaWrap">
+  <section class="container max-w-screen-xl px-3 pb-24 mx-auto md:px-8 2xl:px-0 bookCtaWrap">
     <div class="bookCtaCard rounded-[20px] border-2 border-slate-800 bg-transparent px-6 py-8 md:px-8 md:py-10" style="box-shadow:0 26px 72px rgba(6,16,33,.50); overflow:hidden; clip-path: inset(0 round 20px); -webkit-mask-image: -webkit-radial-gradient(white, black);">
       <div class="grid grid-cols-1 md:grid-cols-12 md:gap-6">
         <!-- Left copy -->
-        <div class="md:col-span-4 bookCta__leftCol">
+        <div class="md:col-span-5 bookCta__leftCol">
           <div class="bookCta__leftInner">
             <h2 class="font-mont font-thin text-[40px] leading-tight mb-6">Schedule a Right-Fit Call</h2>
             <p class="text-slate-300 text-base md:text-lg mb-6">Let’s have a conversation about how you want to elevate your technology needs, reduce risk and improve efficiency.</p>
@@ -26,7 +26,7 @@
         </div>
 
         <!-- Right scheduler (inside the same card) -->
-        <div class="md:col-span-8">
+        <div class="md:col-span-7">
           <div class="threeSteps__ctaEmbed">
             {% if meeting.provider == 'hubspot' %}
               <div class="meetings-iframe-container" data-src="{{ meeting.embedSrc }}"></div>
