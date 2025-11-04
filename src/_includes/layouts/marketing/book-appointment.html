@@ -1,0 +1,131 @@
+{% extends "layouts/marketing/base.html" %}
+{% block content %}
+
+<article class="text-white" style="position:relative; isolation:isolate; overflow:hidden; background:#000;">
+
+  <!-- Top header panel (exact copy from screenshot) -->
+  <section class="container max-w-6xl px-3 mx-auto md:px-8 2xl:px-0 mt-28 md:mt-32">
+    <div class="px-6 py-8 md:px-10 md:py-12 text-center">
+      <h1 class="font-mont font-semibold tracking-tight text-4xl md:text-6xl">Ready to Get Started?</h1>
+      <p class="mt-4 text-lg md:text-xl text-slate-300">Choose a convenient time slot below to schedule your consultation.</p>
+    </div>
+  </section>
+
+  <!-- Two-column: Left copy card, Right calendar embed -->
+  <section class="container max-w-6xl px-3 pb-24 mx-auto md:px-8 2xl:px-0 bookCtaWrap">
+    <div class="bookCtaCard rounded-[20px] border-2 border-slate-800 bg-transparent px-6 py-8 md:px-8 md:py-10" style="box-shadow:0 26px 72px rgba(6,16,33,.50); overflow:hidden; clip-path: inset(0 round 20px); -webkit-mask-image: -webkit-radial-gradient(white, black);">
+      <div class="grid grid-cols-1 md:grid-cols-12 md:gap-6">
+        <!-- Left copy -->
+        <div class="md:col-span-4 bookCta__leftCol">
+          <div class="bookCta__leftInner">
+            <h2 class="font-mont font-thin text-[40px] leading-tight mb-6">Schedule a Right-Fit Call</h2>
+            <p class="text-slate-300 text-base md:text-lg mb-6">Let’s have a conversation about how you want to elevate your technology needs, reduce risk and improve efficiency.</p>
+            <p class="text-slate-100 text-base md:text-lg font-semibold">Simply choose a 30-minute window to start the conversation and gain some valuable insights.</p>
+            
+          </div>
+        </div>
+
+        <!-- Right scheduler (inside the same card) -->
+        <div class="md:col-span-8">
+          <div class="threeSteps__ctaEmbed">
+            {% if meeting.provider == 'hubspot' %}
+              <div class="meetings-iframe-container" data-src="{{ meeting.embedSrc }}"></div>
+              <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js" defer></script>
+              <script>
+                // Force-rounded corners on the HubSpot iframe (match Home behavior)
+                (function(){
+                  var RADIUS = '20px';
+                  function round(node){
+                    if (!node) return;
+                    try{
+                      node.style.setProperty('border-radius', RADIUS, 'important');
+                      node.style.setProperty('overflow', 'hidden', 'important');
+                      node.style.setProperty('clip-path', 'inset(0 round '+RADIUS+')', 'important');
+                      node.style.setProperty('-webkit-mask-image', '-webkit-radial-gradient(white, black)', 'important');
+                      var c = node.closest('.meetings-iframe-container');
+                      if (c){
+                        c.style.setProperty('border-radius', RADIUS, 'important');
+                        c.style.setProperty('overflow', 'hidden', 'important');
+                        c.style.setProperty('clip-path', 'inset(0 round '+RADIUS+')', 'important');
+                        c.style.setProperty('-webkit-mask-image', '-webkit-radial-gradient(white, black)', 'important');
+                      }
+                    }catch(e){}
+                  }
+                  function attachFade(iframe, host){
+                    try{
+                      if (!iframe) return;
+                      iframe.style.opacity = '0';
+                      iframe.style.transition = 'opacity .35s ease';
+                      var markLoaded = function(){ try{ host.classList.add('is-loaded'); iframe.style.opacity='1'; }catch(_){} };
+                      iframe.addEventListener('load', markLoaded, { once:true });
+                      // Fallback in case load fires earlier
+                      setTimeout(markLoaded, 1200);
+                    }catch(_){}
+                  }
+                  function init(){
+                    var host = document.querySelector('.threeSteps__ctaEmbed .meetings-iframe-container');
+                    if (!host) return;
+                    var iframe = host.querySelector('iframe');
+                    if (iframe){ round(iframe); attachFade(iframe, host); }
+                    var mo = new MutationObserver(function(muts){
+                      muts.forEach(function(m){
+                        if (m.type === 'attributes' && m.target && m.target.tagName === 'IFRAME') round(m.target);
+                        if (m.addedNodes) m.addedNodes.forEach(function(n){
+                          if (n && n.tagName === 'IFRAME'){ round(n); attachFade(n, host); }
+                          else if (n && n.querySelector){ var f=n.querySelector('iframe'); if (f) round(f); }
+                        });
+                      });
+                    });
+                    mo.observe(host, { childList:true, subtree:true, attributes:true, attributeFilter:['style','class'] });
+                    if (iframe) iframe.addEventListener('load', function(){ round(iframe); attachFade(iframe, host); });
+                  }
+                  if (document.readyState==='loading') document.addEventListener('DOMContentLoaded', init, { once:true }); else init();
+                })();
+              </script>
+            {% else %}
+              <iframe src="{{ meeting.embedSrc }}" title="Book an Appointment" loading="lazy" class="w-full" style="height:720px; border:0; display:block; border-radius:20px; overflow:hidden;"></iframe>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      /* Shared height to align both columns (copied from Home embed) */
+      /* Reduce overall height so the form appears less tall */
+      .bookCtaWrap{ --form-visible-height: clamp(600px, 64vh, 900px); }
+      .bookCta__leftCol{ min-height: var(--form-visible-height); display:flex; }
+      .bookCta__leftInner{ margin:auto 0; }
+      /* Exact HubSpot embed styles from Home */
+      .threeSteps__ctaEmbed{ display:flex; flex-direction:column; gap:0; width:100%; margin-inline:auto; flex:1 1 auto; align-items:center; justify-content:stretch; }
+      .threeSteps__ctaEmbed .meetings-iframe-container{
+        --form-visible-height: clamp(600px, 64vh, 900px);
+        --form-trim-top: 28px;
+        --form-trim-sides: 8px; /* match Home embed styling */
+        width:100%; max-width:100%; height:var(--form-visible-height); border:0; border-radius:20px; display:block; overflow:hidden; position:relative; margin:0; padding:0; box-sizing:border-box; clip-path: inset(0 round 20px); -webkit-mask-image: -webkit-radial-gradient(white, black); background:transparent; box-shadow:0 26px 72px rgba(6,16,33,.50);
+      }
+      .threeSteps__ctaEmbed .meetings-iframe-container iframe{
+        display:block; width:calc(100% + (var(--form-trim-sides) * 2)); height:calc(100% + var(--form-trim-top)); transform:translate(calc(-1 * var(--form-trim-sides)), calc(-1 * var(--form-trim-top))); border:0; border-radius:inherit; opacity:0; transition:opacity .35s ease;
+      }
+      .threeSteps__ctaEmbed .meetings-iframe-container.is-loaded iframe{ opacity:1; }
+      @media (max-width: 640px){ .threeSteps__ctaEmbed .meetings-iframe-container{ min-height:300px; border-radius:12px; } }
+      /* When columns stack, remove forced equal heights and reduce embed height */
+      @media (max-width: 768px){
+        .bookCtaWrap{ --form-visible-height: clamp(420px, 62vh, 720px); }
+        .bookCta__leftCol{ min-height:auto; }
+        /* Add a tiny gap above the form when stacked */
+        .bookCtaCard .threeSteps__ctaEmbed{ margin-top: 12px; }
+        .threeSteps__ctaEmbed .meetings-iframe-container{
+          height: var(--form-visible-height);
+          min-height: 420px;
+          --form-trim-top: 16px;
+          --form-trim-sides: 6px;
+          border-radius:12px;
+          clip-path: inset(0 round 12px);
+        }
+      }
+      /* Keep desktop layout fixed: calendar stays in right column with rounded corners */
+    </style>
+  </section>
+</article>
+
+{% endblock %}

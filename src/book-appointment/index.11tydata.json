@@ -1,0 +1,12 @@
+{
+  "hero": {
+    "title": "Schedule a Right‑Fit Call",
+    "subtitle": "Zero Trust Security for Modern Businesses",
+    "image": "/images/marketing/zt-bookcover.png"
+  },
+  "meeting": {
+    "provider": "hubspot",
+    "embedSrc": "https://meetings-na2.hubspot.com/brandon-williams/right-fit-intro?embed=true&embedType=inline&hideEventTypeDetails=false&hideGdprBanner=true"
+  }
+}
+
