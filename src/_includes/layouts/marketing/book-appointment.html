@@ -22,10 +22,7 @@
             <div class="bookCta__copyWrap">
               <p class="text-slate-300 text-base md:text-lg mb-6">Let’s have a conversation about how you want to elevate your technology needs, reduce risk and improve efficiency.</p>
               <p class="text-slate-100 text-base md:text-lg font-semibold">Simply choose a 30-minute window to start the conversation and gain some valuable insights.</p>
-              <!-- Teal arrow pointing toward the form -->
-              <div class="arrowWrap flex justify-end pt-2 md:pt-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="circle-arrow-right" class="lucide lucide-circle-arrow-right w-8 h-8 text-teal-400 hover:text-teal-400 transition-colors duration-300 icon-bounce cursor-pointer"><circle cx="12" cy="12" r="10"></circle><path d="m12 16 4-4-4-4"></path><path d="M8 12h8"></path></svg>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -104,16 +101,8 @@
       .bookCta__leftInner p{ max-width: 60ch; text-wrap: pretty; }
       /* Make the first paragraph a bit narrower and avoid widows/orphans */
       .bookCta__leftInner p:first-of-type{ max-width: 50ch; text-wrap: pretty; }
-      /* Wrap copy + arrow to align arrow with copy width */
+      /* Wrap copy width */
       .bookCta__copyWrap{ max-width: 60ch; }
-      .bookCta__copyWrap .arrowWrap{
-        max-width: 44ch;
-        margin-left:auto;
-        /* responsive top spacing */
-        margin-top: clamp(10px, 1.6vh, 18px);
-        /* responsive horizontal nudge toward the form */
-        transform: translateX(clamp(-28px, -2.5vw, -12px));
-      }
       /* Exact HubSpot embed styles from Home */
       .threeSteps__ctaEmbed{ display:flex; flex-direction:column; gap:0; width:100%; margin-inline:auto; flex:1 1 auto; align-items:center; justify-content:stretch; }
       .threeSteps__ctaEmbed .meetings-iframe-container{
@@ -141,13 +130,8 @@
           border-radius:12px;
           clip-path: inset(0 round 12px);
         }
-        /* On small screens, center the arrow and remove the left nudge */
-        .bookCta__copyWrap .arrowWrap{ justify-content:center; transform:none; margin-top:14px; }
-        .bookCta__copyWrap .arrowWrap svg{ width:28px; height:28px; }
       }
-      /* subtle nudge on the arrow */
-      .icon-bounce{ will-change: transform; backface-visibility:hidden; transform: translateZ(0); transition-property: transform, color; }
-      .icon-bounce:hover{ transform: translate3d(4px,0,0); }
+      
       /* Keep desktop layout fixed: calendar stays in right column with rounded corners */
     </style>
   </section>
