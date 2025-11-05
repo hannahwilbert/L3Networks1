@@ -69,6 +69,9 @@ module.exports = (config) => {
   config.addPassthroughCopy("./src/videos/");
   // Copy local JS assets used by layouts
   config.addPassthroughCopy("./src/js/");
+  // Expose external Resources drop-in: anything placed in src/resources
+  // is copied verbatim to /resources/ in the build output.
+  config.addPassthroughCopy("./src/resources/");
   config.addPassthroughCopy({
     "./node_modules/alpinejs/dist/cdn.js": "./js/alpine.js",
   });
