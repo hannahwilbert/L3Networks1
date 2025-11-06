@@ -6,106 +6,107 @@ metaDesc: 'Protect your business with L3 Networks’ comprehensive cybersecurity
 metaKeywords: 'Cyber security, Data protection, Threat intelligence, Vulnerability assessment, Security monitoring'
 mainTitle: '<span class="text-teal-400">Cybersecurity</span> Solutions'
 socialImage: /images/social/og_CyberSecurity.png
-subtitle: 'Your Trusted Partner in Defending Against Evolving Cyber Threats'
-prodtitle: 'Why Partner with L3 Networks for Cybersecurity?'
+subtitle: 'Comprehensive Cybersecurity, Built on Structure and Clarity'
+prodtitle: 'Why Our Approach Works'
 prodbody: |
-  Comprehensive Cybersecurity, Built on Structure and Clarity
+  Cybersecurity success depends on more than technology. Elevate provides the structure, visibility, and accountability needed to keep your organization protected and compliant.
 color: 'slate-500'
 colorBase: 'slate'
 
 valueProps:
   - icon: /images/lucide/scan-eye.svg
     title: Proactive Threat Detection
-    description: Stop attacks before they happen with 24/7 monitoring and advanced threat intelligence.
+    description: We begin with stabilization, focusing on visibility, monitoring, and early threat detection across all devices and networks.
 
   - icon: /images/lucide/file-check.svg
     title: Compliance Made Simple
-    description: Stay compliant with industry regulations without the stress or guesswork.
+    description: Regulatory alignment is built in from the start, helping you stay ready for SOC 2, HIPAA, NIST, and other frameworks that apply to your industry.
 
   - icon: /images/lucide/octagon-alert.svg
     title: Rapid Incident Response
-    description: Minimize damage and downtime with swift containment and remediation.
+    description: Our Optimize phase improves response time, automation, and containment through well-defined processes and measurable outcomes.
 
   - icon: /images/lucide/shield-check.svg
     title: Tailored Security Solutions
-    description: Customized cybersecurity strategies designed to fit your unique business needs.
+    description: In the Transform phase, security strategy evolves with your business, ensuring lasting protection and long-term resilience.
 
 keyprodsTitle: 'Comprehensive Cybersecurity Solutions Tailored to Your Business'
 keyprodsBody: |
-  From proactive threat detection to rapid incident response, we  provide the tools and expertise to keep your business secure, compliant, and resilient.
+  Each service works within the same structured methodology, ensuring that every control and process supports measurable improvement over time.
 
 keyprods:
-  - title: Compliancy Conformance
-    info: Stay Compliant, Stay Confident
+  - title: Proactive Threat Hunting
+    info: Anticipate Emerging Threats
     paragraph: >
-        Navigating industry regulations can be overwhelming. We simplify compliance with tailored solutions that ensure your business meets all necessary standards, so you can focus on growth.
+        We identify potential vulnerabilities and threats before they are exploited, enhancing your security posture.
+    levels: [stabilize]
+
+  - title: Vulnerability Assessment
+    info: Expose Security Gaps
+    paragraph: >
+        Comprehensive assessments reveal security gaps and deliver actionable recommendations for remediation.
+    levels: [stabilize]
+
+  - title: Phishing Simulation Training
+    info: Build a Resilient Team
+    paragraph: >
+        Realistic phishing simulations and coaching help employees recognize and report social engineering attempts.
+    levels: [stabilize]
+
+  - title: Security Awareness Programs
+    info: Reinforce Best Practices
+    paragraph: >
+        Tailored training sessions keep your teams informed about policies, threats, and everyday cyber hygiene.
+    levels: [stabilize]
+
+  - title: Risk Management Framework
+    info: Govern with Confidence
+    paragraph: >
+        We establish a structured, industry-aligned approach to managing cybersecurity risk across your organization.
     levels: [optimize]
 
-  - title: Cyber Containment & Remediation
-    info: Stop Threats in Their Tracks
+  - title: Data Loss Prevention
+    info: Protect Critical Data
     paragraph: >
-        When a breach occurs, every second counts. Our rapid containment and remediation services minimize damage and get your business back on track fast.
-    levels: [optimize, transform]
-
-  - title: DNS Security
-    info: Secure Your Gateway to the Web
-    paragraph: >
-        Protect your network from malicious websites and phishing attacks with our advanced DNS security solutions.
-    levels: [stabilize]
-
-  - title: Email Security
-    info: Keep Your Inbox Safe
-    paragraph: >
-        Email is a top target for cybercriminals. Our email security solutions block phishing, malware, and spam, keeping your communications secure.
-    levels: [stabilize]
-
-  - title: Managed Detection & Response (MDR)
-    info: 24/7 Protection, Peace of Mind
-    paragraph: >
-        Our expert team monitors your systems around the clock, detecting and responding to threats before they escalate.
-    levels: [optimize, transform]
-
-  - title: Managed Firewall
-    info: Your First Line of Defense
-    paragraph: >
-        A strong firewall is critical to your security. We manage and optimize your firewall to keep threats out and your data safe.
-    levels: [stabilize]
-
-  - title: Managed SIEM
-    info: See Threats Before They Strike
-    paragraph: >
-        Our Managed SIEM solutions provide real-time threat detection and analysis, giving you the insights you need to stay ahead of attackers.
+        Implement monitoring and controls to prevent unauthorized access or accidental loss of sensitive information.
     levels: [optimize]
 
-  - title: Multi-Factor Authentication (MFA)
-    info: Lock Down Your Accounts
+  - title: Compliance Audits
+    info: Stay Audit Ready
     paragraph: >
-        Add an extra layer of security to your systems with MFA, ensuring only authorized users can access sensitive data.
-    levels: [stabilize]
+        Our auditors ensure you meet regulatory requirements while minimizing legal exposure and penalties.
+    levels: [optimize]
+
+  - title: Cloud Security Solutions
+    info: Secure Every Workload
+    paragraph: >
+        Specialized services protect your cloud identities, workloads, and data against evolving threats.
+    levels: [optimize, transform]
 
   - title: Penetration Testing
-    info: Find Weaknesses Before Hackers Do
+    info: Validate Your Defenses
     paragraph: >
-        Simulate real-world attacks to identify vulnerabilities in your systems and fix them before they’re exploited.
+        Simulated cyber attacks expose weaknesses so you can remediate them before attackers attempt to exploit them.
     levels: [optimize]
 
-  - title: Security Log Management
-    info: Turn Data into Actionable Insights
+  - title: Endpoint Protection
+    info: Harden Every Device
     paragraph: >
-        Centralize and analyze your security logs to detect anomalies and respond to threats faster.
+        Advanced endpoint security stops malware, ransomware, and unauthorized access across your environment.
+    levels: [stabilize]
+
+  - title: Network Security Monitoring
+    info: Detect Anomalies Fast
+    paragraph: >
+        Continuous monitoring and analytics uncover suspicious activity and trigger rapid response.
     levels: [optimize]
 
-  - title: Vulnerability Scanning
-    info: Stay One Step Ahead
+  - title: Incident Recovery Planning
+    info: Recover Without Delay
     paragraph: >
-        Regularly scan your systems for vulnerabilities and patch them before they can be exploited.
-    levels: [stabilize, optimize]
-
-  - title: Zero Trust
-    info: Trust No One, Verify Everything
-    paragraph: >
-        Implement a Zero Trust framework to ensure every user and device is authenticated and authorized before accessing your network.
+        We help you build and rehearse recovery plans that keep business operations resilient after a security incident.
     levels: [transform]
+
 
 vendorsTitle: Powered by Industry-Leading Cybersecurity Innovators
 vendorsBody: |

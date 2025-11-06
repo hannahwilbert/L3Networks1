@@ -3,7 +3,7 @@
 
 <header class="relative z-0 flex items-center justify-center overflow-hidden text-white bg-black" style="height:80svh;">
   <!-- Content Container -->
-  <div class="container absolute z-30 max-w-screen-xl px-4 py-16 mx-auto">
+  <div class="container absolute z-30 max-w-screen-xl px-4 py-16 mx-auto fade-item delay-0">
     <div class="flex flex-col items-center">
       <div class="block w-full p-3 rounded-lg">
         <h1 class="block mb-4 text-3xl font-semibold md:hidden md:tracking-tighter font-mont">
@@ -72,6 +72,17 @@
   <!-- Background Gradient -->
   <div class="absolute inset-0 w-full h-full bg-linear-to-l from-slate-900/10 to-black/70"></div>
 </header>
+
+<style>
+  .fade-item{opacity:0; transform:translateY(24px); transition:opacity .65s cubic-bezier(.32,.75,.31,.97), transform .65s cubic-bezier(.32,.75,.31,.97); will-change:opacity,transform;}
+  .fade-item.is-visible{opacity:1; transform:translateY(0);}
+  .fade-item.delay-0{transition-delay:0s;}
+  .fade-item.delay-100{transition-delay:.1s;}
+  .fade-item.delay-200{transition-delay:.2s;}
+  .fade-item.delay-300{transition-delay:.3s;}
+  .fade-item.delay-400{transition-delay:.4s;}
+  .fade-item.delay-500{transition-delay:.5s;}
+</style>
 
   <div class="bg-slate-900/95 md:pt-0">
   <section class="relative z-10 grid grid-cols-1 gap-4 py-6 mx-2 text-lg font-semibold text-center text-white md:container md:max-w-screen-xl md:mx-auto md:gap-12 font-inter md:text-3xl md:grid-cols-3 md:px-8 2xl:px-0">
@@ -489,7 +500,7 @@
 
     <!-- Brands (match Testing layout) -->
     <div class="kfE__partnersBlock">
-      <h2 class="relative text-center font-mont font-semibold tracking-tighter heading-36">Trusted by Leading Brands</h2>
+      <h2 class="relative text-center font-mont font-semibold tracking-tighter heading-36" style="margin-bottom:12px;">Trusted by Leading Brands</h2>
       {% include "partials/home-carousel.html" %}
       <p class="body-sm" style="font-style:italic; text-align:center;">We help companies become industry leaders by turning IT strategy into action.</p>
     </div>
@@ -650,7 +661,7 @@
   
     <div class="grid grid-cols-1 gap-8">
       <section class="col-span-1">
-        <h2 class="relative pb-5 text-2xl md:text-6xl font-semibold tracking-tighter font-mont">Proven Results</h2>
+        <h2 class="relative pb-5 text-2xl md:text-6xl font-semibold tracking-tighter font-mont" style="margin-bottom:12px;">Proven Results</h2>
         <p class="pb-8 text-xl font-light">
           Technology challenges can be frustrating we know how important it is to have reliable IT that supports your goals. At L3 Networks, we deliver tailored solutions and round-the-clock support to reduce downtime and secure your systems.
         </p>
@@ -900,7 +911,7 @@
     <div class="ctaRF__card">
       <div class="ctaRF__grid">
         <div class="ctaRF__left">
-          <h2 class="relative text-2xl md:text-6xl font-semibold tracking-tighter font-mont" style="margin:0 0 clamp(10px,1.6vh,14px); text-wrap:balance;">
+          <h2 class="relative text-2xl md:text-6xl font-semibold tracking-tighter font-mont" style="margin-bottom:12px; text-wrap:balance;">
             Ready to Find Out Where Your IT Stands on the Elevate Path?
           </h2>
           <p class="body-lead" style="margin:clamp(6px,1.2vh,10px) 0 0; color:rgba(226,232,240,.88); max-width:72ch;">
@@ -2070,6 +2081,65 @@
     }
   </style>
 </section>
+<script>
+(function(){
+  if (!window.registerFadeItems){
+    var observer = null;
+    function toArray(nodes){
+      if (!nodes) return [];
+      if (Array.isArray(nodes)) return nodes;
+      if (nodes instanceof Element) return [nodes];
+      return Array.prototype.slice.call(nodes);
+    }
+    window.registerFadeItems = function(nodes){
+      var elements = toArray(nodes);
+      if (!elements.length) return;
+      if (!('IntersectionObserver' in window)){
+        elements.forEach(function(el){
+          if (el && el.closest('.resultsCarousel')) return;
+          if (!el.classList.contains('is-visible')){
+            el.classList.add('is-visible');
+          }
+        });
+        return;
+      }
+      if (!observer){
+        observer = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if (entry.isIntersecting){
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { root:null, threshold:0.18 });
+      }
+      elements.forEach(function(el){
+        if (!el || el.closest('.resultsCarousel')) return;
+        if (!el.dataset.fadeInit){
+          el.dataset.fadeInit = '1';
+          observer.observe(el);
+        }
+      });
+    };
+  }
+
+  function ready(fn){
+    if (document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', fn, { once:true });
+    } else {
+      fn();
+    }
+  }
+
+  function autoApply(){
+    if (!window.registerFadeItems) return;
+    var existing = document.querySelectorAll('.fade-item');
+    window.registerFadeItems(existing);
+  }
+
+  ready(autoApply);
+})();
+</script>
 
 {# Removed AllDesk Ai popup button #}
 

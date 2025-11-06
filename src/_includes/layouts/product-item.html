@@ -44,7 +44,7 @@
 {# Main Content #}
 <main class="px-3 py-24 text-white bg-black md:px-8 2xl:px-0">
 
-  <nav class="container flex w-full h-full max-w-screen-xl mx-auto text-slate-200" aria-label="Breadcrumb">
+  <nav class="container flex w-full h-full max-w-screen-xl mx-auto text-slate-200 fade-item delay-0" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
       <li class="inline-flex items-center">
         <a href="/" class="inline-flex items-center text-sm font-medium text-slate-300 hover:text-slate-500">
@@ -128,10 +128,21 @@
     {# Product Overview #}
 
     {# <div class="w-10 h-2 mt-24 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
-    <hr class="mt-4 mb-10 border-slate-700">
+    <hr class="mt-10 mb-16 border-slate-700">
     <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont text-center mx-auto md:text-4xl">{{ prodtitle }}</h2>
     <h3 class="mb-12 text-base font-light text-slate-300 text-center max-w-3xl mx-auto leading-relaxed">{{ prodbody }}</h3>
     
+    <style>
+      .fade-item{opacity:0; transform:translateY(24px); transition:opacity .65s cubic-bezier(.32,.75,.31,.97), transform .65s cubic-bezier(.32,.75,.31,.97); will-change:opacity,transform;}
+      .fade-item.is-visible{opacity:1; transform:translateY(0);}
+      .fade-item.delay-0{transition-delay:0s;}
+      .fade-item.delay-100{transition-delay:.1s;}
+      .fade-item.delay-200{transition-delay:.2s;}
+      .fade-item.delay-300{transition-delay:.3s;}
+      .fade-item.delay-400{transition-delay:.4s;}
+      .fade-item.delay-500{transition-delay:.5s;}
+    </style>
+
     <style>
       .valuePropsWrap{
         margin-bottom:clamp(40px,8vw,72px);
@@ -203,10 +214,10 @@
       }
     </style>
 
-    <section class="valuePropsWrap">
+    <section class="valuePropsWrap fade-item delay-0">
       <div class="valuePropsPanel">
         {% for prop in valueProps %}
-        <article class="valuePropsCard">
+        <article class="valuePropsCard fade-item delay-{{ loop.index0 * 100 }}">
           <img src="{{ prop.icon }}" alt="{{ prop.title }}" class="valuePropsIcon" aria-hidden="true" loading="lazy" decoding="async">
           <h3 class="valuePropsHeading font-mont">{{ prop.title }}</h3>
           <p class="valuePropsCopy">{{ prop.description }}</p>
@@ -220,18 +231,23 @@
     <div class="pt-32">&nbsp;</div>
 
     {# <div class="w-10 h-2 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
-    <hr class="mb-10 border-slate-700">
-    <h2 class="mx-4 mt-4 mb-3 text-3xl font-semibold text-white font-mont md:mx-0">{{ keyprodsTitle }}</h2>
-    <h3 class="mx-4 mb-12 text-base font-light md:mx-0 text-slate-200">{{ keyprodsBody }}</h3>
+    <hr class="mb-16 border-slate-700">
+    <div class="mx-4 md:mx-0 md:max-w-lg fade-item delay-0" style="margin-top:12px;">
+      <h2 class="mb-2 text-3xl font-semibold text-white font-mont">
+        Comprehensive Cybersecurity Solutions<br class="hidden md:block">
+        Tailored to Your Business
+      </h2>
+      <p class="mb-0 text-base font-light text-slate-200 fade-item delay-100">{{ keyprodsBody | replace("control and", "control<br class='hidden md:block'>and") | safe }}</p>
+    </div>
 
     {% raw %}
 <style>
   #cybersec-section{background:#000;padding:clamp(40px,9vh,96px) 0;color:var(--ink,#fff);}
   #cybersec-section .wrap{width:min(1200px,100%)}
-  #cybersec-section .content{max-width:12000px;margin-left:auto;margin-right:auto;}
+  #cybersec-section .wrap{margin:0!important;padding:0!important;}
   #cybersec-section .hdr h2{font-size:clamp(24px,3vw,28px);line-height:1.15;letter-spacing:-.015em;margin:0 0 12px;font-weight:800;color:#fff;}
   #cybersec-section .hdr p{margin:0;color:rgba(255,255,255,.72);max-width:60ch;}
-  #cybersec-section .content{display:grid;grid-template-columns:1fr;gap:24px;margin-top:32px;}
+  #cybersec-section .content{display:grid;grid-template-columns:1fr;gap:20px;margin-top:8px;max-width:1200px;margin-left:auto;margin-right:auto;}
   @media (min-width:1024px){#cybersec-section .content{grid-template-columns:2fr 1fr;gap:32px;}}
   #cybersec-section .cards{display:grid;grid-template-columns:1fr;gap:16px;}
   @media (min-width:640px){#cybersec-section .cards{grid-template-columns:1fr 1fr;gap:20px;}}
@@ -264,13 +280,69 @@
   <div class="wrap">
     <div class="content">
       <div class="cards" id="cards" aria-live="polite"></div>
-      <aside class="filters" aria-label="Service level filters">
+      <aside class="filters fade-item delay-200" aria-label="Service level filters">
         <p class="filters__lead">All of our services are built around our Elevate framework. See where they land on your journey.</p>
         <div class="filters__group" id="filters"></div>
       </aside>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  var observer = null;
+  function toArray(nodes){
+    if (!nodes) return [];
+    if (Array.isArray(nodes)) return nodes;
+    if (nodes instanceof Element) return [nodes];
+    return Array.prototype.slice.call(nodes);
+  }
+  function ensureObserver(){
+    if (observer !== null) return observer;
+    if (!('IntersectionObserver' in window)){
+      observer = undefined;
+      return observer;
+    }
+    observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { root:null, threshold:0.18 });
+    return observer;
+  }
+  function register(nodes){
+    var elements = toArray(nodes);
+    if (!elements.length) return;
+    var obs = ensureObserver();
+    if (!obs){
+      elements.forEach(function(el){
+        if (!el || el.dataset.fadeInit === '1') return;
+        el.dataset.fadeInit = '1';
+        el.classList.add('is-visible');
+      });
+      return;
+    }
+    elements.forEach(function(el){
+      if (!el || el.dataset.fadeInit === '1') return;
+      el.dataset.fadeInit = '1';
+      obs.observe(el);
+    });
+  }
+  function ready(fn){
+    if (document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', fn, { once:true });
+    } else {
+      fn();
+    }
+  }
+  ready(function(){
+    register(document.querySelectorAll('.fade-item'));
+  });
+  window.registerFadeItems = register;
+})();
+</script>
 <script>
 (function(){
   var section = document.getElementById('cybersec-section');
@@ -338,10 +410,14 @@
     cardsEl.classList.toggle('cards--filtered', selecting);
     cardsEl.innerHTML = '';
 
-    SERVICES.forEach(function(service){
+    var newCards = [];
+    SERVICES.forEach(function(service, idx){
       var active = cardIsActive(service);
       var article = document.createElement('article');
       article.className = 'card';
+      article.classList.add('fade-item');
+      var delayClass = 'delay-' + ((idx % 4) * 100);
+      article.classList.add(delayClass);
       if (!selecting || active){
         article.classList.add('card--visible');
       }
@@ -369,7 +445,11 @@
 
       article.append(h3, p, pills);
       cardsEl.appendChild(article);
+      newCards.push(article);
     });
+    if (window.registerFadeItems){
+      window.registerFadeItems(newCards);
+    }
   }
 
   function renderFilters(){
@@ -428,14 +508,14 @@
     <div class="pt-32">&nbsp;</div>
     {% if proof and proof.enabled %}
     <section id="proof-security-outcomes" class="ycProof text-white" style="position:relative; isolation:isolate; background:transparent;">
-      <hr class="mb-10 border-slate-700">
-      <h2 class="mx-4 mt-4 mb-3 text-3xl font-semibold text-white font-mont md:mx-0">{{ proof.title | safe }}</h2>
+      <hr class="mb-16 border-slate-700">
+      <h2 class="mx-4 mt-4 mb-3 text-3xl font-semibold text-white font-mont md:mx-0 fade-item delay-0">{{ proof.title | safe }}</h2>
       {% if proof.sub %}
-      <h3 class="mx-4 mb-12 text-base font-light md:mx-0 text-slate-200">{{ proof.sub | safe }}</h3>
+      <h3 class="mx-4 mb-12 text-base font-light md:mx-0 text-slate-200 fade-item delay-100">{{ proof.sub | safe }}</h3>
       {% endif %}
       <div class="ycCards grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         {% for c in proof.cards %}
-        <article class="ycCard">
+        <article class="ycCard fade-item delay-{{ loop.index0 * 100 }}">
           <h3 class="ycCard__title">{{ c.title | safe }}</h3>
           <p class="ycCard__desc">{{ c.desc | safe }}</p>
           {% if c.metrics %}
@@ -469,7 +549,8 @@
         .ycMeter{ display:grid; gap:8px; justify-items:center; margin:10px 0 8px; }
         .ycMeter__label{ font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#7dd3fc; opacity:.9; }
         .ycMeter__track{ width:100%; max-width:280px; height:10px; background:#0f172a; border-radius:999px; position:relative; overflow:hidden; }
-        .ycMeter__bar{ position:absolute; left:0; top:0; bottom:0; width:var(--val, 60%); border-radius:inherit; }
+        .ycMeter__bar{ position:absolute; left:0; top:0; bottom:0; width:0; border-radius:inherit; transition:width .8s cubic-bezier(.32,.75,.31,.97); }
+        .ycCard.is-visible .ycMeter__bar{ width:var(--val, 60%); }
         .ycMeter__bar--teal{ background:linear-gradient(90deg,#6FE9D4 0%, #00BBA7 100%); }
         .ycMeter__bar--red{ background:linear-gradient(90deg,#fb7185 0%, #ef4444 100%); }
         .ycMetric{ font-weight:800; font-size:clamp(18px,2.8vw,22px); }
@@ -477,17 +558,57 @@
         .ycMetric--red{ color:#f87171; }
         .ycCard__foot{ margin-top:auto; text-align:center; font-size:12px; letter-spacing:.18em; color:#94a3b8; opacity:.9; width:100%; }
       </style>
+      <script>
+        (function(){
+          function ready(fn){
+            if (document.readyState === 'loading'){
+              document.addEventListener('DOMContentLoaded', fn, { once:true });
+            } else {
+              fn();
+            }
+          }
+          ready(function(){
+            var section = document.getElementById('proof-security-outcomes');
+            if (!section) return;
+            var cards = Array.prototype.slice.call(section.querySelectorAll('.ycCard'));
+            if (window.registerFadeItems) {
+              window.registerFadeItems(cards);
+            }
+            if (!cards.length) return;
+
+            function activateAll(){
+              cards.forEach(function(card){ card.classList.add('is-visible'); });
+            }
+
+            if (!('IntersectionObserver' in window)){
+              activateAll();
+              return;
+            }
+
+            var observer = new IntersectionObserver(function(entries){
+              entries.forEach(function(entry){
+                if (entry.isIntersecting){
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            }, { root:null, threshold:0.35 });
+
+            cards.forEach(function(card){ observer.observe(card); });
+          });
+        })();
+      </script>
     </section>
     {% endif %}
 
     <div class="pt-32">&nbsp;</div>
 
     {# <div class="w-10 h-2 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
-    <hr class="mb-10 border-slate-700">
-    <h2 class="mx-4 mt-4 mb-3 text-3xl font-semibold text-white font-mont md:mx-0">{{ vendorsTitle }}</h2>
-    <h3 class="mx-4 mb-12 text-base font-light md:mx-0 text-slate-200">{{ vendorsBody }}</h3>
+    <hr class="mb-16 border-slate-700">
+    <h2 class="mx-4 mt-4 mb-3 text-3xl font-semibold text-white font-mont md:mx-0 fade-item delay-0">{{ vendorsTitle }}</h2>
+    <h3 class="mx-4 mb-12 text-base font-light md:mx-0 text-slate-200 fade-item delay-100">{{ vendorsBody }}</h3>
 
-    <div class="grid grid-cols-2 gap-8 md:grid-cols-6">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-6 fade-item delay-200">
       {% for logo in vendorsLogos %}
         <img class="block col-span-1" src="{{ logo.src }}" alt="{{ logo.alt }}">
       {% endfor %}
