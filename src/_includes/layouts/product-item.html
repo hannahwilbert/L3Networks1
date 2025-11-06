@@ -256,10 +256,15 @@
   #cybersec-section .card__title{font-size:clamp(16px,2vw,18px);font-weight:600;letter-spacing:-.01em;margin:0;color:#fff;}
   #cybersec-section .card__blurb{margin:8px 0 0;color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;}
   #cybersec-section .card__pills{display:flex;align-items:center;gap:8px;margin-top:14px;}
-  #cybersec-section .pill-dot{display:inline-block;height:10px;width:16px;border-radius:999px;background:#555;transition:opacity .15s ease,background .15s ease;}
-  #cybersec-section .pill-dot--on.pill-dot--stabilize{background:#ff6a3d;}
-  #cybersec-section .pill-dot--on.pill-dot--optimize{background:#3c52ff;}
-  #cybersec-section .pill-dot--on.pill-dot--transform{background:#00bba7;}
+  #cybersec-section .pill-dot{display:inline-flex;align-items:center;justify-content:center;transition:opacity .15s ease,background .15s ease;}
+  #cybersec-section .pill-dot:not(svg){height:6px;width:10px;border-radius:999px;background:#555;}
+  #cybersec-section svg.pill-dot{display:block;background:none;}
+  #cybersec-section svg.pill-dot--stabilize{width:26px;height:auto;}
+  #cybersec-section svg.pill-dot--optimize{width:26px;height:auto;}
+  #cybersec-section svg.pill-dot--transform{width:26px;height:auto;}
+  #cybersec-section .pill-dot--on.pill-dot--stabilize:not(svg){background:#ff6a3d;}
+  #cybersec-section .pill-dot--on.pill-dot--optimize:not(svg){background:#3c52ff;}
+  #cybersec-section .pill-dot--on.pill-dot--transform:not(svg){background:#00bba7;}
   #cybersec-section .filters__lead{color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;margin:0 0 8px;}
   #cybersec-section .filters__group{display:flex;flex-direction:column;gap:8px;max-width:320px;}
   #cybersec-section .filter-btn{background:transparent;border:none;text-align:left;padding:10px 12px;border-radius:10px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(16px,2vw,18px);cursor:pointer;transition:background .12s ease;color:#fff;}
@@ -268,10 +273,18 @@
   #cybersec-section .filter-btn[data-level="transform"]{color:#00bba7;}
   #cybersec-section .filter-btn:hover{background:rgba(255,255,255,.05);}
   #cybersec-section .filter-btn[aria-pressed="true"]{background:rgba(255,255,255,.05);}
-  #cybersec-section .filter-dot{height:10px;width:16px;border-radius:999px;}
-  #cybersec-section .filter-btn[data-level="stabilize"] .filter-dot{background:#ff6a3d;}
-  #cybersec-section .filter-btn[data-level="optimize"] .filter-dot{background:#3c52ff;}
-  #cybersec-section .filter-btn[data-level="transform"] .filter-dot{background:#00bba7;}
+  #cybersec-section .filter-dot{display:inline-flex;align-items:center;justify-content:center;}
+  #cybersec-section .filter-dot:not(svg){height:6px;width:10px;border-radius:999px;}
+  #cybersec-section svg.filter-dot{display:block;flex-shrink:0;}
+  #cybersec-section svg.filter-dot--stabilize{width:26px;height:auto;}
+  #cybersec-section svg.filter-dot--optimize{width:26px;height:auto;}
+  #cybersec-section svg.filter-dot--transform{width:26px;height:auto;}
+  #cybersec-section .filter-dot--stabilize rect,
+  #cybersec-section .filter-dot--optimize path,
+  #cybersec-section .filter-dot--transform circle{transition:fill .15s ease;}
+  #cybersec-section .filter-btn[data-level="stabilize"] .filter-dot:not(svg){background:#ff6a3d;}
+  #cybersec-section .filter-btn[data-level="optimize"] .filter-dot:not(svg){background:#3c52ff;}
+  #cybersec-section .filter-btn[data-level="transform"] .filter-dot:not(svg){background:#00bba7;}
   #cybersec-section .cards--filtered .card{opacity:.2;}
   #cybersec-section .cards--filtered .card.card--visible{opacity:1;}
 </style>
@@ -369,6 +382,22 @@
   var mode = 'none'; // 'none', 'stabilize', 'optimize', 'transform'
 
   function makePillDot(level){
+    if (level === 'stabilize'){
+      var stabilizeIcon = createStabilizeIcon('#525252');
+      stabilizeIcon.setAttribute('class', 'pill-dot pill-dot--' + level);
+      return stabilizeIcon;
+    }
+    if (level === 'optimize'){
+      var optimizeIcon = createOptimizeIcon('#525252');
+      optimizeIcon.setAttribute('class', 'pill-dot pill-dot--' + level);
+      return optimizeIcon;
+    }
+    if (level === 'transform'){
+      var transformIcon = createTransformIcon('#525252');
+      transformIcon.setAttribute('class', 'pill-dot pill-dot--' + level);
+      return transformIcon;
+    }
+
     var span = document.createElement('span');
     span.className = 'pill-dot pill-dot--' + level;
     span.setAttribute('data-level', level);
@@ -405,6 +434,27 @@
     return false;
   }
 
+  function setPillAppearance(dot, level, active){
+    if (active){
+      dot.classList.add('pill-dot--on');
+    } else {
+      dot.classList.remove('pill-dot--on');
+    }
+
+    if (dot.querySelectorAll){
+      var fillTargets = dot.querySelectorAll('[data-fill-part]');
+      if (fillTargets.length){
+        var levelMeta = LEVELS.find(function(l){ return l.key === level; });
+        var activeFill = levelMeta ? levelMeta.color : '#FFFFFF';
+        var inactiveFill = '#525252';
+        var targetColor = active ? activeFill : inactiveFill;
+        fillTargets.forEach(function(part){
+          part.setAttribute('fill', targetColor);
+        });
+      }
+    }
+  }
+
   function renderCards(){
     var selecting = mode !== 'none';
     cardsEl.classList.toggle('cards--filtered', selecting);
@@ -437,9 +487,8 @@
       pills.className = 'card__pills';
       ['stabilize','optimize','transform'].forEach(function(level){
         var dot = makePillDot(level);
-        if (pillOn(level, service)){
-          dot.classList.add('pill-dot--on');
-        }
+        var isActive = pillOn(level, service);
+        setPillAppearance(dot, level, isActive);
         pills.appendChild(dot);
       });
 
@@ -452,6 +501,70 @@
     }
   }
 
+  function createStabilizeIcon(initialFill){
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('width', '40');
+    svg.setAttribute('height', '32.762');
+    svg.setAttribute('viewBox', '0 0 40 32.762');
+    svg.setAttribute('data-level', 'stabilize');
+
+    var fillColor = initialFill || '#525252';
+    [0, 12.1904, 24.3811].forEach(function(offset){
+      var rect = document.createElementNS(svgNS, 'rect');
+      rect.setAttribute('y', String(offset));
+      rect.setAttribute('width', '40');
+      rect.setAttribute('height', '8.38092');
+      rect.setAttribute('rx', '4.19046');
+      rect.setAttribute('fill', fillColor);
+      rect.setAttribute('data-fill-part', '1');
+      svg.appendChild(rect);
+    });
+    return svg;
+  }
+
+  function createOptimizeIcon(initialFill){
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('width', '40');
+    svg.setAttribute('height', '39.8095');
+    svg.setAttribute('viewBox', '0 0 40 39.8095');
+    svg.setAttribute('data-level', 'optimize');
+
+    var fillColor = initialFill || '#525252';
+    var topPath = document.createElementNS(svgNS, 'path');
+    topPath.setAttribute('d', 'M40 1.74846e-06C40 2.62644 39.4827 5.22716 38.4776 7.65367C37.4725 10.0802 35.9993 12.285 34.1421 14.1421C32.285 15.9993 30.0802 17.4725 27.6537 18.4776C25.2272 19.4827 22.6264 20 20 20C17.3736 20 14.7728 19.4827 12.3463 18.4776C9.91982 17.4725 7.71503 15.9993 5.85786 14.1421C4.00069 12.285 2.5275 10.0802 1.52241 7.65367C0.517315 5.22716 -2.2961e-07 2.62644 0 0L40 1.74846e-06Z');
+    topPath.setAttribute('fill', fillColor);
+    topPath.setAttribute('data-fill-part', '1');
+
+    var bottomPath = document.createElementNS(svgNS, 'path');
+    bottomPath.setAttribute('d', 'M40 19.8095C40 22.436 39.4827 25.0367 38.4776 27.4632C37.4725 29.8897 35.9993 32.0945 34.1421 33.9517C32.285 35.8088 30.0802 37.282 27.6537 38.2871C25.2272 39.2922 22.6264 39.8095 20 39.8095C17.3736 39.8095 14.7728 39.2922 12.3463 38.2871C9.91982 37.282 7.71503 35.8088 5.85786 33.9517C4.00069 32.0945 2.5275 29.8897 1.52241 27.4632C0.517315 25.0367 -2.2961e-07 22.436 0 19.8095L40 19.8095Z');
+    bottomPath.setAttribute('fill', fillColor);
+    bottomPath.setAttribute('data-fill-part', '1');
+
+    svg.appendChild(topPath);
+    svg.appendChild(bottomPath);
+    return svg;
+  }
+
+  function createTransformIcon(initialFill){
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('width', '40');
+    svg.setAttribute('height', '40');
+    svg.setAttribute('viewBox', '0 0 40 40');
+    svg.setAttribute('data-level', 'transform');
+
+    var circle = document.createElementNS(svgNS, 'circle');
+    circle.setAttribute('cx', '20');
+    circle.setAttribute('cy', '20');
+    circle.setAttribute('r', '20');
+    circle.setAttribute('fill', initialFill || '#525252');
+    circle.setAttribute('data-fill-part', '1');
+    svg.appendChild(circle);
+    return svg;
+  }
+
   function renderFilters(){
     filtersEl.innerHTML = '';
     LEVELS.forEach(function(level){
@@ -459,11 +572,25 @@
       btn.type = 'button';
       btn.className = 'filter-btn';
       btn.dataset.level = level.key;
-      btn.setAttribute('aria-pressed', mode === level.key ? 'true' : 'false');
+      var isActive = mode === level.key;
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      var dot;
+      if (level.key === 'stabilize'){
+        dot = createStabilizeIcon(isActive ? level.color : '#525252');
+        dot.classList.add('filter-dot', 'filter-dot--stabilize');
+      } else if (level.key === 'optimize'){
+        dot = createOptimizeIcon(isActive ? level.color : '#525252');
+        dot.classList.add('filter-dot', 'filter-dot--optimize');
+      } else if (level.key === 'transform'){
+        dot = createTransformIcon(isActive ? level.color : '#525252');
+        dot.classList.add('filter-dot', 'filter-dot--transform');
+      } else {
+        dot = document.createElement('span');
+        dot.className = 'filter-dot';
+        dot.style.background = level.color;
+      }
+      dot.setAttribute('aria-hidden', 'true');
 
-      var dot = document.createElement('span');
-      dot.className = 'filter-dot';
-      dot.style.background = level.color;
       var label = document.createElement('span');
       label.textContent = level.label;
 
