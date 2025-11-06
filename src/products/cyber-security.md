@@ -35,76 +35,79 @@ keyprodsBody: |
   Each service works within the same structured methodology, ensuring that every control and process supports measurable improvement over time.
 
 keyprods:
-  - title: Proactive Threat Hunting
-    info: Anticipate Emerging Threats
+  - title: Managed Firewall
     paragraph: >
-        We identify potential vulnerabilities and threats before they are exploited, enhancing your security posture.
+        Your first line of defense against unauthorized access. We configure and monitor your firewalls to keep threats out and data safe.
     levels: [stabilize]
-
-  - title: Vulnerability Assessment
-    info: Expose Security Gaps
-    paragraph: >
-        Comprehensive assessments reveal security gaps and deliver actionable recommendations for remediation.
-    levels: [stabilize]
-
-  - title: Phishing Simulation Training
-    info: Build a Resilient Team
-    paragraph: >
-        Realistic phishing simulations and coaching help employees recognize and report social engineering attempts.
-    levels: [stabilize]
-
-  - title: Security Awareness Programs
-    info: Reinforce Best Practices
-    paragraph: >
-        Tailored training sessions keep your teams informed about policies, threats, and everyday cyber hygiene.
-    levels: [stabilize]
-
-  - title: Risk Management Framework
-    info: Govern with Confidence
-    paragraph: >
-        We establish a structured, industry-aligned approach to managing cybersecurity risk across your organization.
-    levels: [optimize]
-
-  - title: Data Loss Prevention
-    info: Protect Critical Data
-    paragraph: >
-        Implement monitoring and controls to prevent unauthorized access or accidental loss of sensitive information.
-    levels: [optimize]
-
-  - title: Compliance Audits
-    info: Stay Audit Ready
-    paragraph: >
-        Our auditors ensure you meet regulatory requirements while minimizing legal exposure and penalties.
-    levels: [optimize]
-
-  - title: Cloud Security Solutions
-    info: Secure Every Workload
-    paragraph: >
-        Specialized services protect your cloud identities, workloads, and data against evolving threats.
-    levels: [optimize, transform]
-
-  - title: Penetration Testing
-    info: Validate Your Defenses
-    paragraph: >
-        Simulated cyber attacks expose weaknesses so you can remediate them before attackers attempt to exploit them.
-    levels: [optimize]
 
   - title: Endpoint Protection
-    info: Harden Every Device
     paragraph: >
-        Advanced endpoint security stops malware, ransomware, and unauthorized access across your environment.
+        AI-powered detection and response that safeguards devices and users wherever they work.
     levels: [stabilize]
 
-  - title: Network Security Monitoring
-    info: Detect Anomalies Fast
+  - title: Email Security
     paragraph: >
-        Continuous monitoring and analytics uncover suspicious activity and trigger rapid response.
+        Blocks phishing, spam, and malware to protect one of your most targeted communication channels.
+    levels: [stabilize]
+
+  - title: DNS Security
+    paragraph: >
+        Prevents malicious connections before they reach your network by securing DNS at the gateway level.
+    levels: [stabilize]
+
+  - title: Multi-Factor Authentication (MFA)
+    paragraph: >
+        Adds a critical layer of protection to user authentication and access control.
+    levels: [stabilize]
+
+  - title: Vulnerability Scanning
+    paragraph: >
+        Identifies vulnerabilities and misconfigurations across systems and applications so they can be remediated quickly.
+    levels: [stabilize]
+
+  - title: Security Log Management
+    paragraph: >
+        Centralizes and analyzes system logs to detect anomalies and surface critical security insights.
     levels: [optimize]
 
-  - title: Incident Recovery Planning
-    info: Recover Without Delay
+  - title: Managed Detection & Response (MDR)
     paragraph: >
-        We help you build and rehearse recovery plans that keep business operations resilient after a security incident.
+        Continuous 24/7 monitoring and rapid response to threats before they escalate.
+    levels: [optimize]
+
+  - title: Managed SIEM
+    paragraph: >
+        Real-time event correlation and threat analytics for complete visibility and faster decision-making.
+    levels: [optimize]
+
+  - title: Cyber Containment & Remediation
+    paragraph: >
+        Rapid isolation and recovery when an incident occurs, minimizing impact and downtime.
+    levels: [optimize]
+
+  - title: Penetration Testing
+    paragraph: >
+        Simulates targeted attacks to identify exploitable weaknesses and strengthen defense strategies.
+    levels: [optimize]
+
+  - title: Compliancy Conformance
+    paragraph: >
+        Guidance and tailored controls to maintain ongoing compliance with SOC 2, HIPAA, NIST, and ISO frameworks.
+    levels: [transform]
+
+  - title: Compliance Monitoring
+    paragraph: >
+        Automated oversight and reporting to ensure your environment remains audit-ready at all times.
+    levels: [transform]
+
+  - title: Zero Trust
+    paragraph: >
+        Implements a trust-by-verification model that modernizes access control and enforces security everywhere.
+    levels: [transform]
+
+  - title: Network Security
+    paragraph: >
+        Integrated segmentation, advanced monitoring, and traffic analysis for an adaptable and resilient infrastructure.
     levels: [transform]
 
 
