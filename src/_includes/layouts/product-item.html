@@ -237,7 +237,7 @@
         Comprehensive Cybersecurity Solutions<br class="hidden md:block">
         Tailored to Your Business
       </h2>
-      <p class="mb-0 text-base font-light text-slate-200 fade-item delay-100">{{ keyprodsBody | replace("control and", "control<br class='hidden md:block'>and") | safe }}</p>
+      <p class="mb-0 text-[18px] font-light text-slate-200 fade-item delay-100">{{ keyprodsBody | replace("control and", "control<br class='hidden md:block'>and") | safe }}</p>
     </div>
 
     {% raw %}
@@ -254,13 +254,13 @@
   #cybersec-section .card{background:#000;border:.5px solid rgba(255,255,255,.10);border-radius:16px;padding:16px;transition:opacity .18s ease,border-color .18s ease,border-width .18s ease;}
   #cybersec-section .card--match{border-width:1px;border-color:rgba(255,255,255,.40);box-shadow:0 8px 24px rgba(0,0,0,.35);}
   #cybersec-section .card__title{font-size:clamp(16px,2vw,18px);font-weight:600;letter-spacing:-.01em;margin:0;color:#fff;}
-  #cybersec-section .card__blurb{margin:8px 0 0;color:rgba(255,255,255,.72);font-size:14px;line-height:1.6;}
+  #cybersec-section .card__blurb{margin:8px 0 0;color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;}
   #cybersec-section .card__pills{display:flex;align-items:center;gap:8px;margin-top:14px;}
   #cybersec-section .pill-dot{display:inline-block;height:10px;width:16px;border-radius:999px;background:#555;transition:opacity .15s ease,background .15s ease;}
   #cybersec-section .pill-dot--on.pill-dot--stabilize{background:#ff6a3d;}
   #cybersec-section .pill-dot--on.pill-dot--optimize{background:#3c52ff;}
   #cybersec-section .pill-dot--on.pill-dot--transform{background:#00bba7;}
-  #cybersec-section .filters__lead{color:rgba(255,255,255,.72);font-size:14px;line-height:1.6;margin:0 0 8px;}
+  #cybersec-section .filters__lead{color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;margin:0 0 8px;}
   #cybersec-section .filters__group{display:flex;flex-direction:column;gap:8px;max-width:320px;}
   #cybersec-section .filter-btn{background:transparent;border:none;text-align:left;padding:10px 12px;border-radius:10px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(16px,2vw,18px);cursor:pointer;transition:background .12s ease;color:#fff;}
   #cybersec-section .filter-btn[data-level="stabilize"]{color:#ff6a3d;}
@@ -511,7 +511,7 @@
       <hr class="mb-16 border-slate-700">
       <h2 class="mx-4 mt-4 mb-3 text-3xl font-semibold text-white font-mont md:mx-0 fade-item delay-0">{{ proof.title | safe }}</h2>
       {% if proof.sub %}
-      <h3 class="mx-4 mb-12 text-base font-light md:mx-0 text-slate-200 fade-item delay-100">{{ proof.sub | safe }}</h3>
+      <h3 class="mx-4 mb-12 text-[18px] font-light md:mx-0 text-slate-200 fade-item delay-100">{{ proof.sub | safe }}</h3>
       {% endif %}
       <div class="ycCards grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         {% for c in proof.cards %}
@@ -606,7 +606,7 @@
     {# <div class="w-10 h-2 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
     <hr class="mb-16 border-slate-700">
     <h2 class="mx-4 mt-4 mb-3 text-3xl font-semibold text-white font-mont md:mx-0 fade-item delay-0">{{ vendorsTitle }}</h2>
-    <h3 class="mx-4 mb-12 text-base font-light md:mx-0 text-slate-200 fade-item delay-100">{{ vendorsBody }}</h3>
+    <h3 class="mx-4 mb-12 text-[18px] font-light md:mx-0 text-slate-200 fade-item delay-100">{{ vendorsBody }}</h3>
 
     <div class="grid grid-cols-2 gap-8 md:grid-cols-6 fade-item delay-200">
       {% for logo in vendorsLogos %}
