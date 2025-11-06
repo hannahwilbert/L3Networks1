@@ -129,20 +129,90 @@
 
     {# <div class="w-10 h-2 mt-24 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
     <hr class="mt-4 mb-10 border-slate-700">
-    <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont md:mx-0">{{ prodtitle }}</h2>
-    <h3 class="mb-12 text-base font-light md:w-4/5 md:mx-0 text-slate-300">{{ prodbody }}</h3>
+    <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont text-center mx-auto md:text-4xl">{{ prodtitle }}</h2>
+    <h3 class="mb-12 text-base font-light text-slate-300 text-center max-w-3xl mx-auto leading-relaxed">{{ prodbody }}</h3>
     
+    <style>
+      .valuePropsWrap{
+        margin-bottom:clamp(40px,8vw,72px);
+      }
+      .valuePropsPanel{
+        position:relative;
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        background:linear-gradient(180deg, rgba(15,17,22,.96) 0%, rgba(4,6,12,.96) 100%);
+        border:1px solid rgba(255,255,255,.07);
+        border-radius:18px;
+        box-shadow:0 30px 55px rgba(0,0,0,.5);
+        overflow:hidden;
+      }
+      .valuePropsPanel::before,
+      .valuePropsPanel::after{
+        content:"";
+        position:absolute;
+        background:rgba(255,255,255,.08);
+        pointer-events:none;
+      }
+      .valuePropsPanel::before{
+        width:1px;
+        top:0;
+        bottom:0;
+        left:50%;
+        transform:translateX(-0.5px);
+      }
+      .valuePropsPanel::after{
+        height:1px;
+        left:0;
+        right:0;
+        top:50%;
+        transform:translateY(-0.5px);
+      }
+      .valuePropsCard{
+        position:relative;
+        padding:clamp(22px,4vw,32px);
+        display:flex;
+        flex-direction:column;
+        gap:clamp(10px,2vw,14px);
+      }
+      .valuePropsIcon{
+        width:40px;
+        height:40px;
+      }
+      .valuePropsHeading{
+        font-size:clamp(20px,2.4vw,24px);
+        font-weight:800;
+        letter-spacing:-0.01em;
+        color:#00BBA7;
+      }
+      .valuePropsCopy{
+        color:rgba(226,232,240,.8);
+        font-size:clamp(14px,1.6vw,15.5px);
+        line-height:1.65;
+      }
+      @media (max-width: 767px){
+        .valuePropsPanel{
+          grid-template-columns:1fr;
+        }
+        .valuePropsPanel::before,
+        .valuePropsPanel::after{
+          display:none;
+        }
+        .valuePropsCard + .valuePropsCard{
+          border-top:1px solid rgba(255,255,255,.08);
+        }
+      }
+    </style>
 
-    <section class="grid grid-cols-1 gap-4 md:grid-cols-4">
-      {% for prop in valueProps %}
-      <div class="flex flex-row items-center gap-2 mb-4 rounded-lg md:gap-6 md:flex-col md:items-start md:mb-0">
-        <img class="block w-16 h-16 text-teal-400" src="{{ prop.icon }}" alt="{{prop.title}}">
-        <div class="text-left">
-          <h3 class="mb-2 text-lg font-semibold leading-4 font-inter">{{ prop.title }}</h3>
-          <p class="text-sm font-light text-slate-400">{{ prop.description }}</p>
-        </div>
+    <section class="valuePropsWrap">
+      <div class="valuePropsPanel">
+        {% for prop in valueProps %}
+        <article class="valuePropsCard">
+          <img src="{{ prop.icon }}" alt="{{ prop.title }}" class="valuePropsIcon" aria-hidden="true" loading="lazy" decoding="async">
+          <h3 class="valuePropsHeading font-mont">{{ prop.title }}</h3>
+          <p class="valuePropsCopy">{{ prop.description }}</p>
+        </article>
+        {% endfor %}
       </div>
-      {% endfor %}
     </section>
 
     
@@ -252,16 +322,18 @@
   function pillOn(level, service){
     if (mode === 'none') return false;
     if (mode === 'transform') return true;
-    if (mode === 'optimize'){
-      if (level === 'stabilize') {
-        return service.levels.includes('stabilize') || service.levels.includes('optimize');
-      }
-      if (level === 'optimize') return service.levels.includes('optimize');
-      return false;
+
+    var active = cardIsActive(service);
+    if (!active) return false;
+
+    if (mode === 'stabilize') {
+      return level === 'stabilize';
     }
-    if (mode === 'stabilize'){
-      return level === 'stabilize' && service.levels.includes('stabilize');
+
+    if (mode === 'optimize') {
+      return level === 'stabilize' || level === 'optimize';
     }
+
     return false;
   }
 
@@ -345,7 +417,7 @@
   renderFilters();
   renderCards();
 })();
-</script></script>
+</script>
 
 
 
