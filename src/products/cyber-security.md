@@ -39,61 +39,73 @@ keyprods:
     info: Stay Compliant, Stay Confident
     paragraph: >
         Navigating industry regulations can be overwhelming. We simplify compliance with tailored solutions that ensure your business meets all necessary standards, so you can focus on growth.
+    levels: [optimize]
 
   - title: Cyber Containment & Remediation
     info: Stop Threats in Their Tracks
     paragraph: >
         When a breach occurs, every second counts. Our rapid containment and remediation services minimize damage and get your business back on track fast.
+    levels: [optimize, transform]
 
   - title: DNS Security
     info: Secure Your Gateway to the Web
     paragraph: >
         Protect your network from malicious websites and phishing attacks with our advanced DNS security solutions.
+    levels: [stabilize]
 
   - title: Email Security
     info: Keep Your Inbox Safe
     paragraph: >
         Email is a top target for cybercriminals. Our email security solutions block phishing, malware, and spam, keeping your communications secure.
+    levels: [stabilize]
 
   - title: Managed Detection & Response (MDR)
     info: 24/7 Protection, Peace of Mind
     paragraph: >
         Our expert team monitors your systems around the clock, detecting and responding to threats before they escalate.
+    levels: [optimize, transform]
 
   - title: Managed Firewall
     info: Your First Line of Defense
     paragraph: >
         A strong firewall is critical to your security. We manage and optimize your firewall to keep threats out and your data safe.
+    levels: [stabilize]
 
   - title: Managed SIEM
     info: See Threats Before They Strike
     paragraph: >
         Our Managed SIEM solutions provide real-time threat detection and analysis, giving you the insights you need to stay ahead of attackers.
+    levels: [optimize]
 
   - title: Multi-Factor Authentication (MFA)
     info: Lock Down Your Accounts
     paragraph: >
         Add an extra layer of security to your systems with MFA, ensuring only authorized users can access sensitive data.
+    levels: [stabilize]
 
   - title: Penetration Testing
     info: Find Weaknesses Before Hackers Do
     paragraph: >
         Simulate real-world attacks to identify vulnerabilities in your systems and fix them before they’re exploited.
+    levels: [optimize]
 
   - title: Security Log Management
     info: Turn Data into Actionable Insights
     paragraph: >
         Centralize and analyze your security logs to detect anomalies and respond to threats faster.
+    levels: [optimize]
 
   - title: Vulnerability Scanning
     info: Stay One Step Ahead
     paragraph: >
         Regularly scan your systems for vulnerabilities and patch them before they can be exploited.
+    levels: [stabilize, optimize]
 
   - title: Zero Trust
     info: Trust No One, Verify Everything
     paragraph: >
         Implement a Zero Trust framework to ensure every user and device is authenticated and authorized before accessing your network.
+    levels: [transform]
 
 vendorsTitle: Powered by Industry-Leading Cybersecurity Innovators
 vendorsBody: |
@@ -156,5 +168,4 @@ proof:
 
 
  
-
 
