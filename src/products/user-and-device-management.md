@@ -10,58 +10,77 @@ subtitle: 'Simplify, Secure, and Optimize Your Workforce’s Technology with L3 
 prodtitle: |
   Why Partner with L3 for Users & Devices?
 prodbody: |
-  Managing users and devices efficiently is vital for ensuring security, productivity, and seamless operations in today’s business landscape. At L3 Networks, we provide robust solutions that simplify device management, secure user access, and enhance IT support. From onboarding and updates to troubleshooting and compliance, our services are designed to keep your business running smoothly while reducing complexity.
+  <p>Managing users and devices efficiently is essential for maintaining security, productivity, and a seamless user experience. Every L3 Networks engagement follows the <strong>Elevate Framework</strong>, which ensures structure, visibility, and accountability across device management, user access, and support.</p>
 
-keyprodsTitle: 'Solutions Designed to Empower Your Team'
-keyprodsBody: |
-  We provide tailored solutions to manage your users and devices efficiently, so your team can focus on driving results.
+  <p class="mt-4">Elevate helps businesses move from reactive IT support to proactive workforce enablement. It ensures that every layer of endpoint security, access control, and automation contributes to long-term stability and measurable improvement.</p>
 
 valueProps:
   - icon: /images/lucide/settings.svg
     title: Streamlined Operations
-    description: Simplify device management and reduce IT complexity with centralized solutions.
+    description: Simplify device management and reduce IT complexity with centralized solutions built for scalability.
 
   - icon: /images/lucide/shield-check.svg
     title: Enhanced Security
-    description: Protect your data and devices with robust identity management and endpoint security.
+    description: Protect your data and devices with robust identity management and endpoint security that evolve as your business grows.
 
   - icon: /images/lucide/headset.svg
     title: 24/7 Support
-    description: Keep your team productive with round-the-clock helpdesk support.
+    description: Keep your teams productive with around-the-clock technical support and fast issue resolution.
 
   - icon: /images/lucide/arrow-up-down.svg
     title: Scalable Solutions
-    description: Grow confidently with flexible, future-ready IT solutions tailored to your needs.
+    description: Expand confidently with flexible, future-ready technology that adapts to your workforce and organizational goals.
+
+keyprodsTitle: 'Solutions Designed to Empower Your Team'
+keyprodsBody: |
+  We provide tailored solutions that align with your organization’s Elevate journey. Each service strengthens visibility, automation, and control as your user environment matures.
 
 keyprods:
   - title: "Desktop Infrastructure"
-    info: "Reliable, Secure, and Scalable Desktops"
+    levels: ['stabilize']
+    info: "Reliable, Secure, Scalable Desktops"
     paragraph: >
-      Your team needs dependable technology to stay productive. Our desktop infrastructure solutions ensure seamless performance, robust security, and scalability to grow with your business.
+      Reliable, secure, and scalable desktop environments that keep your workforce productive and connected.
 
   - title: "End User Helpdesk"
-    info: "Fast, Friendly, and Expert IT Support"
+    levels: ['optimize']
+    info: "24/7 Workforce Support"
     paragraph: >
-      Downtime is costly. Our end user helpdesk provides 24/7 support to resolve issues quickly, keeping your team productive and your operations running smoothly.
+      Fast, friendly, and expert IT support available 24/7 to minimize downtime and keep your team working efficiently.
 
   - title: "Enterprise Mobility Management"
-    info: "Secure and Manage Mobile Devices"
+    levels: ['optimize']
+    info: "Secure Mobile Flexibility"
     paragraph: >
-      Mobile devices are essential but vulnerable. Our enterprise mobility management solutions secure your devices, apps, and data, enabling productivity without compromising security.
+      Secure and manage mobile devices, enabling flexibility without compromising data protection.
 
   - title: "Identity & Access Management (IAM)"
-    info: "Control Access, Protect Data"
+    levels: ['stabilize']
+    info: "Trusted Access Control"
     paragraph: >
-      Unauthorized access can lead to disaster. Our IAM solutions ensure only the right people have access to your systems, safeguarding your critical data and resources.
+      Ensure only authorized users have access to your systems, safeguarding critical data and resources.
 
   - title: "Subscription & Patch Management"
-    info: "Keep Software Updated and Secure"
+    levels: ['optimize']
+    info: "Automated Updates"
     paragraph: >
-      Outdated software is a security risk. We automate subscription and patch management to ensure your systems are always up-to-date and protected against vulnerabilities.
+      Automate software updates and patch management to reduce risk and keep systems current.
+
+  - title: "Device Automation & Management"
+    levels: ['transform']
+    info: "Policy-Driven Control"
+    paragraph: >
+      Centralize configuration, provisioning, and lifecycle management through policy-driven automation.
+
+  - title: "Workforce Enablement Advisory"
+    levels: ['transform']
+    info: "Data-Led Productivity"
+    paragraph: >
+      Use data insights and automation to align IT strategy with employee productivity and organizational outcomes.
 
 vendorsTitle: Trusted by the Best, Built for You
 vendorsBody: |
-  We partner with industry-leading vendors to deliver cutting-edge solutions for your users and devices.
+  We partner with industry-leading vendors to deliver reliable, secure, and user-focused technology. Our partnerships include Microsoft Entra, Microsoft 365, Microsoft Intune, Kaseya, LogMeIn, CrowdStrike, ThreatLocker, Citrix, NinjaOne, Okta, OneLogin, and RSA, forming the foundation that supports Elevate and ensures consistent, scalable results for every workforce.
 
 vendorsLogos:
   - src: /images/products/logos/logo-entra.svg
@@ -94,28 +113,28 @@ vendorsLogos:
 
 proof:
   enabled: true
-  title: "Proof That <span class='text-teal-400'>Elevate</span> Improves<br class='hidden md:block'> Workforce Experience"
-  sub: "Customer metrics that show how managed user services impact productivity and risk."
+  title: "Proof That <span class='text-teal-400'>Elevate</span> Improves Workforce Experience"
+  sub: "Structured, proactive user management improves both productivity and risk reduction. Organizations that implement frameworks like Elevate achieve greater efficiency, fewer incidents, and a stronger return on technology investment."
   cards:
     - title: "ROI from Unified Management"
-      desc: "Organizations that implement unified endpoint management solutions realize an average 442% ROI within three years, with a payback period of less than six months."
+      desc: "Organizations using structured endpoint management solutions report a 442% ROI within three years, with a payback period of less than six months."
       metricLabel: "RETURN ON INVESTMENT"
       metric: "442%"
       color: "teal"
       bar: "88%"
       source: "Forrester Total Economic Impact Study"
     - title: "Ticket Reduction from Proactive Tools"
-      desc: "Proactive maintenance and self-service tools can reduce ticket volume by 15–25%, yielding significant cost savings."
+      desc: "Proactive maintenance and automation can reduce ticket volume by 15–25%, yielding significant operational savings."
       metricLabel: "TICKET VOLUME REDUCED"
       metric: "25%"
-      color: "red"
+      color: "teal"
       bar: "25%"
       source: "SupportSave Analysis, 2025"
     - title: "Productivity Gains from Automation"
-      desc: "Automated patch management alone can reduce manual intervention by up to 95%, contributing to significant productivity gains for IT staff."
+      desc: "Automated patch management reduces manual effort by up to 95%, freeing IT resources and improving service delivery."
       metricLabel: "REDUCTION IN MANUAL EFFORT"
       metric: "95%"
-      color: "red"
+      color: "teal"
       bar: "95%"
       source: "Forrester Total Economic Impact Study"
 

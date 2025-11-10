@@ -275,13 +275,39 @@
   #cybersec-section .pill-dot--on.pill-dot--optimize:not(svg){background:#3c52ff;}
   #cybersec-section .pill-dot--on.pill-dot--transform:not(svg){background:#00bba7;}
   #cybersec-section .filters__lead{color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;margin:0 0 8px;}
-  #cybersec-section .filters__group{display:flex;flex-direction:column;gap:8px;max-width:320px;}
+  #cybersec-section .filters__group{display:flex;flex-direction:column;gap:4px;max-width:320px;}
   #cybersec-section .filter-btn{background:transparent;border:none;text-align:left;padding:10px 12px;border-radius:10px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(16px,2vw,18px);cursor:pointer;transition:background .12s ease;color:#fff;}
   #cybersec-section .filter-btn[data-level="stabilize"]{color:#ff6a3d;}
   #cybersec-section .filter-btn[data-level="optimize"]{color:#3c52ff;}
   #cybersec-section .filter-btn[data-level="transform"]{color:#00bba7;}
   #cybersec-section .filter-btn:hover{background:rgba(255,255,255,.05);}
   #cybersec-section .filter-btn[aria-pressed="true"]{background:rgba(255,255,255,.05);}
+  #cybersec-section .filter-btnWrap{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  #cybersec-section .filter-tooltip{
+    margin-left:0;
+    margin-top:6px;
+    font-size:12px;
+    color:#cbd5f5;
+    line-height:1.5;
+    opacity:0;
+    max-height:0;
+    overflow:hidden;
+    transition:opacity .18s ease, max-height .18s ease;
+    white-space:normal;
+    border-left:2px solid rgba(255,255,255,.18);
+    padding-left:12px;
+  }
+  #cybersec-section .filter-btnWrap:hover .filter-tooltip,
+  #cybersec-section .filter-btnWrap:focus-within .filter-tooltip,
+  #cybersec-section .filter-btnWrap[data-show="true"] .filter-tooltip{
+    opacity:1;
+    max-height:80px;
+  }
   #cybersec-section .filter-dot{display:inline-flex;align-items:center;justify-content:center;}
   #cybersec-section .filter-dot:not(svg){height:6px;width:10px;border-radius:999px;}
   #cybersec-section svg.filter-dot{display:block;flex-shrink:0;}
@@ -391,6 +417,13 @@
   ];
 
   var mode = 'none'; // 'none', 'stabilize', 'optimize', 'transform'
+
+  function tooltipPinned(level){
+    if (mode === 'transform') return true;
+    if (mode === 'optimize') return level === 'stabilize' || level === 'optimize';
+    if (mode === 'stabilize') return level === 'stabilize';
+    return false;
+  }
 
   function makePillDot(level){
     if (level === 'stabilize'){
@@ -579,6 +612,9 @@
   function renderFilters(){
     filtersEl.innerHTML = '';
     LEVELS.forEach(function(level){
+      var wrap = document.createElement('div');
+      wrap.className = 'filter-btnWrap';
+
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'filter-btn';
@@ -606,7 +642,25 @@
       label.textContent = level.label;
 
       btn.append(dot, label);
-      filtersEl.appendChild(btn);
+      wrap.appendChild(btn);
+      wrap.setAttribute('data-show', tooltipPinned(level.key) ? 'true' : 'false');
+
+      var tipText = null;
+      if (level.key === 'stabilize'){
+        tipText = 'Focus: establish secure, reliable, and visible connectivity foundations.';
+      } else if (level.key === 'optimize'){
+        tipText = 'Focus: streamline operations, automation, and productivity.';
+      } else if (level.key === 'transform'){
+        tipText = 'Focus: strategic automation, unified management, and workforce intelligence.';
+      }
+      if (tipText){
+        var tip = document.createElement('div');
+        tip.className = 'filter-tooltip';
+        tip.textContent = tipText;
+        wrap.appendChild(tip);
+      }
+
+      filtersEl.appendChild(wrap);
     });
   }
 

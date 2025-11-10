@@ -67,7 +67,7 @@ keyprods:
 
 vendorsTitle: Trusted by the Best, Built for You
 vendorsBody: |
-  We partner with industry-leading vendors to deliver cutting-edge network and connectivity solutions.
+  We partner with leading technology providers to deliver modern, secure, and high-performing connectivity. Our partnerships include Fortinet, Hewlett Packard Enterprise, Aruba, Ruckus, Ericsson, Dialpad, Microsoft, and RingCentral, forming the ecosystem that powers our Elevate Framework and ensures consistent, scalable results.
 
 vendorsLogos:
   - src: /images/products/logos/logo-fortinet.svg

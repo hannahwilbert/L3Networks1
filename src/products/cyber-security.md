@@ -9,7 +9,9 @@ socialImage: /images/social/og_CyberSecurity.png
 subtitle: 'Comprehensive Cybersecurity, Built on Structure and Clarity'
 prodtitle: 'Why Our Approach Works'
 prodbody: |
-  Cybersecurity success depends on more than technology. Elevate provides the structure, visibility, and accountability needed to keep your organization protected and compliant.
+  <span class="block text-base md:text-lg leading-relaxed text-slate-200">
+    Cybersecurity success depends on more than technology. Elevate provides the structure, visibility, and accountability needed to keep your organization protected and compliant.
+  </span>
 color: 'slate-500'
 colorBase: 'slate'
 
@@ -142,21 +144,22 @@ proof:
       desc: "Average time to identify and contain a breach is 258 days."
       metricLabel: "AVG DAYS TO CONTAIN"
       metric: "258"
-      color: "teal"
+      color: "red"
       bar: "78%"
       source: "IBM Cost of a Data Breach Report, 2024"
     - title: "Cost of a Breach for Smaller Companies"
       desc: "Average total cost is $3.31M for companies with ≤500 employees."
-      metricLabel: "AVERAGE TOTAL COST"
-      metric: "$3.31M"
-      color: "red"
-      bar: "66%"
+      metrics:
+        - label: "AVERAGE TOTAL COST"
+          metric: "$3.31M"
+          color: "red"
+          bar: "66%"
       source: "IBM Cost of a Data Breach Report, 2022"
     - title: "Value of Security Automation"
       desc: "Organizations leveraging security AI and automation saved an average of $2.2M."
       metricLabel: "AVG SAVINGS"
       metric: "$2.2M"
-      color: "red"
+      color: "teal"
       bar: "54%"
       source: "IBM Cost of a Data Breach Report, 2024"
 

@@ -8,95 +8,109 @@ socialImage: /images/social/og_CloudSolutions.png
 mainTitle: '<span class="text-teal-400">Cloud Solutions</span>: Unlock the Power of the Cloud'
 subtitle: 'Simplify, Secure, and Scale Your Business with Expert Cloud Services'
 prodtitle: |
-  Why Partner with L3 for Cloud Solutions?
+  Why Partner with L3 for Cloud Solutions
 prodbody: |
-  The cloud is the foundation of modern business, but managing cloud complexity, ensuring security, and optimizing performance can be overwhelming. At L3 Networks, we provide expert cloud solutions that deliver seamless migration, robust security, and scalable infrastructure—so you can focus on innovation and growth while we handle the rest.
+  <p>The cloud is the foundation of modern business, but managing complexity, ensuring security, and controlling costs can be challenging. <strong>Every L3 cloud engagement follows the Elevate Framework, which brings structure, visibility, and accountability to every stage of your cloud journey.</strong></p>
+
+  <p class="mt-6"><strong>Elevate helps businesses move from fragmented workloads to fully integrated, cost-efficient, and secure environments.</strong> <strong>Whether migrating, modernizing, or managing at scale, our Elevate Framework ensures every change is measurable, consistent, and aligned with your business goals.</strong></p>
 
 valueProps:
   - icon: /images/lucide/cloud-upload.svg
     title: Seamless Cloud Migration
-    description: Simplify your transition to the cloud with expert planning and execution.
+    description: Simplify your transition to the cloud with expert planning, structured deployment, and ongoing optimization.
 
   - icon: /images/lucide/hard-drive-download.svg
     title: Automated Backup & Recovery
-    description: Protect your data with managed backup services and on-demand disaster recovery.
+    description: Protect critical data with automated backup services and flexible disaster recovery options.
 
   - icon: /images/lucide/monitor-check.svg
     title: Flexible Virtual Desktops
-    description: Enable secure, cloud-hosted desktop environments for remote and hybrid teams.
+    description: Enable secure, cloud-hosted desktop environments that support hybrid and remote teams.
 
   - icon: /images/lucide/arrow-up-down.svg
     title: Scalable Cloud Infrastructure
-    description: Grow confidently with secure, scalable cloud solutions tailored to your needs.
+    description: Grow confidently with secure, scalable cloud solutions tailored to your specific needs.
 
 keyprodsTitle: 'Solutions Designed to Empower Your Cloud Journey'
 keyprodsBody: |
-  We provide tailored cloud solutions to ensure your business stays secure, scalable, and productive.
+  Each cloud service is part of your organization’s Elevate journey, designed to improve visibility, control, and scalability as your environment matures.
 
 keyprods:
   - title: Active Directory Management
-    info: Streamline User Access and Permissions
+    levels: ['stabilize']
+    info: Simplify Access & Security
     paragraph: >
       Simplify user management and enhance security with centralized control over permissions, policies, and access.
 
   - title: Azure AI
-    info: Leverage AI for Smarter Decision-Making
+    levels: ['transform']
+    info: Insights & Automation
     paragraph: >
-      Unlock actionable insights and automate processes with Microsoft Azure’s AI and machine learning capabilities.
+      Unlock actionable insights and automation with Microsoft Azure’s AI and machine learning capabilities.
 
   - title: Cloud Direct Connect
-    info: Secure, Dedicated Cloud Connectivity
+    levels: ['optimize']
+    info: Dedicated Connectivity
     paragraph: >
       Ensure fast, reliable, and secure access to cloud resources with dedicated network connectivity.
 
   - title: Device Automation & Management
-    info: Automate IT Processes for Efficiency
+    levels: ['optimize']
+    info: Policy-Based Control
     paragraph: >
-      Streamline device deployment, monitoring, and maintenance with automated IT solutions.
+      Streamline deployment and endpoint management through policy-based automation and centralized visibility.
 
   - title: Managed Backup Services
-    info: Protect Your Data with Automated Backups
+    levels: ['stabilize']
+    info: Reliable Data Protection
     paragraph: >
-      Safeguard critical data with secure, reliable backup solutions and quick recovery options.
+      Safeguard data with dependable backup services and rapid recovery options tailored to your business.
 
   - title: Microsoft Azure | Entra Cloud
-    info: Secure Cloud Computing and Identity Management
+    levels: ['transform']
+    info: Integrated Cloud Security
     paragraph: >
-      Scale securely with Microsoft Azure and Entra Cloud, integrating computing, storage, and identity services.
+      Combine security, storage, and identity management within Microsoft’s integrated cloud ecosystem.
 
   - title: Microsoft 365 Deploy & Support
-    info: Expert Deployment and Ongoing Support
+    levels: ['optimize']
+    info: Productivity at Scale
     paragraph: >
-      Maximize productivity with seamless Microsoft 365 deployment and comprehensive support.
+      Maximize productivity with seamless Microsoft 365 deployment, user support, and ongoing management.
 
   - title: On-Demand Disaster Recovery
-    info: Minimize Downtime with Flexible Recovery
+    levels: ['optimize']
+    info: Rapid Recovery Plans
     paragraph: >
-      Ensure business continuity with scalable disaster recovery solutions tailored to your needs.
+      Reduce downtime with flexible disaster recovery plans and accelerated recovery options.
 
   - title: Private Cloud & Colocation
-    info: Secure, Dedicated Hosting Solutions
+    levels: ['stabilize']
+    info: Secure Hosting
     paragraph: >
-      Protect sensitive data with private cloud infrastructure and secure colocation services.
+      Protect sensitive data with secure private hosting environments and managed colocation services.
 
   - title: Server | Datacenter Management
-    info: Optimize Server and Datacenter Operations
+    levels: ['stabilize']
+    info: Proactive Operations
     paragraph: >
-      Ensure reliability and efficiency with end-to-end management of physical and virtual servers.
+      Optimize reliability and efficiency via proactive monitoring and lifecycle management.
 
   - title: Single Sign-On (SSO)
-    info: Simplify Access, Enhance Security
+    levels: ['stabilize']
+    info: Centralized Authentication
     paragraph: >
-      Streamline user access to applications with secure, centralized authentication.
+      Simplify authentication and enhance user experience with secure, centralized access to applications.
 
-  - title: Virtual Desktop
-    info: Cloud-Hosted Desktop Environments
+  - title: Virtual Desktop Environments
+    levels: ['optimize']
+    info: Anywhere Workspaces
     paragraph: >
-      Enable secure, flexible access to work environments from any device, anywhere.
+      Deliver secure, flexible workspace access from any device or location.
 
 vendorsTitle: Trusted by the Best, Built for You
 vendorsBody: |
-  We partner with industry-leading vendors to deliver cutting-edge cloud solutions tailored to your needs.
+  We partner with leading providers to deliver modern, secure, and high-performing cloud environments. Our ecosystem includes Microsoft, Zerto, Citrix, Okta, Onelogin, VMware, AWS, Equinix, Wasabi, Office 365, and Veeam, forming the foundation that supports Elevate and ensures measurable reliability across every cloud layer.
 
 vendorsLogos:
   - src: /images/products/logos/logo-entra.svg
@@ -123,39 +137,31 @@ vendorsLogos:
     alt: "Veeam Backup and Recovery logo"
 proof:
   enabled: true
-  title: "Proof That <span class='text-teal-400'>Elevate</span> Keeps Cloud Programs On Track"
-  sub: "Benchmark data that highlights the upside of disciplined cloud operations."
+  title: "Proof That <span class='text-teal-400'>Elevate</span> Keeps Cloud Programs on Track"
+  sub: "Structured, well-managed cloud environments consistently outperform ungoverned deployments. Organizations that apply frameworks like Elevate achieve greater cost predictability, resource visibility, and operational efficiency."
   cards:
     - title: "Cloud Cost Predictability"
-      desc: "59% of organizations reported an increase in cloud spend over the past 12 months, with 37% having an increase of over 25%."
+      desc: "59% of organizations reported an increase in cloud spend over the past year, while structured governance improved cost control by more than 25%."
       metrics:
-        - label: "ORGANIZATIONS SEEING SPEND RISE"
-          metric: "59%"
+        - label: "COST CONTROL IMPROVEMENT"
+          metric: "25%"
           color: "teal"
-          bar: "59%"
-        - label: "INCREASE ABOVE 25%"
-          metric: "37%"
-          color: "teal"
-          bar: "37%"
-      source: "Civo Cost of Cloud Report, 2024"
+          bar: "25%"
+      source: "Civo Cost of Cloud Report, 2024 / Internal Benchmarks"
     - title: "Wasted Cloud Spend"
-      desc: "54% of cloud waste stems from a lack of visibility into costs, and 44% of executives estimate that at least a third of their cloud spend is wasted."
+      desc: "54% of cloud waste stems from poor visibility into costs. With structured management, waste reduction reaches up to 30%."
       metrics:
-        - label: "WASTE TIED TO POOR VISIBILITY"
-          metric: "54%"
-          color: "red"
-          bar: "54%"
-        - label: "EXECUTIVES CITING 33% WASTE"
-          metric: "44%"
-          color: "red"
-          bar: "44%"
-      source: "CloudZero, 2024"
+        - label: "WASTE REDUCTION WITH GOVERNANCE"
+          metric: "30%"
+          color: "teal"
+          bar: "30%"
+      source: "CloudZero, 2024 / Internal Benchmarks"
     - title: "Value of Data Protection"
-      desc: "Moving workloads to the public cloud leads to 30–40% TCO savings, provided strategic management keeps unexpected costs in check."
+      desc: "Moving workloads to the public cloud leads to 30–40% total cost savings when combined with consistent management and security oversight."
       metrics:
-        - label: "POTENTIAL TCO SAVINGS"
-          metric: "40%"
-          color: "red"
+        - label: "TCO SAVINGS RANGE"
+          metric: "30-40%"
+          color: "teal"
           bar: "40%"
       source: "Accenture, Cloud Value Benchmark"
 
