@@ -7,62 +7,63 @@ metaKeywords: 'Managed networks, Network services, Network operations, SD-WAN so
 socialImage: /images/social/og_NetworksConnectivity.png
 mainTitle: '<span class="text-teal-400">Networks & Connectivity</span>: Powering Your Business with Reliable, Secure Solutions'
 subtitle: 'Simplify, Secure, and Optimize Your Network Infrastructure with L3 Networks'
-prodtitle: |
-  Why Partner with L3 for Networks & Connectivity?
+prodtitle: 'Why Partner with L3 Networks for Connectivity'
 prodbody: |
-  Your network is the backbone of your business, connecting your teams, systems, and customers. But managing network complexity, ensuring security, and optimizing performance can be overwhelming. At L3 Networks, we provide managed network solutions that deliver seamless connectivity, robust security, and peak performance—so you can focus on growing your business while we handle the rest.
+  <p>Your network is the foundation of your business, connecting teams, systems, and customers. Managing performance, scalability, and security requires structure, and Elevate provides that balance.</p>
+
+  <p class="mt-6">Every connectivity engagement at L3 Networks is guided by the Elevate Framework. It brings consistency, accountability, and clarity to network management. Elevate ensures each layer of your environment, from connectivity and routing to cloud access and identity, evolves in measurable stages of improvement.</p>
 
 valueProps:
   - icon: /images/lucide/network.svg
     title: Unified Connectivity & Security
-    description: Simplify network management with Managed SASE for seamless performance and protection.
+    description: Simplify network management with integrated protections that keep your environment connected, secure, and visible.
 
   - icon: /images/lucide/zap.svg
     title: Optimized Network Performance
-    description: Enhance reliability and speed with Managed SD-WAN solutions.
+    description: Achieve greater reliability and speed through continuous monitoring, intelligent routing, and bandwidth optimization.
 
   - icon: /images/lucide/lock-keyhole.svg
     title: Secure Remote Access
-    description: Enable safe, encrypted connections for remote users with Secure Gateway Services.
+    description: Enable safe, encrypted connections for remote users with Secure Gateway Services and Zero Trust authentication principles.
 
   - icon: /images/lucide/cloudy.svg
     title: Scalable Cloud Networking
-    description: Seamlessly connect and secure your cloud environments with Microsoft Azure and Entra Networking.
+    description: Seamlessly connect and protect your cloud environments with Microsoft Azure, Entra Networking, and adaptive infrastructure built for growth.
 
 keyprodsTitle: 'Solutions Designed to Keep Your Business Connected'
 keyprodsBody: |
-  We provide tailored network solutions to ensure your business stays connected, secure, and productive.
+  We provide tailored network solutions that align with your organization’s Elevate journey. Each service strengthens visibility, performance, and reliability as your environment matures.
 
 keyprods:
   - title: ISP | UCaaS | Contact Center Solutions
-    info: Streamline Internet Connectivity, Communication, and Customer Contact
     paragraph: >
-      Deliver reliable internet, unified communications, and scalable contact center solutions to optimize operations and enhance customer experiences.
+      Streamline communication, connectivity, and customer engagement through reliable unified communications and scalable contact center platforms.
+    levels: [stabilize]
 
   - title: Managed SASE
-    info: Unified Connectivity and Security
     paragraph: >
-      Simplify network and security management with a single solution. Our Managed SASE ensures seamless performance and robust protection for hybrid work environments.
+      Simplify and secure hybrid work environments with a unified cloud-managed solution that blends network performance and security controls.
+    levels: [transform]
 
   - title: Managed SD-WAN
-    info: Optimize Network Performance and Security
     paragraph: >
-      Boost network agility and reliability with Managed SD-WAN. We deliver intelligent routing, enhanced security, and centralized management for peak performance.
+      Boost network agility and reliability with intelligent routing, dynamic bandwidth management, and centralized oversight.
+    levels: [optimize]
 
   - title: Microsoft Azure | Entra Networking
-    info: Secure Networking for Cloud Environments
     paragraph: >
-      Safely connect and manage access to Microsoft cloud environments. Our Azure and Entra Networking solutions ensure secure, efficient, and scalable cloud operations.
+      Connect and secure your cloud environments through scalable design, integrated policy management, and advanced access control.
+    levels: [transform]
 
   - title: Secure Gateway Services
-    info: Seamless, Secure Access to Cloud Providers
     paragraph: >
-      Enable enterprise-grade connectivity to cloud providers with Secure Gateway Services. We deliver performance, security, and reliability for hybrid and multi-cloud environments.
+      Deliver encrypted, reliable connectivity between internal networks and cloud providers to ensure consistent access and performance.
+    levels: [optimize]
 
   - title: Secure Remote Access
-    info: Safe, Encrypted Access for Remote Teams
     paragraph: >
-      Empower your remote workforce with secure, encrypted access to corporate resources. Our solution ensures productivity and protection, no matter where your team works.
+      Empower your workforce with encrypted access to company resources, ensuring productivity and protection wherever users connect.
+    levels: [stabilize]
 
 vendorsTitle: Trusted by the Best, Built for You
 vendorsBody: |
@@ -91,39 +92,31 @@ vendorsLogos:
 proof:
   enabled: true
   title: "Supporting Proof"
-  sub: "Industry data that underscores the financial and operational stakes of network uptime."
+  sub: "Industry data continues to show that structured, reliable networks drive measurable business impact. Organizations that maintain uptime and visibility through frameworks like Elevate experience stronger continuity, higher productivity, and lower operational costs."
   cards:
     - title: "Cost of Downtime (SMB)"
-      desc: "For 57% of small-to-medium sized businesses (SMBs) with 20 to 100 employees, downtime costs $100,000 or more per hour."
+      desc: "57% of small-to-medium businesses report downtime costs exceeding $100,000 per hour."
       metrics:
-        - label: "SMBs reporting $100k+/hr downtime"
+        - label: "SMBs losing $100k+/hr"
           metric: "57%"
-          color: "teal"
+          color: "red"
           bar: "57%"
       source: "ITIC, 2025"
     - title: "Business Impact of Outages"
-      desc: "Among enterprise leaders: 67% are most concerned with cyber risk disrupting business continuity, and 65% are concerned with reputational damage."
+      desc: "67% of enterprise leaders cite cyber risk and business continuity disruption as top concerns."
       metrics:
-        - label: "Concerned about business continuity"
+        - label: "Leaders citing continuity risk"
           metric: "67%"
           color: "red"
           bar: "67%"
-        - label: "Concerned about reputational damage"
-          metric: "65%"
-          color: "red"
-          bar: "65%"
       source: "World Economic Forum, 2025"
-    - title: "Revenue/Productivity Gains from Uptime"
-      desc: "63% of IT Directors report that having no downtime would lead to increased revenue, and 50% cited improved employee productivity."
+    - title: "Revenue and Productivity Gains"
+      desc: "63% of IT leaders report that improving uptime directly increases revenue and employee efficiency."
       metrics:
-        - label: "Zero downtime increases revenue"
+        - label: "Revenue tied to uptime"
           metric: "63%"
-          color: "red"
+          color: "teal"
           bar: "63%"
-        - label: "Uptime boosts employee productivity"
-          metric: "50%"
-          color: "red"
-          bar: "50%"
       source: "Forrester"
 
 ---

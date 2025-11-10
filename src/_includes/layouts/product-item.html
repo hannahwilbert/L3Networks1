@@ -130,7 +130,7 @@
     {# <div class="w-10 h-2 mt-24 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
     <hr class="mt-10 mb-16 border-slate-700">
     <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont text-center mx-auto md:text-4xl">{{ prodtitle }}</h2>
-    <h3 class="mb-12 text-base font-light text-slate-300 text-center max-w-3xl mx-auto leading-relaxed">{{ prodbody }}</h3>
+    <h3 class="mb-12 text-base font-light text-slate-300 text-center max-w-3xl mx-auto leading-relaxed">{{ prodbody | safe }}</h3>
     
     <style>
       .fade-item{opacity:0; transform:translateY(24px); transition:opacity .65s cubic-bezier(.32,.75,.31,.97), transform .65s cubic-bezier(.32,.75,.31,.97); will-change:opacity,transform;}
@@ -232,12 +232,13 @@
 
     {# <div class="w-10 h-2 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
     <hr class="mb-16 border-slate-700">
-    <div class="mx-4 md:mx-0 md:max-w-lg fade-item delay-0" style="margin-top:12px;">
+    <div class="mx-4 md:mx-0 md:max-w-2xl fade-item delay-0" style="margin-top:12px;">
       <h2 class="mb-2 text-3xl font-semibold text-white font-mont">
-        Comprehensive Cybersecurity Solutions<br class="hidden md:block">
-        Tailored to Your Business
+        Solutions Designed to Keep Your Business Connected
       </h2>
-      <p class="mb-0 text-[18px] font-light text-slate-200 fade-item delay-100">{{ keyprodsBody | replace("control and", "control<br class='hidden md:block'>and") | safe }}</p>
+      <p class="mb-0 text-[18px] font-light text-slate-200 fade-item delay-100">
+        We provide tailored network solutions that align with your organization’s Elevate journey. Each service strengthens visibility, performance, and reliability as your environment matures.
+      </p>
     </div>
 
     {% raw %}
@@ -248,15 +249,14 @@
   #cybersec-section .hdr h2{font-size:clamp(24px,3vw,28px);line-height:1.15;letter-spacing:-.015em;margin:0 0 12px;font-weight:800;color:#fff;}
   #cybersec-section .hdr p{margin:0;color:rgba(255,255,255,.72);max-width:60ch;}
   #cybersec-section .content{display:grid;grid-template-columns:1fr;gap:20px;margin-top:0;max-width:1200px;margin-left:auto;margin-right:auto;}
-  #cybersec-section .filters{order:1;position:-webkit-sticky;position:sticky;top:0;z-index:3;align-self:start;background:#000;padding-top:64px;padding-bottom:16px;}
+  #cybersec-section .filters{order:1;position:-webkit-sticky;position:sticky;top:64px;z-index:2;align-self:start;}
   #cybersec-section .filters__panel{padding:16px;border-radius:16px;background:#050505;}
   #cybersec-section .cards{order:2;width:100%;}
   @media (min-width:1024px){
     #cybersec-section .content{grid-template-columns:2fr 1fr;gap:32px;}
-    #cybersec-section .filters{order:2;top:120px;background:transparent;padding-top:0;padding-bottom:0;}
+    #cybersec-section .filters{order:2;top:96px;}
     #cybersec-section .cards{order:1;}
     #cybersec-section .filters__panel{background:rgba(0,0,0,.92);backdrop-filter:blur(8px);}
-    #cybersec-section .filters__group{flex-direction:column;flex-wrap:nowrap;gap:8px;max-width:320px;}
   }
   #cybersec-section .cards{display:grid;grid-template-columns:1fr;gap:16px;}
   @media (min-width:640px){#cybersec-section .cards{grid-template-columns:1fr 1fr;gap:20px;}}
