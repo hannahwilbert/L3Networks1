@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        change: 'transparent'
+        change: 'transparent',
+        'brand-orange': '#F54900'
       },
       backgroundSize: {
         'size-200': '200% 200%',
