@@ -44,7 +44,7 @@
 {# Main Content #}
 <main class="px-3 py-24 text-white bg-black md:px-8 2xl:px-0">
 
-  <nav class="container flex w-full h-full max-w-screen-xl mx-auto text-slate-200 fade-item delay-0" aria-label="Breadcrumb">
+  <nav class="relative z-20 container flex w-full h-full max-w-screen-xl mx-auto text-slate-200 fade-item delay-0" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
       <li class="inline-flex items-center">
         <a href="/" class="inline-flex items-center text-sm font-medium text-slate-300 hover:text-slate-500">
@@ -87,7 +87,7 @@
               </svg>
             </button>
 
-            <div x-ref="dropdown" x-show="open" @click.away="open = false" class="absolute z-10 md:min-w-[250px] mt-1 border rounded-md shadow-lg bg-slate-800 border-slate-800" x-init="() => {
+            <div x-ref="dropdown" x-show="open" @click.away="open = false" class="absolute z-30 md:min-w-[250px] mt-1 border rounded-md shadow-lg bg-slate-800 border-slate-800" x-init="() => {
                   $watch('open', value => {
                     if (value) {
                       anime({
