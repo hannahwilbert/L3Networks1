@@ -306,17 +306,25 @@
   #cybersec-section .pill-dot--on.pill-dot--transform:not(svg){background:#00bba7;}
   #cybersec-section .filters__lead{color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;margin:0 0 8px;}
   #cybersec-section .filters__group{display:flex;flex-direction:column;gap:4px;max-width:320px;}
-  #cybersec-section .filter-btn{background:transparent;border:none;text-align:left;padding:10px 12px;border-radius:10px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(16px,2vw,18px);cursor:pointer;transition:background .12s ease;color:#fff;}
+  #cybersec-section .filter-btn{background:transparent;border:none;text-align:left;padding:10px 12px;border-radius:10px;display:flex;align-items:center;gap:12px;font-weight:800;font-size:clamp(16px,2vw,18px);cursor:pointer;color:#fff;width:100%;}
   #cybersec-section .filter-btn[data-level="stabilize"]{color:#ff6a3d;}
   #cybersec-section .filter-btn[data-level="optimize"]{color:#3c52ff;}
   #cybersec-section .filter-btn[data-level="transform"]{color:#00bba7;}
-  #cybersec-section .filter-btn:hover{background:rgba(255,255,255,.05);}
-  #cybersec-section .filter-btn[aria-pressed="true"]{background:rgba(255,255,255,.05);}
   #cybersec-section .filter-btnWrap{
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:flex-start;
+    gap:6px;
+    padding:6px;
+    border-radius:12px;
+    transition:background .15s ease;
+    cursor:pointer;
+  }
+  #cybersec-section .filter-btnWrap:hover,
+  #cybersec-section .filter-btnWrap:focus-within,
+  #cybersec-section .filter-btnWrap[data-active="true"]{
+    background:rgba(255,255,255,.05);
   }
   #cybersec-section .filter-tooltip{
     margin-left:0;
@@ -445,6 +453,7 @@
     { key: 'optimize', label: 'Optimize', color: '#3C52FF' },
     { key: 'transform', label: 'Transform', color: '#00BBA7' }
   ];
+  var filterRefs = [];
 
   var mode = 'none'; // 'none', 'stabilize', 'optimize', 'transform'
 
@@ -639,58 +648,73 @@
     return svg;
   }
 
-  function renderFilters(){
+  function createFilter(level){
+    var wrap = document.createElement('div');
+    wrap.className = 'filter-btnWrap';
+    wrap.dataset.level = level.key;
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'filter-btn';
+    btn.dataset.level = level.key;
+    btn.setAttribute('aria-pressed', 'false');
+
+    var dot;
+    if (level.key === 'stabilize'){
+      dot = createStabilizeIcon(level.color);
+      dot.classList.add('filter-dot', 'filter-dot--stabilize');
+    } else if (level.key === 'optimize'){
+      dot = createOptimizeIcon(level.color);
+      dot.classList.add('filter-dot', 'filter-dot--optimize');
+    } else if (level.key === 'transform'){
+      dot = createTransformIcon(level.color);
+      dot.classList.add('filter-dot', 'filter-dot--transform');
+    } else {
+      dot = document.createElement('span');
+      dot.className = 'filter-dot';
+      dot.style.background = level.color;
+    }
+    dot.setAttribute('aria-hidden', 'true');
+
+    var label = document.createElement('span');
+    label.textContent = level.label;
+    btn.append(dot, label);
+    wrap.appendChild(btn);
+
+    var focusCopy = {
+      stabilize: 'Focus: establish secure, reliable, and visible connectivity foundations.',
+      optimize: 'Focus: streamline operations, automation, and productivity.',
+      transform: 'Focus: strategic automation, unified management, and workforce intelligence.'
+    };
+
+    var tipText = focusCopy[level.key];
+    var tip = null;
+    if (tipText){
+      tip = document.createElement('div');
+      tip.className = 'filter-tooltip';
+      tip.textContent = tipText;
+      wrap.appendChild(tip);
+    }
+
+    filtersEl.appendChild(wrap);
+    filterRefs.push({ level: level.key, wrap: wrap, btn: btn, tip: tip });
+  }
+
+  function initFilters(){
     filtersEl.innerHTML = '';
-    LEVELS.forEach(function(level){
-      var wrap = document.createElement('div');
-      wrap.className = 'filter-btnWrap';
+    filterRefs = [];
+    LEVELS.forEach(createFilter);
+    updateFilters();
+  }
 
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'filter-btn';
-      btn.dataset.level = level.key;
-      var isActive = mode === level.key;
-      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-      var dot;
-      if (level.key === 'stabilize'){
-        dot = createStabilizeIcon(level.color);
-        dot.classList.add('filter-dot', 'filter-dot--stabilize');
-      } else if (level.key === 'optimize'){
-        dot = createOptimizeIcon(level.color);
-        dot.classList.add('filter-dot', 'filter-dot--optimize');
-      } else if (level.key === 'transform'){
-        dot = createTransformIcon(level.color);
-        dot.classList.add('filter-dot', 'filter-dot--transform');
-      } else {
-        dot = document.createElement('span');
-        dot.className = 'filter-dot';
-        dot.style.background = level.color;
+  function updateFilters(){
+    filterRefs.forEach(function(ref){
+      var isActive = mode === ref.level;
+      ref.btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      if (ref.wrap){
+        ref.wrap.setAttribute('data-show', tooltipPinned(ref.level) ? 'true' : 'false');
+        ref.wrap.setAttribute('data-active', isActive ? 'true' : 'false');
       }
-      dot.setAttribute('aria-hidden', 'true');
-
-      var label = document.createElement('span');
-      label.textContent = level.label;
-
-      btn.append(dot, label);
-      wrap.appendChild(btn);
-      wrap.setAttribute('data-show', tooltipPinned(level.key) ? 'true' : 'false');
-
-      var tipText = null;
-      if (level.key === 'stabilize'){
-        tipText = 'Focus: establish secure, reliable, and visible connectivity foundations.';
-      } else if (level.key === 'optimize'){
-        tipText = 'Focus: streamline operations, automation, and productivity.';
-      } else if (level.key === 'transform'){
-        tipText = 'Focus: strategic automation, unified management, and workforce intelligence.';
-      }
-      if (tipText){
-        var tip = document.createElement('div');
-        tip.className = 'filter-tooltip';
-        tip.textContent = tipText;
-        wrap.appendChild(tip);
-      }
-
-      filtersEl.appendChild(wrap);
     });
   }
 
@@ -702,17 +726,17 @@
     } else {
       mode = newMode;
     }
-    renderFilters();
+    updateFilters();
     renderCards();
   }
 
   filtersEl.addEventListener('click', function(evt){
-    var btn = evt.target.closest('.filter-btn');
-    if (!btn) return;
-    setMode(btn.getAttribute('data-level'));
+    var wrap = evt.target.closest('.filter-btnWrap');
+    if (!wrap || !filtersEl.contains(wrap)) return;
+    setMode(wrap.getAttribute('data-level'));
   });
 
-  renderFilters();
+  initFilters();
   renderCards();
 })();
 </script>
