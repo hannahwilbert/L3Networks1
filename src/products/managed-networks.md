@@ -6,12 +6,12 @@ metaDesc: 'L3 Networks Inc. delivers advanced Managed Network solutions for busi
 metaKeywords: 'Managed networks, Network services, Network operations, SD-WAN solutions, Cloud networking, Connectivity, Unified communications'
 socialImage: /images/social/og_NetworksConnectivity.png
 mainTitle: '<span class="text-teal-400">Networks &amp; Connectivity</span>: Powering Your Business with Reliable, Secure Solutions'
-subtitle: 'Simplify, Secure, and Optimize Your Network Infrastructure with L3 Networks'
+subtitle: 'Simplify, secure, and optimize your network infrastructure with L3 Networks, delivered through <span class="text-teal-400">Elevate</span>, our structured framework for predictable performance and measurable results.'
 prodtitle: 'Why Partner with L3 Networks for <span class="text-teal-400">Connectivity</span>'
 prodbody: |
   <p>Your network is the foundation of your business, connecting teams, systems, and customers. Managing performance, scalability, and security requires structure, and Elevate provides that balance.</p>
 
-  <p class="mt-6">Every connectivity engagement at L3 Networks is guided by the Elevate Framework. It brings consistency, accountability, and clarity to network management. Elevate ensures each layer of your environment, from connectivity and routing to cloud access and identity, evolves in measurable stages of improvement.</p>
+  <p class="mt-6">Every connectivity engagement at L3 Networks is guided by the <span class="text-teal-400">Elevate Framework</span>. It brings consistency, accountability, and clarity to network management. Elevate ensures each layer of your environment, from connectivity and routing to cloud access and identity, evolves in measurable stages of improvement.</p>
 
 valueProps:
   - icon: /images/lucide/network.svg

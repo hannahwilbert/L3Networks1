@@ -6,13 +6,13 @@ metaDesc: 'L3 Networks Professional Services accelerate IT adoption & deliver on
 metaKeywords: 'IT strategy, IT planning, IT service management, IT adoption, Technology acceleration, Professional Services'
 socialImage: /images/social/og_ProfessionalServices.png
 mainTitle: 'Achieve Your Vision with Expert <span class="text-teal-400">Professional Services</span>'
-subtitle: 'Your trusted partner in IT strategy, planning, and execution. At L3 Networks, every engagement is guided by Elevate, our structured framework for stabilizing, optimizing, and transforming technology operations to achieve measurable business outcomes.'
+subtitle: 'Your trusted partner in IT strategy, planning, and execution. At L3 Networks, every engagement is guided by <span class="text-teal-400">Elevate</span>, our structured framework for stabilizing, optimizing, and transforming technology operations to achieve measurable business outcomes.'
 prodtitle: |
   Why Partner with L3 for <span class="text-teal-400">Professional Services</span>?
 prodbody: |
   <p>Navigating the complexities of IT strategy, security, and transformation requires more than technical expertise.</p>
 
-  <p>The Elevate Framework provides the structure and clarity that ensure every engagement, from cybersecurity to modernization, is delivered with purpose, accountability, and measurable progress.</p>
+  <p>The <span class="text-teal-400">Elevate Framework</span> provides the structure and clarity that ensure every engagement, from cybersecurity to modernization, is delivered with purpose, accountability, and measurable progress.</p>
 
   <p>Whether planning a large-scale transformation, managing a merger, or aligning IT operations with growth objectives, Elevate ensures that strategy and execution stay connected.</p>
 

@@ -10,7 +10,7 @@ subtitle: 'Comprehensive Cybersecurity, Built on Structure and Clarity'
 prodtitle: 'Why Our Approach Works'
 prodbody: |
   <span class="block text-base md:text-lg leading-relaxed text-slate-200">
-    Cybersecurity success depends on more than technology. Elevate provides the structure, visibility, and accountability needed to keep your organization protected and compliant.
+    Cybersecurity success depends on more than technology. <span class="text-teal-400">Elevate</span> provides the structure, visibility, and accountability needed to keep your organization protected and compliant.
   </span>
 color: 'slate-500'
 colorBase: 'slate'

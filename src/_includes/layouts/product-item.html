@@ -9,7 +9,7 @@
     <div class="flex gap-0">
       <span class="xflex-shrink-0">
         <h1 class="mb-4 text-3xl font-semibold tracking-tight md:text-6xl font-mont">{{ mainTitle | safe }}</h1>
-        <p class="text-xl font-light md:text-2xl">{{ subtitle }}</p>
+        <p class="text-xl font-light md:text-2xl">{{ subtitle | safe }}</p>
       </span>
       {# <!-- <div class="relative w-full max-w-[540px] cursor-pointer" onclick="this.innerHTML='<iframe class=\'w-full h-64\' src=\'https://www.youtube.com/embed/0lmoAAFXy3A?autoplay=1&rel=0&controls=1&modestbranding=1\' frameborder=\'0\' allow=\'autoplay; encrypted-media\' allowfullscreen></iframe>'">
         <img src="/path-to-your-custom-thumbnail.jpg" alt="Custom Thumbnail" class="object-cover w-full h-64 rounded-lg">
@@ -128,7 +128,66 @@
     {# Product Overview #}
 
     {# <div class="w-10 h-2 mt-24 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
-    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' %}
+    {% if product == 'Managed Helpdesk' %}
+    <div class="pt-12 sm:pt-16 md:pt-24">&nbsp;</div>
+    <hr class="mt-2 mb-6 sm:mb-8 md:mb-10 border-slate-700">
+    <span class="text-xs sm:text-sm tracking-widest text-teal-400 border border-teal-400 rounded-full px-2 font-light py-1 mb-4 sm:mb-6 inline-block">The Difference</span>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+      <div class="col-span-1 lg:col-span-9">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-semibold mb-3 lg:mx-0 text-white tracking-tight">
+          Why <span class="text-teal-400">Partner</span> with <br class="hidden sm:block"> L3 Networks for <span class="text-teal-400">Managed Helpdesk</span>?
+        </h2>
+        <div class="mb-8 sm:mb-10 md:mb-12 text-sm sm:text-base font-light lg:mx-0 text-neutral-400 space-y-4">
+          {{ prodbody | safe }}
+        </div>
+      </div>
+      <div class="col-span-1 lg:col-span-3">
+        <section aria-label="See Managed Helpdesk in action">
+          <div class="rounded-xl border border-slate-800 mx-auto p-4 sm:p-6 md:p-8 bg-slate-900/20 lg:mt-12">
+            <div class="text-center">
+              <h2 class="text-base sm:text-lg font-semibold text-white mb-2">See Managed Helpdesk in Action</h2>
+              <div class="relative inline-block">
+                <div class="relative overflow-hidden rounded-xl bg-slate-900 border border-slate-800 transition-all duration-300">
+                  <img src="https://i.vimeocdn.com/video/1084081200_640x360.jpg" alt="Managed Helpdesk Overview" class="w-full h-auto max-w-2xl mx-auto">
+                  <div class="absolute inset-0 flex items-center justify-center bg-black/20">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-red-500 rounded-full flex items-center justify-center">
+                      <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a href="/book-appointment/" class="inline-flex items-center justify-center w-full gap-2 px-4 py-2 mt-4 text-sm font-semibold text-black transition-all duration-300 bg-teal-400 rounded-full hover:bg-teal-600">
+                Watch Overview
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14" />
+                  <path d="M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <h3 class="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 sm:mb-6 text-white mt-8 sm:mt-12 font-mont tracking-tight">
+      With Managed Helpdesk, you get:
+    </h3>
+    <section class="space-y-4 rounded-2xl border border-slate-800/70 bg-slate-950/50 p-6 sm:p-8">
+      {% for prop in valueProps %}
+      <div class="flex items-start gap-4 border-b border-slate-800/60 pb-4 last:border-b-0 last:pb-0">
+        <div class="w-12 h-12 flex items-center justify-center rounded-full border border-teal-400/40 bg-teal-400/10">
+          <img src="{{ prop.icon }}" alt="{{ prop.title }}" class="w-6 h-6">
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-white">{{ prop.title }}</h4>
+          <p class="text-sm text-slate-300 mt-1">{{ prop.description }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+    {% else %}
+    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
     <hr class="mt-10 mb-10 border-slate-700">
     {% else %}
     <hr class="mt-10 mb-16 border-slate-700">
@@ -218,13 +277,13 @@
       }
     </style>
 
-    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' %}
+    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
     <section class="fade-item delay-0 mt-16">
       <div class="rounded-3xl border border-slate-800/70 bg-black/80 px-6 py-8 md:px-10 md:py-12 grid gap-8 md:grid-cols-2">
         <div>
           <h2 class="text-3xl md:text-4xl font-semibold text-white font-mont">{{ prodtitle | safe }}</h2>
           <div class="mt-4 text-base md:text-lg text-slate-200/90 leading-relaxed space-y-4">{{ prodbody | safe }}</div>
-          <a href="#cybersec-section" class="inline-flex items-center gap-2 px-4 py-2 mt-6 text-sm font-semibold text-teal-300 border border-teal-400 rounded-full hover:bg-teal-400/10 transition">
+          <a href="#key-products" class="inline-flex items-center gap-2 px-4 py-2 mt-6 text-sm font-semibold text-teal-300 border border-teal-400 rounded-full hover:bg-teal-400/10 transition">
             Learn More
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7L17 17"/><path d="M7 17h10V7"/></svg>
           </a>
@@ -258,7 +317,10 @@
 
     
 
+    {% endif %}
+
     <div class="pt-32">&nbsp;</div>
+    <div id="key-products"></div>
 
     {# <div class="w-10 h-2 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
     <hr class="mb-16 border-slate-700">
