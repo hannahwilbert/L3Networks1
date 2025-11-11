@@ -133,11 +133,9 @@
     <style>
       .udHero{display:grid;grid-template-columns:1fr;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;background:#000;box-shadow:0 24px 40px rgba(0,0,0,.45);}
       @media(min-width:1024px){.udHero{grid-template-columns:1fr 1fr;}}
-      .udHero__copy{padding:32px;border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;justify-content:center;gap:12px;}
+      .udHero__copy{padding:32px;border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;justify-content:flex-start;gap:12px;}
       .udHero__copy-inner{max-width:560px;}
-      .udHero__copy--top{justify-content:flex-start;}
-      .udHero__title{font-size:32px;font-weight:700;margin:0;line-height:1.15;}
-      .udHero__copy--top .udHero__title{margin-bottom:12px;}
+      .udHero__title{font-size:32px;font-weight:700;margin:0 0 12px;line-height:1.15;}
       .udHero__body{color:rgba(255,255,255,.8);line-height:1.55;display:flex;flex-direction:column;gap:12px;}
       .udHero__body :where(p){margin:0;}
       .udHero__cta{color:{{ heroAccent }};border:1px solid {{ heroAccent }};border-radius:24px;padding:10px 22px;display:inline-flex;align-items:center;gap:6px;font-weight:500;text-decoration:none;width:max-content;}
@@ -242,7 +240,7 @@
     {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
     <section class="fade-item delay-0 mt-16">
       <div class="udHero">
-        <div class="udHero__copy {% if product == 'Cyber Security' %}udHero__copy--top{% endif %}">
+        <div class="udHero__copy">
           <div class="udHero__copy-inner">
             <h2 class="udHero__title font-mont">{{ prodtitle | safe }}</h2>
             <div class="udHero__body">{{ prodbody | safe }}</div>
