@@ -128,6 +128,24 @@
     {# Product Overview #}
 
     {# <div class="w-10 h-2 mt-24 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
+    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
+    {% set heroAccent = '#00BBA7' %}
+    <style>
+      .udHero{display:grid;grid-template-columns:1fr;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;background:#000;box-shadow:0 24px 40px rgba(0,0,0,.45);}
+      @media(min-width:1024px){.udHero{grid-template-columns:1fr 1fr;}}
+      .udHero__copy{padding:32px;border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;justify-content:center;gap:12px;}
+      .udHero__copy h2{font-size:32px;font-weight:700;margin:0;line-height:1.15;}
+      .udHero__body{color:rgba(255,255,255,.8);line-height:1.55;display:flex;flex-direction:column;gap:12px;}
+      .udHero__body :where(p){margin:0;}
+      .udHero__cta{color:{{ heroAccent }};border:1px solid {{ heroAccent }};border-radius:24px;padding:10px 22px;display:inline-flex;align-items:center;gap:6px;font-weight:500;text-decoration:none;width:max-content;}
+      .udHero__list{display:flex;flex-direction:column;}
+      .udHero__item{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1);align-items:flex-start;flex-wrap:nowrap;}
+      .udHero__item:last-child{border-bottom:none;}
+      .udHero__list h3{color:{{ heroAccent }};font-size:18px;font-weight:700;margin:0 0 8px;}
+      .udHero__list p{color:rgba(255,255,255,.75);margin:0;font-size:16px;line-height:1.55;font-weight:300;}
+    </style>
+    {% endif %}
+
     {% if product == 'Managed Helpdesk' %}
     <div class="pt-12 sm:pt-16 md:pt-24">&nbsp;</div>
     <hr class="mt-2 mb-6 sm:mb-8 md:mb-10 border-slate-700">
@@ -279,24 +297,27 @@
 
     {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
     <section class="fade-item delay-0 mt-16">
-      <div class="rounded-3xl border border-slate-800/70 bg-black/80 px-6 py-8 md:px-10 md:py-12 grid gap-8 md:grid-cols-2">
-        <div>
-          <h2 class="text-3xl md:text-4xl font-semibold text-white font-mont">{{ prodtitle | safe }}</h2>
-          <div class="mt-4 text-base md:text-lg text-slate-200/90 leading-relaxed space-y-4">{{ prodbody | safe }}</div>
-          <a href="#key-products" class="inline-flex items-center gap-2 px-4 py-2 mt-6 text-sm font-semibold text-teal-300 border border-teal-400 rounded-full hover:bg-teal-400/10 transition">
+      <div class="udHero">
+        <div class="udHero__copy">
+          <h2 class="font-mont">{{ prodtitle | safe }}</h2>
+          <div class="udHero__body">{{ prodbody | safe }}</div>
+          <a href="#key-products" class="udHero__cta gap-3">
             Learn More
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7L17 17"/><path d="M7 17h10V7"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7l10 10"/>
+              <path d="M7 17h10V7"/>
+            </svg>
           </a>
         </div>
-        <div class="divide-y divide-slate-800 border border-slate-800/70 rounded-2xl overflow-hidden">
+        <div class="udHero__list">
           {% for prop in valueProps %}
-          <article class="flex items-start gap-4 px-5 py-6 {% if product == 'User & Device Management' %}bg-transparent{% elseif product == 'Cloud & Systems Services' %}bg-transparent{% else %}bg-slate-900/40{% endif %}">
-            <img src="{{ prop.icon }}" alt="{{ prop.title }}" class="w-10 h-10" aria-hidden="true" loading="lazy" decoding="async">
+          <div class="udHero__item">
+            <img src="{{ prop.icon }}" alt="" aria-hidden="true" loading="lazy" class="w-10 h-10 mt-1 flex-shrink-0">
             <div>
-              <h3 class="text-lg font-semibold text-teal-300 font-mont">{{ prop.title }}</h3>
-              <p class="text-sm text-slate-300 mt-1 leading-relaxed">{{ prop.description }}</p>
+              <h3 class="font-mont">{{ prop.title }}</h3>
+              <p>{{ prop.description }}</p>
             </div>
-          </article>
+          </div>
           {% endfor %}
         </div>
       </div>
