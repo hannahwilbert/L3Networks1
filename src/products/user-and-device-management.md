@@ -6,11 +6,11 @@ metaDesc: 'Simplify User & Device Management with L3 Networks Inc. Get managed h
 metaKeywords: 'User Management, Identity & Access Management, Device Management, Endpoint Device Management, Mobile Device Management, Security Management, Endpoint Security Management, Network Access Control, Managed Helpdesk, IT Asset Management'
 socialImage: /images/social/og_UsersDevices.png
 mainTitle: '<span class="text-teal-400">Users & Devices</span>: Empowering Your Team with Seamless Technology Experiences'
-subtitle: 'Simplify, Secure, and Optimize Your Workforce’s Technology with L3 Networks'
+subtitle: 'Simplify, secure, and optimize your workforce technology with L3 Networks, delivered through Elevate, our structured framework that brings predictability, consistency, and measurable results to every stage of IT management.'
 prodtitle: |
-  Why Partner with L3 for Users & Devices?
+  Why Partner with L3 for <span class="text-teal-400">Users &amp; Devices?</span>
 prodbody: |
-  <p>Managing users and devices efficiently is essential for maintaining security, productivity, and a seamless user experience. Every L3 Networks engagement follows the <strong>Elevate Framework</strong>, which ensures structure, visibility, and accountability across device management, user access, and support.</p>
+  <p>Managing users and devices efficiently is essential for maintaining security, productivity, and a seamless user experience. Every L3 Networks engagement follows the Elevate Framework, which ensures structure, visibility, and accountability across device management, user access, and support.</p>
 
   <p class="mt-4">Elevate helps businesses move from reactive IT support to proactive workforce enablement. It ensures that every layer of endpoint security, access control, and automation contributes to long-term stability and measurable improvement.</p>
 
@@ -33,7 +33,8 @@ valueProps:
 
 keyprodsTitle: 'Solutions Designed to Empower Your Team'
 keyprodsBody: |
-  We provide tailored solutions that align with your organization’s Elevate journey. Each service strengthens visibility, automation, and control as your user environment matures.
+  We provide tailored solutions that align with your organization’s Elevate journey.
+  Each service strengthens visibility, automation, and control as your user environment matures.
 
 keyprods:
   - title: "Desktop Infrastructure"

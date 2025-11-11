@@ -5,14 +5,14 @@ title: 'Cloud Solutions | L3 Networks Inc.'
 metaDesc: 'Experience reliable & secure Cloud Solutions with L3 Networks Inc. Manage Microsoft 365, leverage hybrid cloud, and more.'
 metaKeywords: 'Cloud Solutions, Microsoft 365, Cloud Security, Data Backup & Disaster Recovery, Cloud Management, Azure AI, Virtual Desktop'
 socialImage: /images/social/og_CloudSolutions.png
-mainTitle: '<span class="text-teal-400">Cloud Solutions</span>: Unlock the Power of the Cloud'
-subtitle: 'Simplify, Secure, and Scale Your Business with Expert Cloud Services'
+mainTitle: '<span class="text-teal-400">Cloud Solutions</span>: <br class="hidden sm:block">Unlock the Power of the Cloud'
+subtitle: 'Simplify, secure, and scale your business with expert cloud services delivered through Elevate, L3 Networks’ structured framework for predictable performance and measurable outcomes.'
 prodtitle: |
   Why Partner with L3 for Cloud Solutions
 prodbody: |
-  <p>The cloud is the foundation of modern business, but managing complexity, ensuring security, and controlling costs can be challenging. <strong>Every L3 cloud engagement follows the Elevate Framework, which brings structure, visibility, and accountability to every stage of your cloud journey.</strong></p>
+  <p>The cloud is the foundation of modern business, but managing complexity, ensuring security, and controlling costs can be challenging. Every L3 cloud engagement follows the Elevate Framework, which brings structure, visibility, and accountability to every stage of your cloud journey.</p>
 
-  <p class="mt-6"><strong>Elevate helps businesses move from fragmented workloads to fully integrated, cost-efficient, and secure environments.</strong> <strong>Whether migrating, modernizing, or managing at scale, our Elevate Framework ensures every change is measurable, consistent, and aligned with your business goals.</strong></p>
+  <p class="mt-6">Elevate helps businesses move from fragmented workloads to fully integrated, cost-efficient, and secure environments. Whether migrating, modernizing, or managing at scale, our Elevate Framework ensures every change is measurable, consistent, and aligned with your business goals.</p>
 
 valueProps:
   - icon: /images/lucide/cloud-upload.svg
