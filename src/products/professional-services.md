@@ -39,29 +39,40 @@ keyprodsBody: |
 
 keyprods:
   - title: Independent Security Consulting
-    info: Neutral, Expert Guidance on Cybersecurity Strategies
+    levels: ['stabilize']
+    info: Baseline Security Alignment
     paragraph: >
-      Strengthen your security posture with unbiased, expert advice. Our vendor-neutral consulting helps you navigate risks, develop strategies, and protect your critical assets.
-
-  - title: M&A Consulting
-    info: Seamless Integration for Mergers and Acquisitions
-    paragraph: >
-      Ensure smooth transitions and maximize value during mergers and acquisitions. Our expert guidance simplifies integration and aligns IT with your business objectives.
+      Strengthens security posture and aligns protection with compliance standards, forming the baseline for reliable operations.
 
   - title: Project Management
-    info: Achieve Goals, Timelines, and Budgets
+    levels: ['stabilize']
+    info: Structured Delivery Oversight
     paragraph: >
-      Deliver projects on time and within budget. Our project management services provide the oversight and coordination needed to achieve your goals efficiently.
-
-  - title: Technology Transformation
-    info: Adopt New Technologies for Growth and Efficiency
-    paragraph: >
-      Unlock growth and efficiency with modern technology. We guide you through identifying, implementing, and optimizing solutions that align with your business strategy.
+      Delivers predictable execution and control during technology initiatives, ensuring foundational structure and oversight.
 
   - title: Fully & Co-Managed IT Services
-    info: Flexible IT Management Models for Optimized Operations
+    levels: ['optimize']
+    info: Efficient Hybrid Operations
     paragraph: >
-      Optimize IT operations with flexible management models. Whether you need full support or a co-managed approach, we provide scalable solutions to reduce costs and enhance efficiency.
+      Improves operational efficiency through structured management models that enhance scalability and performance.
+
+  - title: M&A Consulting
+    levels: ['optimize']
+    info: Seamless Integration Support
+    paragraph: >
+      Streamlines transitions and integrations, minimizing disruption and aligning acquired assets with operational objectives.
+
+  - title: Technology Transformation
+    levels: ['transform']
+    info: Modernization at Scale
+    paragraph: >
+      Enables modernization of infrastructure, workflows, and business processes through expert guidance and new technologies.
+
+  - title: vCIO / Strategic Advisory
+    levels: ['transform']
+    info: Executive-Level Guidance
+    paragraph: >
+      Provides executive-level IT leadership to align long-term strategy, technology investment, and measurable business outcomes.
 
 vendorsTitle: Trusted by the Best, Built for You
 vendorsBody: |
