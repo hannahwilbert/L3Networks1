@@ -9,7 +9,7 @@ socialImage: /images/social/og_CyberSecurity.png
 subtitle: 'Cybersecurity success depends on more than technology. <span class="text-teal-400">Elevate</span> provides the structure, visibility, and accountability needed to keep your organization protected and compliant.'
 prodtitle: 'Why Our Approach Works'
 prodbody: |
-  <p>Every L3 Networks cybersecurity engagement follows a proven approach designed to deliver predictable, measurable, and continuously improving results.</p>
+  <p class="mt-3">Every L3 Networks cybersecurity engagement follows a proven approach designed to deliver predictable, measurable, and continuously improving results.</p>
 
   <p>This approach, called <span class="text-teal-400">Elevate</span>, is our structured framework for stabilizing, optimizing, and transforming IT environments over time.</p>
 
