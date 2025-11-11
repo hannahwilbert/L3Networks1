@@ -148,7 +148,6 @@
 
     {% if product == 'Managed Helpdesk' %}
     <div class="pt-12 sm:pt-16 md:pt-24">&nbsp;</div>
-    <hr class="mt-2 mb-6 sm:mb-8 md:mb-10 border-slate-700">
     <span class="text-xs sm:text-sm tracking-widest text-teal-400 border border-teal-400 rounded-full px-2 font-light py-1 mb-4 sm:mb-6 inline-block">The Difference</span>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
       <div class="col-span-1 lg:col-span-9">
@@ -205,8 +204,8 @@
       {% endfor %}
     </section>
     {% else %}
-    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
-    <hr class="mt-10 mb-10 border-slate-700">
+    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' or product == 'Managed Helpdesk' %}
+    <div class="mt-10 mb-10"></div>
     {% else %}
     <hr class="mt-10 mb-16 border-slate-700">
     <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont text-center mx-auto md:text-4xl">{{ prodtitle | safe }}</h2>

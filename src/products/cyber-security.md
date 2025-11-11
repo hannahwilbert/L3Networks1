@@ -4,14 +4,18 @@ product: 'Cyber Security'
 title: 'Advanced Cyber Security Services | L3 Networks Inc.'
 metaDesc: 'Protect your business with L3 Networks’ comprehensive cybersecurity services. Safeguard your data, network, and applications today.'
 metaKeywords: 'Cyber security, Data protection, Threat intelligence, Vulnerability assessment, Security monitoring'
-mainTitle: '<span class="text-teal-400">Cybersecurity</span> Solutions'
+mainTitle: '<span class="text-teal-400">Cybersecurity Solutions</span>:<br> Comprehensive Cybersecurity,<br> Built on Structure and Clarity'
 socialImage: /images/social/og_CyberSecurity.png
-subtitle: 'Comprehensive Cybersecurity, Built on Structure and Clarity'
+subtitle: 'Cybersecurity success depends on more than technology. <span class="text-teal-400">Elevate</span> provides the structure, visibility, and accountability needed to keep your organization protected and compliant.'
 prodtitle: 'Why Our Approach Works'
 prodbody: |
-  <span class="block text-base md:text-lg leading-relaxed text-slate-200">
-    Cybersecurity success depends on more than technology. <span class="text-teal-400">Elevate</span> provides the structure, visibility, and accountability needed to keep your organization protected and compliant.
-  </span>
+  <p>Every L3 Networks cybersecurity engagement follows a proven approach designed to deliver predictable, measurable, and continuously improving results.</p>
+
+  <p>This approach, called <span class="text-teal-400">Elevate</span>, is our structured framework for stabilizing, optimizing, and transforming IT environments over time.</p>
+
+  <p>It brings order to complex security operations by combining proactive defenses, compliance alignment, and continuous visibility across your technology stack.</p>
+
+  <p>We protect your business with discipline, accountability, and adaptability as your organization grows.</p>
 color: 'slate-500'
 colorBase: 'slate'
 
@@ -115,7 +119,7 @@ keyprods:
 
 vendorsTitle: Powered by Industry-Leading Cybersecurity Innovators
 vendorsBody: |
-  We partner with industry-leading vendors to bring you cutting-edge solutions that deliver unmatched protection and peace of mind.
+  Our ecosystem includes trusted partners such as Microsoft, Fortinet, CrowdStrike, Veeam, and ThreatLocker. Each solution contributes to a unified, measurable, and compliant security posture that matures over time.
 
 vendorsLogos:
   - src: /images/products/logos/logo-crowdstrike.svg
@@ -137,8 +141,8 @@ vendorsLogos:
 
 proof:
   enabled: true
-  title: "Proof That <span class='text-teal-400'>Elevate</span> Strengthens<br class='hidden md:block'> Security Outcomes"
-  sub: "We pair measurable results with transparent reporting so you can show progress to leadership and auditors."
+  title: "Proof That Structure Strengthens Security Outcomes"
+  sub: "Independent research confirms the value of structured, continuously improving cybersecurity programs. Organizations that implement automation and layered controls experience faster containment, lower breach costs, and higher resilience. Those same principles guide every security engagement we deliver."
   cards:
     - title: "Urgency of Proactive Defense"
       desc: "Average time to identify and contain a breach is 258 days."
