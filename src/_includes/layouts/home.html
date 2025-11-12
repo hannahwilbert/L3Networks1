@@ -1508,13 +1508,25 @@
       </p>
     </div>
     <div class="relative col-span-1 lg:col-span-3">
-      
-      <div x-data="{ isVideoModalOpen: false }" class="relative">
+      <div x-data="{
+            isVideoModalOpen: false,
+            videoSrc: '',
+            openVideo() {
+              this.videoSrc = 'https://player.vimeo.com/video/1039767191?autoplay=1';
+              this.isVideoModalOpen = true;
+            },
+            closeVideo() {
+              this.isVideoModalOpen = false;
+              this.$nextTick(() => {
+                this.videoSrc = '';
+              });
+            }
+          }" class="relative">
         <!-- Trigger Button -->
         <div class="relative block w-full h-56 px-20 py-20 transition-all ease-in-out border rounded-lg shadow-lg cursor-pointer bg-black/50 hover:bg-slate-900/70 group border-slate-800 backdrop-blur-sm">
           <img src="/images/logo/logo-header.svg" alt="Video Thumbnail" class="block mx-auto">
          
-          <div @click="isVideoModalOpen = true" class="absolute inset-0 flex items-center justify-center w-full h-full mx-auto transition-all ease-in-out">
+          <div @click="openVideo()" class="absolute inset-0 flex items-center justify-center w-full h-full mx-auto transition-all ease-in-out">
             <svg class="w-20 h-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
               <polygon class="transition-all ease-in-out opacity-10 fill-white group-hover:opacity-40" points="9.33 6.69 9.33 19.39 19.3 13.04 9.33 6.69"/>
               <path class="transition-all ease-in-out opacity-10 fill-white group-hover:opacity-40" d="M26,13A13,13,0,1,1,13,0,13,13,0,0,1,26,13ZM13,2.18A10.89,10.89,0,1,0,23.84,13.06,10.89,10.89,0,0,0,13,2.18Z"/>
@@ -1522,20 +1534,20 @@
           </div>
          
         </div>
-        <button @click="isVideoModalOpen = true" class="block my-8 px-6 py-2.5 mx-auto text-lg font-semibold text-white transition-all ease-in-out bg-teal-500 rounded-full cursor-pointer hover:bg-teal-700">Watch
+        <button @click="openVideo()" class="block my-8 px-6 py-2.5 mx-auto text-lg font-semibold text-white transition-all ease-in-out bg-teal-500 rounded-full cursor-pointer hover:bg-teal-700">Watch
           Video</button>
         <!-- Modal -->
-        <div x-show="isVideoModalOpen" @keydown.escape.window="isVideoModalOpen = false" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+        <div x-show="isVideoModalOpen" @keydown.escape.window="closeVideo()" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
           x-transition:enter-end="opacity-100" x-transition:enter="transition ease-in duration-300" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
           x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 flex items-center justify-center transition-all ease-in-out bg-black bg-opacity-90">
-          <div @click.away="isVideoModalOpen = false" class="container relative h-[720px]">
+          <div @click.away="closeVideo()" class="container relative h-[720px]">
             <!-- Close Button -->
-            <button @click="isVideoModalOpen = false" class="absolute top-0 right-0 px-4 py-2 text-2xl text-white bg-teal-400 rounded-lg hover:bg-teal-500">
+            <button @click="closeVideo()" class="absolute top-0 right-0 px-4 py-2 text-2xl text-white bg-teal-400 rounded-lg hover:bg-teal-500">
               ✖
             </button>
             <!-- Vimeo Embed -->
             <div class="container">
-              <iframe src="https://player.vimeo.com/video/1039767191" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="w-full h-[720px] rounded-lg"></iframe>
+              <iframe x-show="isVideoModalOpen" :src="videoSrc" frameborder="0" allow="autoplay; fullscreen" allowfullscreen class="w-full h-[720px] rounded-lg" x-cloak></iframe>
             </div>
           </div>
         </div>
