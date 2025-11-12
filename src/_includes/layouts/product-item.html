@@ -3,8 +3,13 @@
 {% block content %}
 
 {# Hero Section #}
-<section style="background-image: url('/images/products/{{product|slug}}.webp');" class="relative w-full px-6 pt-32 text-white bg-center bg-no-repeat bg-cover md:px-10 md:pt-16">
-  <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+{% if product == 'Managed Helpdesk' %}
+  {% set heroImage = '/images/products/cyber-security.webp' %}
+{% else %}
+  {% set heroImage = '/images/products/' + (product | slug) + '.webp' %}
+{% endif %}
+<section style="background-image: url('{{ heroImage }}');" class="relative w-full px-6 pt-32 text-white bg-center bg-no-repeat bg-cover md:px-10 md:pt-16">
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
   <div class="container relative max-w-screen-xl px-0 pb-20 text-left md:pb-32 md:px-0 md:mx-auto md:py-48">
     <div class="flex gap-0">
       <span class="xflex-shrink-0">
@@ -44,7 +49,7 @@
 {# Main Content #}
 <main class="px-3 py-24 text-white bg-black md:px-8 2xl:px-0">
 
-  <nav class="relative z-20 container flex w-full h-full max-w-screen-xl mx-auto text-slate-200 fade-item delay-0" aria-label="Breadcrumb">
+  <nav class="relative z-30 container flex w-full h-full max-w-screen-xl mx-auto text-slate-200 fade-item delay-0 mb-10" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
       <li class="inline-flex items-center">
         <a href="/" class="inline-flex items-center text-sm font-medium text-slate-300 hover:text-slate-500">
@@ -63,12 +68,25 @@
           <a href="#" class="text-sm font-medium text-slate-300 ms-1 hover:text-slate-500 md:ms-2">Solutions</a>
         </div>
       </li>
+      {% if product == 'Managed Helpdesk' %}
+      <li>
+        <div class="flex items-center">
+          <svg class="block w-3 h-3 mx-1 text-slate-300 rtl:rotate-180 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+          </svg>
+          <a href="/products/user-and-device-management/" class="text-sm font-medium text-slate-300 ms-1 hover:text-slate-500 md:ms-2">Users &amp; Devices</a>
+        </div>
+      </li>
+      {% endif %}
       <li aria-current="page">
         <div class="flex items-center">
           <svg class="w-3 h-3 mx-1 text-slate-300 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
           </svg>
 
+          {% if product == 'Managed Helpdesk' %}
+          <span class="text-sm font-medium text-teal-400 ms-1 md:ms-2">Managed Helpdesk</span>
+          {% else %}
           <script>
             window.navSolutions = {
               items: [
@@ -81,13 +99,13 @@
 
           <div x-data="{ selected: '{{ page.url }}', open: false }" class="relative">
             <button @click="open = !open" class="flex items-center justify-between w-full px-4 py-2 text-sm text-left text-teal-500 bg-transparent border-none cursor-pointer focus:outline-none">
-              <span x-text="selected ? window.navSolutions.items.find(item => item.url === selected).text : 'Select a Product'"></span>
+              <span x-text="(() => { if (!selected) return 'Select a Product'; const match = window.navSolutions.items.find(item => item.url === selected); return match ? match.text : '{{ product }}'; })()"></span>
               <svg class="w-4 h-4 ml-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
               </svg>
             </button>
 
-            <div x-ref="dropdown" x-show="open" @click.away="open = false" class="absolute z-30 md:min-w-[250px] mt-1 border rounded-md shadow-lg bg-slate-800 border-slate-800" x-init="() => {
+            <div x-ref="dropdown" x-show="open" @click.away="open = false" class="absolute z-40 md:min-w-[250px] mt-1 border rounded-md shadow-lg bg-slate-800 border-slate-800" x-init="() => {
                   $watch('open', value => {
                     if (value) {
                       anime({
@@ -119,6 +137,7 @@
               </template>
             </div>
           </div>
+          {% endif %}
         </div>
       </li>
     </ol>
@@ -128,6 +147,84 @@
     {# Product Overview #}
 
     {# <div class="w-10 h-2 mt-24 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
+    {% if product == 'Managed Helpdesk' %}
+    <style>
+      .mhValue{
+        position:relative;
+        margin-top:0;
+        padding:0;
+      }
+      .mhValue__title{
+        opacity:0;
+        transform:translateY(24px);
+        transition:opacity .6s ease, transform .6s ease;
+      }
+      .mhValue__title.is-visible{
+        opacity:1;
+        transform:translateY(0);
+      }
+      .mhValue__matrix{
+        position:relative;
+        z-index:1;
+        border:1px solid rgba(71,85,105,.65);
+        border-radius:28px;
+        overflow:hidden;
+        background:transparent;
+        box-shadow:0 30px 55px rgba(2,6,23,.65);
+      }
+      .mhValue__rows{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+      }
+      .mhValue__row{
+        display:grid;
+        grid-template-columns:1fr;
+        align-items:stretch;
+      }
+      .mhValue__row + .mhValue__row{
+        border-top:1px solid rgba(148,163,184,.2);
+      }
+      .mhValue__row--single{
+        grid-template-columns:1fr;
+      }
+      .mhValue__card{
+        padding:clamp(24px,3vw,32px);
+        color:#e2e8f0;
+        display:flex;
+        align-items:flex-start;
+        gap:18px;
+        opacity:0;
+        transform:translateY(26px);
+        transition:opacity .65s ease, transform .65s ease;
+        transition-delay:var(--mh-delay,0s);
+        background:transparent;
+      }
+      .mhValue__card.is-visible{
+        opacity:1;
+        transform:translateY(0);
+      }
+      .mhValue__icon{
+        width:48px;
+        height:48px;
+        flex-shrink:0;
+        filter:drop-shadow(0 6px 18px rgba(45,212,191,.25));
+      }
+      .mhValue__heading{
+        margin:0;
+        font-size:1.3rem;
+        font-weight:700;
+        color:#5eead4;
+        letter-spacing:-0.01em;
+      }
+      .mhValue__copy{
+        margin:0;
+        color:rgba(226,232,240,.78);
+        line-height:1.6;
+        font-size:1rem;
+      }
+    </style>
+    {% endif %}
     {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
     {% set heroAccent = '#00BBA7' %}
     <style>
@@ -147,7 +244,7 @@
     </style>
     {% endif %}
 
-    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
+    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' or product == 'Managed Helpdesk' %}
     <div class="mt-10 mb-10"></div>
     {% else %}
     <hr class="mt-10 mb-16 border-slate-700">
@@ -237,7 +334,69 @@
       }
     </style>
 
-    {% if product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
+{% if product == 'Managed Helpdesk' %}
+    {% set cardsToShow = valueProps | length %}
+    {% if cardsToShow > 5 %}
+      {% set cardsToShow = 5 %}
+    {% endif %}
+    <h3 class="mhValue__title text-xl sm:text-2xl md:text-3xl font-semibold font-mont mb-6 text-white mt-20">Why Partner with L3 Networks for Helpdesk Services</h3>
+    <section class="mhValue fade-item delay-100">
+      <div class="mhValue__matrix">
+        <div class="mhValue__rows">
+          {% for prop in valueProps %}
+            {% if loop.index0 < cardsToShow %}
+            <div class="mhValue__row mhValue__row--single">
+              <article class="mhValue__card">
+                <img src="{{ prop.icon }}" alt="{{ prop.title }}" loading="lazy" decoding="async" class="mhValue__icon">
+                <div>
+                  <h4 class="mhValue__heading font-mont">{{ prop.title }}</h4>
+                  <p class="mhValue__copy">{{ prop.description }}</p>
+                </div>
+              </article>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <script>
+      document.addEventListener('DOMContentLoaded', function(){
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var heading = document.querySelector('.mhValue__title');
+        var items = document.querySelectorAll('.mhValue__card');
+        if (reduceMotion){
+          if (heading) heading.classList.add('is-visible');
+          items.forEach(function(item){ item.classList.add('is-visible'); });
+          return;
+        }
+        if (heading){
+          var headingObserver = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+              if (entry.isIntersecting){
+                entry.target.classList.add('is-visible');
+                headingObserver.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.4 });
+          headingObserver.observe(heading);
+        }
+        if (items.length){
+          items.forEach(function(item, index){
+            item.style.setProperty('--mh-delay', (index * 140) + 'ms');
+          });
+          var itemObserver = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+              if (entry.isIntersecting){
+                entry.target.classList.add('is-visible');
+                itemObserver.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.35, rootMargin: '0px 0px -10% 0px' });
+          items.forEach(function(item){ itemObserver.observe(item); });
+        }
+      });
+    </script>
+    {% elseif product == 'User & Device Management' or product == 'Managed Networks' or product == 'Cloud & Systems Services' or product == 'Professional Services' or product == 'Cyber Security' %}
     <section class="fade-item delay-0 mt-16">
       <div class="udHero">
         <div class="udHero__copy">
@@ -279,7 +438,7 @@
       </div>
     </section>
     {% endif %}
-
+    
     <div class="pt-32">&nbsp;</div>
     <div id="key-products"></div>
 
@@ -313,11 +472,28 @@
   }
   #cybersec-section .cards{display:grid;grid-template-columns:1fr;gap:16px;}
   @media (min-width:640px){#cybersec-section .cards{grid-template-columns:1fr 1fr;gap:20px;}}
-  #cybersec-section .card{background:#000;border:.5px solid rgba(255,255,255,.10);border-radius:16px;padding:16px;transition:opacity .18s ease,border-color .18s ease,border-width .18s ease;}
+  #cybersec-section .card{position:relative;background:#000;border:.5px solid rgba(255,255,255,.10);border-radius:16px;padding:16px;transition:opacity .18s ease,border-color .2s ease,box-shadow .2s ease,transform .2s ease;}
   #cybersec-section .card--match{border-width:1px;border-color:rgba(255,255,255,.40);box-shadow:0 8px 24px rgba(0,0,0,.35);}
   #cybersec-section .card__title{font-size:clamp(16px,2vw,18px);font-weight:600;letter-spacing:-.01em;margin:0;color:#fff;}
+  #cybersec-section .card__title a{color:inherit;text-decoration:none;}
+  #cybersec-section .card__title a:hover{color:#00BBA7;}
   #cybersec-section .card__blurb{margin:8px 0 0;color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;}
   #cybersec-section .card__pills{display:flex;align-items:center;gap:8px;margin-top:14px;}
+  #cybersec-section .card__linkHint{
+    position:absolute;
+    top:12px;
+    right:12px;
+    width:24px;
+    height:24px;
+    opacity:.6;
+    transform:translate(0,0);
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  #cybersec-section .card__linkHint img{width:100%;height:100%;display:block;}
+  #cybersec-section .card--linkable{cursor:pointer;}
+  #cybersec-section .card--linkable:hover{border-color:rgba(0,187,167,.55);box-shadow:0 16px 32px rgba(0,187,167,.12);transform:translateY(-3px);}
+  #cybersec-section .card--linkable:hover .card__title a{color:#00BBA7;}
+  #cybersec-section .card--linkable:hover .card__linkHint{opacity:1;transform:translate(-2px,2px);}
   #cybersec-section .pill-dot{display:inline-flex;align-items:center;justify-content:center;transition:opacity .15s ease,background .15s ease;}
   #cybersec-section .pill-dot:not(svg){height:6px;width:10px;border-radius:999px;background:#555;}
   #cybersec-section svg.pill-dot{display:block;background:none;}
@@ -467,7 +643,8 @@
     return {
       title: item.title || '',
       blurb: (item.paragraph || '').trim(),
-      levels: Array.isArray(item.levels) ? item.levels : []
+      levels: Array.isArray(item.levels) ? item.levels : [],
+      url: item.url || ''
     };
   }) : [];
 
@@ -583,7 +760,15 @@
 
       var h3 = document.createElement('h3');
       h3.className = 'card__title';
-      h3.textContent = service.title;
+      if (service.url){
+        var titleLink = document.createElement('a');
+        titleLink.href = service.url;
+        titleLink.textContent = service.title;
+        titleLink.className = 'card__titleLink';
+        h3.appendChild(titleLink);
+      } else {
+        h3.textContent = service.title;
+      }
 
       var p = document.createElement('p');
       p.className = 'card__blurb';
@@ -598,7 +783,35 @@
         pills.appendChild(dot);
       });
 
+      if (service.url){
+        article.classList.add('card--linkable');
+        article.tabIndex = 0;
+        var navigate = function(){
+          window.location.href = service.url;
+        };
+        article.addEventListener('click', function(evt){
+          var isAnchor = evt.target.closest('a');
+          if (!isAnchor){
+            navigate();
+          }
+        });
+        article.addEventListener('keydown', function(evt){
+          if (evt.key === 'Enter' || evt.key === ' '){
+            evt.preventDefault();
+            navigate();
+          }
+        });
+      }
+
       article.append(h3, p, pills);
+
+      if (service.url){
+        var hint = document.createElement('div');
+        hint.className = 'card__linkHint';
+        hint.setAttribute('aria-hidden', 'true');
+        hint.innerHTML = '<img src="/images/icons/ArrowUpRightTeal.svg" alt="" aria-hidden="true">';
+        article.append(hint);
+      }
       cardsEl.appendChild(article);
       newCards.push(article);
     });
@@ -776,6 +989,74 @@
     {# Optional proof section (moved below Key Products) #}
     <div class="pt-32">&nbsp;</div>
     {% if proof and proof.enabled %}
+    <hr class="mb-12 border-slate-800/80">
+    {% if product == 'Managed Helpdesk' %}
+    <section style="background:#000; color:#fff; font-family:Inter, system-ui, sans-serif; padding:60px 0;">
+      <div style="width:100%; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(255,255,255,.1); border-radius:16px; overflow:hidden;">
+        <!-- LEFT CONTENT -->
+        <div style="padding:48px; border-right:1px solid rgba(255,255,255,.1); display:flex; flex-direction:column; justify-content:center;">
+          <h2 style="font-size:32px; font-weight:700; margin:0 0 16px; color:#fff;">
+            The Business Impact of a Structured Helpdesk
+          </h2>
+          <p style="color:rgba(255,255,255,.8); line-height:1.6; margin-bottom:16px;">
+            Organizations that adopt structured helpdesk operations experience measurable improvement in performance and user satisfaction:
+          </p>
+          <ul style="color:rgba(255,255,255,.8); line-height:1.8; margin:0 0 24px 20px; list-style-type:disc;">
+            <li>Up to 30% faster issue resolution through streamlined processes</li>
+            <li>Higher user satisfaction scores supported by quality tracking</li>
+            <li>Reduced downtime with continuous coverage and proactive management</li>
+            <li>Improved operational insight through trend analysis and transparent reporting</li>
+          </ul>
+          <p style="color:rgba(255,255,255,.8); line-height:1.6; margin:0;">
+            Predictable service delivery leads to measurable business continuity and employee productivity gains.
+          </p>
+        </div>
+        <!-- RIGHT GRID -->
+        <div style="display:grid; grid-template-rows:repeat(4, 1fr);">
+          <div style="padding:32px; border-bottom:1px solid rgba(255,255,255,.1); display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:18px; align-items:center;">
+              <span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
+                <img src="/images/home/icons/teal/ClockClockwise.svg" alt="Teal clock icon showing faster resolution" style="width:56px; height:56px;" loading="lazy" decoding="async">
+              </span>
+              <h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
+                <span style="font-weight:600;">Up to 30% faster issue resolution</span> through streamlined processes
+              </h3>
+            </div>
+          </div>
+          <div style="padding:32px; border-bottom:1px solid rgba(255,255,255,.1); display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:18px; align-items:center;">
+              <span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
+                <img src="/images/home/icons/teal/ThumbsUp.svg" alt="Teal satisfaction icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
+              </span>
+              <h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
+                <span style="font-weight:600;">Higher user satisfaction scores</span> supported by quality tracking
+              </h3>
+            </div>
+          </div>
+          <div style="padding:32px; border-bottom:1px solid rgba(255,255,255,.1); display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:18px; align-items:center;">
+              <span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
+                <img src="/images/home/icons/teal/ShieldCheckered.svg" alt="Always-on coverage icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
+              </span>
+              <h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
+                <span style="font-weight:600;">Reduced downtime</span> with continuous coverage and proactive management
+              </h3>
+            </div>
+          </div>
+          <div style="padding:32px; display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:18px; align-items:center;">
+              <span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
+                <img src="/images/home/icons/teal/TrendUp.svg" alt="Operational insight icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
+              </span>
+              <h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
+                <span style="font-weight:600;">Improved operational insight</span> through trend analysis and transparent reporting
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% else %}
     <section id="proof-security-outcomes" class="ycProof text-white" style="position:relative; isolation:isolate; background:transparent;">
       <hr class="mb-16 border-slate-700">
       <h2 class="mx-4 mt-4 mb-3 text-3xl font-semibold text-white font-mont md:mx-0 fade-item delay-0">{{ proof.title | safe }}</h2>
@@ -785,6 +1066,11 @@
       <div class="ycCards grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         {% for c in proof.cards %}
         <article class="ycCard fade-item delay-{{ loop.index0 * 100 }}">
+          {% if c.icon %}
+          <div class="ycCard__icon" aria-hidden="true">
+            <img src="{{ c.icon }}" alt="">
+          </div>
+          {% endif %}
           <h3 class="ycCard__title">{{ c.title | safe }}</h3>
           <p class="ycCard__desc">{{ c.desc | safe }}</p>
           {% if c.metrics %}
@@ -797,7 +1083,7 @@
               <div class="ycMetric {% if m.color=='teal' %}ycMetric--teal{% else %}ycMetric--red{% endif %}">{{ m.metric | safe }}</div>
             </div>
             {% endfor %}
-          {% else %}
+          {% elseif c.metric and c.metricLabel %}
             <div class="ycMeter">
               <span class="ycMeter__label">{{ c.metricLabel | safe }}</span>
               <div class="ycMeter__track" aria-hidden="true">
@@ -812,7 +1098,9 @@
       </div>
       <style>
         .ycCards{ align-items:stretch; }
-        .ycCard{ position:relative; border-radius:18px; padding:clamp(20px,2.4vw,28px); background:#000; border:1px solid rgba(102,199,232,.25); box-shadow:0 14px 38px rgba(5,12,22,.55), inset 0 1px 0 rgba(255,255,255,.05); color:#e2e8f0; display:flex; flex-direction:column; height:100%; }
+        .ycCard{ position:relative; border-radius:18px; padding:clamp(20px,2.4vw,28px); background:#000; border:1px solid rgba(102,199,232,.25); box-shadow:0 14px 38px rgba(5,12,22,.55), inset 0 1px 0 rgba(255,255,255,.05); color:#e2e8f0; display:flex; flex-direction:column; gap:1rem; height:100%; text-align:center; }
+        .ycCard__icon{ width:64px; height:64px; border-radius:18px; margin:0 auto; display:grid; place-items:center; background:rgba(111,233,212,.12); border:1px solid rgba(111,233,212,.35); }
+        .ycCard__icon img{ width:32px; height:32px; display:block; filter:invert(78%) sepia(18%) saturate(742%) hue-rotate(118deg) brightness(96%) contrast(101%); }
         .ycCard__title{ margin:0 0 10px; text-align:center; font-weight:800; font-size:clamp(18px,2.4vw,22px); }
         .ycCard__desc{ margin:0 0 16px; text-align:center; color:#cbd5e1; font-size:clamp(15px,2.1vw,18px); line-height:1.65; }
         .ycMeter{ display:grid; gap:8px; justify-items:center; margin:10px 0 8px; }
@@ -868,6 +1156,7 @@
         })();
       </script>
     </section>
+    {% endif %}
     {% endif %}
 
     <div class="pt-32">&nbsp;</div>
