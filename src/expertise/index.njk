@@ -111,7 +111,7 @@ eleventyExcludeFromCollections: true
   .industry-card h3{
     margin:0 0 8px;
     font-size:22px;
-    font-weight:600;
+    font-weight:500;
   }
   .industry-card__body{
     flex:1;
@@ -124,6 +124,10 @@ eleventyExcludeFromCollections: true
     color:rgba(226,232,240,.8);
     line-height:1.6;
     font-size:15px;
+    font-weight:300;
+  }
+  .industry-card p strong{
+    font-weight:800;
   }
   .industry-card__cta{
     display:inline-flex;
@@ -385,16 +389,16 @@ eleventyExcludeFromCollections: true
 <section id="industry-expertise" class="expertise-section expertise-block">
   <div class="container max-w-screen-xl mx-auto px-4 md:px-8">
     <h2>Industry Expertise</h2>
-    <p class="section-copy">For more than two decades, L3 Networks has partnered with organizations that run on precision, compliance, and trust. We deliver support models that combine technology, process control, and proactive service for demanding industries.</p>
+    <p class="section-copy">For more than two decades, L3 Networks has partnered with organizations that run on precision, compliance, and trust. Our work spans industries where technology cannot fail and security cannot be an afterthought. The Elevate framework brings structure to that complexity and helps each client move from reactive management to strategic maturity.</p>
     <div class="industry-list">
       {% set industries = [
-        { title: 'Finance', desc: 'We support financial institutions that demand integrity, uptime, and adherence to FINRA and SOC 2 standards. Our teams design resilient systems that protect data, satisfy regulators, and ensure operations never pause.', img: '/images/home/Financial Services.png' },
-        { title: 'Architecture & Engineering', desc: 'We enable firms to work without friction through large file sharing, remote collaboration, and cloud workflows that perform reliably no matter where teams are located. Governance and change control are built into every engagement to support secure project delivery.', img: '/images/home/Design & Construction.png' },
-        { title: 'Legal', desc: 'We help law firms protect privileged data, maintain confidentiality, and comply with SOC 2 and client-driven governance requirements through documented controls and consistent auditing practices.', img: '/images/home/Legal Services.png' },
-        { title: 'Healthcare', desc: 'We build IT environments where compliance, security, and performance coexist. Our solutions align with HIPAA and HITRUST, supporting clinical productivity and patient data protection around the clock.', img: '/images/home/Healthcare.png' },
-        { title: 'Manufacturing', desc: 'We secure production networks and intellectual property while maintaining continuity and alignment with ISO 27001 and NIST 800-171 frameworks that govern operational technology and supply-chain resilience.', img: '/images/home/Manufacturing.png' },
-        { title: 'Transportation & Logistics', desc: 'We connect fleets, facilities, and field teams through reliable networks and managed mobility while supporting C-TPAT, ISO 28000, and NIST Cybersecurity Framework requirements for supply-chain security and data protection.', img: '/images/home/Logistics.png' },
-        { title: 'Media & Creative', desc: 'We support fast-moving creative environments with scalable infrastructure, high-speed data access, and secure collaboration. Our data-protection controls align with GDPR and content-security best practices.', img: '/images/home/Entertainment.png' }
+        { title: 'Finance', desc: 'We support financial institutions that demand integrity, uptime, and adherence to <strong>FINRA</strong> and <strong>SOC 2</strong> standards. Our teams design resilient systems that protect data, satisfy regulators, and ensure operations never pause.', img: '/images/home/Financial Services.png' },
+        { title: 'Architecture & Engineering', desc: 'We enable firms to work without friction through large file sharing, remote collaboration, and cloud workflows that perform reliably no matter where teams are located. <strong>Governance</strong> and <strong>change control</strong> are built into every engagement to support secure project delivery.', img: '/images/home/Design & Construction.png' },
+        { title: 'Legal', desc: 'We help law firms protect privileged data, maintain confidentiality, and comply with <strong>SOC 2</strong> and client-driven governance requirements through documented controls and consistent auditing practices.', img: '/images/home/Legal Services.png' },
+        { title: 'Healthcare', desc: 'We build IT environments where compliance, security, and performance coexist. Our solutions align with <strong>HIPAA</strong> and <strong>HITRUST</strong>, supporting clinical productivity and patient data protection around the clock.', img: '/images/home/Healthcare.png' },
+        { title: 'Manufacturing', desc: 'We secure production networks and intellectual property while maintaining continuity and alignment with <strong>ISO 27001</strong> and <strong>NIST 800-171</strong> frameworks that govern operational technology and supply-chain resilience.', img: '/images/home/Manufacturing.png' },
+        { title: 'Transportation & Logistics', desc: 'We connect fleets, facilities, and field teams through reliable networks and managed mobility while supporting <strong>C-TPAT</strong>, <strong>ISO 28000</strong>, and <strong>NIST Cybersecurity Framework</strong> requirements for supply-chain security and data protection.', img: '/images/home/Logistics.png' },
+        { title: 'Media & Creative', desc: 'We support fast-moving creative environments with scalable infrastructure, high-speed data access, and secure collaboration. Our data-protection controls align with <strong>GDPR</strong> and content-security best practices.', img: '/images/home/Entertainment.png' }
       ] %}
       {% for industry in industries %}
       <article class="industry-card">
@@ -403,7 +407,7 @@ eleventyExcludeFromCollections: true
         </div>
         <div class="industry-card__body">
           <h3>{{ industry.title }}</h3>
-          <p>{{ industry.desc }}</p>
+          <p>{{ industry.desc | safe }}</p>
           <a class="industry-card__cta" href="/resources/">Read more</a>
         </div>
       </article>
