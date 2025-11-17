@@ -1,0 +1,533 @@
+---
+title: 'Our Expertise | L3 Networks'
+layout: 'layouts/expertise.html'
+permalink: '/expertise/'
+metaDesc: 'See how L3 Networks serves regulated, high-growth industries with proven playbooks across cyber, cloud, infrastructure, and experience delivery.'
+metaKeywords: 'IT expertise, industry expertise, cybersecurity experts, managed helpdesk, architecture firm IT, healthcare IT partner'
+eleventyExcludeFromCollections: true
+---
+
+<style>
+  .expertise-hero{
+    color:#fff;
+    padding:260px 0 140px;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+  }
+  .expertise-hero h1{
+    font-size:clamp(36px,5vw,56px);
+    font-weight:700;
+    margin:0 0 16px;
+    letter-spacing:-0.03em;
+  }
+  .expertise-hero h1 span{
+    color:#00BBA7;
+  }
+  .expertise-hero p.lead{
+    color:rgba(226,232,240,.85);
+    font-size:clamp(18px,2.2vw,22px);
+    max-width:760px;
+    line-height:1.6;
+    margin:0 0 28px;
+  }
+  .expertise-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 26px;
+    border-radius:999px;
+    background:#00BBA7;
+    color:#020617;
+    font-weight:700;
+    text-decoration:none;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .expertise-btn:hover{background:#0dd1bc; transform:translateY(-1px);}
+  .expertise-learn-cta{
+    color:#00bba7;
+    border:1px solid rgba(0,187,167,.8);
+    border-radius:30px;
+    padding:10px 24px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+    text-decoration:none;
+    width:max-content;
+    position:relative;
+    z-index:1;
+    margin-top:12px;
+  }
+  .expertise-learn-cta:hover{
+    color:#0dd1bc;
+    border-color:#0dd1bc;
+  }
+  .expertise-section{
+    background:#000;
+    color:#fff;
+    padding:80px 0;
+  }
+  .expertise-section h2{
+    font-size:clamp(28px,3vw,36px);
+    font-weight:700;
+    margin-bottom:12px;
+    letter-spacing:-0.02em;
+  }
+  .expertise-section p.section-copy{
+    color:rgba(226,232,240,.86);
+    font-size:18px;
+    max-width:840px;
+    line-height:1.6;
+    margin-bottom:40px;
+    font-weight:300;
+  }
+  .industry-list{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+  }
+  .industry-card{
+    display:flex;
+    flex-direction:row;
+    gap:24px;
+    padding:20px;
+    border-radius:20px;
+    background:rgba(4,8,12,.9);
+    box-shadow:0 20px 50px rgba(0,0,0,.55);
+  }
+  .industry-card__media{
+    flex:0 0 320px;
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .industry-card__media img{
+    display:block;
+    width:100%;
+    height:190px;
+    object-fit:cover;
+    border-radius:16px;
+  }
+  .industry-card h3{
+    margin:0 0 8px;
+    font-size:22px;
+    font-weight:600;
+  }
+  .industry-card__body{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .industry-card p{
+    margin:0 0 18px;
+    color:rgba(226,232,240,.8);
+    line-height:1.6;
+    font-size:15px;
+  }
+  .industry-card__cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:4px 12px;
+    border-radius:999px;
+    background:transparent;
+    border:1px solid rgba(0,187,167,.6);
+    color:#00bba7;
+    font-weight:600;
+    text-decoration:none;
+    font-size:14px;
+    transition:transform .2s ease, color .2s ease, border-color .2s ease;
+    align-self:flex-start;
+    width:auto;
+  }
+  .industry-card__cta:hover{
+    color:#0dd1bc;
+    border-color:#0dd1bc;
+    transform:translateY(-1px);
+  }
+  @media (max-width:900px){
+    .industry-card{
+      flex-direction:column;
+    }
+    .industry-card__media{
+      flex:initial;
+    }
+    .industry-card__media img{
+      height:220px;
+    }
+  }
+  .cap-header h2{
+    font-size:clamp(32px,4vw,40px);
+    margin-bottom:12px;
+    letter-spacing:.02em;
+  }
+  .cap-header p{
+    max-width:720px;
+    font-size:18px;
+    line-height:1.6;
+    color:rgba(226,232,240,.86);
+    font-weight:300;
+  }
+  .cap-header a{
+    color:#00bba7;
+    text-decoration:none;
+    border-bottom:1px solid rgba(0,187,167,.4);
+  }
+  .cap-grid{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:1fr;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.14);
+  }
+  @media (min-width:768px){
+    .cap-grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+  }
+  .cap-item{
+    display:flex;
+    gap:16px;
+    padding:20px 24px;
+    background:rgba(0,0,0,.92);
+    border-bottom:1px solid rgba(255,255,255,.14);
+  }
+  .cap-item:nth-child(2n){
+    border-left:1px solid rgba(255,255,255,.14);
+  }
+  .cap-item:nth-last-child(-n+2){
+    border-bottom:none;
+  }
+  @media (max-width:767px){
+    .cap-item:nth-child(2n){
+      border-left:none;
+    }
+    .cap-item:last-child{
+      border-bottom:none;
+    }
+  }
+  .cap-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:48px;
+    height:48px;
+  }
+  .cap-icon img{
+    width:36px;
+    height:36px;
+    display:block;
+  }
+  .cap-copy h3{
+    font-size:17px;
+    margin-bottom:4px;
+    color:#00bba7;
+    font-weight:700;
+  }
+  .cap-copy p{
+    font-size:14px;
+    line-height:1.45;
+    color:rgba(226,232,240,.82);
+  }
+  .team-section{padding-top:32px;}
+  .team-section h2{
+    font-family:'Inter',sans-serif;
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:-0.015em;
+    margin-bottom:12px;
+  }
+  .team-section .intro p{
+    font-family:'Inter',sans-serif;
+    font-size:18px;
+    line-height:1.7;
+    font-weight:400;
+    color:rgba(226,232,240,.82);
+    max-width:840px;
+  }
+  .team-section .intro p + p{margin-top:10px;}
+  .team-columns{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:80px;
+    margin-top:56px;
+  }
+  .team-column{position:relative;}
+  .team-column-title{
+    font-family:'Inter',sans-serif;
+    font-size:18px;
+    font-style:italic;
+    letter-spacing:.04em;
+    text-transform:none;
+    font-weight:600;
+    margin-bottom:14px;
+    color:rgba(248,250,252,.85);
+  }
+  .team-timeline{position:relative; padding-left:72px; margin-top:12px;}
+  .team-line-left{
+   position:absolute;
+    left:24px;
+    width:1px;
+   background:rgba(255, 255, 255, 0.34);
+    top:-15px;
+     height:75%;
+    bottom:16px;
+  }
+  .team-line-right{
+    position:absolute;
+    left:24px;
+    width:1px;
+   background:rgba(255, 255, 255, 0.34);
+    top:-15px;
+     height:75%;
+    bottom:16px;
+  }
+  .team-card{
+    position:relative;
+    margin:22px 0;
+    padding-bottom:14px;
+  }
+  .team-card--narrow p{
+    max-width:48ch;
+  }
+  .team-card--wide p{max-width:59ch;}
+  .team-card:first-child{margin-top:0;}
+  .team-card:last-child{margin-bottom:0;}
+  .team-card-title{
+    position:relative;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    text-transform:none;
+    margin-bottom:4px;
+    color:#f8fafc;
+  }
+  .team-card-title::before{
+    content:"";
+    position:absolute;
+    left:-48px;
+    top:0.72em;
+    width:40px;
+    border-top:1px solid rgba(255, 255, 255, 0.34);
+  }
+
+  .team-card p{
+    font-family:'Inter',sans-serif;
+    font-weight:800px;
+    font-size:14px;
+    line-height:1.45;
+    color:rgba(226,232,240,.85);
+    max-width:360px;
+    margin:0;
+  }
+  .team-card.team-card--wide p{
+    max-width:52ch;
+  }
+  .team-note{
+    margin-top:64px;
+    text-align:center;
+    font-family:'Inter',sans-serif;
+    font-size:18px;
+    color:rgba(226,232,240,.85);
+    letter-spacing:.02em;
+    text-transform:none;
+    font-style:normal;
+    max-width:780px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.5;
+  }
+  .partners{
+    padding:70px 0;
+    background:#000;
+    color:#fff;
+  }
+  .partners a{
+    color:#facc15;
+    font-weight:600;
+    text-decoration:none;
+  }
+  .expertise-surface{
+    background:#000;
+    color:#fff;
+    min-height:100vh;
+    padding-bottom:80px;
+  }
+  .expertise-block + .expertise-block{margin-top:60px;}
+  .expertise-block + .expertise-block > .container{
+    border-top:1px solid #334155;
+    padding-top:60px;
+  }
+  @media (max-width:900px){
+    .industry-card{grid-template-columns:1fr;}
+    .industry-card img{height:200px;}
+  }
+</style>
+
+<div class="expertise-surface">
+<section class="expertise-hero expertise-block" style="background-image:linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.75) 50%, rgba(0,0,0,.98) 100%), url('/images/products/cyber-security.webp');">
+  <div class="container max-w-screen-xl mx-auto px-4 md:px-8">
+    <h1>Our <span style="color:#00BBA7;">Expertise</span></h1>
+    <p class="lead">Built for the industries that demand precision.<br>Engineered for security, compliance, and performance.<br>Driven by a framework that delivers predictable, measurable results.</p>
+    <a class="expertise-learn-cta" href="#industry-expertise">
+      Learn More
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 7l10 10"/>
+        <path d="M7 17h10V7"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<section id="industry-expertise" class="expertise-section expertise-block">
+  <div class="container max-w-screen-xl mx-auto px-4 md:px-8">
+    <h2>Industry Expertise</h2>
+    <p class="section-copy">For more than two decades, L3 Networks has partnered with organizations that run on precision, compliance, and trust. We deliver support models that combine technology, process control, and proactive service for demanding industries.</p>
+    <div class="industry-list">
+      {% set industries = [
+        { title: 'Finance', desc: 'We support financial institutions that demand integrity, uptime, and adherence to FINRA and SOC 2 standards. Our teams design resilient systems that protect data, satisfy regulators, and ensure operations never pause.', img: '/images/home/Financial Services.png' },
+        { title: 'Architecture & Engineering', desc: 'We enable firms to work without friction through large file sharing, remote collaboration, and cloud workflows that perform reliably no matter where teams are located. Governance and change control are built into every engagement to support secure project delivery.', img: '/images/home/Design & Construction.png' },
+        { title: 'Legal', desc: 'We help law firms protect privileged data, maintain confidentiality, and comply with SOC 2 and client-driven governance requirements through documented controls and consistent auditing practices.', img: '/images/home/Legal Services.png' },
+        { title: 'Healthcare', desc: 'We build IT environments where compliance, security, and performance coexist. Our solutions align with HIPAA and HITRUST, supporting clinical productivity and patient data protection around the clock.', img: '/images/home/Healthcare.png' },
+        { title: 'Manufacturing', desc: 'We secure production networks and intellectual property while maintaining continuity and alignment with ISO 27001 and NIST 800-171 frameworks that govern operational technology and supply-chain resilience.', img: '/images/home/Manufacturing.png' },
+        { title: 'Transportation & Logistics', desc: 'We connect fleets, facilities, and field teams through reliable networks and managed mobility while supporting C-TPAT, ISO 28000, and NIST Cybersecurity Framework requirements for supply-chain security and data protection.', img: '/images/home/Logistics.png' },
+        { title: 'Media & Creative', desc: 'We support fast-moving creative environments with scalable infrastructure, high-speed data access, and secure collaboration. Our data-protection controls align with GDPR and content-security best practices.', img: '/images/home/Entertainment.png' }
+      ] %}
+      {% for industry in industries %}
+      <article class="industry-card">
+        <div class="industry-card__media">
+          <img src="{{ industry.img }}" alt="{{ industry.title }}" loading="lazy" decoding="async">
+        </div>
+        <div class="industry-card__body">
+          <h3>{{ industry.title }}</h3>
+          <p>{{ industry.desc }}</p>
+          <a class="industry-card__cta" href="/resources/">Read more</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="expertise-section expertise-block" style="background:#000;">
+  <div class="container max-w-screen-xl mx-auto px-4 md:px-8">
+    <header class="cap-header">
+      <h2>Capabilities</h2>
+      <p>L3 Networks delivers the depth of an enterprise IT department with the precision of a dedicated partner. Every engagement follows our <a href="/elevate/">Elevate</a> framework, providing measurable progress and predictable results.</p>
+    </header>
+    <div class="cap-grid">
+      {% set capabilities = [
+        { title: 'Cybersecurity & Risk Management', desc: 'Threat prevention, detection, and incident response built on layered Zero Trust principles.', icon: '/images/home/icons/teal/ShieldCheckered.svg' },
+        { title: 'Network Infrastructure & Connectivity', desc: 'Secure architecture and 24/7 monitoring for distributed, high-performance environments.', icon: '/images/home/icons/teal/Network.svg' },
+        { title: 'Cloud Platforms & Data Protection', desc: 'Hybrid and multi-cloud strategies with tested backup, recovery, and cost control.', icon: '/images/home/icons/teal/CloudCheck.svg' },
+        { title: 'User & Endpoint Services', desc: 'AI-enhanced support and standardized endpoint management for consistent user experience.', icon: '/images/home/icons/teal/Devices.svg' },
+        { title: 'Consulting & Strategic Guidance', desc: 'Maturity planning, roadmap execution, and technology alignment with business goals.', icon: '/images/home/icons/teal/TrendUp.svg' },
+        { title: 'Reporting & Business Dashboards', desc: 'ClickData-driven executive dashboards that transform operational data into actionable business intelligence.', icon: '/images/home/icons/ChartLineUp.svg' },
+        { title: 'Infrastructure as Code (IaC)', desc: 'Codified, repeatable cloud infrastructure built for speed, compliance, and auditability.', icon: '/images/home/icons/teal/simplify-operations.svg' },
+        { title: 'Compliance & Governance', desc: 'Continuous Compliance as a Service (CaaS) embedding SOC 2, HIPAA, NIST, CMMC, and ISO 27001 alignment into daily operations.', icon: '/images/home/icons/teal/SealCheck.svg' }
+      ] %}
+      {% for cap in capabilities %}
+      <article class="cap-item">
+        <div class="cap-icon" aria-hidden="true">
+          <img src="{{ cap.icon }}" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="cap-copy">
+          <h3>{{ cap.title }}</h3>
+          <p>{{ cap.desc }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="expertise-section expertise-block" style="background:#000;">
+  <div class="container max-w-screen-xl mx-auto px-4 md:px-8">
+    <section class="team-section">
+      <div class="intro">
+        <h2>Team Expertise</h2>
+        <p>Behind every L3 Networks engagement is a team of experienced engineers, architects, and consultants who combine deep technical expertise with disciplined operations. We operate with the precision of an enterprise IT department and the responsiveness of a dedicated partner.</p>
+        <p style="margin-top:18px;">Our service model is built on collaboration, communication, and accountability. From design to deployment to support, every member of the L3 team is focused on measurable progress and lasting impact.</p>
+      </div>
+      <div class="team-columns">
+        <div class="team-column">
+          <div class="team-column-title">Technical Engineering & Automation</div>
+          <div class="team-timeline">
+            <span class="team-line-left" aria-hidden="true"></span>
+            <div class="team-card team-card--narrow">
+              <div class="team-card-title">Infrastructure as Code (IaC)</div>
+              <p>Our cloud specialists build infrastructure that is codified, repeatable, and secure.<br>Using tools such as Terraform and CloudFormation, we deliver environments that are auditable, compliant, and deployable at scale.</p>
+            </div>
+            <div class="team-card">
+              <div class="team-card-title">Reporting & Dashboards</div>
+              <p>Our reporting team transforms technical data into business intelligence through ClickData-powered dashboards. These provide real-time visibility into performance, risk, and progress, giving leaders confidence in every decision.</p>
+            </div>
+            <div class="team-card">
+              <div class="team-card-title">Engineering & Architecture</div>
+              <p>Our engineers and solution architects bring decades of combined experience across cybersecurity, cloud, and network disciplines. They design secure, high-performing environments that are scalable, compliant, and tailored to each client’s needs.</p>
+            </div>
+          </div>
+        </div>
+        <div class="team-column">
+          <div class="team-column-title">Human-Centered IT Services</div>
+          <div class="team-timeline">
+            <span class="team-line-right" aria-hidden="true"></span>
+            <div class="team-card">
+              <div class="team-card-title">Helpdesk & Operations</div>
+              <p>Our U.S.-based 24/7 helpdesk delivers rapid response and resolution through defined SLAs, structured escalation, and proactive issue prevention. We invest heavily in training, process automation, and AI-driven tools to ensure consistent quality and transparency.</p>
+            </div>
+            <div class="team-card">
+              <div class="team-card-title">Consulting & Strategic Guidance</div>
+              <p>Our consultants provide the structured leadership needed to align technology, risk, and compliance with business objectives. They guide clients through framework adoption, governance planning, and measurable maturity improvement.</p>
+            </div>
+            <div class="team-card team-card--wide">
+              <div class="team-card-title">Compliance Expertise</div>
+              <p>Compliance is built into every layer of our service delivery. Our dedicated professionals maintain knowledge of frameworks such as SOC 2, HIPAA, ISO 27001, NIST 800-171, and CMMC to ensure that environments we manage remain aligned with evolving regulations and client requirements.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="team-note">Every discipline within L3 Networks&mdash;engineering, service, and consulting&mdash;is guided by the same principles: <em>clarity, structure, and measurable outcomes.</em></p>
+    </section>
+  </div>
+</section>
+
+<section class="partners expertise-block">
+  <div class="container max-w-screen-xl mx-auto px-4 md:px-8">
+    <h2 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:700; letter-spacing:-0.02em; margin-bottom:10px;">Certifications &amp; Partnerships</h2>
+    <p style="font-family:'Inter',sans-serif; font-size:18px; line-height:1.65; color:rgba(226,232,240,.82); max-width:840px; margin-bottom:18px;">L3 Networks partners with industry leaders to deliver secure, scalable, and high-performing solutions across cloud, cybersecurity, networking, and data protection. These relationships extend our reach and strengthen every layer of the environments we design and support.</p>
+    <div class="grid grid-flow-row grid-cols-2 gap-3 md:grid-cols-5" style="margin-top:40px;">
+      <img class="h-24 invert brightness-0" alt="Amazon Web Services (AWS) logo" src="/images/about/logo-aws.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Aruba logo" src="/images/about/logo-aruba.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="AT&amp;T Business logo" src="/images/about/logo-att.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Azure logo" src="/images/about/logo-azure.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Citrix logo" src="/images/about/logo-citrix.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="DNSfilter logo" src="/images/about/logo-dnsfilter.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Equinix logo" src="/images/about/logo-equinix.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Fortra logo" src="/images/about/logo-fortra.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Fortinet logo" src="/images/about/logo-fortinet.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Hewlett Packard Enterprise (HPE) logo" src="/images/about/logo-hpe.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Huntress logo" src="/images/about/logo-huntress.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Kaseya logo" src="/images/about/logo-kaseya.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Microsoft logo" src="/images/about/logo-microsoft.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="NinjaOne logo" src="/images/about/logo-ninjaone.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Office 365 logo" src="/images/about/logo-o365.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Okta logo" src="/images/about/logo-okta.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="OneLogin logo" src="/images/about/logo-onelogin.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="RingCentral logo" src="/images/about/logo-ringcentral.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Ruckus Networks logo" src="/images/about/logo-ruckus.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="ThreatLocker logo" src="/images/about/logo-threatlocker.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert" alt="Veeam logo" src="/images/about/logo-veeam.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="VMWare logo" src="/images/about/logo-vmware.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Wasabi logo" src="/images/about/logo-wasabi.svg" loading="lazy" decoding="async">
+      <img class="h-24 invert brightness-0" alt="Zerto logo" src="/images/about/logo-zerto.svg" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+</div>
+
+{% include "partials/footer.html" %}
