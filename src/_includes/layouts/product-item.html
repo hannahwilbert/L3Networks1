@@ -477,81 +477,86 @@
     display:flex;
     flex-direction:column;
     gap:14px;
-    max-width:640px;
-    margin:0 auto;
+    max-width:180px;
+    width:100%;
+    margin:0;
+    align-items:flex-start;
+  }
+  #cybersec-section .filter-btnWrap{
+    position:relative;
+    width:100%;
   }
   #cybersec-section .filter-btn{
     position:relative;
-    background:#000;
+    background:#02060f;
     border:1px solid rgba(148,163,184,.35);
-    text-align:left;
-    padding:18px 22px;
+    padding:15px 22px;
     display:flex;
-    flex-direction:column;
-    align-items:flex-start;
+    align-items:center;
+    gap:16px;
     font-weight:600;
-    font-size:clamp(16px,2vw,18px);
+    font-size:17px;
+    line-height:1.35;
     cursor:pointer;
     color:#fff;
     width:100%;
-    border-radius:24px;
+    max-width:200px;
+    border-radius:999px;
     transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    text-transform:none;
+    letter-spacing:-0.01em;
   }
-  #cybersec-section .filter-btn[data-level="stabilize"]{color:#ff6a3d;}
-  #cybersec-section .filter-btn[data-level="optimize"]{color:#3c52ff;}
-  #cybersec-section .filter-btn[data-level="transform"]{color:#00bba7;}
+  #cybersec-section .filter-btn[data-level="stabilize"]{--filter-accent:#ff6a3d;}
+  #cybersec-section .filter-btn[data-level="optimize"]{--filter-accent:#3c52ff;}
+  #cybersec-section .filter-btn[data-level="transform"]{--filter-accent:#00bba7;}
+  #cybersec-section .filter-btn:hover,
+  #cybersec-section .filter-btn:focus-visible{
+    border-color:var(--filter-accent, rgba(148,163,184,.75));
+    box-shadow:0 10px 24px rgba(0,0,0,.35);
+  }
   #cybersec-section .filter-btnWrap[data-active="true"] .filter-btn{
     transform:translateY(-2px);
     box-shadow:0 18px 34px rgba(0,0,0,.5);
     background:#000;
-    border-color:currentColor;
-    gap:12px;
+    border-color:var(--filter-accent, #00bba7);
   }
-      #cybersec-section .filter-btn__label{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    width:100%;
-    gap:12px;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-  }
-  #cybersec-section .filter-btn__label-main{
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  #cybersec-section .filter-btn__arrow{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    width:32px;
-    height:32px;
-    font-size:20px;
-    transition:transform .2s ease;
-    transform:rotate(-90deg);
-  }
-  #cybersec-section .filter-btnWrap[data-active="true"] .filter-btn__arrow{
-    transform:rotate(0deg);
-  }
+  #cybersec-section .filter-btn__text{font-size:inherit;font-weight:600;}
   #cybersec-section .filter-btn__copy{
+    position:absolute;
+    top:50%;
+    left:calc(100% + 16px);
+    transform:translateY(-50%) translateX(8px);
+    width:260px;
+    background:#000;
+    border:1px solid rgba(148,163,184,.35);
+    border-radius:14px;
+    padding:14px 18px;
     font-size:14px;
-    color:rgba(226,232,240,.85);
-    line-height:1.6;
+    color:rgba(226,232,240,.9);
+    line-height:1.55;
     opacity:0;
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .25s ease, opacity .25s ease;
+    pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;
     text-transform:none;
     letter-spacing:normal;
     text-align:left;
-    width:100%;
     font-weight:400;
+    box-shadow:0 20px 40px rgba(0,0,0,.55);
+    z-index:30;
   }
-  #cybersec-section .filter-btnWrap[data-active="true"] .filter-btn__copy{
+  #cybersec-section .filter-btn__copy::before,
+  #cybersec-section .filter-btn__copy::after{display:none;}
+  #cybersec-section .filter-btnWrap:hover .filter-btn__copy{
     opacity:1;
-    max-height:100px;
+    transform:translateY(-50%) translateX(0);
+  }
+  @media (max-width:900px){
+    #cybersec-section .filter-btn__copy{
+      left:0;
+      top:calc(100% + 12px);
+      width:min(90vw, 340px);
+      transform:none;
+    }
   }
   #cybersec-section .filter-dot{display:inline-flex;align-items:center;justify-content:center;}
   #cybersec-section .filter-dot:not(svg){height:6px;width:10px;border-radius:999px;}
@@ -664,10 +669,9 @@
 
   var activeLevels = new Set();
 
-  function tooltipPinned(level){
-    if (!activeLevels.size) return false;
-    if (activeLevels.has('transform')) return true;
-    return activeLevels.has(level);
+  function setTooltipVisibility(tip, show){
+    if (!tip) return;
+    tip.setAttribute('aria-hidden', show ? 'false' : 'true');
   }
 
   function makePillDot(level){
@@ -867,19 +871,10 @@
     }
     dot.setAttribute('aria-hidden', 'true');
 
-    var labelWrap = document.createElement('span');
-    labelWrap.className = 'filter-btn__label';
-    var labelMain = document.createElement('span');
-    labelMain.className = 'filter-btn__label-main';
-    var label = document.createElement('span');
-    label.textContent = level.label;
-    labelMain.append(dot, label);
-    var arrow = document.createElement('span');
-    arrow.className = 'filter-btn__arrow';
-    arrow.setAttribute('aria-hidden', 'true');
-    arrow.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
-    labelWrap.append(labelMain, arrow);
-    btn.appendChild(labelWrap);
+    var text = document.createElement('span');
+    text.className = 'filter-btn__text';
+    text.textContent = level.label;
+    btn.append(dot, text);
 
     var focusCopy = {
       stabilize: 'Focus: establish secure, reliable, and visible connectivity foundations.',
@@ -892,6 +887,8 @@
     if (tipText){
       tip = document.createElement('div');
       tip.className = 'filter-btn__copy';
+      tip.setAttribute('role', 'tooltip');
+      tip.setAttribute('aria-hidden', 'true');
       var focusLabel = document.createElement('strong');
       focusLabel.textContent = 'Focus:';
       var focusBody = document.createElement('span');
@@ -903,6 +900,15 @@
     wrap.appendChild(btn);
     filtersEl.appendChild(wrap);
     filterRefs.push({ level: level.key, wrap: wrap, btn: btn, tip: tip });
+
+    if (tip){
+      wrap.addEventListener('mouseenter', function(){
+        setTooltipVisibility(tip, true);
+      });
+      wrap.addEventListener('mouseleave', function(){
+        setTooltipVisibility(tip, false);
+      });
+    }
   }
 
   function initFilters(){
@@ -917,7 +923,6 @@
       var isActive = activeLevels.has(ref.level);
       ref.btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       if (ref.wrap){
-        ref.wrap.setAttribute('data-show', tooltipPinned(ref.level) ? 'true' : 'false');
         ref.wrap.setAttribute('data-active', isActive ? 'true' : 'false');
       }
     });

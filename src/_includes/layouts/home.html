@@ -1254,33 +1254,37 @@
     <div class="w-full rounded-2xl overflow-hidden" style="background:rgba(0,0,0,0.82); border:1px solid rgba(75,85,99,.35);">
       <div class="flex flex-col divide-y divide-gray-700/50">
         <!-- Intro block inside surface -->
-        <div class="p-8 md:p-12 text-center">
-          <h2 class="relative mb-3 text-3xl font-semibold tracking-tighter md:text-6xl font-mont">Technology That <a href="/elevate/" class="text-current underline decoration-dotted decoration-teal-400 underline-offset-8 decoration-2 hover:decoration-teal-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-sm">Elevates</a></h2>
-          <p class="mx-auto text-xl md:text-3xl leading-tight tracking-tight text-teal-300 font-mont font-light" style="text-wrap:balance; max-width: 68ch;">
+        <div class="p-8 md:p-12 text-center techIntro">
+          <h2 class="relative mb-3 text-3xl md:text-6xl font-mont">Technology That <a href="/elevate/" class="text-current underline decoration-dotted decoration-teal-400 underline-offset-8 decoration-2 hover:decoration-teal-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/60 rounded-sm">Elevates</a></h2>
+          <p class="mx-auto text-lg md:text-2xl leading-tight tracking-tight font-light" style="text-wrap:balance; max-width: 48ch; color:#00BBA7;">
             At L3 Networks, we focus on the outcomes that matter most:
-            <span class="font-semibold text-teal-400"> dependable systems</span>,
-            <span class="font-semibold text-teal-400"> efficient operations</span>,
-            and technology that <span class="font-semibold text-teal-400">supports long-term growth</span>.
+            <strong class="font-bold">dependable systems</strong>,
+            <strong class="font-bold">efficient operations</strong>,
+            and technology that <strong class="font-bold">supports long-term growth.</strong>
           </p>
         </div>
         <!-- Row 1 -->
         <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
           {% set s0 = services[0] %}
           {% set s1 = services[1] %}
-          <article class="p-8 md:p-10 flex flex-row justify-between gap-8">
-            <img class="w-24 h-24 mb-4 md:mb-6" src="{{ s0.icon }}" alt="{{ s0.title }}" aria-hidden="true">
-            <div>
-              <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s0.title }}</h3>
-              <p class="text-slate-300 mt-2 md:mt-3">{{ s0.description }}</p>
-              <a href="{{ s0.link }}" class="text-teal-400 hover:text-teal-300 transition-all ease-in-out hover:underline mt-4 block">{{ s0.linkText }}</a>
+          <article class="p-6 md:p-8 flex flex-col gap-6 techCard">
+            <div class="techCard__body">
+              <img class="w-16 h-16" src="{{ s0.icon }}" alt="{{ s0.title }}" aria-hidden="true">
+              <div class="techCard__copy">
+                <h3>{{ s0.title }}</h3>
+                <p>{{ s0.description }}</p>
+                <a href="{{ s0.link }}" class="transition-all ease-in-out align-button">{{ s0.linkText }}</a>
+              </div>
             </div>
           </article>
-          <article class="p-8 md:p-10 flex flex-row justify-between gap-8">
-            <img class="w-24 h-24 mb-4 md:mb-6" src="{{ s1.icon }}" alt="{{ s1.title }}" aria-hidden="true">
-            <div>
-              <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s1.title }}</h3>
-              <p class="text-slate-300 mt-2 md:mt-3">{{ s1.description }}</p>
-              <a href="{{ s1.link }}" class="text-teal-400 hover:text-teal-300 transition-all ease-in-out hover:underline mt-4 block">{{ s1.linkText }}</a>
+          <article class="p-6 md:p-8 flex flex-col gap-6 techCard">
+            <div class="techCard__body">
+              <img class="w-16 h-16" src="{{ s1.icon }}" alt="{{ s1.title }}" aria-hidden="true">
+              <div class="techCard__copy">
+                <h3>{{ s1.title }}</h3>
+                <p>{{ s1.description }}</p>
+                <a href="{{ s1.link }}" class="transition-all ease-in-out align-button">{{ s1.linkText }}</a>
+              </div>
             </div>
           </article>
         </div>
@@ -1288,20 +1292,24 @@
         <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
           {% set s2 = services[2] %}
           {% set s3 = services[3] %}
-          <article class="p-8 md:p-10 flex flex-row justify-between gap-8">
-            <img class="w-24 h-24 mb-4 md:mb-6" src="{{ s2.icon }}" alt="{{ s2.title }}" aria-hidden="true">
-            <div>
-              <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s2.title }}</h3>
-              <p class="text-slate-300 mt-2 md:mt-3">{{ s2.description }}</p>
-              <a href="{{ s2.link }}" class="text-teal-400 hover:text-teal-300 transition-all ease-in-out hover:underline mt-4 block">{{ s2.linkText }}</a>
+          <article class="p-6 md:p-8 flex flex-col gap-6 techCard">
+            <div class="techCard__body">
+              <img class="w-16 h-16" src="{{ s2.icon }}" alt="{{ s2.title }}" aria-hidden="true">
+              <div class="techCard__copy">
+                <h3>{{ s2.title }}</h3>
+                <p>{{ s2.description }}</p>
+                <a href="{{ s2.link }}" class="transition-all ease-in-out align-button">{{ s2.linkText }}</a>
+              </div>
             </div>
           </article>
-          <article class="p-8 md:p-10 flex flex-row justify-between gap-8">
-            <img class="w-24 h-24 mb-4 md:mb-6" src="{{ s3.icon }}" alt="{{ s3.title }}" aria-hidden="true">
-            <div>
-              <h3 class="text-teal-400 font-extrabold text-2xl md:text-3xl tracking-tight">{{ s3.title }}</h3>
-              <p class="text-slate-300 mt-2 md:mt-3">{{ s3.description }}</p>
-              <a href="{{ s3.link }}" class="text-teal-400 hover:text-teal-300 transition-all ease-in-out hover:underline mt-4 block">{{ s3.linkText }}</a>
+          <article class="p-6 md:p-8 flex flex-col gap-6 techCard">
+            <div class="techCard__body">
+              <img class="w-16 h-16" src="{{ s3.icon }}" alt="{{ s3.title }}" aria-hidden="true">
+              <div class="techCard__copy">
+                <h3>{{ s3.title }}</h3>
+                <p>{{ s3.description }}</p>
+                <a href="{{ s3.link }}" class="transition-all ease-in-out align-button">{{ s3.linkText }}</a>
+              </div>
             </div>
           </article>
         </div>
@@ -1310,6 +1318,20 @@
     </div>
     <!-- Fade to next (light) -->
     <div aria-hidden="true" style="position:absolute; left:0; right:0; bottom:0; height:16vh; pointer-events:none; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, var(--surface-1, #061021) 100%);"></div>
+    <style>
+      #techWorks .techIntro h2{font-size:clamp(36px,3.2vw,48px);font-weight:800;color:#fff;}
+      #techWorks .techIntro p{color:rgba(224,231,255,.85);font-weight:300;}
+      #techWorks .techIntro p strong{color:inherit;font-weight:700;}
+      #techWorks .techCard{display:flex;flex-direction:column;min-height:100%;}
+      #techWorks .techCard img{flex-shrink:0;}
+      #techWorks .techCard__body{display:flex;align-items:flex-start;gap:1.25rem;flex:1;}
+      #techWorks .techCard__copy{display:flex;flex-direction:column;gap:.75rem;height:100%;}
+      #techWorks .techCard .align-button{margin-top:auto;padding-top:16px;}
+      #techWorks .techCard h3{color:#fff;font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(20px,2vw,24px);}
+      #techWorks .techCard p{color:rgba(226,232,240,.82);font-size:.95rem;font-weight:400;line-height:1.45; max-width:400px;}
+      #techWorks .techCard a{color:#00BBA7;font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-top:18px;}
+      #techWorks .techCard a:hover{color:#08917c;}
+    </style>
   </section>
 
 
