@@ -28,7 +28,7 @@
   
 </head>
 
-<body class="relative bg-black font-inter" x-data="{ showModal: false, showComingSoon: false }" @keydown.escape="showModal = false; showComingSoon = false">
+<body class="relative bg-black font-inter leading-tight" x-data="{ showModal: false, showComingSoon: false }" @keydown.escape="showModal = false; showComingSoon = false">
   {% include "partials/site-headB.html" %}
   {% include "partials/site-head-mobile.html" %}
   <main tabindex="-1" id="main-content">{% block content %}{% endblock %}</main>

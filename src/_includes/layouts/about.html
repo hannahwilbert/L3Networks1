@@ -1,82 +1,753 @@
 {% extends "layouts/base.html" %}
 {% block content %}
+{% set storyCards = [
+  {
+    title: 'Who We Are',
+    body: 'We build long-term operational clarity in IT environments where stability, maturity, and trust matter. For over two decades, we’ve worked alongside business and technology leaders to solve real problems, not just technical issues, but structural challenges that prevent progress. Our role is simple: help organizations strengthen technology foundations, improve performance, and make better decisions with confidence.',
+    linkText: 'Learn about us',
+    link: '/about-us/',
+    image: '/images/whyl3/whyl3-who.png'
+  },
+  {
+    title: 'How We Work',
+    body: 'We don’t believe in complicated language or fuzzy outcomes. We believe in structured execution, clear priorities, consistent progress, and work that produces measurable results. We focus on fundamentals first, then build momentum through disciplined delivery across infrastructure, cybersecurity, cloud, user services, and IT leadership.\n\nWe operate with transparency and predictability. We communicate clearly, assign ownership, and document decisions. And we don’t disappear when things get difficult, we lean in.',
+    linkText: 'Learn about Elevate',
+    link: '/elevate/',
+    image: '/images/whyl3/whyl3-structure.png'
+  },
+  {
+    title: 'The Value of Structure',
+    body: 'IT struggles when there is no framework guiding decision-making. Strategies stall. Budgets drift. Teams get pulled into rework and reactive cycles. We bring structure to IT by aligning technology work with business priorities and improving maturity in deliberate stages. That means fewer surprises, faster shifts in direction when needed, and better control over complexity.\n\nWe help remove the noise so that internal IT teams, executives, and vendors are all working from the same plan.',
+    linkText: 'View our Expertise',
+    link: '/expertise/',
+    image: '/images/whyl3/whyl3-how.png'
+  }
+] %}
+{% set heroImage = '/images/products/cyber-security.webp' %}
+{% set faqGroups = [
+  {
+    title: 'Cost & Engagement',
+    items: [
+      { q: 'How does L3 structure pricing, and how do I know costs won’t spiral?', a: 'We use a transparent and predictable pricing model based on scope, complexity, and service requirements. No hidden fees, surprise labor, or unexplained invoices. Every engagement begins with defined expectations and a clear statement of work, so you always understand what is included. As part of our Elevate approach, we align cost to maturity goals, so investments are prioritized and controlled over time.' },
+      { q: 'Do we have to sign a long-term contract?', a: 'We offer flexible engagement options. Some services, like managed operations, benefit from term agreements for stability, while projects, assessments, and consulting can be structured as shorter commitments. Our goal is to earn trust through performance, not lock-ins. We operate with renewal transparency and meaningful business reviews so long-term decisions are based on value, not pressure.' }
+    ]
+  },
+  {
+    title: 'Partnership & Transition',
+    items: [
+      { q: 'We’ve had a difficult transition before. How do you prevent disruption when onboarding?', a: 'We follow a structured onboarding process designed to stabilize first, then introduce improvements in phases. Before any transition begins, we build a transition plan that includes ownership mapping, access control, risk review, knowledge transfer, and communication cadence. We don’t rush onboarding. We protect service continuity first, then introduce enhancements as part of a planned progression.' },
+      { q: 'We’ve had bad experiences with MSPs. What makes working with L3 different?', a: 'Many organizations tell us they’ve been disappointed by reactive service, overpromises, and poor communication in the past. We avoid that by operating with structure, accountability, and measurable results. You will always know who owns what, how priorities are decided, and what progress is being made. Our Elevate framework ensures we never default to a task-only relationship, we build maturity and value over time.' }
+    ]
+  },
+  {
+    title: 'Service Delivery',
+    items: [
+      { q: 'How responsive are you—really?', a: 'Responsiveness is built into our operating model with defined SLAs, monitored support queues, and structured escalation paths. More importantly, we reduce the need for constant escalation by fixing recurring issues at the root instead of cycling tickets. You get access to a live team—no offshore handoffs, no loops of automated replies.' },
+      { q: 'What happens if something goes wrong? Who takes responsibility?', a: 'We believe accountability is non-negotiable. If there is an outage, incident, or urgent issue, we take ownership and drive resolution. Post-event reviews are part of our process, so lessons learned translate into permanent improvements. Mistakes are addressed openly, and progress is documented.' }
+    ]
+  },
+  {
+    title: 'Security & Compliance',
+    items: [
+      { q: 'How does L3 protect our environment and data?', a: 'Security is enforced in every engagement, it is not treated as an optional add-on. We apply security controls across identity, access, endpoint, network, and cloud layers as part of our baseline. We follow least-privilege access, documented change control, and secure credential handling. We also align our work with your compliance requirements, whether they’re insurance-driven or regulatory.' }
+    ]
+  },
+  {
+    title: 'Control & Transparency',
+    items: [
+      { q: 'Will we lose control of our IT if we work with L3?', a: 'No. You maintain ownership of your systems, data, and decisions. We document and share everything; network maps, access lists, standards, and architecture updates, so you never feel locked out of your own environment. Our goal is partnership, not dependency.' }
+    ]
+  },
+  {
+    title: 'IT Team Alignment',
+    items: [
+      { q: 'Do you replace internal IT teams?', a: 'No. We support and extend them. Some clients rely on us for full service delivery, while others use us as an extension of their IT department. We can manage day-to-day operations so internal teams can focus on strategy or we can provide architecture and leadership support while your IT team handles operations. We adapt to your model.' },
+      { q: 'How do you work with internal IT leaders and staff?', a: 'We align roles clearly from day one. Your IT team maintains full visibility and involvement in decisions. We introduce structure; project tracking, priority planning, change governance, we make sure that work flows cleanly between teams. We’re collaborative, not territorial.' }
+    ]
+  },
+  {
+    title: 'Elevate & Methodology',
+    items: [
+      { q: 'What is Elevate, and how does it impact our engagement?', a: 'Elevate is our maturity framework. It gives structure to IT advancement by focusing on three phases: Stabilize, Optimize, and Transform. It helps us prioritize effort based on risk and impact, so your organization sees progress without disruption. It ensures that every engagement is guided by strategic intent rather than reactive response.' },
+      { q: 'How do we measure success working with L3?', a: 'Success is measured through documented progress across service quality, maturity improvement, risk reduction, and alignment to business goals. We provide reporting, structured reviews, and roadmap tracking so outcomes are visible. You’ll always know where we’re making progress and what comes next.' }
+    ]
+  }
+] %}
 
-<div class="relative overflow-hidden text-white md:bg-gradient-to-b bg-gradient-to-t from-black to-slate-900">
-  <div class="absolute inset-0 hidden w-full h-full md:block">
-    <img src="/images/about/icons/aboutbg1.svg" class="w-full" alt="">
+<section class="yl3-hero yl3-hero--solutions" style="background-image:url('{{ heroImage }}');">
+  <div class="yl3-hero__overlay" aria-hidden="true"></div>
+  <div class="yl3-hero__inner">
+    <h1>Why L3 Networks?</h1>
+    <p class="yl3-hero__lead">Solutions that fit.<br>Experts who deliver.<br>Service you can count on.</p>
+    <a class="yl3-hero__learn" href="#yl3-main">
+      Learn More
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 7l10 10"/>
+        <path d="M7 17h10V7"/>
+      </svg>
+    </a>
   </div>
-  <!-- <div class="absolute inset-0 hidden w-full h-full overflow-hidden md:block">
-    <img src="/images/about/icons/aboutbg1.svg" class="max-w-[800px] filter brightness-200" alt="">
-  </div> -->
-  <img class="absolute bottom-0 hidden w-full rotate-180 opacity-70 md:block" src="/images/about/icons/aboutbg1.svg" alt="">
+</section>
 
+<section id="yl3-main" class="yl3-surface">
+  <div class="yl3-container">
+    <div class="yl3-gridTop">
+      {% for card in storyCards %}
+      {% if loop.index <= 2 %}
+      <article class="yl3-card">
+        <div class="yl3-card__media" aria-hidden="true" {% if card.image %}style="background-image:url('{{ card.image }}');"{% endif %}></div>
+        <div class="yl3-card__body">
+          <h3>{{ card.title }}</h3>
+          {% for copy in card.body.split('\n\n') %}
+          <p>{{ copy }}</p>
+          {% endfor %}
+          {% if card.link and card.linkText %}
+          <a class="yl3-cardCta" href="{{ card.link }}">{{ card.linkText }}</a>
+          {% endif %}
+        </div>
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="yl3-gridBottom">
+      {% for card in storyCards %}
+      {% if loop.index > 2 %}
+      <article class="yl3-card yl3-card--wide">
+        <div class="yl3-card__body">
+          <h3>{{ card.title }}</h3>
+          {% for copy in card.body.split('\n\n') %}
+          <p>{{ copy }}</p>
+          {% endfor %}
+          <a class="yl3-cardCta" href="{{ card.link }}">{{ card.linkText }}</a>
+        </div>
+        <div class="yl3-card__media yl3-card__media--large" aria-hidden="true" {% if card.image %}style="background-image:url('{{ card.image }}');"{% endif %}></div>
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
 
-  <div class="relative flex flex-col justify-center pt-12 text-white md:pt-32 h-100">
-    <h1 class="relative mb-4 text-3xl font-semibold tracking-tight text-center font-mont pt-44 md:text-5xl">Why Choose L3 Networks?</h1>
-    <div class="relative pb-32 mx-auto mt-8">{% include "partials/cta/main-button.html" %}</div>
+    <section class="yl3-elevate">
+      <div class="yl3-elevate__copy">
+        <h2>The Elevate Connection</h2>
+        <p>To deliver consistency, we built our operating framework: Elevate. It gives every engagement a clear direction by breaking progress into three stages: <strong>Stabilize, Optimize,</strong> and <strong>Transform.</strong> Elevate is not a marketing concept; it is the foundation of how we plan, measure, and execute.</p>
+        <div class="yl3-elevate__bullets">
+          <p>It ensures:</p>
+          <ul>
+            <li>Priorities are ranked based on impact</li>
+            <li>Risk is reduced first before acceleration</li>
+            <li>Improvements are measurable</li>
+            <li>Work is aligned across all service areas</li>
+      </ul>
+    </div>
+    <p>Whether we are leading an IT program, securing environments, modernizing cloud platforms, or improving network resilience, Elevate keeps technology connected to business outcomes.</p>
   </div>
-  
+  <div class="yl3-elevateBadge" aria-label="Elevate levels">
+    <div class="yl3-elevateBadge__row yl3-elevateBadge__row--stabilize">
+      <span class="yl3-elevateBadge__icon" aria-hidden="true">
+        <svg width="28" height="22" viewBox="0 0 40 32.762" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect y="0" width="40" height="8.38092" rx="4.19046" fill="#050505"/>
+          <rect y="12.1904" width="40" height="8.38092" rx="4.19046" fill="#050505"/>
+          <rect y="24.3811" width="40" height="8.38092" rx="4.19046" fill="#050505"/>
+        </svg>
+      </span>
+      <span class="yl3-elevateBadge__label">Stabilize</span>
+    </div>
+    <div class="yl3-elevateBadge__row yl3-elevateBadge__row--optimize">
+      <span class="yl3-elevateBadge__icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 0C40 2.62644 39.4827 5.22716 38.4776 7.65367C37.4725 10.0802 35.9993 12.285 34.1421 14.1421C32.285 15.9993 30.0802 17.4725 27.6537 18.4776C25.2272 19.4827 22.6264 20 20 20C17.3736 20 14.7728 19.4827 12.3463 18.4776C9.91982 17.4725 7.71503 15.9993 5.85786 14.1421C4.00069 12.285 2.5275 10.0802 1.52241 7.65367C0.517315 5.22716 0 2.62644 0 0L40 0Z" fill="#050505"/>
+          <path d="M40 20C40 22.6264 39.4827 25.2272 38.4776 27.6537C37.4725 30.0802 35.9993 32.285 34.1421 34.1421C32.285 35.9993 30.0802 37.4725 27.6537 38.4776C25.2272 39.4827 22.6264 40 20 40C17.3736 40 14.7728 39.4827 12.3463 38.4776C9.91982 37.4725 7.71503 35.9993 5.85786 34.1421C4.00069 32.285 2.5275 30.0802 1.52241 27.6537C0.517315 25.2272 0 22.6264 0 20L40 20Z" fill="#050505"/>
+        </svg>
+      </span>
+      <span class="yl3-elevateBadge__label">Optimize</span>
+    </div>
+    <div class="yl3-elevateBadge__row yl3-elevateBadge__row--transform">
+      <span class="yl3-elevateBadge__icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="16" fill="#050505"/>
+        </svg>
+      </span>
+      <span class="yl3-elevateBadge__label">Transform</span>
+    </div>
+  </div>
+</section>
 
-  <section class="container relative max-w-screen-xl px-3 mx-auto md:px-8 2xl:px-0">
+    <section class="yl3-whyCard">
+      <div class="yl3-whyCard__intro">
+        <h2>Why Organizations Choose Us</h2>
+        <p>Organizations work with us because they want more than activity, they want progress that can be explained, defended, and measured. We help create clarity in environments where technology has become complex and decisions carry real risk.</p>
+        <p><strong>Our partnerships work because we:</strong></p>
+      </div>
+      <div class="yl3-whyCard__grid">
+        <div class="yl3-whyPoint">
+          <div class="yl3-whyPoint__icon" aria-hidden="true" data-icon="user-check"></div>
+          <div class="yl3-whyPoint__text">Own the outcome, not just the tasks</div>
+        </div>
+        <div class="yl3-whyPoint">
+          <div class="yl3-whyPoint__icon" aria-hidden="true" data-icon="bookmark-check"></div>
+          <div class="yl3-whyPoint__text">Operate with discipline and purpose</div>
+        </div>
+        <div class="yl3-whyPoint">
+          <div class="yl3-whyPoint__icon" aria-hidden="true" data-icon="goal"></div>
+          <div class="yl3-whyPoint__text">Stay aligned to long‑term business goals</div>
+        </div>
+        <div class="yl3-whyPoint">
+          <div class="yl3-whyPoint__icon" aria-hidden="true" data-icon="notebook-pen"></div>
+          <div class="yl3-whyPoint__text">Respect both strategy and execution</div>
+        </div>
+        <div class="yl3-whyPoint">
+          <div class="yl3-whyPoint__icon" aria-hidden="true" data-icon="smile"></div>
+          <div class="yl3-whyPoint__text">Treat people like partners, not tickets</div>
+        </div>
+      </div>
+      <div class="yl3-whyCard__cta">
+        <a class="yl3-btnOutline" href="/resources/">View Case Studies</a>
+      </div>
+    </section>
 
-    <hr class="mt-4 mb-10 border-slate-700">
-    <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont md:mx-0">Why Partner With L3 Networks?</h2>
-    <h3 class="w-4/5 mb-12 text-base font-light md:mx-0 text-slate-300">By choosing L3 Networks, you gain more than just an IT partner. You gain a collaborator dedicated to your success. With our combination of support and operational expertise, we deliver.</h3>
+    <section class="yl3-built">
+      <h2>Built for Teams That Want to Move Forward</h2>
+      <p>We work best with organizations that value momentum, teams who want partners who help move work forward with clarity and consistency. We bring strength in both planning and execution, so progress doesn’t get stuck between strategy and delivery.</p>
+      <p>We adapt to each environment but never compromise on fundamentals. Standards matter. Direction matters. Accountability matters. That’s how real progress is made in IT.</p>
+      <a class="yl3-btnOutline yl3-built__cta" href="/partners/">Become a Partner</a>
+    </section>
 
-  <section class="grid grid-cols-1 gap-4 md:grid-cols-4 ">
-    {% for prop in valueProps %}
-      <div class="flex flex-row items-center gap-2 mb-4 rounded-lg md:gap-6 md:flex-col md:items-start md:mb-0">
-        <img class="block w-16 h-16 text-teal-400" src="{{ prop.icon }}" alt="{{prop.title}}">
-        <div class="text-left">
-          <h3 class="mb-2 text-lg font-semibold leading-4 font-inter">{{ prop.title }}</h3>
-          <p class="text-sm font-light text-slate-400">{{ prop.description }}</p>
+    <div class="yl3-divider"></div>
+
+    <section class="yl3-faqs">
+      <h2>FAQs</h2>
+      {% set faqCounter = 0 %}
+      {% for group in faqGroups %}
+      <div class="yl3-faqGroup">
+        <h3>{{ group.title }}</h3>
+        <div class="yl3-accordions">
+          {% for item in group.items %}
+          {% set faqCounter = faqCounter + 1 %}
+          <details class="yl3-accord">
+            <summary>
+              <div class="yl3-accord__summaryBox">
+                <div class="yl3-accord__head">
+                  <span class="yl3-accord__number">{{ faqCounter }}.</span>
+                  <span class="yl3-accord__question">{{ item.q }}</span>
+                </div>
+                <span class="yl3-accord__icon" aria-hidden="true"></span>
+              </div>
+            </summary>
+            <div class="yl3-accord__body">
+              <p>{{ item.a }}</p>
+            </div>
+          </details>
+          {% endfor %}
         </div>
       </div>
       {% endfor %}
-  </section>
-  <div class="pt-32">&nbsp;</div>
-
-  <hr class="mb-10 border-slate-700">
-  <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont md:mx-0">A Strategic Partner</h2>
-  <p class="mb-12 text-base font-light md:w-4/5 md:mx-0 text-slate-300">
-    Your IT strategy should drive business success, not hold it back. We take a proactive approach to aligning technology with your goals, ensuring seamless operations and a competitive edge.
-  </p>
-  
-  {% include "partials/about-partner.njk"  %}
-  
-  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-    <section>
-      <hr class="mt-32 mb-10 border-slate-700">
-      <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont md:mx-0">Dedicated to Service</h2>
-      <p class="mb-12 text-base font-light md:mx-0 text-slate-300">
-        Downtime is not an option. With 24/7 monitoring, rapid response, and a relentless focus on performance, we provide IT support that keeps your business moving forward—without disruptions.
-      </p>
-      {% include "partials/about-service.njk"  %}
-    </section>
-    <section>
-      <hr class="mt-32 mb-10 border-slate-700">
-      <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont md:mx-0">Expert Capability</h2>
-      <p class="mb-12 text-base font-light md:mx-0 text-slate-300">
-        IT complexity shouldn’t slow you down. Our certified experts deliver enterprise-grade solutions, cutting-edge security, and seamless integration—so your technology works for you, not against you.
-      </p>
-      {% include "partials/about-expert.njk"  %}
     </section>
   </div>
-  
-    <hr class="my-10 border-slate-700">
-      <p class="font-mono text-xs text-slate-500">Share</p>
-      <div class="flex gap-2 mb-32">
-        <a href="https://www.linkedin.com/company/l3-networks" class="block h-5 py-1 font-bold hover:underline"><img class="w-5 h-5 pr-1" src="/images/home/LinkedIn.svg" alt="LinkedIn Logo"></a>
-        <a href="https://www.facebook.com/people/L3-Networks-Inc/61562904941740/" class="block h-5 py-1 font-bold hover:underline"><img class="w-5 h-5 pr-1" src="/images/home/Facebook.svg" alt="Facebook Logo"></a>
-        <a href="https://www.youtube.com/@L3Networks" class="block h-5 py-1 font-bold hover:underline"><img class="w-5 h-5 pr-1" src="/images/home/YouTube.svg" alt="YouTube Logo"></a>
-      </div>
+</section>
 
-  </section>
-
-</div>
-
-
+<style>
+  :root{
+    --yl3-surface:#000000;
+    --yl3-panel:#08090f;
+    --yl3-border:rgba(255,255,255,.08);
+    --yl3-text:rgba(214,219,233,.92);
+    --yl3-muted:rgba(148,163,184,.75);
+    --yl3-dot-stab:#ff6a3d;
+    --yl3-dot-opt:#3c52ff;
+    --yl3-dot-trans:#00bba7;
+  }
+  body{
+    line-height:1.4;
+  }
+  .yl3-hero{
+    position:relative;
+    color:#fff;
+    text-align:left;
+    background:#000;
+  }
+  .yl3-hero--solutions{
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    min-height:70vh;
+    padding:180px 24px 140px;
+  }
+  .yl3-hero__overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.6) 45%, rgba(0,0,0,.9) 100%);
+  }
+  .yl3-hero__inner{
+    position:relative;
+    z-index:1;
+    width:min(1100px,100%);
+    margin:0 auto;
+    padding:0 1rem;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+  }
+  @media(min-width:1024px){
+    .yl3-hero__inner{padding:0;}
+  }
+  .yl3-hero h1{
+    font-family:'Montserrat',sans-serif;
+    font-size:clamp(36px,5vw,64px);
+    letter-spacing:-.03em;
+    margin:0;
+    font-weight:600;
+  }
+  .yl3-hero__lead{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(18px,2.4vw,24px);
+    color:var(--yl3-text);
+    max-width:640px;
+    font-weight:300;
+  }
+  .yl3-hero__learn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 24px;
+    border-radius:30px;
+    border:1px solid rgba(0,187,167,.8);
+    color:#00bba7;
+    text-decoration:none;
+    font-weight:600;
+    width:max-content;
+    position:relative;
+    z-index:1;
+    margin-top:12px;
+    transition:color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .yl3-hero__learn:hover,
+  .yl3-hero__learn:focus-visible{
+    color:#0dd1bc;
+    border-color:#0dd1bc;
+    transform:translateY(-2px);
+  }
+  .yl3-surface{
+    background:var(--yl3-surface);
+    color:#fff;
+    padding:40px 0 120px;
+  }
+  .yl3-container{
+    width:min(1100px,100%);
+    margin:0 auto;
+    padding:0 20px;
+    display:flex;
+    flex-direction:column;
+  }
+  .yl3-surface p{
+    font-size:15px;
+  }
+  .yl3-container > * + *{
+    margin-top:clamp(56px,8vw,96px);
+  }
+  .yl3-container > section:first-of-type{
+    border-top:1px solid #334155;
+    padding-top:40px;
+    margin-top:clamp(56px,8vw,96px);
+  }
+  .yl3-gridTop{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+  }
+  @media(min-width:900px){
+    .yl3-gridTop{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  .yl3-gridBottom{
+    display:grid;
+    grid-template-columns:1fr;
+    margin-top:24px;
+  }
+  .yl3-card{
+    background:#000000;
+    border: 1px solid rgba(255, 255, 255, 0.183);
+    border-radius:20px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    box-shadow:0 20px 40px rgba(0,0,0,.55);
+  }
+  .yl3-card__media{
+    width:100%;
+    height:150px;
+    border-radius:14px;
+    background:#0f172a;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    position:relative;
+    overflow:hidden;
+  }
+  .yl3-card__media::after{
+    content:\"\"; 
+    position:absolute; 
+    inset:0; 
+    background:linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.85) 100%), radial-gradient(circle at 30% 20%, rgba(255,255,255,0.2), transparent 60%);
+  }
+  .yl3-card__media--large{
+    height:300px;
+    width:47%;
+    min-width:unset;
+  }
+  .yl3-gridTop .yl3-card__media{
+    height:220px;
+  }
+  .yl3-card--wide{
+    flex-direction:column;
+    gap:18px;
+  }
+  @media(min-width:900px){
+    .yl3-card--wide{
+      flex-direction:row;
+      align-items:flex-start;
+      gap:32px;
+    }
+    .yl3-card--wide .yl3-card__body{
+      flex:1;
+    }
+  }
+  .yl3-card__eyebrow{
+    font-size:12px;
+    color:var(--yl3-muted);
+    text-transform:uppercase;
+    letter-spacing:.4em;
+    margin:0;
+  }
+  .yl3-card h3{
+    margin:4px 0 8px;
+    font-size:20px;
+    font-weight:600;
+  }
+  .yl3-card p{
+    color:var(--yl3-text);
+    line-height:1.45;
+    margin:0 0 10px;
+    font-size:15px;
+  }
+  .yl3-card__body{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .yl3-cardCta{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 24px;
+    border-radius:999px;
+    background:rgba(3,6,12,.95);
+    border:1px solid rgba(15,199,167,.6);
+    color:#7ef2d8;
+    font-weight:500;
+    text-decoration:none;
+    width:max-content;
+    margin-top:12px;
+    box-shadow:0 18px 32px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.05);
+    transition:color .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .yl3-cardCta:hover,
+  .yl3-cardCta:focus-visible{
+    color:#d4fff4;
+    border-color:#22ffd5;
+    transform:translateY(-2px);
+  }
+  .yl3-elevate{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:32px;
+    align-items:flex-start;
+    padding:32px 0;
+    border-top:1px solid var(--yl3-border);
+  }
+  @media(max-width:900px){
+    .yl3-elevate{grid-template-columns:1fr;}
+  }
+  .yl3-elevate__copy h2{
+    font-size:clamp(28px,4vw,36px);
+    margin-bottom:12px;
+  }
+  .yl3-elevate__copy p{
+    color:var(--yl3-text);
+    line-height:1.5;
+    margin-bottom:14px;
+  }
+  .yl3-elevate__copy strong{
+    color:#fff;
+  }
+  .yl3-elevate__bullets ul{
+    list-style:disc;
+    padding-left:20px;
+    color:var(--yl3-text);
+    margin:8px 0 16px;
+    line-height:1.6;
+  }
+  .yl3-elevateBadge{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-self:center;
+    justify-self:center;
+    justify-content:center;
+    min-width:260px;
+  }
+  .yl3-elevateBadge__row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:18px 24px;
+    border-radius:20px;
+    font-size:18px;
+    font-weight:700;
+    color:#030303;
+    box-shadow:0 8px 22px rgba(0,0,0,.45);
+  }
+  .yl3-elevateBadge__row--stabilize{
+    background:#ff5a0a;
+    color:#050505;
+  }
+  .yl3-elevateBadge__row--optimize{
+    background:#1973ff;
+    color:#050505;
+  }
+  .yl3-elevateBadge__row--transform{
+    background:#06d7c3;
+    color:#050505;
+  }
+  .yl3-elevateBadge__icon svg{display:block;}
+  .dot{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    display:inline-block;
+  }
+  .dot--stabilize{background:var(--yl3-dot-stab);}
+  .dot--optimize{background:var(--yl3-dot-opt);}
+  .dot--transform{background:var(--yl3-dot-trans);}
+  .yl3-divider{
+    height:1px;
+    width:100%;
+    background:#334155;
+  }
+  .yl3-whyCard{
+    border-top:1px solid #334155;
+    padding:40px 0;
+  }
+  .yl3-whyCard__intro{
+    text-align:center;
+    margin-bottom:28px;
+  }
+  .yl3-whyCard h2{
+    font-size:clamp(32px,4vw,44px);
+    margin-bottom:14px;
+  }
+  .yl3-whyCard__intro p{
+    color:var(--yl3-text);
+    line-height:1.5;
+    margin-bottom:14px;
+  }
+  .yl3-whyCard__grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:22px;
+    text-align:center;
+    margin-bottom:28px;
+  }
+  .yl3-whyPoint{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    color:var(--yl3-text);
+    padding:12px 0;
+  }
+  .yl3-whyPoint__icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#00bba7;
+  }
+  .yl3-whyPoint__icon::before{
+    content:"";
+    width:40px;
+    height:40px;
+    display:block;
+    background-size:contain;
+    background-repeat:no-repeat;
+    background-position:center;
+  }
+  .yl3-whyPoint__icon[data-icon="user-check"]::before{
+    background-image:url('/images/icons/user-check.svg');
+  }
+  .yl3-whyPoint__icon[data-icon="bookmark-check"]::before{
+    background-image:url('/images/icons/bookmark-check.svg');
+  }
+  .yl3-whyPoint__icon[data-icon="goal"]::before{
+    background-image:url('/images/icons/goal.svg');
+  }
+  .yl3-whyPoint__icon[data-icon="notebook-pen"]::before{
+    background-image:url('/images/icons/notebook-pen.svg');
+  }
+  .yl3-whyPoint__icon[data-icon="smile"]::before{
+    background-image:url('/images/icons/smile.svg');
+  }
+  .yl3-whyPoint__text{
+    font-size:15px;
+    color:var(--yl3-text);
+  }
+  .yl3-whyCard__cta{
+    display:flex;
+    justify-content:center;
+  }
+  .yl3-built{
+    border-top:1px solid #334155;
+    padding:40px 0;
+  }
+  .yl3-built h2{
+    font-size:clamp(28px,4vw,36px);
+    margin-bottom:12px;
+  }
+  .yl3-built p{
+    color:var(--yl3-text);
+    line-height:1.5;
+    margin:0;
+    max-width:75ch;
+  }
+  .yl3-built p + p{
+    margin-top:14px;
+  }
+  .yl3-built__cta{
+    margin-top:18px;
+  }
+  .yl3-btnOutline{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px 24px;
+    border-radius:999px;
+    border:1px solid #00bba7;
+    color:#00bba7;
+    text-decoration:none;
+    font-weight:600;
+  }
+  .yl3-whyCard p,
+  .yl3-built p{
+    color:var(--yl3-text);
+    line-height:1.65;
+  }
+  .yl3-built h2{
+    font-size:clamp(28px,4vw,36px);
+    margin-bottom:10px;
+  }
+  .yl3-faqs h2{
+    font-size:32px;
+    margin-bottom:16px;
+  }
+  .yl3-faqGroup + .yl3-faqGroup{
+    margin-top:32px;
+  }
+  .yl3-faqGroup h3{
+    font-size:20px;
+    margin-bottom:12px;
+  }
+  .yl3-accord{
+    --yl3-accord-radius:20px;
+    background:#0e0e0e;
+    border-radius:var(--yl3-accord-radius);
+    color:#fff;
+    overflow:hidden;
+  }
+  .yl3-accord + .yl3-accord{margin-top:18px;}
+  .yl3-accord summary{
+    cursor:pointer;
+    list-style:none;
+    border-radius:inherit;
+    display:block;
+  }
+  .yl3-accord summary::-webkit-details-marker{display:none;}
+  .yl3-accord summary:focus-visible{
+    outline:none;
+  }
+  .yl3-accord summary:focus-visible .yl3-accord__summaryBox{
+    outline:2px solid rgba(0,187,167,.35);
+    outline-offset:-6px;
+  }
+  .yl3-accord__summaryBox{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:18px;
+    padding:20px 28px;
+    background:#131313;
+    color:#fff;
+    border-radius:var(--yl3-accord-radius);
+    box-shadow:none;
+    transition:background .15s ease;
+    font-weight:600;
+    position:relative;
+    z-index:2;
+  }
+  .yl3-accord[open] .yl3-accord__summaryBox{
+   background:#131313;
+    box-shadow:none;
+    border-bottom-left-radius:var(--yl3-accord-radius);
+    border-bottom-right-radius:var(--yl3-accord-radius);
+  }
+  .yl3-accord__head{
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    flex:1;
+  }
+  .yl3-accord__number{
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:700;
+    color:#fff;
+    margin-top:2px;
+  }
+  .yl3-accord__question{
+    flex:1;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:#fff;
+    line-height:1.35;
+  }
+  .yl3-accord__icon{
+    width:0;
+    height:0;
+    border-top:7px solid transparent;
+    border-bottom:7px solid transparent;
+    border-left:11px solid rgba(148,152,161,.9);
+    margin-top:4px;
+    transition:transform .2s ease, border-left-color .2s ease;
+  }
+  .yl3-accord[open] .yl3-accord__icon{
+    transform:rotate(90deg);
+    border-left-color:#00bba7;
+  }
+  .yl3-accord__body{
+    padding:26px 28px 24px;
+    background:transparent;
+    border-bottom-left-radius:var(--yl3-accord-radius);
+    border-bottom-right-radius:var(--yl3-accord-radius);
+    border-top-left-radius:var(--yl3-accord-radius);
+    border-top-right-radius:var(--yl3-accord-radius);
+    position:relative;
+    z-index:1;
+  }
+  .yl3-accord__body p{
+    margin:0;
+    color:var(--yl3-text);
+    line-height:1.55;
+  }
+</style>
 
 {% include "partials/footer.html" %}
-
 {% endblock %}

@@ -16,12 +16,12 @@ html {
 }
 
 body p {
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 body h2,
 body h3 {
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 /* Global hover performance helpers */
