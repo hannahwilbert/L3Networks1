@@ -1,9 +1,6 @@
 {% extends "layouts/base.html" %}
 {% block content %}
 
-
-<body class="bg-gray-100 font-open">
-
   <!-- Hero Section -->
   <article style="background-image: url('/images/aboutus-hero.jpg'); background-position:50% 0%;" class="aboutHero relative py-32 overflow-hidden bg-cover md:pt-64 md:pb-44">
 
@@ -57,8 +54,8 @@
       </div>
     </div>
 
-    <div class="p-4 my-32 text-center md:py-64 md:px-12 md:bg-radial bg-linear-0 from-slate-800 via-slate-900/50 to-black rounded-xl">
-      <h4 class="text-3xl font-semibold font-mont text-slate-100 md:text-3xl">
+    <div class="aboutus-mission py-12 my-32 md:py-64">
+      <h4 class="text-3xl font-semibold text-center font-mont text-slate-100 md:text-3xl">
         Our Mission
       </h4>
       <p class="mt-4 text-lg font-light text-slate-300 md:text-xl">
@@ -163,6 +160,9 @@
 
     <hr class="mt-4 mb-10 border-slate-700">
     <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont md:mx-0">Empowering Businesses With Leading Technologies</h2>
+    <h3 class="w-4/5 mb-12 font-light md:mx-0 text-slate-300" style="font-size:18px;">
+      We ensure that your business adopts the latest technologies to stay ahead in your industry.
+    </h3>
     <div class="grid grid-flow-row grid-cols-2 gap-3 md:grid-cols-5">
       <img class="h-24 invert brightness-0" alt="Amazon Web Services (AWS) logo" src="/images/about/logo-aws.svg">
       <img class="h-24 invert brightness-0" alt="Aruba logo" src="/images/about/logo-aruba.svg">
@@ -208,28 +208,25 @@
 
   <div class="container about-max max-w-screen-xl px-3 mx-auto text-white md:px-8 2xl:px-0">
     <hr class="mt-4 mb-10 border-slate-700">
-    <h2 class="mt-4 mb-3 text-3xl font-semibold font-mont md:mx-0">Locations</h2>
-    <h3 class="w-4/5 mb-12 text-base font-light md:mx-0 text-slate-300">
-      We ensure that your business adopts the latest technologies to stay ahead in your industry.
-    </h3>
-
+    <h2 class="mt-4 mb-8 text-3xl font-semibold font-mont md:mx-0">Locations</h2>
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <!-- Corporate Office with Embedded Map -->
       <div class="relative col-span-1 p-6 border rounded-xl lg:col-span-3 bg-slate-900/50 border-slate-800">
-        <div class="absolute flex space-x-2 top-4 right-4">
+        <div class="absolute flex space-x-1 top-4 right-4">
           <a href="https://maps.google.com/?q=11205+Knott+Avenue,+Suite+B+Cypress,+CA+90630" target="_blank" class="text-slate-400 hover:text-slate-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
           </a>
           <a href="https://maps.apple.com/?q=11205+Knott+Avenue,+Suite+B+Cypress,+CA+90630" target="_blank" class="text-slate-400 hover:text-slate-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 00-7.07 17.07A10 10 0 1012 2zm1 14.5a1 1 0 01-2 0V11a1 1 0 112 0v5.5z"></path>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.365 12.915c-.024-2.321 1.9-3.433 1.986-3.486-1.09-1.593-2.777-1.812-3.373-1.83-1.435-.145-2.804.84-3.538.84-.732 0-1.853-.82-3.046-.799-1.57.024-3.022.934-3.835 2.37-1.63 2.825-.415 6.981 1.172 9.265.778 1.115 1.703 2.369 2.918 2.324 1.17-.046 1.61-.75 3.025-.75 1.415 0 1.808.75 3.05.726 1.261-.02 2.056-1.14 2.828-2.26.887-1.298 1.252-2.562 1.274-2.628-.028-.013-2.457-.942-2.461-3.772Z"/>
+              <path d="M14.093 5.169c.642-.778 1.074-1.864.953-2.953-.92.037-2.03.613-2.69 1.387-.59.687-1.107 1.78-.972 2.825 1.026.08 2.067-.521 2.709-1.259Z"/>
             </svg>
           </a>
         </div>
-        <h3 class="text-lg font-semibold text-slate-100">Corporate Office</h3>
+        <h3 class="text-base font-semibold text-slate-100">Corporate Office</h3>
         <p class="mt-2 text-sm font-light text-slate-300">11205 Knott Avenue, Suite B <br> Cypress, CA 90630</p>
         <div class="mt-4 overflow-hidden rounded-lg">
           <iframe class="w-full h-64 sm:h-80 md:h-96"
@@ -241,20 +238,21 @@
       <!-- Other Locations -->
       {% for loc in locations %}
       <div class="relative p-6 border rounded-lg bg-slate-900/50 border-slate-800">
-        <div class="absolute flex space-x-2 top-4 right-4">
+        <div class="absolute flex space-x-1 top-4 right-4">
           <a href="{{ loc.google }}" target="_blank" class="text-slate-400 hover:text-slate-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
           </a>
           <a href="{{ loc.apple }}" target="_blank" class="text-slate-400 hover:text-slate-200">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 00-7.07 17.07A10 10 0 1012 2zm1 14.5a1 1 0 01-2 0V11a1 1 0 112 0v5.5z"></path>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.365 12.915c-.024-2.321 1.9-3.433 1.986-3.486-1.09-1.593-2.777-1.812-3.373-1.83-1.435-.145-2.804.84-3.538.84-.732 0-1.853-.82-3.046-.799-1.57.024-3.022.934-3.835 2.37-1.63 2.825-.415 6.981 1.172 9.265.778 1.115 1.703 2.369 2.918 2.324 1.17-.046 1.61-.75 3.025-.75 1.415 0 1.808.75 3.05.726 1.261-.02 2.056-1.14 2.828-2.26.887-1.298 1.252-2.562 1.274-2.628-.028-.013-2.457-.942-2.461-3.772Z"/>
+              <path d="M14.093 5.169c.642-.778 1.074-1.864.953-2.953-.92.037-2.03.613-2.69 1.387-.59.687-1.107 1.78-.972 2.825 1.026.08 2.067-.521 2.709-1.259Z"/>
             </svg>
           </a>
         </div>
-        <h3 class="text-lg font-semibold text-slate-100">{{ loc.name }}</h3>
+        <h3 class="text-base font-semibold text-slate-100">{{ loc.name }}</h3>
         <p class="mt-2 text-sm font-light text-slate-300">{{ loc.address | replace(', ', '<br>') | safe }}</p>
       </div>
       {% endfor %}
@@ -268,36 +266,36 @@
 {% include "partials/footer.html" %}
 
 <style>
-  .aboutHero{
-    position:relative;
-  }
+.aboutHero{
+  position:relative;
+}
   .about-max{
-    width:min(1100px,100%);
-    max-width:min(1100px,100%);
+    width:min(1280px,100%);
+    max-width:min(1280px,100%);
     margin-left:auto;
     margin-right:auto;
   }
-  .aboutHero::before{
-    content:"";
-    position:absolute;
-    inset:-30%;
-    background:radial-gradient(circle at 20% 20%, rgba(0,0,0,.55), transparent 55%),
-               radial-gradient(circle at 70% 30%, rgba(0,0,0,.45), transparent 60%),
-               radial-gradient(circle at 40% 80%, rgba(0,0,0,.5), transparent 55%);
-    filter:blur(60px);
-    opacity:.7;
-    animation:aboutGlow 14s ease-in-out infinite alternate;
-    z-index:0;
-    pointer-events:none;
-  }
-  .aboutHero::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(180deg, rgba(0, 0, 0, 0.432) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.95) 100%);
-    z-index:0;
-    pointer-events:none;
-  }
+.aboutHero::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:radial-gradient(circle at 20% 20%, rgba(0,0,0,.55), transparent 55%),
+             radial-gradient(circle at 70% 30%, rgba(0,0,0,.45), transparent 60%),
+             radial-gradient(circle at 40% 80%, rgba(0,0,0,.5), transparent 55%);
+  filter:blur(60px);
+  opacity:.7;
+  animation:aboutGlow 14s ease-in-out infinite alternate;
+  z-index:0;
+  pointer-events:none;
+}
+.aboutHero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(0, 0, 0, 0.432) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.95) 100%);
+  z-index:0;
+  pointer-events:none;
+}
   .aboutHero > *{
     position:relative;
     z-index:1;
@@ -316,6 +314,83 @@
     color:rgba(226,232,240,.9);
     line-height:1.45;
     margin-top:24px;
+  }
+  .aboutus-mission{
+    position:relative;
+    overflow:hidden;
+    padding-block:clamp(3.5rem,9vw,6.25rem);
+    padding-inline:clamp(0rem,2vw,1rem);
+    width:100%;
+    max-width:none;
+    margin-left:auto;
+    margin-right:auto;
+  }
+.aboutus-mission::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background-color:#010101;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(94,234,212,.25) 0%, rgba(59,130,246,.14) 14%, rgba(37,99,235,.06) 28%, rgba(15,23,42,.03) 36%, transparent 44%),
+    radial-gradient(circle at 38% 32%, rgba(59,130,246,.1), transparent 20%),
+    radial-gradient(circle at 64% 68%, rgba(56,189,248,.08), transparent 18%),
+    linear-gradient(90deg,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,.99) 7%,
+      rgba(0,0,0,.9) 15%,
+      rgba(0,0,0,.74) 24%,
+      rgba(0,0,0,.28) 36%,
+      rgba(0,0,0,.04) 47%,
+      rgba(0,0,0,.04) 53%,
+      rgba(0,0,0,.28) 64%,
+      rgba(0,0,0,.74) 76%,
+      rgba(0,0,0,.9) 87%,
+      rgba(0,0,0,.99) 93%,
+      rgba(0,0,0,1) 100%),
+    linear-gradient(0deg,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 25%,
+      rgba(0,0,0,.995) 34%,
+      rgba(0,0,0,.72) 42%,
+      rgba(0,0,0,.18) 47%,
+      rgba(0,0,0,.04) 50%,
+      rgba(0,0,0,.18) 53%,
+      rgba(0,0,0,.72) 58%,
+      rgba(0,0,0,.995) 66%,
+      rgba(0,0,0,1) 75%,
+      rgba(0,0,0,1) 100%),
+    linear-gradient(135deg, rgba(1,3,9,1), rgba(3,5,16,1));
+  background-repeat:no-repeat;
+  filter:blur(80px);
+  opacity:1;
+  pointer-events:none;
+  z-index:0;
+}
+.aboutus-mission::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center,
+    rgba(0,0,0,0) 20%,
+    rgba(0,0,0,.38) 38%,
+    rgba(0,0,0,.76) 58%,
+    rgba(0,0,0,.96) 74%,
+    rgba(0,0,0,1) 100%);
+  pointer-events:none;
+  z-index:0;
+}
+  .aboutus-mission > *{
+    position:relative;
+    z-index:1;
+  }
+  .aboutus-mission h4{
+    font-size:clamp(2rem,6vw,2.75rem);
+  }
+  .aboutus-mission p{
+    font-size:clamp(1rem,4vw,1.25rem);
+    line-height:1.7;
+    text-align:center;
+    max-width:100%;
   }
   @keyframes aboutGlow{
     0%{transform:translate3d(-5%, -5%, 0) scale(1);}
