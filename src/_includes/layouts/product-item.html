@@ -442,18 +442,19 @@
     {% raw %}
 <style>
   #cybersec-section{background:#000;padding:clamp(20px,6vh,56px) 0;color:var(--ink,#fff);}
-  #cybersec-section .wrap{width:min(1200px,100%)}
-  #cybersec-section .wrap{margin:0!important;padding:0!important;}
+  #cybersec-section .wrap{width:100%;margin:0;padding:0!important;}
   #cybersec-section .hdr h2{font-size:clamp(24px,3vw,28px);line-height:1.15;letter-spacing:-.015em;margin:0 0 12px;font-weight:800;color:#fff;}
   #cybersec-section .hdr p{margin:0;color:rgba(255,255,255,.72);max-width:60ch;}
-  #cybersec-section .content{display:grid;grid-template-columns:1fr;gap:20px;margin-top:0;max-width:1200px;margin-left:auto;margin-right:auto;}
+  #cybersec-section .content{display:grid;grid-template-columns:1fr;gap:20px;margin-top:0;width:100%;margin-left:auto;margin-right:auto;padding:0;}
   #cybersec-section .filters{order:1;position:-webkit-sticky;position:sticky;top:64px;z-index:2;align-self:start;}
   #cybersec-section .filters__panel{padding:16px;border-radius:16px;background:#050505;}
-  #cybersec-section .cards{order:2;width:100%;}
+  #cybersec-section .filters__panelInner{display:flex;flex-direction:column;gap:14px;}
+  #cybersec-section .filters__sentinel{display:none;}
+  #cybersec-section .cards{order:2;width:100%;padding:0 16px;}
   @media (min-width:1024px){
-    #cybersec-section .content{grid-template-columns:2fr 1fr;gap:32px;}
+    #cybersec-section .content{grid-template-columns:minmax(0,2fr) minmax(280px,1fr);gap:32px;padding:0 32px;}
     #cybersec-section .filters{order:2;top:96px;}
-    #cybersec-section .cards{order:1;}
+    #cybersec-section .cards{order:1;padding:0;}
     #cybersec-section .filters__panel{background:rgba(0,0,0,.92);backdrop-filter:blur(8px);}
   }
   #cybersec-section .cards{display:grid;grid-template-columns:1fr;gap:16px;}
@@ -473,6 +474,12 @@
   #cybersec-section .pill-dot--on.pill-dot--optimize:not(svg){background:#3c52ff;}
   #cybersec-section .pill-dot--on.pill-dot--transform:not(svg){background:#00bba7;}
   #cybersec-section .filters__lead{color:rgba(255,255,255,.72);font-size:16px;line-height:1.6;margin:0 0 8px;}
+  #cybersec-section .filters__panelInner{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  #cybersec-section .filters__sentinel{width:100%;height:1px;margin:0;padding:0;}
   #cybersec-section .filters__group{
     display:flex;
     flex-direction:column;
@@ -488,7 +495,7 @@
   }
   #cybersec-section .filter-btn{
     position:relative;
-    background:#02060f;
+    background:#000;
     border:1px solid rgba(148,163,184,.35);
     padding:15px 22px;
     display:flex;
@@ -558,6 +565,141 @@
       transform:none;
     }
   }
+  @media (max-width:768px){
+    #cybersec-section .filters{
+      order:1;
+      position:-webkit-sticky;
+      position:sticky;
+      top:56px;
+      z-index:10;
+      width:100vw;
+      margin:0 calc(50% - 50vw) 24px;
+      padding:0 16px;
+    }
+    #cybersec-section .wrap{
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+      padding:0!important;
+    }
+    #cybersec-section .filters__panel{
+      padding:0;
+      background:transparent;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
+      overflow:visible;
+    }
+    #cybersec-section .filters__panelInner{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      width:100%;
+      min-width:0;
+      background:#050505;
+      border-radius:0 0 24px 24px;
+      border-top:none;
+      border-left:none;
+      border-right:none;
+      border-bottom:1px solid rgba(51,65,85,0);
+      padding:16px 18px;
+      box-shadow:0 20px 45px rgba(0,0,0,.7);
+      transition:border-bottom-color .25s ease, box-shadow .25s ease;
+      align-items:center;
+    }
+    #cybersec-section .filters.filters--overlap .filters__panelInner{
+      border-bottom-color:rgba(148,163,184,.7);
+      box-shadow:0 32px 65px rgba(0,0,0,.85);
+    }
+    #cybersec-section .filters__sentinel{
+      display:block;
+      width:100%;
+      height:1px;
+      order:2;
+    }
+    #cybersec-section .cards{
+      order:3;
+    }
+    #cybersec-section .filters__sentinel{
+      display:block;
+      width:100%;
+      height:1px;
+      order:2;
+    }
+    #cybersec-section .cards{
+      order:3;
+    }
+    #cybersec-section .filters__lead{
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:rgba(226,232,240,.65);
+      text-align:center;
+      margin:0;
+    }
+    #cybersec-section .filters__group{
+      display:flex;
+      flex-direction:row;
+      flex-wrap:nowrap;
+      gap:10px;
+      align-items:stretch;
+      width:100%;
+      justify-content:center;
+      max-width:420px;
+      margin:0;
+    }
+    #cybersec-section .filter-btnWrap{
+      width:100%;
+      flex:1 1 0;
+      display:flex;
+    }
+    #cybersec-section .filter-btn{
+      width:100%;
+      min-width:0;
+      max-width:none;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:4px;
+      padding:8px 6px;
+      background:transparent;
+      border:none;
+      border-radius:12px;
+      box-shadow:none;
+    }
+    #cybersec-section .filter-btn__text{
+      font-size:15px;
+    }
+    #cybersec-section .filter-dot{
+      margin-bottom:2px;
+    }
+    #cybersec-section .filter-btn__copy{
+      position:static;
+      width:auto;
+      background:transparent;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
+      padding:0;
+      margin-top:0;
+      opacity:0;
+      pointer-events:none;
+      transform:none;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .25s ease, opacity .25s ease;
+      color:rgba(226,232,240,.85);
+      font-size:14px;
+    }
+    #cybersec-section .filter-btnWrap[data-active=\"true\"] .filter-btn__copy{
+      opacity:1;
+      pointer-events:auto;
+      margin-top:10px;
+      max-height:180px;
+      border-top:1px solid rgba(148,163,184,.18);
+      padding-top:12px;
+    }
+  }
   #cybersec-section .filter-dot{display:inline-flex;align-items:center;justify-content:center;}
   #cybersec-section .filter-dot:not(svg){height:6px;width:10px;border-radius:999px;}
   #cybersec-section svg.filter-dot{display:block;flex-shrink:0;}
@@ -577,11 +719,16 @@
 <section id="cybersec-section" aria-label="Comprehensive Cybersecurity Solutions">
   <div class="wrap">
     <div class="content">
+      <div class="filters__sentinel" aria-hidden="true"></div>
       <div class="cards" id="cards" aria-live="polite"></div>
       <aside class="filters fade-item delay-200" aria-label="Service level filters">
         <div class="filters__panel">
-          <p class="filters__lead">All of our services are built around our Elevate framework. See where they land on your journey.</p>
-          <div class="filters__group" id="filters"></div>
+          <div class="filters__sticky">
+            <div class="filters__panelInner">
+              <p class="filters__lead">All of our services are built around our Elevate framework. See where they land on your journey.</p>
+              <div class="filters__group" id="filters"></div>
+            </div>
+          </div>
         </div>
       </aside>
     </div>
@@ -649,6 +796,8 @@
   if (!section) return;
   var cardsEl = section.querySelector('#cards');
   var filtersEl = section.querySelector('#filters');
+  var filtersWrap = section.querySelector('.filters');
+  var sentinelEl = section.querySelector('.filters__sentinel');
   if (!cardsEl || !filtersEl) return;
 
   var RAW = {{ keyprods | dump | safe }};
@@ -961,6 +1110,40 @@
     renderCards();
   }
 
+  function setupStickyBorder(){
+    if (!filtersWrap || !sentinelEl || !window.matchMedia) return;
+    var mq = window.matchMedia('(max-width: 768px)');
+    var observer = null;
+    function applyObserver(){
+      if (observer){
+        observer.disconnect();
+        observer = null;
+      }
+      filtersWrap.classList.remove('filters--overlap');
+      if (!mq.matches) return;
+      var topOffset = filtersWrap.offsetHeight || 120;
+      var stickyOffset = 0;
+      var computedTop = window.getComputedStyle(filtersWrap).top;
+      if (computedTop) {
+        var parsed = parseInt(computedTop, 10);
+        if (!isNaN(parsed)) stickyOffset = parsed;
+      }
+      var margin = `-${topOffset + stickyOffset}px 0px 0px 0px`;
+      observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          filtersWrap.classList.toggle('filters--overlap', !entry.isIntersecting);
+        });
+      }, { threshold:0, rootMargin:margin });
+      observer.observe(sentinelEl);
+    }
+    if (mq.addEventListener){
+      mq.addEventListener('change', applyObserver);
+    } else if (mq.addListener){
+      mq.addListener(applyObserver);
+    }
+    applyObserver();
+  }
+
   filtersEl.addEventListener('click', function(evt){
     var wrap = evt.target.closest('.filter-btnWrap');
     if (!wrap || !filtersEl.contains(wrap)) return;
@@ -969,6 +1152,7 @@
 
   initFilters();
   renderCards();
+  setupStickyBorder();
 })();
 </script>
 

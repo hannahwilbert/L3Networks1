@@ -113,6 +113,7 @@
       {% for card in storyCards %}
       {% if loop.index > 2 %}
       <article class="yl3-card yl3-card--wide">
+        <div class="yl3-card__media yl3-card__media--large" aria-hidden="true" {% if card.image %}style="background-image:url('{{ card.image }}');"{% endif %}></div>
         <div class="yl3-card__body">
           <h3>{{ card.title }}</h3>
           {% for copy in card.body.split('\n\n') %}
@@ -120,7 +121,6 @@
           {% endfor %}
           <a class="yl3-cardCta" href="{{ card.link }}">{{ card.linkText }}</a>
         </div>
-        <div class="yl3-card__media yl3-card__media--large" aria-hidden="true" {% if card.image %}style="background-image:url('{{ card.image }}');"{% endif %}></div>
       </article>
       {% endif %}
       {% endfor %}
@@ -128,7 +128,7 @@
 
     <section class="yl3-elevate">
       <div class="yl3-elevate__copy">
-        <h2>The Elevate Connection</h2>
+        <h2 class="yl3-sectionTitle">The Elevate Connection</h2>
         <p>To deliver consistency, we built our operating framework: Elevate. It gives every engagement a clear direction by breaking progress into three stages: <strong>Stabilize, Optimize,</strong> and <strong>Transform.</strong> Elevate is not a marketing concept; it is the foundation of how we plan, measure, and execute.</p>
         <div class="yl3-elevate__bullets">
           <p>It ensures:</p>
@@ -174,7 +174,7 @@
 
     <section class="yl3-whyCard">
       <div class="yl3-whyCard__intro">
-        <h2>Why Organizations Choose Us</h2>
+        <h2 class="yl3-sectionTitle">Why Organizations Choose Us</h2>
         <p>Organizations work with us because they want more than activity, they want progress that can be explained, defended, and measured. We help create clarity in environments where technology has become complex and decisions carry real risk.</p>
         <p><strong>Our partnerships work because we:</strong></p>
       </div>
@@ -206,7 +206,7 @@
     </section>
 
     <section class="yl3-built">
-      <h2>Built for Teams That Want to Move Forward</h2>
+      <h2 class="yl3-sectionTitle">Built for Teams That Want to Move Forward</h2>
       <p>We work best with organizations that value momentum, teams who want partners who help move work forward with clarity and consistency. We bring strength in both planning and execution, so progress doesn’t get stuck between strategy and delivery.</p>
       <p>We adapt to each environment but never compromise on fundamentals. Standards matter. Direction matters. Accountability matters. That’s how real progress is made in IT.</p>
       <a class="yl3-btnOutline yl3-built__cta" href="/partners/">Become a Partner</a>
@@ -215,7 +215,7 @@
     <div class="yl3-divider"></div>
 
     <section class="yl3-faqs">
-      <h2>FAQs</h2>
+      <h2 class="yl3-sectionTitle">FAQs</h2>
       {% set faqCounter = 0 %}
       {% for group in faqGroups %}
       <div class="yl3-faqGroup">
@@ -280,7 +280,7 @@
   .yl3-hero__inner{
     position:relative;
     z-index:1;
-    width:min(1100px,100%);
+    width:min(1280px,100%);
     margin:0 auto;
     padding:0 1rem;
     display:flex;
@@ -333,11 +333,18 @@
     padding:40px 0 120px;
   }
   .yl3-container{
-    width:min(1100px,100%);
+    width:min(1280px,100%);
     margin:0 auto;
     padding:0 20px;
     display:flex;
     flex-direction:column;
+  }
+  .yl3-sectionTitle{
+    font-family:'Montserrat',sans-serif;
+    font-size:32px;
+    line-height:1.25;
+    font-weight:600;
+    margin-bottom:16px;
   }
   .yl3-surface p{
     font-size:15px;
@@ -468,8 +475,7 @@
   @media(max-width:900px){
     .yl3-elevate{grid-template-columns:1fr;}
   }
-  .yl3-elevate__copy h2{
-    font-size:clamp(28px,4vw,36px);
+  .yl3-elevate__copy .yl3-sectionTitle{
     margin-bottom:12px;
   }
   .yl3-elevate__copy p{
@@ -542,8 +548,7 @@
     text-align:center;
     margin-bottom:28px;
   }
-  .yl3-whyCard h2{
-    font-size:clamp(32px,4vw,44px);
+  .yl3-whyCard .yl3-sectionTitle{
     margin-bottom:14px;
   }
   .yl3-whyCard__intro p{
@@ -604,12 +609,53 @@
     display:flex;
     justify-content:center;
   }
+  @media(max-width:768px){
+    .yl3-hero--solutions{
+      min-height:0;
+      padding:140px 1.25rem 80px;
+    }
+    .yl3-hero__lead{
+      font-size:1rem;
+      max-width:100%;
+    }
+    .yl3-hero__learn{
+      width:100%;
+      justify-content:center;
+    }
+    .yl3-container{
+      padding:0 1.25rem;
+    }
+    .yl3-card{
+      padding:1.5rem;
+    }
+    .yl3-card__media--large{
+      width:100%;
+      height:200px;
+    }
+    .yl3-card--wide{
+      flex-direction:column;
+    }
+    .yl3-elevate{
+      grid-template-columns:1fr;
+      gap:24px;
+    }
+    .yl3-elevateBadge{
+      min-width:0;
+      width:100%;
+    }
+    .yl3-whyCard__grid{
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    }
+    .yl3-elevateBadge__row{
+      flex-direction:row;
+      justify-content:flex-start;
+    }
+  }
   .yl3-built{
     border-top:1px solid #334155;
     padding:40px 0;
   }
-  .yl3-built h2{
-    font-size:clamp(28px,4vw,36px);
+  .yl3-built .yl3-sectionTitle{
     margin-bottom:12px;
   }
   .yl3-built p{
@@ -640,12 +686,7 @@
     color:var(--yl3-text);
     line-height:1.65;
   }
-  .yl3-built h2{
-    font-size:clamp(28px,4vw,36px);
-    margin-bottom:10px;
-  }
-  .yl3-faqs h2{
-    font-size:32px;
+  .yl3-faqs .yl3-sectionTitle{
     margin-bottom:16px;
   }
   .yl3-faqGroup + .yl3-faqGroup{
