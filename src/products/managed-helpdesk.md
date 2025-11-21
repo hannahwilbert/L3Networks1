@@ -1,5 +1,6 @@
 ---
 eleventyExcludeFromCollections: true
+layout: layouts/managed-helpdesk.html
 product: 'Managed Helpdesk'
 title: 'Managed Helpdesk Services | L3 Networks Inc.'
 metaDesc: 'Structured, 24/7 managed helpdesk services that align with compliance standards and elevate workforce productivity.'
@@ -78,33 +79,70 @@ keyprods:
 
 proof:
   enabled: true
-  title: "The Business Impact of a <span class='text-teal-400'>Structured Helpdesk</span>"
-  sub: "Predictable service delivery leads to measurable business continuity and employee productivity gains."
-  cards:
-    - title: "Faster Issue Resolution"
-      desc: "Streamlined processes reduce average time-to-resolution and keep teams productive."
-      metrics:
-        - label: "RESOLUTION SPEED IMPROVEMENT"
-          metric: "30%"
-          color: "teal"
-          bar: "30%"
-      source: "Elevate Managed Helpdesk benchmarks."
-    - title: "Higher User Satisfaction"
-      desc: "Quality tracking and feedback loops increase satisfaction scores for supported users."
-      metrics:
-        - label: "CSAT IMPROVEMENT"
-          metric: "+12 pts"
-          color: "teal"
-          bar: "60%"
-      source: "Client-reported CSAT trend analysis."
-    - title: "Greater Operational Insight"
-      desc: "Trend analysis and transparent reporting uncover recurring issues before they impact the business."
-      metrics:
-        - label: "VISIBLE TICKET TRENDS"
-          metric: "100%"
-          color: "teal"
-          bar: "80%"
-      source: "Monthly operational reviews."
+  customHtml: |
+   <div style="width:100%; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(71,85,105,.55); border-radius:16px; overflow:hidden;">
+        <!-- LEFT CONTENT -->
+        <div style="padding:48px; border-right:1px solid rgba(71,85,105,.45); display:flex; flex-direction:column; justify-content:center; text-align:left;">
+          <h2 style="font-size:32px; font-weight:700; margin:0 0 16px; color:#fff; text-align:left;">
+            The Business Impact of a Structured Helpdesk
+          </h2>
+          <p style="color:rgba(255,255,255,.8); line-height:1.6; margin-bottom:16px; text-align:left;">
+            Organizations that adopt structured helpdesk operations experience measurable improvement in performance and user satisfaction:
+          </p>
+          <ul style="color:rgba(255,255,255,.8); line-height:1.8; margin:0 0 24px 20px; list-style-type:disc; text-align:left; list-style-position:outside; padding-left:20px;">
+            <li>Up to 30% faster issue resolution through streamlined processes</li>
+            <li>Higher user satisfaction scores supported by quality tracking</li>
+            <li>Reduced downtime with continuous coverage and proactive management</li>
+            <li>Improved operational insight through trend analysis and transparent reporting</li>
+          </ul>
+          <p style="color:rgba(255,255,255,.8); line-height:1.6; margin:0; text-align:left;">
+            Predictable service delivery leads to measurable business continuity and employee productivity gains.
+          </p>
+        </div>
+        <!-- RIGHT GRID -->
+        <div style="display:grid; grid-template-rows:repeat(4, 1fr);">
+          <div style="padding:32px; border-bottom:1px solid rgba(71,85,105,.35); display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:18px; align-items:center;">
+              <span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
+                <img src="/images/home/icons/teal/ClockClockwise.svg" alt="Teal clock icon showing faster resolution" style="width:56px; height:56px;" loading="lazy" decoding="async">
+              </span>
+              <h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
+                <span style="font-weight:600;">Up to 30% faster issue resolution</span> through streamlined processes
+              </h3>
+            </div>
+          </div>
+          <div style="padding:32px; border-bottom:1px solid rgba(71,85,105,.35); display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:18px; align-items:center;">
+              <span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
+                <img src="/images/home/icons/teal/ThumbsUp.svg" alt="Teal satisfaction icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
+              </span>
+              <h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
+                <span style="font-weight:600;">Higher user satisfaction scores</span> supported by quality tracking
+              </h3>
+            </div>
+          </div>
+          <div style="padding:32px; border-bottom:1px solid rgba(71,85,105,.35); display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:18px; align-items:center;">
+              <span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
+                <img src="/images/home/icons/teal/ShieldCheckered.svg" alt="Always-on coverage icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
+              </span>
+              <h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
+                <span style="font-weight:600;">Reduced downtime</span> with continuous coverage and proactive management
+              </h3>
+            </div>
+          </div>
+          <div style="padding:32px; display:flex; flex-direction:column; justify-content:center;">
+            <div style="display:flex; gap:18px; align-items:center;">
+              <span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
+                <img src="/images/home/icons/teal/TrendUp.svg" alt="Operational insight icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
+              </span>
+              <h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
+                <span style="font-weight:600;">Improved operational insight</span> through trend analysis and transparent reporting
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
 
 vendorsTitle: Trusted by Regulated, Mission-Critical Organizations
 vendorsBody: |
