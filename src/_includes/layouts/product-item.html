@@ -1213,70 +1213,156 @@
     <div class="pt-32">&nbsp;</div>
     {% if proof and proof.enabled %}
     {% if product == 'Managed Helpdesk' %}
-    <section id="helpdesk-impact" style="background:radial-gradient(ellipse at top, #050505 0%, #000 80%); color:#fff; font-family:Inter, system-ui, sans-serif; padding:80px 0; text-align:left;">
-    <div style="width:100%; margin:0; display:grid; grid-template-columns:1fr 1fr; gap:0; border:1px solid rgba(71,85,105,.55); border-radius:16px; overflow:hidden;">
-<!-- LEFT CONTENT -->
-<div style="padding:48px; border-right:1px solid rgba(71,85,105,.45); display:flex; flex-direction:column; justify-content:center;">
-<h2 style="font-size:32px; font-weight:700; margin:0 0 16px; color:#fff;">
-The Business Impact of a Structured Helpdesk
-</h2>
-<p style="color:rgba(255,255,255,.8); line-height:1.6; margin-bottom:16px;">
-Organizations that adopt structured helpdesk operations experience measurable improvement in performance and user satisfaction:
-</p>
-<ul style="color:rgba(255,255,255,.8); line-height:1.8; margin:0 0 24px 20px; list-style-type:disc;">
-<li>Up to 30% faster issue resolution through streamlined processes</li>
-<li>Higher user satisfaction scores supported by quality tracking</li>
-<li>Reduced downtime with continuous coverage and proactive management</li>
-<li>Improved operational insight through trend analysis and transparent reporting</li>
-</ul>
-<p style="color:rgba(255,255,255,.8); line-height:1.6; margin:0;">
-Predictable service delivery leads to measurable business continuity and employee productivity gains.
-</p>
-</div>
-<!-- RIGHT GRID -->
-<div style="display:grid; grid-template-rows:repeat(4, 1fr);">
-<div style="padding:32px; border-bottom:1px solid rgba(71,85,105,.35); display:flex; flex-direction:column; justify-content:center;">
-<div style="display:flex; gap:18px; align-items:center;">
-<span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
-<img src="/images/home/icons/teal/ClockClockwise.svg" alt="Teal clock icon showing faster resolution" style="width:56px; height:56px;" loading="lazy" decoding="async">
-</span>
-<h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
-<span style="font-weight:600;">Up to 30% faster issue resolution</span> through streamlined processes
-</h3>
-</div>
-</div>
-<div style="padding:32px; border-bottom:1px solid rgba(71,85,105,.35); display:flex; flex-direction:column; justify-content:center;">
-<div style="display:flex; gap:18px; align-items:center;">
-<span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
-<img src="/images/home/icons/teal/ThumbsUp.svg" alt="Teal satisfaction icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
-</span>
-<h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
-<span style="font-weight:600;">Higher user satisfaction scores</span> supported by quality tracking
-</h3>
-</div>
-</div>
-<div style="padding:32px; border-bottom:1px solid rgba(71,85,105,.35); display:flex; flex-direction:column; justify-content:center;">
-<div style="display:flex; gap:18px; align-items:center;">
-<span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
-<img src="/images/home/icons/teal/ShieldCheckered.svg" alt="Always-on coverage icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
-</span>
-<h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
-<span style="font-weight:600;">Reduced downtime</span> with continuous coverage and proactive management
-</h3>
-</div>
-</div>
-<div style="padding:32px; display:flex; flex-direction:column; justify-content:center;">
-<div style="display:flex; gap:18px; align-items:center;">
-<span style="display:flex; align-items:center; justify-content:center; min-width:56px;" aria-hidden="true">
-<img src="/images/home/icons/teal/TrendUp.svg" alt="Operational insight icon" style="width:56px; height:56px;" loading="lazy" decoding="async">
-</span>
-<h3 style="color:#fff; font-size:18px; font-weight:200; margin:0;">
-<span style="font-weight:600;">Improved operational insight</span> through trend analysis and transparent reporting
-</h3>
-</div>
-</div>
-</div>
-</div>
+    <section id="helpdesk-impact" class="helpdeskImpactLegacy">
+      <div class="helpdeskImpactLegacy__shell">
+        <div class="helpdeskImpactLegacy__intro">
+          <h2>The Business Impact of a Structured Helpdesk</h2>
+          <p>Organizations that adopt structured helpdesk operations experience measurable improvement in performance and user satisfaction:</p>
+          <ul class="helpdeskImpactLegacy__list">
+            <li>Up to 30% faster issue resolution through streamlined processes</li>
+            <li>Higher user satisfaction scores supported by quality tracking</li>
+            <li>Reduced downtime with continuous coverage and proactive management</li>
+            <li>Improved operational insight through trend analysis and transparent reporting</li>
+          </ul>
+          <p>Predictable service delivery leads to measurable business continuity and employee productivity gains.</p>
+        </div>
+        <div class="helpdeskImpactLegacy__grid">
+          <article class="helpdeskImpactLegacy__card">
+            <span class="helpdeskImpactLegacy__icon" aria-hidden="true">
+              <img src="/images/home/icons/teal/ClockClockwise.svg" alt="" loading="lazy" decoding="async">
+            </span>
+            <h3><strong>Up to 30% faster issue resolution</strong> through streamlined processes</h3>
+          </article>
+          <article class="helpdeskImpactLegacy__card">
+            <span class="helpdeskImpactLegacy__icon" aria-hidden="true">
+              <img src="/images/home/icons/teal/ThumbsUp.svg" alt="" loading="lazy" decoding="async">
+            </span>
+            <h3><strong>Higher user satisfaction scores</strong> supported by quality tracking</h3>
+          </article>
+          <article class="helpdeskImpactLegacy__card">
+            <span class="helpdeskImpactLegacy__icon" aria-hidden="true">
+              <img src="/images/home/icons/teal/ShieldCheckered.svg" alt="" loading="lazy" decoding="async">
+            </span>
+            <h3><strong>Reduced downtime</strong> with continuous coverage and proactive management</h3>
+          </article>
+          <article class="helpdeskImpactLegacy__card helpdeskImpactLegacy__card--last">
+            <span class="helpdeskImpactLegacy__icon" aria-hidden="true">
+              <img src="/images/home/icons/teal/TrendUp.svg" alt="" loading="lazy" decoding="async">
+            </span>
+            <h3><strong>Improved operational insight</strong> through trend analysis and transparent reporting</h3>
+          </article>
+        </div>
+      </div>
+      <style>
+        .helpdeskImpactLegacy{
+          background:radial-gradient(ellipse at top,#050505 0%,#000 80%);
+          color:#fff;
+          font-family:Inter,system-ui,sans-serif;
+          padding:80px 0;
+        }
+        .helpdeskImpactLegacy__shell{
+          width:100%;
+          margin:0 auto;
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          border:1px solid rgba(71,85,105,.55);
+          border-radius:16px;
+          overflow:hidden;
+        }
+        .helpdeskImpactLegacy__intro{
+          padding:48px;
+          border-right:1px solid rgba(71,85,105,.45);
+          display:flex;
+          flex-direction:column;
+          gap:16px;
+        }
+        .helpdeskImpactLegacy__intro h2{
+          font-size:32px;
+          font-weight:700;
+          margin:0;
+        }
+        .helpdeskImpactLegacy__intro p,
+        .helpdeskImpactLegacy__intro li{
+          color:rgba(255,255,255,.8);
+          line-height:1.65;
+        }
+        .helpdeskImpactLegacy__list{
+          margin:0 0 8px 20px;
+          padding:0;
+          line-height:1.7;
+          list-style:disc;
+        }
+        .helpdeskImpactLegacy__grid{
+          display:grid;
+          grid-template-rows:repeat(4,1fr);
+        }
+        .helpdeskImpactLegacy__card{
+          padding:32px;
+          border-bottom:1px solid rgba(71,85,105,.35);
+          display:flex;
+          gap:18px;
+          align-items:center;
+        }
+        .helpdeskImpactLegacy__card--last{
+          border-bottom:none;
+        }
+        .helpdeskImpactLegacy__icon{
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          min-width:56px;
+        }
+        .helpdeskImpactLegacy__icon img{
+          width:56px;
+          height:56px;
+        }
+        .helpdeskImpactLegacy__card h3{
+          margin:0;
+          font-size:18px;
+          font-weight:200;
+          line-height:1.5;
+        }
+        .helpdeskImpactLegacy__card strong{
+          font-weight:600;
+        }
+        @media(max-width:1024px){
+          .helpdeskImpactLegacy__shell{
+            grid-template-columns:1fr;
+          }
+          .helpdeskImpactLegacy__intro{
+            border-right:none;
+            border-bottom:1px solid rgba(71,85,105,.35);
+          }
+        }
+        @media(max-width:640px){
+          .helpdeskImpactLegacy{
+            padding:56px 0;
+          }
+          .helpdeskImpactLegacy__intro{
+            padding:32px 24px;
+          }
+          .helpdeskImpactLegacy__grid{
+            grid-template-rows:none;
+          }
+          .helpdeskImpactLegacy__card{
+            flex-direction:column;
+            align-items:flex-start;
+            gap:12px;
+            padding:24px;
+            border-bottom:1px solid rgba(71,85,105,.35);
+          }
+          .helpdeskImpactLegacy__card--last{
+            border-bottom:none;
+          }
+          .helpdeskImpactLegacy__icon{
+            min-width:40px;
+          }
+          .helpdeskImpactLegacy__icon img{
+            width:44px;
+            height:44px;
+          }
+        }
+      </style>
     {% else %}
     <section id="proof-security-outcomes" class="ycProof text-white" style="position:relative; isolation:isolate; background:transparent;">
       <hr class="mb-16 border-slate-700">
