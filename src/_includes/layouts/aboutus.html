@@ -1,8 +1,9 @@
 {% extends "layouts/base.html" %}
 {% block content %}
+{% set aboutHeroImage = (heroImage or '/images/aboutushero.png') | safe %}
 
   <!-- Hero Section -->
-  <article style="background-image: url('/images/aboutushero.png'); background-position:50% 0%;" class="aboutHero relative py-32 overflow-hidden bg-cover md:pt-64 md:pb-44">
+  <article class="aboutHero relative py-32 overflow-hidden bg-cover md:pt-64 md:pb-44">
 
 
     <section class="container about-max px-3 py-16 mx-auto text-white md:px-12">
@@ -268,6 +269,10 @@
 <style>
 .aboutHero{
   position:relative;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:50% 0%;
+  background-image:url('{{ aboutHeroImage }}');
 }
   .about-max{
     width:min(1280px,100%);
@@ -283,7 +288,7 @@
              radial-gradient(circle at 70% 30%, rgba(0,0,0,.45), transparent 60%),
              radial-gradient(circle at 40% 80%, rgba(0,0,0,.5), transparent 55%);
   filter:blur(60px);
-  opacity:.7;
+  opacity:.35;
   animation:aboutGlow 14s ease-in-out infinite alternate;
   z-index:0;
   pointer-events:none;
@@ -292,7 +297,7 @@
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, rgba(0, 0, 0, 0.432) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,0.95) 100%);
+  background:linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.85) 100%);
   z-index:0;
   pointer-events:none;
 }

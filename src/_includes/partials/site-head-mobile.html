@@ -1,4 +1,4 @@
-<header class="fixed z-50 flex flex-row w-full bg-black md:hidden" x-data="{ drawerOpen: false }">
+<header class="fixed z-50 flex flex-row w-full bg-black md:hidden" x-data="{ drawerOpen: false, mobileSolutions: false }">
   <a href="/" aria-label="{{ site.name }} - home" class="site-head__brand">
     <img class="p-4 h-14" src="/images/logo/logo-header.svg" alt="">
   </a>
@@ -46,36 +46,42 @@
       <span class="sr-only">Close menu</span>
     </button>
 
-    <div id="accordion-flush" class="" data-accordion="collapse" data-active-classes="text-white"
-      data-inactive-classes="text-gray-500">
-      {% for main in navSolutions.items %}
-      <p id="accordion-flush-{{ main.text | slug }}">
-        <a type="button" href="{{ main.url }}"
-          class="flex items-center justify-between w-full py-5 font-medium text-left border-b border-slate-700 text-slate-200">
-          <span>{{ main.text }}</span>
+    <nav class="divide-y divide-slate-800">
+      <button type="button"
+        class="flex items-center justify-between w-full py-5 text-left text-slate-100"
+        @click="mobileSolutions = !mobileSolutions"
+        :aria-expanded="mobileSolutions ? 'true' : 'false'">
+        <span class="font-semibold">Our Solutions</span>
+        <svg class="w-5 h-5 transition-transform duration-200" :class="mobileSolutions ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+      <div class="pl-1 space-y-2 text-slate-200" x-show="mobileSolutions" x-collapse>
+        {% for main in navSolutions.items %}
+        <a href="{{ main.url }}" class="block py-2 pl-2 text-sm hover:text-white">
+          {{ main.text }}
         </a>
-      </p>
-      {% endfor %}
+        {% endfor %}
+      </div>
 
-      <a type="button" href="/why-l3/"
-        class="flex items-center justify-between w-full py-5 font-medium text-left border-b border-slate-700 text-slate-200">
+      <a href="/why-l3/" class="flex items-center justify-between w-full py-5 text-slate-200 hover:text-white">
         Why L3?
       </a>
 
-      <a type="button" href="/your-challenges/"
-        class="flex items-center justify-between w-full py-5 font-medium text-left border-b border-slate-700 text-slate-200">
-        Your Challenges
+      <a href="/elevate/" class="flex items-center justify-between w-full py-5 text-slate-200 hover:text-white">
+        Elevate
       </a>
 
-      <a type="button" href="/aboutus/"
-        class="flex items-center justify-between w-full py-5 font-medium text-left border-b border-slate-700 text-slate-200">
+      <a href="/about-us/" class="flex items-center justify-between w-full py-5 text-slate-200 hover:text-white">
         About Us
       </a>
 
-      <a type="button" href="https://support.l3networks.com"
-        class="flex items-center justify-between w-full py-5 font-medium text-left border-b border-slate-700 text-slate-200">
-        Support
-      </a>
-    </div>
+      <div class="py-5">
+        <a href="/book-appointment/" class="flex items-center justify-center w-full gap-2 px-4 py-3 text-base font-semibold text-white transition-all bg-teal-500 rounded-full hover:bg-teal-600">
+          Book An Appointment
+          <img src="/images/icons/ArrowUpRightWhite.svg" alt="" class="w-4 h-4">
+        </a>
+      </div>
+    </nav>
   </div>
 </header>
