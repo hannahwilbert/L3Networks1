@@ -223,21 +223,21 @@
     <style>
       .udHero{display:grid;grid-template-columns:1fr;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;background:#000;box-shadow:0 24px 40px rgba(0,0,0,.45);}
       @media(min-width:1024px){.udHero{grid-template-columns:1fr 1fr;}}
-      .udHero__copy{padding:32px;border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;justify-content:flex-start;gap:12px;}
+      .udHero__copy{padding:32px;border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;justify-content:flex-start;gap:12px;background:#000;}
       .udHero__copy-inner{max-width:560px;}
       .udHero__title{font-size:32px;font-weight:700;margin:0 0 12px;line-height:1.15;}
       .udHero__body{color:rgba(255,255,255,.8);line-height:1.55;display:flex;flex-direction:column;gap:12px;}
       .udHero__body :where(p){margin:0;}
       .udHero__cta{color:{{ heroAccent }};border:1px solid {{ heroAccent }};border-radius:24px;padding:10px 22px;display:inline-flex;align-items:center;gap:6px;font-weight:500;text-decoration:none;width:max-content;}
-      .udHero__list{display:flex;flex-direction:column;}
-      .udHero__item{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1);align-items:flex-start;flex-wrap:nowrap;}
+      .udHero__list{display:flex;flex-direction:column;background:#000;}
+      .udHero__item{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1);align-items:flex-start;flex-wrap:nowrap;background:#000;}
       .udHero__item:last-child{border-bottom:none;}
       .udHero__list h3{color:{{ heroAccent }};font-size:18px;font-weight:700;margin:0 0 8px;}
       .udHero__list p{color:rgba(255,255,255,.75);margin:0;font-size:16px;line-height:1.55;font-weight:300;}
       @media(max-width:768px){
         .udHero__copy{align-items:flex-start;}
         .udHero__copy-inner{width:100%;}
-        .udHero__cta{margin-left:0;margin-right:auto;}
+        .udHero__cta{margin-left:0;margin-right:auto;display:none;}
       }
       @media(max-width:1023px){
         .udHero{
@@ -269,7 +269,7 @@
           border:1px solid rgba(255,255,255,.15);
           border-radius:18px;
           overflow:hidden;
-          background:#020617;
+          background:#000;
         }
       }
     </style>
