@@ -288,6 +288,11 @@
     position:absolute;
     inset:0;
   }
+  @media(max-width:768px){
+    .aboutHero__overlay{
+      background:linear-gradient(180deg, rgba(1,7,17,.9) 0%, rgba(1,8,20,.92) 55%, rgba(1,8,20,.98) 100%);
+    }
+  }
   .aboutHero__image{
     z-index:0;
   }
@@ -301,7 +306,7 @@
   }
   .aboutHero__overlay{
     z-index:2;
-    background:linear-gradient(180deg, rgba(1,7,17,.72) 0%, rgba(1,8,20,.88) 50%, rgba(1,8,20,.96) 100%);
+    background:linear-gradient(180deg, rgba(1,7,17,.82) 0%, rgba(1,8,20,.9) 50%, rgba(1,8,20,.98) 100%);
   }
   .about-max{
     width:min(1280px,100%);
@@ -332,6 +337,9 @@
     font-weight:600;
     letter-spacing:-.03em;
     margin:0;
+    max-width:min(820px,100%);
+    margin-left:auto;
+    margin-right:auto;
   }
   .aboutHero__lead{
     font-family:'Inter',sans-serif;
@@ -340,6 +348,15 @@
     color:rgba(226,232,240,.9);
     line-height:1.45;
     margin-top:24px;
+    max-width:min(640px,100%);
+    margin-left:auto;
+    margin-right:auto;
+  }
+  @media(max-width:640px){
+    .aboutHero__title,
+    .aboutHero__lead{
+      max-width:90%;
+    }
   }
   .aboutus-section-title,
   .aboutus-mission h4{
