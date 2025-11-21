@@ -6,6 +6,10 @@
 
   <!-- Hero Section -->
   <article class="aboutHero relative py-32 overflow-hidden bg-cover md:pt-64 md:pb-44">
+    <div class="aboutHero__image" aria-hidden="true">
+      <img src="{{ aboutHeroImage }}" alt="">
+    </div>
+    <div class="aboutHero__overlay" aria-hidden="true"></div>
 
 
     <section class="container about-max px-3 py-16 mx-auto text-white md:px-12">
@@ -27,7 +31,7 @@
   <!-- What We Do -->
 
 
-  <section class="container about-max relative max-w-screen-xl px-3 mx-auto text-white md:px-8 2xl:px-0 aboutus-why">
+  <section class="container about-max relative max-w-screen-xl px-3 mx-auto text-white md:px-8 2xl:px-0 aboutus-why mt-16 md:mt-24">
 
     <h2 class="aboutus-section-title mx-4 mt-4 mb-3 md:mx-0 max-w-5xl">Why Choose L3 Networks?</h2>
     <h2 class="mx-4 mt-4 mb-3 text-xl font-light md:mx-0 text-slate-500 max-w-5xl">We Make IT Simple, Reliable, and Built for Your Success.</h2>
@@ -276,11 +280,29 @@
 }
 .aboutHero{
   position:relative;
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:50% 0%;
-  background-image:url('{{ aboutHeroImage }}');
+  overflow:hidden;
+  background-color:#010409;
 }
+  .aboutHero__image,
+  .aboutHero__overlay{
+    position:absolute;
+    inset:0;
+  }
+  .aboutHero__image{
+    z-index:0;
+  }
+  .aboutHero__image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center top;
+    display:block;
+    filter:saturate(.9);
+  }
+  .aboutHero__overlay{
+    z-index:2;
+    background:linear-gradient(180deg, rgba(1,7,17,.72) 0%, rgba(1,8,20,.88) 50%, rgba(1,8,20,.96) 100%);
+  }
   .about-max{
     width:min(1280px,100%);
     max-width:min(1280px,100%);
@@ -297,20 +319,12 @@
   filter:blur(60px);
   opacity:.35;
   animation:aboutGlow 14s ease-in-out infinite alternate;
-  z-index:0;
+  z-index:1;
   pointer-events:none;
 }
-.aboutHero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.85) 100%);
-  z-index:0;
-  pointer-events:none;
-}
-  .aboutHero > *{
+  .aboutHero > *:not(.aboutHero__image):not(.aboutHero__overlay){
     position:relative;
-    z-index:1;
+    z-index:3;
   }
   .aboutHero__title{
     font-family:'Montserrat',sans-serif;
