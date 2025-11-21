@@ -61,7 +61,8 @@
       <li class="inline-flex items-center">
         <a href="/" class="inline-flex items-center text-sm font-medium text-slate-300 hover:text-slate-500">
           <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"></path>
+            <path
+              d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
           </svg>
           Home
         </a>
@@ -69,7 +70,7 @@
       <li>
         <div class="flex items-center">
           <svg class="block w-3 h-3 mx-1 text-slate-300 rtl:rotate-180 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"></path>
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
           </svg>
           <a href="#" class="text-sm font-medium text-slate-300 ms-1 hover:text-slate-500 md:ms-2">Solutions</a>
         </div>
@@ -97,6 +98,7 @@
           <svg class="w-3 h-3 mx-1 text-slate-300 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"></path>
           </svg>
+
           <script>
             window.navSolutions = {
               items: [
@@ -295,6 +297,60 @@
       });
     </script>
     {% elseif isHeroSolutionProduct %}
+    {% set heroAccent = '#00BBA7' %}
+    <style>
+      .udHero{display:grid;grid-template-columns:1fr;gap:0;border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;background:#000;box-shadow:0 24px 40px rgba(0,0,0,.45);}
+      @media(min-width:1024px){.udHero{grid-template-columns:1fr 1fr;}}
+      .udHero__copy{padding:32px;border-right:1px solid rgba(255,255,255,.1);display:flex;flex-direction:column;justify-content:flex-start;gap:12px;background:#000;}
+      .udHero__copy-inner{max-width:560px;}
+      .udHero__title{font-size:32px;font-weight:700;margin:0 0 12px;line-height:1.15;}
+      .udHero__body{color:rgba(255,255,255,.8);line-height:1.55;display:flex;flex-direction:column;gap:12px;}
+      .udHero__body :where(p){margin:0;}
+      .udHero__cta{color:{{ heroAccent }};border:1px solid {{ heroAccent }};border-radius:24px;padding:10px 22px;display:inline-flex;align-items:center;gap:6px;font-weight:500;text-decoration:none;width:max-content;}
+      .udHero__list{display:flex;flex-direction:column;background:#000;}
+      .udHero__item{display:flex;gap:16px;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1);align-items:flex-start;flex-wrap:nowrap;background:#000;}
+      .udHero__item:last-child{border-bottom:none;}
+      .udHero__list h3{color:{{ heroAccent }};font-size:18px;font-weight:700;margin:0 0 8px;}
+      .udHero__list p{color:rgba(255,255,255,.75);margin:0;font-size:16px;line-height:1.55;font-weight:300;}
+      @media(max-width:768px){
+        .udHero__copy{align-items:flex-start;}
+        .udHero__copy-inner{width:100%;}
+        .udHero__cta{margin-left:0;margin-right:auto;display:none;}
+      }
+      @media(max-width:1023px){
+        .udHero{
+          border:none;
+          box-shadow:none;
+          gap:24px;
+        }
+        .udHero__copy{
+          border-right:none;
+          border-bottom:none;
+          padding:0;
+          text-align:left;
+          align-items:flex-start;
+        }
+        .udHero__copy-inner{
+          max-width:100%;
+          padding-left:0;
+          padding-right:0;
+        }
+        .udHero__copy-inner .udHero__title,
+        .udHero__copy-inner .udHero__body{
+          text-align:left;
+        }
+        .udHero__cta{
+          margin-left:0;
+          margin-right:auto;
+        }
+        .udHero__list{
+          border:1px solid rgba(255,255,255,.15);
+          border-radius:18px;
+          overflow:hidden;
+          background:#000;
+        }
+      }
+    </style>
     <section class="fade-item delay-0 mt-16">
       <div class="udHero">
         <div class="udHero__copy">
