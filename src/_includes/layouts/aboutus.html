@@ -2,6 +2,8 @@
 {% block content %}
 {% set aboutHeroImage = (heroImage or '/images/aboutushero.png') | safe %}
 
+<div class="aboutus-page">
+
   <!-- Hero Section -->
   <article class="aboutHero relative py-32 overflow-hidden bg-cover md:pt-64 md:pb-44">
 
@@ -25,30 +27,30 @@
   <!-- What We Do -->
 
 
-  <section class="container about-max relative max-w-screen-xl px-3 mx-auto text-white md:px-8 2xl:px-0">
+  <section class="container about-max relative max-w-screen-xl px-3 mx-auto text-white md:px-8 2xl:px-0 aboutus-why">
 
-    <h2 class="aboutus-section-title mx-4 mt-4 mb-3 md:mx-0">Why Choose L3 Networks?</h2>
-    <h2 class="mx-4 mt-4 mb-3 text-xl font-light md:mx-0 text-slate-500">We Make IT Simple, Reliable, and Built for Your Success.</h2>
-    <h3 class="w-4/5 mx-4 mb-12 font-light md:mx-0 text-slate-300 leading-relaxed" style="font-size:18px;">
+    <h2 class="aboutus-section-title mx-4 mt-4 mb-3 md:mx-0 max-w-5xl">Why Choose L3 Networks?</h2>
+    <h2 class="mx-4 mt-4 mb-3 text-xl font-light md:mx-0 text-slate-500 max-w-5xl">We Make IT Simple, Reliable, and Built for Your Success.</h2>
+    <h3 class="w-full md:w-4/5 mx-4 mb-12 font-light md:mx-0 text-slate-300 leading-relaxed max-w-5xl" style="font-size:18px;">
       Managing IT shouldn’t be your biggest challenge. At L3 Networks, we take the complexity out of IT, so you can focus on what matters most—growing your business.
     </h3>
-    <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
-      <div class="p-4 text-center l3-card">
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-4 aboutus-stats">
+      <div class="p-4 text-center l3-card aboutus-statCard">
         <img class="mx-auto h-[80px]" src="/images/icons/number1.svg" alt="Founded Icon">
         <p class="mt-6 text-4xl font-bold text-white">2000</p>
         <p class="mt-2 text-lg font-light text-slate-300">Year Founded</p>
       </div>
-      <div class="p-4 text-center l3-card">
+      <div class="p-4 text-center l3-card aboutus-statCard">
         <img class="mx-auto h-[80px]" src="/images/icons/number2.svg" alt="Client Tenure Icon">
         <p class="mt-6 text-4xl font-bold text-white">8<span class="relative text-xl"><sup class="-top-1">1</sup>/<sub class="-top-1">2</sub></span></p>
         <p class="mt-2 text-lg font-light text-slate-300">Avg. Client Tenure (Years)</p>
       </div>
-      <div class="p-4 text-center l3-card">
+      <div class="p-4 text-center l3-card aboutus-statCard">
         <img class="mx-auto h-[80px]" src="/images/icons/number3.svg" alt="Support Icon">
         <p class="mt-6 text-4xl font-bold text-white">24/7</p>
         <p class="mt-2 text-lg font-light text-slate-300">Support Availability</p>
       </div>
-      <div class="p-4 text-center l3-card">
+      <div class="p-4 text-center l3-card aboutus-statCard">
         <img class="mx-auto h-[80px]" src="/images/icons/number4.svg" alt="Retention Icon">
         <p class="mt-6 text-4xl font-bold text-white">91%</p>
         <p class="mt-2 text-lg font-light text-slate-300">Customer Retention</p>
@@ -160,11 +162,11 @@
   <div class="container about-max max-w-screen-xl px-3 mx-auto text-white md:px-8 2xl:px-0">
 
     <hr class="mt-4 mb-10 border-slate-700">
-    <h2 class="aboutus-section-title mt-4 mb-3 md:mx-0">Empowering Businesses With Leading Technologies</h2>
-    <h3 class="w-4/5 mb-12 font-light md:mx-0 text-slate-300" style="font-size:18px;">
+    <h2 class="aboutus-section-title mt-4 mb-3 md:mx-0 max-w-4xl">Empowering Businesses With Leading Technologies</h2>
+    <h3 class="w-full md:w-4/5 mb-12 font-light md:mx-0 text-slate-300 max-w-4xl" style="font-size:18px;">
       We ensure that your business adopts the latest technologies to stay ahead in your industry.
     </h3>
-    <div class="brand-logos grid grid-flow-row grid-cols-2 gap-3 md:grid-cols-5">
+    <div class="brand-logos grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-6">
       <img class="h-24 invert brightness-0" alt="Amazon Web Services (AWS) logo" src="/images/about/logo-aws.svg">
       <img class="h-24 invert brightness-0" alt="Aruba logo" src="/images/about/logo-aruba.svg">
       <img class="h-24 invert brightness-0" alt="AT&T Business logo" src="/images/about/logo-att.svg">
@@ -212,8 +214,15 @@
     <h2 class="aboutus-section-title mt-4 mb-8 md:mx-0">Locations</h2>
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <!-- Corporate Office with Embedded Map -->
-      <div class="relative col-span-1 p-6 border rounded-xl lg:col-span-3 bg-slate-900/50 border-slate-800">
-        <div class="absolute flex space-x-1 top-4 right-4">
+      <div class="relative col-span-1 p-6 border rounded-xl lg:col-span-3 bg-slate-900/50 border-slate-800 aboutus-locationCard">
+        <h3 class="text-base font-semibold text-slate-100">Corporate Office</h3>
+        <p class="mt-2 text-sm font-light text-slate-300">11205 Knott Avenue, Suite B <br> Cypress, CA 90630</p>
+        <div class="mt-4 overflow-hidden rounded-lg">
+          <iframe class="w-full h-64 sm:h-80 md:h-96"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.041924983774!2d-118.039722684789!3d33.86214198065925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd2e6d2f5b5b5b%3A0x5b5b5b5b5b5b5b5b!2s11205%20Knott%20Ave%2C%20Cypress%2C%20CA%2090630%2C%20USA!5e0!3m2!1sen!2s!4v1633025000000!5m2!1sen!2s"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="aboutus-locationCard__actions aboutus-locationCard__actions--desktopOnly">
           <a href="https://maps.google.com/?q=11205+Knott+Avenue,+Suite+B+Cypress,+CA+90630" target="_blank" class="text-slate-400 hover:text-slate-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
@@ -227,19 +236,14 @@
             </svg>
           </a>
         </div>
-        <h3 class="text-base font-semibold text-slate-100">Corporate Office</h3>
-        <p class="mt-2 text-sm font-light text-slate-300">11205 Knott Avenue, Suite B <br> Cypress, CA 90630</p>
-        <div class="mt-4 overflow-hidden rounded-lg">
-          <iframe class="w-full h-64 sm:h-80 md:h-96"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3313.041924983774!2d-118.039722684789!3d33.86214198065925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd2e6d2f5b5b5b%3A0x5b5b5b5b5b5b5b5b!2s11205%20Knott%20Ave%2C%20Cypress%2C%20CA%2090630%2C%20USA!5e0!3m2!1sen!2s!4v1633025000000!5m2!1sen!2s"
-            allowfullscreen loading="lazy"></iframe>
-        </div>
       </div>
 
       <!-- Other Locations -->
       {% for loc in locations %}
-      <div class="relative p-6 border rounded-lg bg-slate-900/50 border-slate-800">
-        <div class="absolute flex space-x-1 top-4 right-4">
+      <div class="relative p-6 border rounded-lg bg-slate-900/50 border-slate-800 aboutus-locationCard">
+        <h3 class="text-base font-semibold text-slate-100">{{ loc.name }}</h3>
+        <p class="mt-2 text-sm font-light text-slate-300">{{ loc.address | replace(', ', '<br>') | safe }}</p>
+        <div class="aboutus-locationCard__actions">
           <a href="{{ loc.google }}" target="_blank" class="text-slate-400 hover:text-slate-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
@@ -253,8 +257,6 @@
             </svg>
           </a>
         </div>
-        <h3 class="text-base font-semibold text-slate-100">{{ loc.name }}</h3>
-        <p class="mt-2 text-sm font-light text-slate-300">{{ loc.address | replace(', ', '<br>') | safe }}</p>
       </div>
       {% endfor %}
     </div>
@@ -264,9 +266,14 @@
 
   <div class="pt-32">&nbsp;</div>
 
+</div>
+
 {% include "partials/footer.html" %}
 
 <style>
+.aboutus-page{
+  width:100%;
+}
 .aboutHero{
   position:relative;
   background-size:cover;
@@ -331,7 +338,7 @@
     position:relative;
     overflow:hidden;
     padding-block:clamp(3.5rem,9vw,6.25rem);
-    padding-inline:clamp(0rem,2vw,1rem);
+    padding-inline:0;
     width:100%;
     max-width:none;
     margin-left:auto;
@@ -394,20 +401,61 @@
     position:relative;
     z-index:1;
   }
-  .aboutus-mission p{
+.aboutus-mission p{
     font-size:clamp(1rem,4vw,1.25rem);
     line-height:1.7;
     text-align:center;
     max-width:100%;
   }
+.aboutus-statCard{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    min-width:0;
+  }
+.aboutus-locationCard{
+    position:relative;
+    height:100%;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .aboutus-locationCard__actions{
+    margin-top:1.5rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:0.75rem;
+  }
+  .aboutus-locationCard__actions--desktopOnly{
+    display:none;
+  }
   @media (max-width:768px){
+    .aboutus-why{
+      padding-top:3rem;
+      padding-bottom:3.5rem;
+    }
+    .aboutus-page .about-max,
+    .aboutus-page .container,
+    .aboutus-page section{
+      padding-left:clamp(1rem,5vw,1.5rem) !important;
+      padding-right:clamp(1rem,5vw,1.5rem) !important;
+    }
+    .aboutus-page .aboutHero .about-max{
+      padding-left:0 !important;
+      padding-right:0 !important;
+    }
     .aboutus-section-title,
     .aboutus-mission h4{
       font-size:26px!important;
       font-weight:600;
     }
     .aboutus-mission{
-      padding-inline:clamp(0.75rem,5vw,2rem);
+      padding-inline:0;
       text-align:center;
     }
     .about-max *{
@@ -425,6 +473,18 @@
       margin-right:auto;
     }
   }
+  @media (min-width:768px){
+    .aboutus-locationCard__actions{
+      position:absolute;
+      top:1rem;
+      right:1rem;
+      margin-top:0;
+      justify-content:flex-end;
+    }
+    .aboutus-locationCard__actions--desktopOnly{
+      display:flex;
+    }
+  }
   @keyframes aboutGlow{
     0%{transform:translate3d(-5%, -5%, 0) scale(1);}
     50%{transform:translate3d(3%, 4%, 0) scale(1.05);}
@@ -433,3 +493,7 @@
 </style>
 
 {% endblock %}
+.aboutus-why{
+    padding-top:clamp(3rem,8vw,5rem);
+    padding-bottom:clamp(3rem,8vw,5.5rem);
+  }
