@@ -26,7 +26,7 @@ eleventyExcludeFromCollections: true
   }
   .expertise-hero p.lead{
     color:rgba(226,232,240,.85);
-    font-size:clamp(18px,2.2vw,22px);
+    font-size:clamp(16px,2vw,20px);
     max-width:760px;
     line-height:1.6;
     margin:0 0 28px;
@@ -150,6 +150,22 @@ eleventyExcludeFromCollections: true
     border-color:#0dd1bc;
     transform:translateY(-1px);
   }
+  @media (max-width: 768px){
+    .expertise-hero{
+      padding:180px 0 90px;
+      min-height:0;
+    }
+    .expertise-hero .container{
+      text-align:left;
+      display:block;
+    }
+    .expertise-hero h1,
+    .expertise-hero p.lead,
+    .expertise-learn-cta{
+      margin-left:0;
+      margin-right:0;
+    }
+  }
   @media (max-width:900px){
     .industry-card{
       flex-direction:column;
@@ -208,6 +224,9 @@ eleventyExcludeFromCollections: true
     .cap-item:nth-child(2n){
       border-left:none;
     }
+    .cap-item:nth-last-child(-n+2){
+      border-bottom:1px solid rgba(255,255,255,.14);
+    }
     .cap-item:last-child{
       border-bottom:none;
     }
@@ -245,7 +264,7 @@ eleventyExcludeFromCollections: true
   }
   .team-section .intro p{
     font-family:'Inter',sans-serif;
-    font-size:18px;
+    font-size:16px;
     line-height:1.7;
     font-weight:400;
     color:rgba(226,232,240,.82);
@@ -288,10 +307,11 @@ eleventyExcludeFromCollections: true
      height:75.2%;
     bottom:16px;
   }
-  .team-card{
+.team-card{
     position:relative;
     margin:22px 0;
     padding-bottom:14px;
+    border-bottom:1px solid rgba(51,65,85,.4);
   }
   .team-card--narrow p{
     max-width:48ch;
@@ -334,7 +354,7 @@ eleventyExcludeFromCollections: true
     margin-top:64px;
     text-align:center;
     font-family:'Inter',sans-serif;
-    font-size:18px;
+    font-size:16px;
     color:rgba(226,232,240,.85);
     letter-spacing:.02em;
     text-transform:none;
@@ -368,6 +388,34 @@ eleventyExcludeFromCollections: true
   @media (max-width:900px){
     .industry-card{grid-template-columns:1fr;}
     .industry-card img{height:200px;}
+  }
+  @media (max-width:768px){
+    .industry-card{
+      padding:0;
+      border-radius:0;
+      box-shadow:none;
+      gap:16px;
+    }
+  }
+  @media (max-width:768px){
+    .expertise-hero{
+      padding:180px 0 90px;
+      min-height:0;
+    }
+    .expertise-hero .container{
+      text-align:left;
+      display:block;
+    }
+    .expertise-hero h1,
+    .expertise-hero p.lead,
+    .expertise-learn-cta{
+      margin-left:0;
+      margin-right:0;
+    }
+    .expertise-block + .expertise-block > .container{
+      border-top:none;
+      padding-top:40px;
+    }
   }
 </style>
 
@@ -502,8 +550,8 @@ eleventyExcludeFromCollections: true
 <section class="partners expertise-block">
   <div class="container max-w-screen-xl mx-auto px-4 md:px-8">
     <h2 style="font-family:'Inter',sans-serif; font-size:32px; font-weight:700; letter-spacing:-0.02em; margin-bottom:10px;">Certifications &amp; Partnerships</h2>
-    <p style="font-family:'Inter',sans-serif; font-size:18px; line-height:1.65; color:rgba(226,232,240,.82); max-width:840px; margin-bottom:18px;">L3 Networks partners with industry leaders to deliver secure, scalable, and high-performing solutions across cloud, cybersecurity, networking, and data protection. These relationships extend our reach and strengthen every layer of the environments we design and support.</p>
-    <div class="grid grid-flow-row grid-cols-2 gap-3 md:grid-cols-5" style="margin-top:40px;">
+    <p style="font-family:'Inter',sans-serif; font-size:16px; line-height:1.65; color:rgba(226,232,240,.82); max-width:840px; margin-bottom:18px;">L3 Networks partners with industry leaders to deliver secure, scalable, and high-performing solutions across cloud, cybersecurity, networking, and data protection. These relationships extend our reach and strengthen every layer of the environments we design and support.</p>
+    <div class="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-6" style="margin-top:40px;">
       <img class="h-24 invert brightness-0" alt="Amazon Web Services (AWS) logo" src="/images/about/logo-aws.svg" loading="lazy" decoding="async">
       <img class="h-24 invert brightness-0" alt="Aruba logo" src="/images/about/logo-aruba.svg" loading="lazy" decoding="async">
       <img class="h-24 invert brightness-0" alt="AT&amp;T Business logo" src="/images/about/logo-att.svg" loading="lazy" decoding="async">
@@ -535,3 +583,11 @@ eleventyExcludeFromCollections: true
 </div>
 
 {% include "partials/footer.html" %}
+  @media (max-width:768px){
+    .expertise-section p.section-copy,
+    .cap-header p,
+    .partners > p,
+    .partners p{
+      font-size:16px !important;
+    }
+  }
