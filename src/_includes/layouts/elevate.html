@@ -184,7 +184,7 @@
     title: 'Stabilize',
     sub: 'Shift from Reactive to Proactive Operations',
     copy: 'Move from reactive to proactive. Reduce risk, eliminate recurring issues, and build confidence in your IT foundation.',
-    bgImage: '/images/elevate/stabilize.png'
+    bgImage: '/images/elevate/stabilize1.png'
   },
   {
     idx: 2,
@@ -192,7 +192,7 @@
     title: 'Optimize',
     sub: 'Gain Visibility and Achieve Peak Performance',
     copy: 'Achieve peak performance. Strengthen compliance, improve user experience, and unlock measurable efficiency gains.',
-    bgImage: '/images/elevate/optimize.png'
+    bgImage: '/images/elevate/optimize1.png'
   },
   {
     idx: 3,
@@ -200,7 +200,7 @@
     title: 'Transform',
     sub: 'Enable Strategic Growth and Business Resilience',
     copy: 'Align IT with long-term strategy. Enable growth, resilience, and innovation through vCIO guidance, hybrid cloud, and M&A readiness.',
-    bgImage: '/images/elevate/transform.png'
+    bgImage: '/images/elevate/transform1.png'
   }
 ] %}
 
@@ -256,7 +256,7 @@
       <div class="relative">
         <button
           type="button"
-          class="block w-full h-48 sm:h-56 md:h-64 lg:h-72 rounded-b-2xl sm:rounded-b-3xl md:rounded-b-4xl overflow-hidden cursor-pointer"
+          class="block w-full h-48 sm:h-56 md:h-64 lg:h-72 rounded-b-2xl sm:rounded-b-3xl md:rounded-b-4xl overflow-hidden cursor-pointer elevateCard__media"
           :aria-expanded="open.toString()"
           :aria-controls="'overlay-{{ loop.index }}'"
           :aria-label="(open ? 'Hide' : 'Show') + ' details for {{ c.title }}'"
@@ -270,6 +270,7 @@
             alt="{{ c.title }} image"
             class="w-full h-full object-cover"
           />
+          <span class="elevateCard__overlay" aria-hidden="true" :class="open ? 'is-active' : ''"></span>
         </button>
 
         <!-- Slide-up overlay -->
@@ -301,6 +302,28 @@
     {% endfor %}
   </div>
 </section>
+
+<style>
+  .elevateCard__media{
+    position:relative;
+    isolation:isolate;
+  }
+  .elevateCard__media img{
+    display:block;
+  }
+  .elevateCard__overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg, rgba(0,0,0,0.18), rgba(0,7,13,0.35));
+    mix-blend-mode:multiply;
+    pointer-events:none;
+    transition:background .3s ease;
+    z-index:1;
+  }
+  .elevateCard__overlay.is-active{
+    background:linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,7,13,0.92));
+  }
+</style>
 
 
 
@@ -415,7 +438,7 @@
       </h2>
      
       <p class="text-white font-extralight text-lg sm:text-xl md:text-2xl leading-tight sm:leading-none">
-        We don't just manage IT—we <span class="text-teal-400 font-normal">advance your business</span> with measurable progress, predictable cadence, and enterprise rigor.
+        We don't just manage IT; we <span class="text-teal-400 font-normal">advance your business</span> with measurable progress, predictable cadence, and enterprise rigor.
       </p>
     </div>
 
