@@ -184,7 +184,8 @@
     title: 'Stabilize',
     sub: 'Shift from Reactive to Proactive Operations',
     copy: 'Move from reactive to proactive. Reduce risk, eliminate recurring issues, and build confidence in your IT foundation.',
-    bgImage: '/images/elevate/stabilize1.png'
+    bgImage: '/images/elevate/stabilize-alt.png',
+    color: 'var(--brand-orange)'
   },
   {
     idx: 2,
@@ -192,7 +193,8 @@
     title: 'Optimize',
     sub: 'Gain Visibility and Achieve Peak Performance',
     copy: 'Achieve peak performance. Strengthen compliance, improve user experience, and unlock measurable efficiency gains.',
-    bgImage: '/images/elevate/optimize1.png'
+    bgImage: '/images/elevate/optimize-alt.png',
+    color: 'var(--brand-blue)'
   },
   {
     idx: 3,
@@ -200,7 +202,8 @@
     title: 'Transform',
     sub: 'Enable Strategic Growth and Business Resilience',
     copy: 'Align IT with long-term strategy. Enable growth, resilience, and innovation through vCIO guidance, hybrid cloud, and M&A readiness.',
-    bgImage: '/images/elevate/transform5.png'
+    bgImage: '/images/elevate/transform5.png',
+    color: 'oklch(0.704 0.14 182.503)'
   }
 ] %}
 
@@ -219,16 +222,29 @@
     {% for c in elevate %}
     <!-- Card -->
     <article
-      x-data="{ open:false }"
+      x-data="{ open:false, accentColor: '{{ c.color }}' }"
       class="overflow-hidden rounded-4xl flex flex-col"
     >
       <!-- Content area with background -->
-      <div class="transition-colors rounded-t-4xl flex-1" :class="open ? 'bg-teal-500 text-neutral-900' : 'bg-neutral-800 text-neutral-100'">
+      <div class="transition-colors rounded-t-4xl flex-1 cursor-pointer"
+        role="button"
+        tabindex="0"
+        :aria-expanded="open.toString()"
+        :class="open ? 'text-neutral-900' : 'bg-neutral-800 text-neutral-100'"
+        :style="open ? 'background-color:' + accentColor : ''"
+        @click="open = !open"
+        @keydown.enter.prevent="open = !open"
+        @keydown.space.prevent="open = !open"
+        @keydown.escape.prevent="open = false">
         <!-- Header with badges and arrow -->
         <div class="p-6 pb-4">
           <div class="flex items-center justify-between">
             <div class="flex gap-3">
-              <div class="px-3 py-1 text-xs rounded-full" :class="open ? 'bg-teal-600 text-neutral-900' : 'bg-neutral-600 text-neutral-100'">{{ c.phase }}</div>
+              <div class="px-3 py-1 text-xs rounded-full"
+                :class="open ? 'text-neutral-900' : 'bg-neutral-600 text-neutral-100'"
+                :style="open ? 'background-color:' + accentColor : ''">
+                {{ c.phase }}
+              </div>
             </div>
             <img
               src="/images/icons/elevateArrorwRound.svg"
@@ -248,7 +264,7 @@
         <!-- Content -->
         <div class="px-4 sm:px-6 pb-4 sm:pb-6 mt-8 sm:mt-12">
           <h3 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tighter mb-3 sm:mb-4">{{ c.title }}</h3>
-          <p class="text-base sm:text-lg font-extralight">{{ c.sub }}</p>
+          <p class="text-base sm:text-lg font-light">{{ c.sub }}</p>
         </div>
       </div>
 
@@ -289,7 +305,8 @@
         <div class="absolute -translate-x-1/2 pointer-events-none left-1/2 -bottom-1">
           <div
             class="flex items-center justify-center w-16 h-8 rounded-t-full shadow-lg"
-            :class="open ? 'bg-transparent text-teal-400' : 'bg-black/80 text-neutral-200'"
+            :class="open ? 'bg-transparent' : 'bg-black/80 text-neutral-200'"
+            :style="open ? 'color:' + accentColor : ''"
           >
             <!-- Chevron icon rotates when open -->
             <svg class="w-5 h-5 transition-transform duration-300" :class="open ? 'rotate-180' : ''" viewBox="0 0 24 24" aria-hidden="true">
@@ -314,14 +331,14 @@
   .elevateCard__overlay{
     position:absolute;
     inset:0;
-    background:linear-gradient(135deg, rgba(0,0,0,0.18), rgba(0,7,13,0.35));
+    background:linear-gradient(135deg, rgba(0,0,0,0.12), rgba(0,30,44,0.25));
     mix-blend-mode:multiply;
     pointer-events:none;
     transition:background .3s ease;
     z-index:1;
   }
   .elevateCard__overlay.is-active{
-    background:linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,7,13,0.92));
+    background:linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,30,44,0.65));
   }
 </style>
 
@@ -450,7 +467,7 @@
         <div class="relative z-40 mb-4">
           <button 
             @click="activeCard = activeCard === 1 ? null : 1"
-            class="w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg"
+            class="w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg cursor-pointer"
             :class="activeCard === 1 ? 'bg-teal-500 text-black border-1 border-teal-500 transform' : 'bg-black border-1 border-neutral-600 text-neutral-600 transform hover:scale-101'"
             style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"
           >
@@ -484,7 +501,7 @@
         <div class="relative z-30 mb-4 -mt-2">
           <button 
             @click="activeCard = activeCard === 2 ? null : 2"
-            class="w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg"
+            class="w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg cursor-pointer"
             :class="activeCard === 2 ? 'bg-teal-500 text-black border-1 border-teal-500 transform' : 'bg-black border-1 border-neutral-600 text-neutral-600 transform hover:scale-101'"
             style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"
           >
@@ -519,7 +536,7 @@
         <div class="relative z-20 mb-4 -mt-2">
           <button 
             @click="activeCard = activeCard === 3 ? null : 3"
-            class="w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg"
+            class="w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg cursor-pointer"
             :class="activeCard === 3 ? 'bg-teal-500 text-black border-1 border-teal-500 transform' : 'bg-black border-1 border-neutral-600 text-neutral-600 transform hover:scale-101'"
             style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"
           >
@@ -553,7 +570,7 @@
         <div class="relative z-10 -mt-2">
           <button 
             @click="activeCard = activeCard === 4 ? null : 4"
-            class="w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg"
+            class="w-full text-left transition-all duration-300 ease-out rounded-3xl shadow-lg cursor-pointer"
             :class="activeCard === 4 ? 'bg-teal-500 text-black border-1 border-teal-500 transform' : 'bg-black border-1 border-neutral-600 text-neutral-600 transform hover:scale-101'"
             style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);"
           >
