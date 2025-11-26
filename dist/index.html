@@ -49,11 +49,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="/images/home/home1.webp" fetchpriority="high">
   
-  <link rel="preconnect" href="https://www.googletagmanager.com">
-  <link rel="preconnect" href="https://snap.licdn.com">
-  <link rel="preconnect" href="https://js-na2.hs-scripts.com">
-  <link rel="preconnect" href="https://mm-uxrv.com">
-  
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="dns-prefetch" href="//unpkg.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -1281,74 +1276,76 @@ window[(function(_kMQ,_lF){var _WW='';for(var _HI=0;_HI<_kMQ.length;_HI++){var _
   </div>
 
   <!-- Industries grid under testimonials (visible) -->
-  <div class="container max-w-screen-xl mx-auto pt-12 homeCustomers" style="content-visibility:auto; contain-intrinsic-size: 900px 720px;">
-    <h2 class="relative font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title">Our Customers' Mission, is Our Mission</h2>
-    <p class="text-xl font-light text-slate-300 mb-8">We help every industry turn IT into a strategic advantage.</p>
-    <style>
-      /* Smooth, GPU-accelerated hover without jank */
-      .industryGrid{ display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:1.25rem; }
-      @media(max-width:640px){ .industryGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.85rem; } }
-      @media(min-width:640px){ .industryGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; } }
-      @media(min-width:1024px){ .industryGrid{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
-      .industryCard{ position:relative; overflow:hidden; border-radius:1rem; background:rgba(15,23,42,.4); border:1px solid #1f2937; contain:paint; }
-      /* Disable hover shadow pseudo-element */
-      .industryCard::after{ content:none; }
-      .industryImg{ width:100%; height:12rem; object-fit:cover; }
-      @media(min-width:768px){ .industryImg{ height:14rem; } }
-      .industryShade{ position:absolute; inset:0; opacity:.6; }
-      .industryLabel{ position:absolute; left:0; bottom:0; padding:1rem; }
-      @media (prefers-reduced-motion: reduce){
-        .industryImg, .industryShade, .industryLabel, .industryCard{ transition-duration:0ms !important; transform:none !important; }
-      }
-    </style>
-    <div class="industryGrid">
-      <div class="industryCard">
-        <img src="/images/home/Manufacturing.png" alt="Manufacturing" class="industryImg" loading="lazy" decoding="async"/>
-        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Manufacturing</h3></div>
+  <section class="section-block homeCustomers pt-12" style="content-visibility:auto; contain-intrinsic-size: 900px 720px;">
+    <div class="section-shell" style="position:relative; z-index:1; width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(18px,4vw,56px); padding-right:clamp(18px,4vw,56px);">
+      <h2 class="relative font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title">Our Customers' Mission, is Our Mission</h2>
+      <p class="text-xl font-light text-slate-300 mb-8">We help every industry turn IT into a strategic advantage.</p>
+      <style>
+        /* Smooth, GPU-accelerated hover without jank */
+        .industryGrid{ display:grid; grid-template-columns:repeat(1,minmax(0,1fr)); gap:1.25rem; }
+        @media(max-width:640px){ .industryGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.85rem; } }
+        @media(min-width:640px){ .industryGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; } }
+        @media(min-width:1024px){ .industryGrid{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
+        .industryCard{ position:relative; overflow:hidden; border-radius:1rem; background:rgba(15,23,42,.4); border:1px solid #1f2937; contain:paint; }
+        /* Disable hover shadow pseudo-element */
+        .industryCard::after{ content:none; }
+        .industryImg{ width:100%; height:12rem; object-fit:cover; }
+        @media(min-width:768px){ .industryImg{ height:14rem; } }
+        .industryShade{ position:absolute; inset:0; opacity:.6; }
+        .industryLabel{ position:absolute; left:0; bottom:0; padding:1rem; }
+        @media (prefers-reduced-motion: reduce){
+          .industryImg, .industryShade, .industryLabel, .industryCard{ transition-duration:0ms !important; transform:none !important; }
+        }
+      </style>
+      <div class="industryGrid">
+        <div class="industryCard">
+          <img src="/images/home/Manufacturing.png" alt="Manufacturing" class="industryImg" loading="lazy" decoding="async"/>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Manufacturing</h3></div>
+        </div>
+        <div class="industryCard">
+          <img src="/images/home/Entertainment.png" alt="Entertainment" class="industryImg" loading="lazy" decoding="async"/>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Entertainment</h3></div>
+        </div>
+        <div class="industryCard">
+          <img src="/images/home/Logistics.png" alt="Logistics" class="industryImg" loading="lazy" decoding="async"/>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Logistics</h3></div>
+        </div>
+        <div class="industryCard">
+          <img src="/images/home/Financial Services.png" alt="Financial Services" class="industryImg" loading="lazy" decoding="async"/>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Financial Services</h3></div>
+        </div>
+        <div class="industryCard">
+          <img src="/images/home/B2B Services.png" alt="B2B Services" class="industryImg" loading="lazy" decoding="async"/>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">B2B Services</h3></div>
+        </div>
+        <div class="industryCard">
+          <img src="/images/home/designbuild.webp" alt="Design &amp; Construction" class="industryImg" loading="lazy" decoding="async"/>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Design &amp; Construction</h3></div>
+        </div>
+        <div class="industryCard">
+          <img src="/images/home/Healthcare.png" alt="Healthcare" class="industryImg" loading="lazy" decoding="async"/>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Healthcare</h3></div>
+        </div>
+        <div class="industryCard">
+          <img src="/images/home/Legal Services.png" alt="Legal Services" class="industryImg" loading="lazy" decoding="async"/>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Legal Services</h3></div>
+        </div>
       </div>
-      <div class="industryCard">
-        <img src="/images/home/Entertainment.png" alt="Entertainment" class="industryImg" loading="lazy" decoding="async"/>
-        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Entertainment</h3></div>
-      </div>
-      <div class="industryCard">
-        <img src="/images/home/Logistics.png" alt="Logistics" class="industryImg" loading="lazy" decoding="async"/>
-        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Logistics</h3></div>
-      </div>
-      <div class="industryCard">
-        <img src="/images/home/Financial Services.png" alt="Financial Services" class="industryImg" loading="lazy" decoding="async"/>
-        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Financial Services</h3></div>
-      </div>
-      <div class="industryCard">
-        <img src="/images/home/B2B Services.png" alt="B2B Services" class="industryImg" loading="lazy" decoding="async"/>
-        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">B2B Services</h3></div>
-      </div>
-      <div class="industryCard">
-        <img src="/images/home/designbuild.webp" alt="Design &amp; Construction" class="industryImg" loading="lazy" decoding="async"/>
-        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Design &amp; Construction</h3></div>
-      </div>
-      <div class="industryCard">
-        <img src="/images/home/Healthcare.png" alt="Healthcare" class="industryImg" loading="lazy" decoding="async"/>
-        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Healthcare</h3></div>
-      </div>
-      <div class="industryCard">
-        <img src="/images/home/Legal Services.png" alt="Legal Services" class="industryImg" loading="lazy" decoding="async"/>
-        <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
-        <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Legal Services</h3></div>
+      <div class="flex justify-center mt-8">
+        <a href="/expertise/" class="inline-flex items-center px-6 py-2.5 text-white transition-all ease-in-out bg-teal-500 rounded-full font-semibold hover:bg-teal-600">
+          <div class="flex items-center gap-2" style="font-size:18px;font-family:'Inter',sans-serif;">Explore Our Expertise <img src="/images/icons/ArrowUpRightWhite.svg" alt="Explore Our Expertise"></div>
+        </a>
       </div>
     </div>
-    <div class="flex justify-center mt-8">
-      <a href="/expertise/" class="inline-flex items-center px-6 py-2.5 text-white transition-all ease-in-out bg-teal-500 rounded-full font-semibold hover:bg-teal-600">
-        <div class="flex items-center gap-2" style="font-size:18px;font-family:'Inter',sans-serif;">Explore Our Expertise <img src="/images/icons/ArrowUpRightWhite.svg" alt="Explore Our Expertise"></div>
-      </a>
-    </div>
-  </div>
+  </section>
 
   <div class="container mx-auto w-full homeCustomers">
     <h2 class="relative pt-20 text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title">Trusted by Leading Brands</h2>
