@@ -10,13 +10,13 @@
 ] %}
 
 {% set rolePaths = [
-  { title: 'Helpdesk and End User Support', copy: 'Prioritize clarity, solution, and support across modern workplace environments. This team manages our clients\' productivity and represents the front line of service delivery.', icon: 'life-buoy' },
-  { title: 'Network Engineering and NOC Operations', copy: 'Maintain the reliability, visibility, and performance of critical network infrastructure. Routing, switching, SD-WAN, and SASE all operate here with precision and consistency.', icon: 'server' },
-  { title: 'Project Management and Advisory Services', copy: 'Guide clients through major releases, transformations, and integrations. This team ensures predictable execution through accurate plans and trusted leadership.', icon: 'clipboard-list' },
-  { title: 'Systems and Cloud Engineering', copy: 'Design, secure, and optimize cloud and on-premises systems. The team leads Azure architecture, virtualization, Microsoft 365 services, and modern identity work.', icon: 'cloud' },
-  { title: 'Business Operations and Administration', copy: 'Keep the organization running smoothly through coordination, finance, vendor management, and internal process design. This team strengthens the backbone of our company.', icon: 'briefcase' },
-  { title: 'Sales and Client Development', copy: 'Build relationships, understand client goals, and represent L3 in the market. This team accelerates high-intent conversations into long term business outcomes.', icon: 'megaphone' },
-  { title: 'Cybersecurity and SOC Operations', copy: 'Protect clients through structured monitoring, defensive operations, and incident response. This group delivers resilience and keeps threats contained.', icon: 'shield-check' }
+  { title: 'Helpdesk and End User Support', copy: 'Prioritize clarity, solution, and support across modern workplace environments. This team manages our clients\' productivity and represents the front line of service delivery.', icon: 'headphones' },
+  { title: 'Network Engineering and NOC Operations', copy: 'Maintain the reliability, visibility, and performance of critical network infrastructure. Routing, switching, SD-WAN, and SASE all operate here with precision and consistency.', icon: 'network' },
+  { title: 'Project Management and Advisory Services', copy: 'Guide clients through major releases, transformations, and integrations. This team ensures predictable execution through accurate plans and trusted leadership.', icon: 'clipboard-check' },
+  { title: 'Systems and Cloud Engineering', copy: 'Design, secure, and optimize cloud and on-premises systems. The team leads Azure architecture, virtualization, Microsoft 365 services, and modern identity work.', icon: 'server-cog' },
+  { title: 'Business Operations and Administration', copy: 'Keep the organization running smoothly through coordination, finance, vendor management, and internal process design. This team strengthens the backbone of our company.', icon: 'building-2' },
+  { title: 'Sales and Client Development', copy: 'Build relationships, understand client goals, and represent L3 in the market. This team accelerates high-intent conversations into long term business outcomes.', icon: 'badge-dollar-sign' },
+  { title: 'Cybersecurity and SOC Operations', copy: 'Protect clients through structured monitoring, defensive operations, and incident response. This group delivers resilience and keeps threats contained.', icon: 'shield' }
 ] %}
 
 {% set traits = [
@@ -34,8 +34,8 @@
   });
 </script>
 
-<section class="relative isolate w-full text-white bg-center bg-cover min-h-[70vh] flex items-end" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 35%, rgba(0,0,0,0.85) 100%), url('https://t3.ftcdn.net/jpg/16/07/07/68/360_F_1607076856_A6RxlDt2k3eXEUUfzZnYY41bUZ9ZluRp.jpg');">
-  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black"></div>
+<section class="relative isolate w-full text-white bg-center bg-cover min-h-[70vh] flex items-end" style="background-image: linear-gradient(180deg, rgba(0,0,0,0.16) 0%, rgba(0,0,0,0.6) 46%, rgba(0,0,0,0.96) 100%), url('https://t3.ftcdn.net/jpg/16/07/07/68/360_F_1607076856_A6RxlDt2k3eXEUUfzZnYY41bUZ9ZluRp.jpg');">
+  <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/52 to-black/95"></div>
   <div class="container relative max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 pt-40 pb-18 md:pt-48 md:pb-24">
     <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.55)]">Careers</h1>
     <p class="mt-12 sm:mt-14 text-2xl sm:text-3xl font-light italic leading-tight max-w-3xl drop-shadow-[0_4px_12px_rgba(0,0,0,0.45)]">Join a Team Built on<br class="hidden sm:block"> Precision, Discipline, & Trust.</p>
@@ -43,38 +43,40 @@
       <p class="text-base sm:text-[17px] font-thin leading-relaxed">L3 Networks is built for professionals who want to work at the highest standard. Our clients depend on us to protect, modernize, and support critical operations, and we hire people who take that responsibility seriously.</p>
       <p class="text-base sm:text-[17px] font-thin leading-relaxed">We operate with structure, process clarity, and a commitment to outcomes. If you value excellence and want to contribute to meaningful work, L3 may be the right place for you.</p>
     </div>
-    <div class="mt-20 sm:mt-24 md:mt-28 h-px w-full bg-white/10"></div>
+    <div class="mt-20 sm:mt-24 md:mt-28 border-t" style="border-color:#334155;"></div>
   </div>
 </section>
 
 <main class="bg-black text-white">
-  <article class="container max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 pt-24 sm:pt-28 md:pt-32 pb-24 sm:pb-30 md:pb-36">
+  <article class="container max-w-screen-xl mx-auto px-4 sm:px-6 md:px-10 pt-16 sm:pt-20 md:pt-24 pb-24 sm:pb-30 md:pb-36">
     <section class="grid gap-8 md:gap-12 md:grid-cols-[1.05fr_0.95fr] items-center">
       <div class="space-y-4 md:space-y-5">
         <h2 class="text-3xl sm:text-4xl md:text-[38px] font-bold leading-tight text-white">Who We Are</h2>
         <div class="space-y-3 text-base sm:text-lg font-thin leading-relaxed text-neutral-100">
           <p>For more than two decades, L3 Networks has delivered reliable, secure, and disciplined IT services to organizations that expect accuracy and accountability.</p>
           <p>We support high trust industries and environments where uptime, security, and clarity are essential.</p>
-          <p class="font-semibold text-white">Our Elevate Framework defines how we work.</p>
+          <p class="font-semibold text-white flex items-center gap-3 pt-3 pb-3">
+            <img src="/images/icons/elevateArrorwRound.svg" alt="" class="h-6 w-6 object-contain" aria-hidden="true" style="filter: brightness(0) saturate(100%) invert(65%) sepia(23%) saturate(1181%) hue-rotate(123deg) brightness(93%) contrast(89%);">
+            <span>Our Elevate Framework defines how we work.</span>
+          </p>
           <p>It brings structure to every engagement, and our team executes that structure with consistency and professional rigor.</p>
         </div>
         <a href="/about/" class="inline-flex items-center justify-center w-fit rounded-md border border-teal-400 px-4 py-1.5 text-sm font-medium text-teal-300 transition hover:-translate-y-0.5 hover:bg-teal-400 hover:text-black hover:shadow-lg hover:shadow-teal-500/20">Learn About Us</a>
       </div>
       <div class="flex justify-end md:h-full md:items-start">
-        <div class="relative w-[320px] sm:w-[380px] md:w-[440px] h-full min-h-[260px] rounded-xl overflow-hidden border-2 border-teal-400/70 shadow-xl shadow-black/40">
-          <img src="https://scontent-lax7-1.xx.fbcdn.net/v/t39.30808-6/522386780_1184710573698066_6636204685506973898_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=01FJORklzxEQ7kNvwGgtXO7&_nc_oc=AdlvLAyGJW2-QSsN4sQeGTTLoG86yORNuB53I_TbMh-MPVuvd8kmbeokOUs8W8PplUbYGQOR5JUP-72OByYm0eD1&_nc_zt=23&_nc_ht=scontent-lax7-1.xx&_nc_gid=lixtobjQKggWgaxioOfJAg&oh=00_Afl7T6_tdvId0nf8Xy8uWGjUhmumFjAl0D_E2-YRY0M3Ww&oe=69391F75" alt="City skyline" class="absolute inset-0 w-full h-full object-cover">
+        <div class="relative w-full sm:w-full md:w-[520px] max-w-[620px] min-h-[280px] sm:min-h-[340px] md:min-h-[360px] rounded-xl overflow-hidden border border-[#00bba7] shadow-xl shadow-black/40">
+          <img src="/images/careers/whoweare.png" alt="City skyline" class="absolute inset-0 w-full h-full object-cover" style="object-position:center 32%;">
         </div>
       </div>
     </section>
 
     <section class="mt-32 sm:mt-40 md:mt-48">
-      <div class="relative overflow-hidden rounded-3xl border border-teal-500/60 bg-gradient-to-r from-black via-black/60 to-black px-6 sm:px-10 md:px-14 py-12 sm:py-16">
+      <div class="relative overflow-hidden rounded-3xl border border-[#00bba7] bg-gradient-to-r from-black via-black/60 to-black px-6 sm:px-10 md:px-14 py-18 sm:py-22 min-h-[480px]">
         <div class="absolute inset-0">
-          <img src="https://i.pinimg.com/736x/f9/82/3d/f9823d6142052d0d10a74fcd8f70f02f.jpg" alt="Palm trees at dusk" class="w-full h-full object-cover opacity-70">
-          <div class="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent"></div>
+          <img src="/images/careers/culture-high.png" alt="Palm trees at dusk" class="w-full h-full object-cover opacity-70" style="object-position:center 36%;">
+          <div class="absolute inset-0 bg-gradient-to-r from-black/96 via-black/82 to-transparent"></div>
         </div>
         <div class="relative max-w-3xl space-y-4">
-          <p class="text-sm uppercase tracking-[0.2em] text-teal-300/80">Culture</p>
           <h3 class="text-3xl sm:text-4xl md:text-[42px] font-bold leading-tight">A Culture of High Standards</h3>
           <p class="text-base sm:text-lg font-thin leading-relaxed">Our strongest results come from preparation, discipline, and strong communication. Our environment rewards people who take ownership, follow through, and uphold a clear operational rhythm.</p>
           <p class="text-base sm:text-lg font-thin leading-relaxed">This is a team that shares information, collaborates, and steps in when it counts. Every role contributes directly to the safety and security of our clients.</p>
@@ -83,15 +85,29 @@
       </div>
     </section>
 
-    <section class="mt-32 sm:mt-40 md:mt-48 text-center why-choose">
-      <h3 class="text-3xl sm:text-4xl md:text-[38px] font-bold leading-tight">Why Build Your Career at L3 Networks</h3>
-      <div class="why-choose__grid mt-10">
-        {% for reason in reasons %}
-        <div class="why-choose__item">
-          <i data-lucide="{{ reason.icon }}" class="why-choose__icon--plain w-9 h-9" aria-hidden="true"></i>
-          <p class="why-choose__text font-thin">{{ reason.text }}</p>
+    <section class="mt-32 sm:mt-40 md:mt-48">
+      <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-black/88 via-black/78 to-black/65 px-6 sm:px-10 md:px-12 py-8 sm:py-10 shadow-[0_30px_90px_-70px_rgba(0,0,0,0.9)]">
+        <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(130% 100% at 0% 20%, rgba(16,185,129,0.12) 0%, rgba(0,0,0,0) 60%);"></div>
+        <div class="relative grid gap-8 lg:gap-12 lg:grid-cols-[0.9fr_1.2fr] lg:items-center">
+          <div class="flex flex-col gap-5 sm:gap-6 w-full max-w-[520px]">
+            <h3 class="text-3xl sm:text-4xl md:text-[38px] font-bold leading-tight">Why Build Your Career<br class="hidden sm:block"> at L3 Networks</h3>
+            <div class="relative overflow-hidden rounded-2xl border border-[#00bba7] bg-black/40 aspect-[16/9] w-full max-w-[520px] shadow-[0_25px_70px_-50px_rgba(0,0,0,0.85)]">
+              <img src="https://t3.ftcdn.net/jpg/06/45/35/56/360_F_645355635_o2KhLu9rDPYaCQJOkiZjWjJll6UiXJyE.jpg" alt="L3 Networks team collaboration" class="absolute inset-0 w-full h-full object-cover" style="object-position:center;">
+              <div class="absolute inset-0 bg-gradient-to-tr from-black/70 via-black/35 to-transparent" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="why-choose__right flex flex-col justify-center items-start w-full max-w-[620px] mx-auto">
+            <ul class="why-choose__list">
+              {% for reason in reasons %}
+              <li class="why-choose__row">
+                <div class="why-choose__row-copy">
+                  <p class="why-choose__text font-thin">{{ reason.text }}</p>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
-        {% endfor %}
       </div>
     </section>
 
@@ -113,27 +129,30 @@
     </section>
 
     <section class="mt-32 sm:mt-40 md:mt-48">
-      <div class="grid gap-10 lg:gap-14 lg:grid-cols-2 items-start">
-        <div class="space-y-6">
-          <h3 class="text-3xl sm:text-4xl md:text-[38px] font-bold leading-tight">Who Thrives Here</h3>
-          <ul class="space-y-4 sm:space-y-5 text-base sm:text-lg font-light leading-relaxed">
+      <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+        <div class="yl3-thrives">
+          <div class="yl3-thrives__intro">
+            <h3 class="text-3xl sm:text-4xl md:text-[38px] font-bold leading-tight">Who Thrives Here</h3>
+            <span class="yl3-thrives__accent" aria-hidden="true"></span>
+          </div>
+          <div class="yl3-thrives__grid">
             {% for trait in traits %}
-            <li class="flex gap-3 items-start">
-              <span class="mt-1 flex h-5 w-5 items-center justify-center rounded border border-teal-400 text-teal-300 bg-transparent">
-                <i data-lucide="check" class="w-3 h-3"></i>
+            <div class="yl3-thrives__item">
+              <span class="yl3-thrives__icon">
+                <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
               </span>
-              <span class="font-thin">{{ trait }}</span>
-            </li>
+              <p class="yl3-thrives__text">{{ trait }}</p>
+            </div>
             {% endfor %}
-          </ul>
+          </div>
         </div>
-        <div class="relative overflow-hidden rounded-3xl border border-teal-500/60 px-6 sm:px-10 md:px-12 py-10 sm:py-12 shadow-[0_30px_100px_-60px_rgba(0,0,0,0.8)]" style="background-image:url('https://t3.ftcdn.net/jpg/17/65/31/40/360_F_1765314041_as4IlPvqFN0Scph1VDYIC26E7f8MxOdz.jpg');background-size:cover;background-position:center;">
-          <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60" aria-hidden="true"></div>
-          <div class="relative flex flex-col gap-4 sm:gap-5">
-            <h3 class="text-3xl sm:text-4xl font-bold leading-tight">Ready to Build What Comes Next</h3>
-            <p class="text-base sm:text-lg font-thin text-neutral-200 leading-relaxed">If you want to work with a team that values precision, supports each other, and operates with purpose, we want to hear from you.</p>
-            <div>
-              <a href="/book-appointment/" class="inline-flex items-center justify-center rounded-full bg-teal-400 px-6 py-3 text-base font-semibold text-black transition hover:-translate-y-0.5 hover:bg-teal-300 shadow-lg shadow-teal-500/20 whitespace-nowrap">Book an Appointment</a>
+        <div class="yl3-ready">
+          <div class="yl3-ready__card">
+            <div class="yl3-ready__image" aria-hidden="true"></div>
+            <div class="yl3-ready__overlay"></div>
+            <div class="yl3-ready__content">
+              <h3 class="text-3xl sm:text-4xl font-bold leading-tight">Ready to Build What Comes Next?</h3>
+              <p class="text-base sm:text-lg font-thin text-neutral-200 leading-relaxed">If you want to work with a team that values precision, supports each other, and operates with purpose, we want to hear from you.</p>
             </div>
           </div>
         </div>
@@ -153,36 +172,160 @@
   .why-choose__subhead{
     color:#e5e7eb;
   }
-  .why-choose__grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-    gap:28px 32px;
-    align-items:start;
+  .why-choose__right{
+    padding-left:0;
+    height:100%;
   }
-  .why-choose__item{
+  @media (max-width:1023px){
+    .why-choose__right{
+      padding-left:0;
+    }
+  }
+  .why-choose__list{
+    list-style:none;
+    padding:0;
+    margin:0;
     display:flex;
     flex-direction:column;
-    align-items:center;
-    gap:10px;
-    text-align:center;
-    color:#e5e7eb;
-    font-size:16px;
-    line-height:1.5;
+    gap:0;
+    height:100%;
+    width:100%;
   }
-  .why-choose__icon{
-    width:44px;
-    height:44px;
+  .why-choose__row{
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:16px 0 16px 22px;
+    min-height:84px;
+    color:#e5e7eb;
+    font-size:17px;
+    line-height:1.6;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .why-choose__row::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:50%;
+    transform:translateY(-50%);
+    width:10px;
+    height:10px;
     border-radius:50%;
-    background:rgba(0,213,190,0.12);
-    color:#00d5be;
-    display:grid;
-    place-items:center;
+    background:#00bba7;
+    box-shadow:0 0 0 3px rgba(0,187,167,0.08);
+  }
+  .why-choose__row:last-child{
+    border-bottom:none;
   }
   .why-choose__text{
     margin:0;
+    font-size:17px;
+    line-height:1.65;
   }
-  .why-choose__icon--plain{
+  .yl3-thrives{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .yl3-thrives__intro{
+    text-align:left;
+    margin-bottom:4px;
+  }
+  .yl3-thrives__accent{
+    display:none;
+    width:64px;
+    height:3px;
+    margin:12px auto 0;
+    background:linear-gradient(90deg, #00bba7, #67e8f9);
+    border-radius:999px;
+  }
+  .yl3-thrives__grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:8px;
+  }
+  .yl3-thrives__item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:10px 0;
+    color:rgba(214,219,233,.92);
+  }
+  .yl3-thrives__icon{
+    display:grid;
+    place-items:center;
+    width:32px;
+    height:32px;
+    border-radius:10px;
+    border:1px solid rgba(16,185,129,0.4);
+    background:radial-gradient(circle at 30% 30%, rgba(16,185,129,0.12), rgba(0,0,0,0.3));
     color:#00d5be;
+    flex-shrink:0;
+  }
+  .yl3-thrives__text{
+    margin:0;
+    font-size:17px;
+    line-height:1.65;
+    font-weight:300;
+    text-align:left;
+  }
+  .yl3-ready{
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+  }
+.yl3-ready__card{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #00bba7;
+  border-radius:16px;
+  overflow:hidden;
+  width:100%;
+  max-width:none;
+  min-height:100%;
+  background:#050505;
+  box-shadow:0 24px 60px -50px rgba(0,0,0,0.9);
+}
+  .yl3-ready__image{
+    position:absolute;
+    inset:0;
+    background-image:url('https://t3.ftcdn.net/jpg/17/65/31/40/360_F_1765314041_as4IlPvqFN0Scph1VDYIC26E7f8MxOdz.jpg');
+    background-size:cover;
+    background-position:center;
+    opacity:0.5;
+  }
+  .yl3-ready__overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg, rgba(0,0,0,0.5), rgba(0,0,0,0.25));
+  }
+  .yl3-ready__content{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    align-items:center;
+    text-align:center;
+    padding:28px 24px;
+    max-width:520px;
+    width:100%;
+    margin:0 auto;
+  }
+  .yl3-ready__content h3{
+    margin:0;
+    font-size:38px;
+    line-height:1.2;
+    color:#f8fafc;
+    text-shadow:0 10px 30px rgba(0,0,0,0.45);
+  }
+  .yl3-ready__content p{
+    margin:0;
+    color:rgba(226,232,240,0.95);
+    line-height:1.6;
+    font-weight:400;
   }
 </style>
 {% endblock %}

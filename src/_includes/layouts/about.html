@@ -258,6 +258,7 @@
   }
   body{
     line-height:1.4;
+    overflow-x:hidden;
   }
   .yl3-hero{
     position:relative;
@@ -470,7 +471,7 @@
     gap:32px;
     align-items:flex-start;
     padding:32px 0;
-    border-top:1px solid var(--yl3-border);
+    border-top:0 !important;
   }
   @media(max-width:900px){
     .yl3-elevate{grid-template-columns:1fr;}
@@ -535,18 +536,19 @@
   .dot--stabilize{background:var(--yl3-dot-stab);}
   .dot--optimize{background:var(--yl3-dot-opt);}
   .dot--transform{background:var(--yl3-dot-trans);}
-  .yl3-divider{
+.yl3-divider{
     height:1px;
     width:100%;
     background:#334155;
+    margin:64px 0 64px;
   }
-  .yl3-whyCard{
+.yl3-whyCard{
     border-top:1px solid #334155;
-    padding:40px 0;
+    padding:64px 0 64px;
   }
   .yl3-whyCard__intro{
     text-align:center;
-    margin-bottom:28px;
+    margin-bottom:32px;
   }
   .yl3-whyCard .yl3-sectionTitle{
     margin-bottom:14px;
@@ -559,15 +561,15 @@
   .yl3-whyCard__grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:22px;
+    gap:24px;
     text-align:center;
-    margin-bottom:28px;
+    margin-bottom:32px;
   }
   .yl3-whyPoint{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:16px;
+    gap:18px;
     color:var(--yl3-text);
     padding:12px 0;
   }
@@ -651,12 +653,126 @@
       justify-content:flex-start;
     }
   }
-  .yl3-built{
+  @media(max-width:640px){
+    .yl3-hero--solutions{
+      padding:120px 1rem 72px;
+    }
+    .yl3-container{
+      padding:0 1rem;
+    }
+    .yl3-sectionTitle{
+      font-size:28px;
+    }
+    .yl3-gridTop{
+      gap:18px;
+    }
+    .yl3-card{
+      padding:18px;
+      gap:14px;
+    }
+    .yl3-card__media,
+    .yl3-gridTop .yl3-card__media{
+      height:180px;
+    }
+    .yl3-card__body{
+      gap:14px;
+    }
+    .yl3-card h3{
+      font-size:18px;
+    }
+    .yl3-card p{
+      font-size:14.5px;
+    }
+    .yl3-cardCta{
+      width:100%;
+      justify-content:center;
+    }
+    .yl3-elevate{
+      gap:22px;
+    }
+    .yl3-elevateBadge__row{
+      padding:16px 18px;
+      font-size:16px;
+    }
+    .yl3-whyCard__intro{
+      text-align:left;
+    }
+    .yl3-whyCard__grid{
+      justify-items:flex-start;
+      text-align:left;
+    }
+    .yl3-whyPoint{
+      align-items:flex-start;
+    }
+    .yl3-whyPoint__text{
+      font-size:14.5px;
+    }
+    .yl3-whyCard__cta{
+      justify-content:flex-start;
+    }
+    .yl3-built{
+      padding:48px 0 52px;
+    }
+    .yl3-built p{
+      font-size:14.5px;
+    }
+    .yl3-divider{
+      margin:52px 0 52px;
+    }
+    .yl3-accord__summaryBox{
+      padding:16px 18px;
+      gap:14px;
+    }
+    .yl3-accord__head{
+      gap:12px;
+    }
+    .yl3-accord__body{
+      padding:18px 18px 20px;
+    }
+  }
+  @media(max-width:480px){
+    .yl3-hero h1{
+      font-size:clamp(32px,8vw,42px);
+    }
+    .yl3-hero__lead{
+      font-size:15px;
+    }
+    .yl3-hero__learn{
+      padding:10px 18px;
+    }
+    .yl3-card__media,
+    .yl3-gridTop .yl3-card__media{
+      height:160px;
+    }
+    .yl3-card{
+      border-radius:16px;
+    }
+    .yl3-elevateBadge__row{
+      padding:14px 16px;
+    }
+    .yl3-whyCard__grid{
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    }
+    .yl3-whyPoint{
+      gap:12px;
+    }
+    .yl3-built,
+    .yl3-whyCard{
+      padding:48px 0;
+    }
+    .yl3-accord__summaryBox{
+      padding:14px 16px;
+    }
+    .yl3-accord__body{
+      padding:16px 16px 18px;
+    }
+  }
+.yl3-built{
     border-top:1px solid #334155;
-    padding:40px 0;
+    padding:64px 0 64px;
   }
   .yl3-built .yl3-sectionTitle{
-    margin-bottom:12px;
+    margin-bottom:16px;
   }
   .yl3-built p{
     color:var(--yl3-text);
