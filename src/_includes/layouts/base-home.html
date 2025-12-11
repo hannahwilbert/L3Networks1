@@ -85,15 +85,16 @@
 
       initSwiper('#swiper', {
         loop: true,
-        loopFillGroupWithBlank: true,
         slidesPerView: 1,
         spaceBetween: 24,
-        loopedSlides: 16,
-        loopAdditionalSlides: 8,
-        autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: true },
-        speed: 10000,
+        loopedSlides: 20,
+        loopAdditionalSlides: 10,
+        freeMode: true,
+        freeModeMomentum: false,
+        freeModeMomentumBounce: false,
+        autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false },
+        speed: 12000,
         allowTouchMove: false,
-
         breakpoints: {
           640: { slidesPerView: 3 },
           768: { slidesPerView: 4 },
