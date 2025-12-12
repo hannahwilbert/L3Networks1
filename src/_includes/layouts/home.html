@@ -91,8 +91,60 @@
   .fade-item.delay-100{transition-delay:.1s;}
   .fade-item.delay-200{transition-delay:.2s;}
   .fade-item.delay-300{transition-delay:.3s;}
-  .fade-item.delay-400{transition-delay:.4s;}
-  .fade-item.delay-500{transition-delay:.5s;}
+.fade-item.delay-400{transition-delay:.4s;}
+.fade-item.delay-500{transition-delay:.5s;}
+.fade-item.delay-600{transition-delay:.6s;}
+  .fade-item.delay-700{transition-delay:.7s;}
+  .fade-item.delay-900{transition-delay:.9s;}
+  .fade-item.delay-1050{transition-delay:1.05s;}
+  .fade-item.delay-1400{transition-delay:1.4s;}
+  .fade-item.delay-1750{transition-delay:1.75s;}
+.icon-pop{ transform-origin:center; }
+.icon-pop.is-visible{ animation:popIn .9s ease-out forwards; }
+@keyframes popIn{
+  0%{ opacity:0; transform:translateY(6px) scale(.97); }
+  65%{ opacity:1; transform:translateY(0) scale(1.01); }
+  100%{ opacity:1; transform:translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce){
+  .icon-pop.is-visible{ animation:none; }
+}
+.puzzle-piece{
+  opacity:0;
+  transform:translateY(8px) scale(.985);
+  transition:opacity .6s cubic-bezier(.33,.72,.19,1), transform .6s cubic-bezier(.33,.72,.19,1);
+}
+.puzzle-piece--tl{
+  transform:translate(-8px,-8px) scale(.985);
+  transition-delay:.08s;
+}
+.puzzle-piece--tr{
+  transform:translate(8px,-8px) scale(.985);
+  transition-delay:.16s;
+}
+.puzzle-piece--bl{
+  transform:translate(-8px,8px) scale(.985);
+  transition-delay:.24s;
+}
+.puzzle-piece--br{
+  transform:translate(8px,8px) scale(.985);
+  transition-delay:.32s;
+}
+.puzzle-piece.is-visible{
+  opacity:1;
+  transform:translate(0,0) scale(1);
+}
+  .homeResults h2{
+    margin-bottom:10px;
+  }
+  .homeResults .results-intro{
+    margin-top:8px;
+    margin-bottom:clamp(40px,5.5vw,60px);
+    padding-bottom:0 !important;
+  }
+  .brand-carousel-block{
+    margin:clamp(24px,4vw,40px) 0 clamp(36px,5vw,52px);
+  }
   .hero-video-wrap{
     position:absolute;
     inset:0;
@@ -393,32 +445,32 @@
     <div class="relative z-10 max-w-screen-xl px-4 pb-16 mx-auto md:pb-24 elevateGrid">
       <div class="grid gap-6 mt-10 text-lg font-open text-white/80 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3">
         <article class="flex flex-col items-center gap-4 px-4 py-6 text-center rounded-2xl">
-          <img src="/images/icons/SVG/timer-reset.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14" />
+          <img src="/images/icons/SVG/timer-reset.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14 fade-item delay-0 icon-pop" />
           <p class="text-lg">Losing valuable time as everyday IT issues get in the way?</p>
         </article>
 
         <article class="flex flex-col items-center gap-4 px-4 py-6 text-center rounded-2xl">
-          <img src="/images/icons/SVG/annoyed.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14" />
+          <img src="/images/icons/SVG/annoyed.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14 fade-item delay-300 icon-pop" />
           <p class="text-lg">Struggling to find the right expertise when you need it most?</p>
         </article>
 
         <article class="flex flex-col items-center gap-4 px-4 py-6 text-center rounded-2xl">
-          <img src="/images/icons/SVG/message-circle-warning.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14" />
+          <img src="/images/icons/SVG/message-circle-warning.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14 fade-item delay-600 icon-pop" />
           <p class="text-lg">Worried that downtime or security issues could damage your reputation?</p>
         </article>
 
         <article class="flex flex-col items-center gap-4 px-4 py-6 text-center rounded-2xl">
-          <img src="/images/icons/SVG/flag.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14" />
+          <img src="/images/icons/SVG/flag.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14 fade-item delay-900 icon-pop" />
           <p class="text-lg">Frustrated that your IT investments aren't delivering real results?</p>
         </article>
 
         <article class="flex flex-col items-center gap-4 px-4 py-6 text-center rounded-2xl">
-          <img src="/images/icons/SVG/snail.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14" />
+          <img src="/images/icons/SVG/snail.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14 fade-item delay-1400 icon-pop" />
           <p class="text-lg">Feeling left behind as new technologies outpace your current setup?</p>
         </article>
 
         <article class="flex flex-col items-center gap-4 px-4 py-6 text-center rounded-2xl">
-          <img src="/images/icons/SVG/arrow-big-down-dash.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14" />
+          <img src="/images/icons/SVG/arrow-big-down-dash.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-14 h-14 fade-item delay-1750 icon-pop" />
           <p class="text-lg">Tired of unpredictable IT experiences that slow your team down?</p>
         </article>
       </div>
@@ -438,6 +490,14 @@
 
     <!-- Testimonials carousel (one full-width card at a time) -->
     <div class="resultsCarousel" id="resultsCarousel" aria-label="Client testimonials" role="region" style="content-visibility:auto; contain-intrinsic-size: 1000px 720px;">
+      <div class="resultsNav" aria-hidden="true">
+        <button class="resultsArrow resultsArrow--prev" type="button" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M14.7 5.3a1 1 0 0 1 0 1.4L9.4 12l5.3 5.3a1 1 0 0 1-1.4 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.4 0Z" fill="currentColor"/></svg>
+        </button>
+        <button class="resultsArrow resultsArrow--next" type="button" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9.3 18.7a1 1 0 0 1 0-1.4L14.6 12 9.3 6.7a1 1 0 0 1 1.4-1.4l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.4 0Z" fill="currentColor"/></svg>
+        </button>
+      </div>
       <!-- Slide 1 -->
       <article class="resultsSlide" role="group" aria-roledescription="slide" aria-label="1 of 3">
         <div class="resultsGrid">
@@ -516,9 +576,11 @@
 
     <!-- Brands (match Testing layout) -->
     <div class="kfE__partnersBlock">
-      <h2 class="relative text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title" style="margin-bottom:12px;">Trusted by Leading Brands</h2>
-      {% include "partials/home-carousel.html" %}
-      <p class="body-sm" style="font-style:italic; text-align:center;">We help companies become industry leaders by turning IT strategy into action.</p>
+      <h2 class="relative text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title" style="margin-bottom:10px;">Trusted by Leading Brands</h2>
+      <div class="brand-carousel-block">
+        {% include "partials/home-carousel.html" %}
+      </div>
+      <p class="body-sm" style="font-style:italic; text-align:center; margin:clamp(16px,3vw,22px) 0 clamp(40px,5.5vw,60px);">We help companies become industry leaders by turning IT strategy into action.</p>
     </div>
   </div>
 
@@ -535,7 +597,7 @@
   .resultsSlide{ position:relative; opacity:1; pointer-events:auto; display:none; }
   .resultsSlide.is-active{ display:block; }
 }
-    .resultsCarousel .resultsCard{ transition:none; }
+    .resultsCarousel .resultsCard{ transition:none; cursor:pointer; }
     .resultsCarousel .resultsCard:hover, .resultsCarousel .resultsCard:focus-within{ transform:none; border-color:#1b2d46; box-shadow:0 24px 56px rgba(8,18,35,0.52), inset 0 1px 0 rgba(255,255,255,0.06); }
     .resultsDots{ display:flex; justify-content:center; align-items:center; gap:10px; padding-top:0; margin-top:8px; }
     .resultsDot{ width:10px; height:10px; border-radius:999px; border:1px solid rgba(148,163,184,.45); background:rgba(148,163,184,.28); cursor:pointer; -webkit-tap-highlight-color:transparent; }
@@ -553,6 +615,16 @@
     .resultsCard__role{ font-size:.85rem; color:rgba(203,213,225,.76); }
     @media (max-width: 640px){ .resultsCard__foot{ flex-direction:column; } }
     @media (max-width: 860px){ .resultsGrid{ grid-template-columns:1fr; } }
+    .resultsNav{ position:absolute; inset:0; pointer-events:none; }
+    .resultsArrow{ position:absolute; bottom:clamp(12px,3vw,18px); transform:none; width:42px; height:42px; border-radius:999px; border:1px solid rgba(255,255,255,.32); background:rgba(15,23,42,.72); color:#e2e8f0; display:grid; place-items:center; opacity:0; transition:opacity .2s ease, transform .2s ease, border-color .2s ease, background .2s ease; box-shadow:0 18px 36px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.08); pointer-events:none; cursor:pointer; }
+    .resultsArrow:hover{ border-color:rgba(102,199,232,.8); background:rgba(15,23,42,.9); }
+    .resultsArrow:focus-visible{ outline:2px solid rgba(102,199,232,.75); outline-offset:3px; }
+    .resultsArrow--prev{ left:clamp(10px,3vw,16px); }
+    .resultsArrow--next{ right:clamp(10px,3vw,16px); }
+    .resultsCarousel.show-arrows .resultsArrow{ opacity:1; pointer-events:auto; }
+    @media(max-width: 860px){
+      .resultsArrow{ display:none; }
+    }
   </style>
 
   <!-- Testimonials carousel script (auto-rotate, no scroll) -->
@@ -563,7 +635,11 @@
         var wrap = document.getElementById('resultsCarousel'); if (!wrap) return;
         var slides = Array.prototype.slice.call(wrap.querySelectorAll('.resultsSlide'));
         var dotsWraps = Array.prototype.slice.call(wrap.querySelectorAll('.resultsDots'));
-        var current = 0; var timer = null; var interval = 6000;
+        var prevBtn = wrap.querySelector('.resultsArrow--prev');
+        var nextBtn = wrap.querySelector('.resultsArrow--next');
+        var current = 0; var timer = null; var interval = 6000; var hideTimer=null;
+        function showArrows(){ wrap.classList.add('show-arrows'); if (hideTimer){ clearTimeout(hideTimer); hideTimer=null; } }
+        function hideArrows(){ if (hideTimer){ clearTimeout(hideTimer); } hideTimer = setTimeout(function(){ wrap.classList.remove('show-arrows'); }, 120); }
         function clamp(i){ return Math.max(0, Math.min(slides.length-1, i)); }
         function maxSlideHeight(){ var max=0; for (var i=0;i<slides.length;i++){ var card=slides[i].querySelector('.resultsCard'); var h=card?card.offsetHeight:slides[i].offsetHeight; if (h>max) max=h; } return max; }
         function setHeights(){ var desktop = window.matchMedia('(min-width: 860px)').matches; var h = maxSlideHeight(); if (desktop && h && h>0){ wrap.style.height = h + 'px'; for (var i=0;i<slides.length;i++){ var card=slides[i].querySelector('.resultsCard'); var imgWrap=slides[i].querySelector('.resultsImage'); if (card){ card.style.minHeight=h+'px'; card.style.height=h+'px'; } if (imgWrap){ imgWrap.style.height=h+'px'; } } } else { wrap.style.height=''; for (var j=0;j<slides.length;j++){ var c2=slides[j].querySelector('.resultsCard'); var i2=slides[j].querySelector('.resultsImage'); if (c2){ c2.style.minHeight=''; c2.style.height=''; } if (i2){ i2.style.height=''; } } } }
@@ -571,15 +647,21 @@
         function updateDots(){ if (!dotsWraps.length) return; dotsWraps.forEach(function(dw){ var dots = dw.querySelectorAll('.resultsDot'); for (var i=0;i<dots.length;i++){ var on = i===current; dots[i].classList.toggle('is-active', on); dots[i].setAttribute('aria-selected', on?'true':'false'); dots[i].setAttribute('tabindex', on?'0':'-1'); } }); }
         function buildDots(){ if (!dotsWraps.length) return; dotsWraps.forEach(function(dw){ dw.innerHTML=''; slides.forEach(function(_,i){ var b=document.createElement('button'); b.type='button'; b.className='resultsDot'; b.setAttribute('role','tab'); b.setAttribute('aria-label','Show testimonial '+(i+1)); b.addEventListener('click', function(){ pause(); setActive(i); resume(); }); dw.appendChild(b); }); }); }
         function next(){ setActive(current+1 >= slides.length ? 0 : current+1); }
+        function prev(){ setActive(current-1 < 0 ? slides.length-1 : current-1); }
         function pause(){ if (timer){ clearInterval(timer); timer=null; } }
         function resume(){ pause(); timer=setInterval(next, interval); }
         if (slides.length <= 1) { dotsWraps.forEach(function(dw){ dw.style.display='none'; dw.innerHTML=''; }); setActive(0); return; }
         buildDots();
         setActive(0);
         wrap.setAttribute('tabindex','0');
-        wrap.addEventListener('keydown', function(e){ if (e.key==='ArrowRight' || e.key==='Right'){ e.preventDefault(); pause(); next(); resume(); } else if (e.key==='ArrowLeft' || e.key==='Left'){ e.preventDefault(); pause(); setActive(current-1<0?slides.length-1:current-1); resume(); } });
-        wrap.addEventListener('pointerenter', pause, { passive:true });
-        wrap.addEventListener('pointerleave', resume, { passive:true });
+        wrap.addEventListener('keydown', function(e){ if (e.key==='ArrowRight' || e.key==='Right'){ e.preventDefault(); pause(); next(); resume(); } else if (e.key==='ArrowLeft' || e.key==='Left'){ e.preventDefault(); pause(); prev(); resume(); } });
+        if (prevBtn){ prevBtn.addEventListener('click', function(){ pause(); prev(); resume(); }); }
+        if (nextBtn){ nextBtn.addEventListener('click', function(){ pause(); next(); resume(); }); }
+        slides.forEach(function(slide){ var card=slide.querySelector('.resultsCard'); if (card){ card.addEventListener('click', function(){ pause(); next(); resume(); }); } });
+        wrap.addEventListener('pointerenter', function(){ showArrows(); pause(); }, { passive:true });
+        wrap.addEventListener('pointerleave', function(){ hideArrows(); resume(); }, { passive:true });
+        wrap.addEventListener('focusin', function(){ showArrows(); pause(); });
+        wrap.addEventListener('focusout', function(){ hideArrows(); resume(); });
         window.addEventListener('resize', setHeights);
         setHeights();
         resume();
@@ -626,18 +708,18 @@
     </h2>
 
     <!-- Screenshot-style 2x2 card with cross dividers -->
-    <div class="w-full rounded-2xl overflow-hidden mb-10" style="background:transparent; border:1px solid rgba(75,85,99,.35);">
+    <div class="w-full rounded-2xl overflow-hidden mb-7" style="background:transparent; border:1px solid rgba(75,85,99,.35);">
       <div class="flex flex-col divide-y divide-gray-700/50">
         <!-- Row 1 -->
         <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
           {% set f0 = keyFeatures.features[0] %}
           {% set f1 = keyFeatures.features[1] %}
-          <article class="p-8 md:p-10">
+          <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--tl">
             <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f0.icon }}" alt="{{ f0.alt }}" aria-hidden="true" loading="lazy" decoding="async">
             <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f0.heading }}</h3>
             <p class="text-slate-300 mt-2 md:mt-3">{{ f0.description }}</p>
           </article>
-          <article class="p-8 md:p-10">
+          <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--tr">
             <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f1.icon }}" alt="{{ f1.alt }}" aria-hidden="true" loading="lazy" decoding="async">
             <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f1.heading }}</h3>
             <p class="text-slate-300 mt-2 md:mt-3">{{ f1.description }}</p>
@@ -647,12 +729,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
           {% set f2 = keyFeatures.features[2] %}
           {% set f3 = keyFeatures.features[3] %}
-          <article class="p-8 md:p-10">
+          <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--bl">
             <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f2.icon }}" alt="{{ f2.alt }}" aria-hidden="true" loading="lazy" decoding="async">
             <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f2.heading }}</h3>
             <p class="text-slate-300 mt-2 md:mt-3">{{ f2.description }}</p>
           </article>
-          <article class="p-8 md:p-10">
+          <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--br">
             <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f3.icon }}" alt="{{ f3.alt }}" aria-hidden="true" loading="lazy" decoding="async">
             <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f3.heading }}</h3>
             <p class="text-slate-300 mt-2 md:mt-3">{{ f3.description }}</p>
@@ -671,20 +753,28 @@
 
 
 
-<article class="pt-24 pb-32 text-white homeResults" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
+<article class="pt-30 pb-44 text-white homeResults fade-item" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
   
   <div class="mx-2 md:container md:max-w-screen-xl md:mx-auto md:px-8 2xl:px-0" style="content-visibility:auto; contain-intrinsic-size: 1200px 1100px;">
   
     <div class="grid grid-cols-1 gap-8">
       <section class="col-span-1">
-        <h2 class="relative pb-5 text-2xl md:text-6xl font-semibold tracking-tighter font-mont" style="margin-bottom:12px;">Proven Results</h2>
-        <p class="pb-8 text-xl font-light">
+        <h2 class="relative text-2xl md:text-6xl font-semibold tracking-tighter font-mont pb-1">Proven Results</h2>
+        <p class="text-xl font-light results-intro">
           Technology challenges can be frustrating we know how important it is to have reliable IT that supports your goals. At L3 Networks, we deliver tailored solutions and round-the-clock support to reduce downtime and secure your systems.
         </p>
         <!-- Legacy three-card grid removed to reduce DOM weight -->
 
         <!-- Auto-rotating testimonials carousel (matches Testing site) -->
-        <div class="resultsCarousel" id="resultsCarousel2" aria-label="Client testimonials" role="region" style="content-visibility:auto; contain-intrinsic-size: 820px 680px;">
+        <div class="resultsCarousel" id="resultsCarousel2" aria-label="Client testimonials" role="region" style="content-visibility:auto; contain-intrinsic-size: 820px 680px; margin-top:0; margin-bottom:clamp(80px,9vw,112px);">
+          <div class="resultsNav" aria-hidden="true">
+            <button class="resultsArrow resultsArrow--prev" type="button" aria-label="Previous testimonial">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M14.7 5.3a1 1 0 0 1 0 1.4L9.4 12l5.3 5.3a1 1 0 0 1-1.4 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.4 0Z" fill="currentColor"/></svg>
+            </button>
+            <button class="resultsArrow resultsArrow--next" type="button" aria-label="Next testimonial">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9.3 18.7a1 1 0 0 1 0-1.4L14.6 12 9.3 6.7a1 1 0 0 1 1.4-1.4l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.4 0Z" fill="currentColor"/></svg>
+            </button>
+          </div>
           <!-- Slide 1 -->
           <article class="resultsSlide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
             <div class="resultsGrid">
@@ -800,21 +890,31 @@
               var wrap = document.getElementById('resultsCarousel2'); if (!wrap) return;
               var slides = Array.prototype.slice.call(wrap.querySelectorAll('.resultsSlide'));
               var dotsWraps = Array.prototype.slice.call(wrap.querySelectorAll('.resultsDots'));
-              var current = 0; var timer = null; var interval = 6000;
+              var prevBtn = wrap.querySelector('.resultsArrow--prev');
+              var nextBtn = wrap.querySelector('.resultsArrow--next');
+              var current = 0; var timer = null; var interval = 6000; var hideTimer=null;
+              function showArrows(){ wrap.classList.add('show-arrows'); if (hideTimer){ clearTimeout(hideTimer); hideTimer=null; } }
+              function hideArrows(){ if (hideTimer){ clearTimeout(hideTimer); } hideTimer = setTimeout(function(){ wrap.classList.remove('show-arrows'); }, 120); }
               function clamp(i){ return Math.max(0, Math.min(slides.length-1, i)); }
               function maxSlideHeight(){ var max=0; for (var i=0;i<slides.length;i++){ var card=slides[i].querySelector('.resultsCard'); var h=card?card.offsetHeight:slides[i].offsetHeight; if (h>max) max=h; } return max; }
               function setHeights(){ var desktop = window.matchMedia('(min-width: 860px)').matches; var h = maxSlideHeight(); if (desktop && h && h>0){ wrap.style.height = h + 'px'; for (var i=0;i<slides.length;i++){ var card=slides[i].querySelector('.resultsCard'); var imgWrap=slides[i].querySelector('.resultsImage'); if (card){ card.style.minHeight=h+'px'; card.style.height=h+'px'; } if (imgWrap){ imgWrap.style.height=h+'px'; } } } else { wrap.style.height=''; for (var j=0;j<slides.length;j++){ var c2=slides[j].querySelector('.resultsCard'); var i2=slides[j].querySelector('.resultsImage'); if (c2){ c2.style.minHeight=''; c2.style.height=''; } if (i2){ i2.style.height=''; } } } }
               function setActive(i){ current = clamp(i); slides.forEach(function(s,idx){ var on = idx===current; s.classList.toggle('is-active', on); s.setAttribute('aria-hidden', on?'false':'true'); }); updateDots(); setHeights(); }
               function updateDots(){ if (!dotsWraps.length) return; dotsWraps.forEach(function(dw){ dw.innerHTML=''; for (var i=0;i<slides.length;i++){ var b=document.createElement('button'); b.type='button'; b.className='resultsDot'; b.setAttribute('role','tab'); b.setAttribute('aria-label','Show testimonial '+(i+1)); (function(ii){ b.addEventListener('click', function(){ pause(); setActive(ii); resume(); }); })(i); dw.appendChild(b); } var dots = dw.querySelectorAll('.resultsDot'); for (var k=0;k<dots.length;k++){ dots[k].classList.toggle('is-active', k===current); dots[k].setAttribute('aria-selected', k===current?'true':'false'); dots[k].setAttribute('tabindex', k===current?'0':'-1'); } }); }
               function next(){ setActive(current+1 >= slides.length ? 0 : current+1); }
+              function prev(){ setActive(current-1 < 0 ? slides.length-1 : current-1); }
               function pause(){ if (timer){ clearInterval(timer); timer=null; } }
               function resume(){ pause(); timer=setInterval(next, interval); }
               wrap.setAttribute('tabindex','0');
               // Always initialize dots and state but don't start rotation until visible
               setActive(0);
-              wrap.addEventListener('keydown', function(e){ if (e.key==='ArrowRight' || e.key==='Right'){ e.preventDefault(); pause(); next(); resume(); } else if (e.key==='ArrowLeft' || e.key==='Left'){ e.preventDefault(); pause(); setActive(current-1<0?slides.length-1:current-1); resume(); } });
-              wrap.addEventListener('pointerenter', pause, { passive:true });
-              wrap.addEventListener('pointerleave', resume, { passive:true });
+              wrap.addEventListener('keydown', function(e){ if (e.key==='ArrowRight' || e.key==='Right'){ e.preventDefault(); pause(); next(); resume(); } else if (e.key==='ArrowLeft' || e.key==='Left'){ e.preventDefault(); pause(); prev(); resume(); } });
+              if (prevBtn){ prevBtn.addEventListener('click', function(){ pause(); prev(); resume(); }); }
+              if (nextBtn){ nextBtn.addEventListener('click', function(){ pause(); next(); resume(); }); }
+              slides.forEach(function(slide){ var card=slide.querySelector('.resultsCard'); if (card){ card.addEventListener('click', function(){ pause(); next(); resume(); }); } });
+              wrap.addEventListener('pointerenter', function(){ showArrows(); pause(); }, { passive:true });
+              wrap.addEventListener('pointerleave', function(){ hideArrows(); resume(); }, { passive:true });
+              wrap.addEventListener('focusin', function(){ showArrows(); pause(); });
+              wrap.addEventListener('focusout', function(){ hideArrows(); resume(); });
               window.addEventListener('resize', setHeights);
               setHeights();
 
@@ -846,10 +946,10 @@
   </div>
 
   <!-- Industries grid under testimonials (visible) -->
-  <section class="section-block homeCustomers pt-12" style="content-visibility:auto; contain-intrinsic-size: 900px 720px;">
+  <section class="section-block homeCustomers pt-16 fade-item" style="content-visibility:auto; contain-intrinsic-size: 900px 720px; margin-top:clamp(48px,6vw,80px);">
     <div class="section-shell homeCustomers-shell" style="position:relative; z-index:1; width:100%; max-width:1280px; margin:0 auto;">
-      <h2 class="relative font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title">Our Customers' Mission, is Our Mission</h2>
-      <p class="text-xl font-light text-slate-300 mb-8">We help every industry turn IT into a strategic advantage.</p>
+      <h2 class="relative font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title" style="margin-bottom:10px;">Our Customers' Mission, is Our Mission</h2>
+      <p class="text-xl font-light text-slate-300" style="margin:0 0 clamp(40px,5.5vw,60px);">We help every industry turn IT into a strategic advantage.</p>
       <style>
         .homeCustomers-shell{
           padding-left:clamp(18px,4vw,56px);
@@ -927,10 +1027,12 @@
     </div>
   </section>
 
-  <div class="container mx-auto w-full homeCustomers">
-    <h2 class="relative pt-20 text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title">Trusted by Leading Brands</h2>
-    {% include "partials/home-carousel.html" %}
-    <p class="text-lg italic font-light text-center text-slate-400">We help companies become industry leaders by turning IT strategy into action, delivering results that drive transformation and growth.</p>
+  <div class="container mx-auto w-full homeCustomers fade-item" style="margin-top:clamp(52px,6vw,84px);">
+    <h2 class="relative pt-20 text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title" style="margin-bottom:10px;">Trusted by Leading Brands</h2>
+    <div class="brand-carousel-block">
+      {% include "partials/home-carousel.html" %}
+    </div>
+    <p class="text-xl font-light text-center text-slate-300" style="margin:0 0 clamp(40px,5.5vw,60px);">We help companies become industry leaders by turning IT strategy into action, delivering results that drive transformation and growth.</p>
   </div>
 
   <!-- Bottom fade into next (CTA, light) -->
@@ -1090,7 +1192,14 @@
                   replayBtn.addEventListener('click', function(e){ e.preventDefault(); run(); });
                 }
 
-                let hasPlayed = false;
+                function resetAnim(){
+                  ['#Infrastructure-shadow','#Server_1','#Server_2','#Server_3','#Server_4','#Infrastructure-topLines','#Infrastructure-bottomLines','.replay'].forEach(sel => {
+                    const n = $(sel, scope);
+                    if (n && n.getAnimations) n.getAnimations().forEach(a => a.cancel());
+                  });
+                  if (svg) svg.style.visibility = 'hidden';
+                }
+
                 function bootOnView(){
                   const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                   if ('IntersectionObserver' in window && !reduceMotion) {
@@ -1098,13 +1207,13 @@
                     const container = scope.closest('section[data-cta="right-fit"]') || scope;
                     const io = new IntersectionObserver((entries) => {
                       entries.forEach((entry) => {
-                        if (entry.isIntersecting && !hasPlayed) {
-                          hasPlayed = true;
+                        if (entry.isIntersecting) {
                           run();
-                          io.unobserve(container);
+                        } else {
+                          resetAnim();
                         }
                       });
-                    }, { threshold: 0.25 });
+                    }, { threshold: 0.3 });
                     io.observe(container);
                   } else {
                     if (document.readyState === 'loading') {
@@ -2529,28 +2638,27 @@
       if (!('IntersectionObserver' in window)){
         elements.forEach(function(el){
           if (el && el.closest('.resultsCarousel')) return;
-          if (!el.classList.contains('is-visible')){
-            el.classList.add('is-visible');
-          }
+          el.classList.add('is-visible');
         });
         return;
       }
       if (!observer){
         observer = new IntersectionObserver(function(entries){
           entries.forEach(function(entry){
+            var el = entry.target;
+            if (el && el.closest('.resultsCarousel')) return;
             if (entry.isIntersecting){
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
+              el.classList.add('is-visible');
+            } else {
+              if (el.dataset.fadeLock) return;
+              el.classList.remove('is-visible');
             }
           });
-        }, { root:null, threshold:0.18 });
+        }, { root:null, threshold:0, rootMargin:'0px' });
       }
       elements.forEach(function(el){
         if (!el || el.closest('.resultsCarousel')) return;
-        if (!el.dataset.fadeInit){
-          el.dataset.fadeInit = '1';
-          observer.observe(el);
-        }
+        observer.observe(el);
       });
     };
   }
