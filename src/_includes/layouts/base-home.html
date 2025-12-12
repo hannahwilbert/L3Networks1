@@ -83,7 +83,7 @@
         }
       });
 
-      initSwiper('#swiper', {
+      const brandSwiper = initSwiper('#swiper', {
         loop: true,
         slidesPerView: 1,
         spaceBetween: 24,
@@ -103,6 +103,23 @@
         },
         // no navigation arrows for brand marquee
       });
+      if (brandSwiper) {
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') {
+            try {
+              brandSwiper.loopFix && brandSwiper.loopFix();
+              brandSwiper.autoplay && brandSwiper.autoplay.start();
+            } catch(_) {}
+          }
+        });
+        // periodic safeguard to keep marquee moving
+        setInterval(() => {
+          try {
+            brandSwiper.slideNext(0);
+            brandSwiper.autoplay && brandSwiper.autoplay.start();
+          } catch(_) {}
+        }, 15000);
+      }
       initSwiper('#homeswiper', {
         loop: true,
 
