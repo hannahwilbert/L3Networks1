@@ -702,44 +702,108 @@
 
 <section class="py-24 homeKeyFeatures" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-1, #061021) 0%, var(--surface-1, #061021) 100%);">
   <!-- Top fade handled by previous section; remove to avoid seam overlap -->
-  <div class="mx-2 text-white md:container md:max-w-screen-xl md:mx-auto md:px-8 2xl:px-0">
+  <div class="mx-2 text-white md:container md:max-w-screen-xl md:mx-auto md:px-8 2xl:px-0 fade-item">
     <h2 class="relative mb-12 text-2xl font-semibold tracking-tighter text-center md:mb-16 md:text-6xl font-mont">
       {{ keyFeatures.title }}
     </h2>
+    <style>
+      /* Clean hover interactions for Unlock the Benefits cards */
+      .homeKeyFeatures .feature-card{
+        position:relative;
+        isolation:isolate;
+        transition:background .38s ease, border-color .38s ease;
+        border:1px solid #1b2d46;
+        background: transparent;
+        box-shadow:none;
+        cursor:pointer;
+        display:flex;
+        flex-direction:column;
+        gap:0.35rem;
+      }
+      .homeKeyFeatures .feature-card:hover,
+      .homeKeyFeatures .feature-card:focus-within{
+        background: linear-gradient(135deg, rgba(12,22,38,.26) 0%, rgba(12,22,38,.14) 45%), linear-gradient(210deg, rgba(2,6,23,.46) 0%, rgba(2,6,23,.58) 100%);
+        border-color:rgba(102,199,232,.26);
+      }
+      /* Icon pop on hover across all cards */
+      .homeKeyFeatures .feature-card:hover img,
+      .homeKeyFeatures .feature-card:focus-within img{
+        transform:scale(1.04);
+      }
+      /* Extra lift for Protect Your Business (shield) */
+      .homeKeyFeatures .feature-card--2 img{
+        transition:transform .35s ease;
+        transform-origin:center;
+      }
+      .homeKeyFeatures .feature-card--2:hover img,
+      .homeKeyFeatures .feature-card--2:focus-within img{
+        transform:translateY(-2px) scale(1.07);
+      }
+      /* Keep text static; allow icon animation */
+      .homeKeyFeatures .feature-card img{ transition:transform .32s ease; transform:none; }
+      .homeKeyFeatures .feature-card h3{ transition:color .25s ease; margin:0; }
+      .homeKeyFeatures .feature-card:hover h3,
+      .homeKeyFeatures .feature-card:focus-within h3{ color:#53d8cc !important; }
+      /* Blocks icon: animate the floating square only */
+      .homeKeyFeatures .feature-card--1 .block-float{
+        transition:transform .35s ease;
+        transform-origin:center;
+      }
+      .homeKeyFeatures .feature-card--1:hover .block-float,
+      .homeKeyFeatures .feature-card--1:focus-within .block-float{
+        transform:translate(-8px,8px);
+      }
+      /* Clock-only animation for Proactive Support */
+      .homeKeyFeatures .feature-card--4 .clock-hand{
+        transform-origin:24px 24px;
+      }
+      @keyframes featureClockSpin{
+        0%{ transform:rotate(-220deg); }
+        100%{ transform:rotate(0deg); }
+      }
+      .homeKeyFeatures .feature-card--4:hover .clock-hand,
+      .homeKeyFeatures .feature-card--4:focus-within .clock-hand{
+        animation:featureClockSpin 0.55s ease forwards;
+      }
+    </style>
 
     <!-- Screenshot-style 2x2 card with cross dividers -->
     <div class="w-full rounded-2xl overflow-hidden mb-7" style="background:transparent; border:1px solid rgba(75,85,99,.35);">
-      <div class="flex flex-col divide-y divide-gray-700/50">
-        <!-- Row 1 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
-          {% set f0 = keyFeatures.features[0] %}
-          {% set f1 = keyFeatures.features[1] %}
-          <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--tl">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f0.icon }}" alt="{{ f0.alt }}" aria-hidden="true" loading="lazy" decoding="async">
-            <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f0.heading }}</h3>
-            <p class="text-slate-300 mt-2 md:mt-3">{{ f0.description }}</p>
-          </article>
-          <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--tr">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f1.icon }}" alt="{{ f1.alt }}" aria-hidden="true" loading="lazy" decoding="async">
-            <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f1.heading }}</h3>
-            <p class="text-slate-300 mt-2 md:mt-3">{{ f1.description }}</p>
-          </article>
-        </div>
-        <!-- Row 2 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
-          {% set f2 = keyFeatures.features[2] %}
-          {% set f3 = keyFeatures.features[3] %}
-          <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--bl">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f2.icon }}" alt="{{ f2.alt }}" aria-hidden="true" loading="lazy" decoding="async">
-            <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f2.heading }}</h3>
-            <p class="text-slate-300 mt-2 md:mt-3">{{ f2.description }}</p>
-          </article>
-          <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--br">
-            <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f3.icon }}" alt="{{ f3.alt }}" aria-hidden="true" loading="lazy" decoding="async">
-            <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f3.heading }}</h3>
-            <p class="text-slate-300 mt-2 md:mt-3">{{ f3.description }}</p>
-          </article>
-        </div>
+      {% set f0 = keyFeatures.features[0] %}
+      {% set f1 = keyFeatures.features[1] %}
+      {% set f2 = keyFeatures.features[2] %}
+      {% set f3 = keyFeatures.features[3] %}
+      <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
+        <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--tl feature-card feature-card--1">
+          <svg class="w-10 h-10 md:w-12 md:h-12 mb-1 md:mb-2" style="width:4.05rem; height:4.05rem; transform:translateY(-8px);" viewBox="0 0 48 48" aria-hidden="true">
+            <rect class="block-base" x="8" y="22" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
+            <rect class="block-base" x="8" y="32" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
+            <rect class="block-base" x="20" y="32" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
+            <rect class="block-float" x="28" y="14" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
+          </svg>
+          <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f0.heading }}</h3>
+          <p class="text-slate-300 mt-2 md:mt-3">{{ f0.description }}</p>
+        </article>
+        <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--tr feature-card feature-card--2">
+          <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f1.icon }}" alt="{{ f1.alt }}" aria-hidden="true" loading="lazy" decoding="async">
+          <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f1.heading }}</h3>
+          <p class="text-slate-300 mt-2 md:mt-3">{{ f1.description }}</p>
+        </article>
+        <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--bl feature-card feature-card--3">
+          <img class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4" src="{{ f2.icon }}" alt="{{ f2.alt }}" aria-hidden="true" loading="lazy" decoding="async">
+          <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f2.heading }}</h3>
+          <p class="text-slate-300 mt-2 md:mt-3">{{ f2.description }}</p>
+        </article>
+        <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--br feature-card feature-card--4">
+          <svg class="w-10 h-10 md:w-12 md:h-12 mb-3 md:mb-4 clock-icon" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="clock-circle" cx="24" cy="24" r="21" fill="none" stroke="#53d8cc" stroke-width="2.5" />
+            <line class="clock-hand hour-hand" x1="24" y1="24" x2="24" y2="14" stroke="#53d8cc" stroke-width="2.5" stroke-linecap="round" />
+            <line class="clock-hand minute-hand" x1="24" y1="24" x2="32" y2="24" stroke="#53d8cc" stroke-width="2.5" stroke-linecap="round" />
+            <circle cx="24" cy="24" r="2" fill="#53d8cc" />
+          </svg>
+          <h3 class="text-teal-400 font-extrabold tracking-tight font-mont" style="font-size:24px;">{{ f3.heading }}</h3>
+          <p class="text-slate-300 mt-2 md:mt-3">{{ f3.description }}</p>
+        </article>
       </div>
     </div>
 
@@ -753,9 +817,9 @@
 
 
 
-<article class="pt-30 pb-44 text-white homeResults fade-item" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
+<article class="pt-30 pb-44 text-white homeResults" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%);">
   
-  <div class="mx-2 md:container md:max-w-screen-xl md:mx-auto md:px-8 2xl:px-0" style="content-visibility:auto; contain-intrinsic-size: 1200px 1100px;">
+  <div class="mx-2 md:container md:max-w-screen-xl md:mx-auto md:px-8 2xl:px-0 fade-item" style="content-visibility:auto; contain-intrinsic-size: 1200px 1100px;">
   
     <div class="grid grid-cols-1 gap-8">
       <section class="col-span-1">
@@ -966,57 +1030,196 @@
         @media(max-width:640px){ .industryGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:0.85rem; } }
         @media(min-width:640px){ .industryGrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; } }
         @media(min-width:1024px){ .industryGrid{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
-        .industryCard{ position:relative; overflow:hidden; border-radius:1rem; background:rgba(15,23,42,.4); border:1px solid #1f2937; contain:paint; }
+        .industryCard{ position:relative; overflow:hidden; border-radius:1rem; background:rgba(15,23,42,.4); border:1px solid rgba(148,163,184,.18); contain:paint; transition:transform .2s ease-out, box-shadow .2s ease-out, opacity .2s ease-out; will-change:transform, box-shadow; cursor:pointer; }
         /* Disable hover shadow pseudo-element */
         .industryCard::after{ content:none; }
-        .industryImg{ width:100%; height:12rem; object-fit:cover; }
+        .industryImg{ width:100%; height:12rem; object-fit:cover; transition:transform .2s ease-out; }
         @media(min-width:768px){ .industryImg{ height:14rem; } }
-        .industryShade{ position:absolute; inset:0; opacity:.6; }
-        .industryLabel{ position:absolute; left:0; bottom:0; padding:1rem; }
+        .industryShade{ position:absolute; inset:0; opacity:.6; transition:opacity .2s ease-out, background .2s ease-out; }
+        .industryLabel{
+          position:absolute;
+          left:0;
+          bottom:1.5rem;
+          padding:1rem 1rem 0;
+          width:100%;
+          text-align:left;
+          transition:transform .2s ease-out;
+        }
+        .industryLabel h3{ margin:0; }
+        .industryAction{
+          position:absolute;
+          left:0;
+          bottom:0.2rem;
+          width:100%;
+          display:flex;
+          align-items:center;
+          justify-content:flex-start;
+          padding:0 1rem;
+          pointer-events:none;
+          opacity:0;
+          transform:translateY(8px);
+          transition:opacity .2s ease-out, transform .2s ease-out;
+        }
+        .industryAction .link-pill{
+          pointer-events:auto;
+          display:inline-flex;
+          align-items:center;
+          gap:0.35rem;
+          padding:0.08rem 0;
+          font-weight:600;
+          font-size:0.9rem;
+          color:rgba(83,216,204,0.9);
+          background:transparent;
+          border:none;
+          box-shadow:none;
+          transition:color .2s ease-out, opacity .2s ease-out;
+          opacity:0.92;
+        }
+        .industryAction .link-pill svg{
+          transition:transform .2s ease-out;
+        }
+        .industryAction .link-pill:hover{
+          color:#53d8cc;
+          opacity:1;
+        }
+        .industryAction .link-pill:hover svg{
+          transform:translateX(3px);
+        }
+        .industryCard:hover, .industryCard:focus-within{ transform:translateY(-1px); box-shadow:0 8px 18px rgba(0,0,0,.18); }
+        .industryCard:hover .industryImg, .industryCard:focus-within .industryImg{ transform:scale(1.005); }
+        .industryCard:hover .industryShade, .industryCard:focus-within .industryShade{ opacity:.72; background:linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.18) 100%); }
+        .industryCard:hover .industryLabel, .industryCard:focus-within .industryLabel{ transform:translateY(-4px); }
+        .industryCard:hover .industryAction, .industryCard:focus-within .industryAction{ opacity:1; transform:translateY(0); }
+        /* Stronger bottom fade helper when needed */
+        .industryShade--strong{
+          background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.2) 45%, rgba(0,0,0,0.95) 100%) !important;
+          opacity:1 !important;
+        }
+        .industryCard:hover .industryShade--strong,
+        .industryCard:focus-within .industryShade--strong{
+          background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.22) 50%, rgba(0,0,0,1) 100%) !important;
+          opacity:1 !important;
+        }
+        /* Smoother fade-in for industry cards */
+        .homeCustomers .fade-item{ opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s ease; }
+        .homeCustomers .fade-item.is-visible{ opacity:1; transform:translateY(0); }
         @media (prefers-reduced-motion: reduce){
-          .industryImg, .industryShade, .industryLabel, .industryCard{ transition-duration:0ms !important; transform:none !important; }
+          .industryImg, .industryShade, .industryLabel, .industryCard, .industryAction{ transition-duration:0ms !important; transform:none !important; }
+          .industryAction{ opacity:1; }
         }
       </style>
       <div class="industryGrid">
-        <div class="industryCard fade-item delay-0">
+        <div class="industryCard fade-item" style="transition-delay:0s;">
           <img src="/images/home/Manufacturing.png" alt="Manufacturing" class="industryImg" loading="lazy" decoding="async"/>
           <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
           <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Manufacturing</h3></div>
+          <div class="industryAction">
+            <a href="https://l3networks.com/resources/?type=Case+Study" class="link-pill">
+              <span>View case studies</span>
+              <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="industryCard fade-item delay-100">
+        <div class="industryCard fade-item" style="transition-delay:0.12s;">
           <img src="/images/home/Entertainment.png" alt="Entertainment" class="industryImg" loading="lazy" decoding="async"/>
           <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
           <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Entertainment</h3></div>
+          <div class="industryAction">
+            <a href="https://l3networks.com/resources/?type=Case+Study" class="link-pill">
+              <span>View case studies</span>
+              <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="industryCard fade-item delay-200">
+        <div class="industryCard fade-item" style="transition-delay:0.24s;">
           <img src="/images/home/Logistics.png" alt="Logistics" class="industryImg" loading="lazy" decoding="async"/>
           <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
           <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Logistics</h3></div>
+          <div class="industryAction">
+            <a href="https://l3networks.com/resources/?type=Case+Study" class="link-pill">
+              <span>View case studies</span>
+              <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="industryCard fade-item delay-300">
+        <div class="industryCard fade-item" style="transition-delay:0.36s;">
           <img src="/images/home/Financial Services.png" alt="Financial Services" class="industryImg" loading="lazy" decoding="async"/>
           <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
           <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Financial Services</h3></div>
+          <div class="industryAction">
+            <a href="https://l3networks.com/resources/?type=Case+Study" class="link-pill">
+              <span>View case studies</span>
+              <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="industryCard fade-item delay-400">
+        <div class="industryCard fade-item" style="transition-delay:0.48s;">
           <img src="/images/home/B2B Services.png" alt="B2B Services" class="industryImg" loading="lazy" decoding="async"/>
           <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
           <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">B2B Services</h3></div>
+          <div class="industryAction">
+            <a href="https://l3networks.com/resources/?type=Case+Study" class="link-pill">
+              <span>View case studies</span>
+              <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="industryCard fade-item delay-500">
+        <div class="industryCard fade-item" style="transition-delay:0.6s;">
           <img src="/images/home/designbuild.webp" alt="Design &amp; Construction" class="industryImg" loading="lazy" decoding="async"/>
-          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
+          <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent industryShade--strong"></div>
           <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Design &amp; Construction</h3></div>
+          <div class="industryAction">
+            <a href="https://l3networks.com/resources/?type=Case+Study" class="link-pill">
+              <span>View case studies</span>
+              <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="industryCard fade-item delay-600">
+        <div class="industryCard fade-item" style="transition-delay:0.72s;">
           <img src="/images/home/Healthcare.png" alt="Healthcare" class="industryImg" loading="lazy" decoding="async"/>
           <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
           <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Healthcare</h3></div>
+          <div class="industryAction">
+            <a href="https://l3networks.com/resources/?type=Case+Study" class="link-pill">
+              <span>View case studies</span>
+              <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
-        <div class="industryCard fade-item delay-700">
+        <div class="industryCard fade-item" style="transition-delay:0.84s;">
           <img src="/images/home/Legal Services.png" alt="Legal Services" class="industryImg" loading="lazy" decoding="async"/>
           <div class="industryShade bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
           <div class="industryLabel"><h3 class="text-white font-semibold text-lg md:text-xl">Legal Services</h3></div>
+          <div class="industryAction">
+            <a href="https://l3networks.com/resources/?type=Case+Study" class="link-pill">
+              <span>View case studies</span>
+              <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
       <div class="flex justify-center mt-8">
@@ -1044,7 +1247,7 @@
 <section class="section-block homeBlend" data-alt="light" data-cta="right-fit" style="background:linear-gradient(180deg, var(--surface-1, #061021) 0%, var(--surface-1, #061021) 80%, var(--surface-0, #000000) 100%) !important; position:relative; overflow:hidden; isolation:isolate; color:#f1f5f9;">
   <!-- Top fade handled by previous section; removed to avoid overlap seams -->
   <div class="section-shell" style="position:relative; z-index:1; width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(18px,4vw,56px); padding-right:clamp(18px,4vw,56px);">
-    <div class="ctaRF__card">
+    <div class="ctaRF__card fade-item">
       <div class="ctaRF__grid">
         <div class="ctaRF__left">
           <h2 class="relative text-2xl md:text-6xl font-semibold tracking-tighter font-mont" style="margin-bottom:12px; text-wrap:balance;">
@@ -1413,7 +1616,7 @@
     <canvas id="diffWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; will-change:transform; transform:translateZ(0);"></canvas>
     <canvas id="highlightsWaves" style="position:absolute; inset:0; z-index:0; pointer-events:none; mix-blend-mode:overlay; opacity:.25; will-change:transform; transform:translateZ(0);"></canvas>
     
-    <div class="mx-2 md:px-8 2xl:px-0 md:container md:max-w-screen-xl md:mx-auto" style="position:relative; z-index:1;">
+    <div class="mx-2 md:px-8 2xl:px-0 md:container md:max-w-screen-xl md:mx-auto fade-item" style="position:relative; z-index:1;">
     <!-- Single surface wrapping title, copy, and cards -->
     <div class="w-full rounded-2xl overflow-hidden" style="background:rgba(0,0,0,0.82); border:1px solid rgba(75,85,99,.35);">
       <div class="flex flex-col divide-y divide-gray-700/50">
@@ -1428,7 +1631,7 @@
           </p>
         </div>
         <!-- Row 1 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
+        <div class="grid grid-cols-1 md:grid-cols-2 md:divide-x divide-gray-700/50" style="border-top:1px solid rgba(75,85,99,.35);">
           {% set s0 = services[0] %}
           {% set s1 = services[1] %}
           <article class="p-6 md:p-8 flex flex-col gap-6 techCard">
@@ -1660,7 +1863,7 @@
 <section class="relative py-32 homeStory" style="position:relative; isolation:isolate; overflow:hidden; background:linear-gradient(180deg, var(--surface-1, #061021) 0%, var(--surface-1, #061021) 100%);">
   <!-- Background image removed to keep previous look -->
 
-  <div class="mx-2 relative grid grid-cols-1 md:container md:max-w-screen-xl md:mx-auto lg:gap-4 lg:grid-cols-12 md:px-8 2xl:px-0">
+  <div class="mx-2 relative grid grid-cols-1 md:container md:max-w-screen-xl md:mx-auto lg:gap-4 lg:grid-cols-12 md:px-8 2xl:px-0 fade-item">
     <div class="col-span-1 p-8 mb-8 border border-slate-800 lg:col-span-9 rounded-2xl bg-transparent backdrop-blur-sm">
       <h2 class="relative mb-5 text-2xl font-semibold tracking-tighter md:text-6xl font-mont">Driving Success <br> Through Technology</h2>
       <div class="pb-4 text-sm font-normal text-slate-200 md:text-base md:font-light md:text-slate-100">
@@ -1757,7 +1960,7 @@
 <!-- RESOURCES (huge) -->
 <section class="section-block homeBlend" data-alt="dark" data-resources="insights" style="padding:clamp(80px,14vh,220px) 0; position:relative; overflow:hidden; isolation:isolate; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%) !important; min-height:92svh; display:flex; align-items:center; color:#e2e8f0;">
   <!-- Top fade handled by previous section; removed to avoid overlap seams -->
-  <div class="mx-2 md:container md:max-w-screen-xl md:mx-auto md:px-8 2xl:px-0" style="text-align:left; position:relative; z-index:1;">
+  <div class="mx-2 md:container md:max-w-screen-xl md:mx-auto md:px-8 2xl:px-0 fade-item" style="text-align:left; position:relative; z-index:1;">
     <h2 class="latestInsights__title relative mb-10 md:mb-16 text-2xl font-semibold tracking-tighter md:text-6xl font-mont text-white">Latest Insights to <span class="latestInsights__titleBreak text-teal-400">Keep You Secure</span></h2>
 
       <div class="rcDemo">
@@ -1773,7 +1976,7 @@
 
       <div class="rcDemo__grid">
         {% for res in miniResources %}
-        <article class="rcDemo__card">
+        <article class="rcDemo__card fade-item" style="transition-delay:{{ (loop.index0 * 0.12)|round(2, 'common') }}s;">
           <a href="{{ res.url | default('/resources/') }}" class="rcDemo__thumb" aria-label="{{ res.title }}">
             <img src="{{ res.image | default('/images/optimized/why-your-help-desk-is-slowing-down-your-business-and-how-to-fix-it-640w.webp') }}" alt="{{ res.title }}" loading="lazy" decoding="async">
           </a>
@@ -1823,11 +2026,10 @@
         overflow:hidden;
         display:flex;
         flex-direction:column;
-        transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        transition:box-shadow .25s ease, border-color .25s ease;
         box-shadow:0 22px 55px rgba(2,6,23,.45);
       }
       .rcDemo__card:hover{
-        transform:translateY(-4px);
         box-shadow:0 40px 90px rgba(2,6,23,.6);
         border-color:rgba(148,163,184,.45);
       }
@@ -1845,7 +2047,7 @@
         transition:transform .28s ease;
       }
       .rcDemo__card:hover .rcDemo__thumb img{
-        transform:scale3d(1.04,1.04,1);
+        transform:scale3d(1.02,1.02,1);
       }
       .rcDemo__cardBody{
         padding:clamp(20px,2.8vw,30px);
@@ -1929,7 +2131,7 @@
   </style>
 </section>
 <section class="section-block homeBlend" data-alt="dark" style="position:relative; color:#fff; background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%) !important; background-color: var(--surface-0, #000000); padding:clamp(80px, 14vh, 220px) 0;">
-  <div class="section-shell stack-lg elevate-shell" style="position:relative; z-index:1; width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(18px,4vw,56px); padding-right:clamp(18px,4vw,56px);">
+  <div class="section-shell stack-lg elevate-shell fade-item" style="position:relative; z-index:1; width:100%; max-width:1280px; margin:0 auto; padding-left:clamp(18px,4vw,56px); padding-right:clamp(18px,4vw,56px);">
   <div class="howLead" style="text-align:center; margin:0 0 clamp(28px,6vh,72px);">
     <h2 class="relative mb-6 text-2xl font-semibold tracking-tighter md:text-6xl font-mont howLead__title" style="margin:0;">
       <span>Elevate</span> <span class="text-teal-400">Your IT</span>.
@@ -1940,7 +2142,7 @@
   <div class="threeSteps__split grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
     <div class="threeSteps__left w-full">
     <div class="threeSteps__cards grid grid-cols-1 gap-3 text-center">
-      <div class="threeSteps__card col-span-1 p-2 transition-all ease-in-out border rounded-2xl border-slate-800 md:p-4 group hover:border-teal-400">
+      <div class="threeSteps__card fade-item col-span-1 p-2 transition-all ease-in-out border rounded-2xl border-slate-800 md:p-4 group hover:border-teal-400" style="transition-delay:0s;">
       <div class="flex items-center justify-center gap-3 mb-2">
         <svg class="w-10 h-10 transition-all ease-in-out" width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class="transition-all ease-in-out " d="M73.125 12.6562H63.2812V8.4375C63.2812 8.06454 63.1331 7.70685 62.8694 7.44313C62.6056 7.17941 62.248 7.03125 61.875 7.03125C61.502 7.03125 61.1444 7.17941 60.8806 7.44313C60.6169 7.70685 60.4688
@@ -1986,7 +2188,7 @@
       <h3 class="text-lg font-bold tracking-tight md:pb-1 md:text-xl font-mont heading-md mb-xs">Schedule a Call</h3>
       <p class="text-xs font-normal text-slate-300 md:text-sm md:font-light">Reach out to us, and we'll learn about your business and IT needs.</p>
     </div>
-    <div class="threeSteps__card col-span-1 p-2 transition-all ease-in-out border rounded-2xl border-slate-800 md:p-4 group hover:border-teal-400">
+    <div class="threeSteps__card fade-item col-span-1 p-2 transition-all ease-in-out border rounded-2xl border-slate-800 md:p-4 group hover:border-teal-400" style="transition-delay:0.12s;">
       <div class="flex items-center justify-center gap-3 mb-2">
         <svg class="w-10 h-10 transition-all ease-in-out" width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class="transition-all ease-in-out " d="M79.7449 21.5051L68.4949 10.2551C68.3643 10.1243 68.2092 10.0206 68.0385 9.94985C67.8678 9.87908 67.6848 9.84265 67.5 9.84265C67.3152 9.84265 67.1322 9.87908 66.9615 9.94985C66.7908 10.0206 66.6357
@@ -2029,7 +2231,7 @@
       <h3 class="text-lg font-bold tracking-tight md:pb-1 md:text-xl font-mont heading-md mb-xs">Get a Tailored Plan</h3>
       <p class="text-xs font-normal text-slate-300 md:text-sm md:font-light">We'll craft a plan tailored to protect, optimize, and empower your business.</p>
     </div>
-    <div class="threeSteps__card col-span-1 p-2 transition-all ease-in-out border rounded-2xl border-slate-800 md:p-4 group hover:border-teal-400">
+    <div class="threeSteps__card fade-item col-span-1 p-2 transition-all ease-in-out border rounded-2xl border-slate-800 md:p-4 group hover:border-teal-400" style="transition-delay:0.24s;">
       <div class="flex items-center justify-center gap-3 mb-2">
         <svg class="w-10 h-10 transition-all ease-in-out" width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class="transition-all ease-in-out " d="M56.25 15.4688C50.5891 15.4739 45.0487 17.1039 40.2869 20.165C35.5251 23.2261 31.742 27.5897 29.3871 32.7375C28.0447 32.476 26.6802 32.3441 25.3125 32.3438C19.7181 32.3438 14.3528 34.5661 10.397
@@ -2433,10 +2635,44 @@
       margin:0;
       font-size:1rem;
     }
-    .heroVideo{
-      min-width:120%;
-      min-height:110%;
-    }
+  .heroVideo{
+    min-width:120%;
+    min-height:110%;
+  }
+/* Unlock the Benefits cards: hover interactions */
+.homeKeyFeatures .feature-card{
+  position:relative;
+  isolation:isolate;
+  transition:background .38s ease, border-color .38s ease, color .38s ease;
+  border:1px solid #1b2d46;
+  background:transparent;
+  box-shadow:none;
+  cursor:pointer;
+  will-change:background, color;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  gap:0.35rem;
+}
+.homeKeyFeatures .feature-card:hover,
+.homeKeyFeatures .feature-card:focus-within{
+  background:linear-gradient(135deg, rgba(12,22,38,.26) 0%, rgba(12,22,38,.14) 45%), linear-gradient(210deg, rgba(2,6,23,.46) 0%, rgba(2,6,23,.58) 100%);
+  border-color:rgba(102,199,232,.26);
+}
+      .homeKeyFeatures .feature-card:hover h3,
+      .homeKeyFeatures .feature-card:focus-within h3{
+        color:#53d8cc !important;
+      }
+  .homeKeyFeatures .feature-card img{
+    transition:transform .32s ease, filter .32s ease;
+    transform:none;
+    filter:none;
+  }
+  /* Icon pop on hover across all cards */
+  .homeKeyFeatures .feature-card:hover img,
+  .homeKeyFeatures .feature-card:focus-within img{
+    transform:scale(1.08);
+  }
     section[data-cta="right-fit"] .section-shell{
       padding-left:clamp(1rem,4vw,1.5rem) !important;
       padding-right:clamp(1rem,4vw,1.5rem) !important;
