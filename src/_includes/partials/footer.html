@@ -1,7 +1,7 @@
 {# {% include "partials/modal.html" %} #}
 
 <footer id="siteFooter" class="text-white" style="background:linear-gradient(180deg, var(--surface-0, #000000) 0%, var(--surface-0, #000000) 100%) !important; background-color: var(--surface-0, #000000);">
-  <section class="footer-shell container max-w-screen-xl mx-auto px-5 md:px-8 2xl:px-0 py-14 border-t" style="border-color:#334155;">
+  <section class="footer-shell container max-w-screen-xl mx-auto px-5 md:px-8 2xl:px-0 py-14">
     <div class="grid grid-cols-1 gap-10 md:grid-cols-12">
 
       <!-- Brand & contact -->
@@ -66,14 +66,25 @@
     </div>
 
   </section>
-  <style>
-    .footer-shell{
-      margin-left:auto;
-      margin-right:auto;
-      padding-left:20px;
-      padding-right:20px;
-    }
-    /* Footer link hover uses brand teal */
-    #siteFooter a.footerLink:hover{ color: var(--brand, #00BBA7); }
-  </style>
+	  <style>
+	    .footer-shell{
+	      --footer-pad-inline: 20px;
+	      margin-left:auto;
+	      margin-right:auto;
+	      padding-left:var(--footer-pad-inline);
+	      padding-right:var(--footer-pad-inline);
+	      position:relative;
+	    }
+	    #siteFooter .footer-shell::before{
+	      content:"";
+	      position:absolute;
+	      left:var(--footer-pad-inline);
+	      right:var(--footer-pad-inline);
+	      top:0;
+	      height:1px;
+	      background:#334155;
+	    }
+	    /* Footer link hover uses brand teal */
+	    #siteFooter a.footerLink:hover{ color: var(--brand, #00BBA7); }
+	  </style>
 </footer>
