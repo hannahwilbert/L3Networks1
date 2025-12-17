@@ -625,13 +625,14 @@
     </div>
 
     <!-- Brands (match Testing layout) -->
-    <div class="kfE__partnersBlock">
-      <h2 class="relative text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title" style="margin-bottom:10px;">Trusted by Leading Brands</h2>
-      <div class="brand-carousel-block">
-        {% include "partials/home-carousel.html" %}
-      </div>
-      <p class="body-sm" style="font-style:italic; text-align:center; margin:clamp(16px,3vw,22px) 0 clamp(40px,5.5vw,60px);">We help companies become industry leaders by turning IT strategy into action.</p>
-    </div>
+	    <div class="kfE__partnersBlock">
+	      <h2 class="relative text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title" style="margin-bottom:10px;">Trusted by Leading Brands</h2>
+	      <div class="brand-carousel-block">
+	        {% set carouselId = "brandsCarouselTop" %}
+	        {% include "partials/home-carousel.html" %}
+	      </div>
+	      <p class="body-sm" style="font-style:italic; text-align:center; margin:clamp(16px,3vw,22px) 0 clamp(40px,5.5vw,60px);">We help companies become industry leaders by turning IT strategy into action.</p>
+	    </div>
   </div>
 
   <style>
@@ -756,28 +757,27 @@
     <h2 class="relative mb-12 text-2xl font-semibold tracking-tighter text-center md:mb-16 md:text-6xl font-mont">
       {{ keyFeatures.title }}
     </h2>
-    <style>
-      /* Clean hover interactions for Unlock the Benefits cards */
-      .homeKeyFeatures .feature-card{
-        position:relative;
-        isolation:isolate;
-        transition:background .38s ease, border-color .38s ease;
-        border:1px solid #1b2d46;
-        background: transparent;
-        box-shadow:none;
-        cursor:pointer;
-        display:flex;
-        flex-direction:column;
-        gap:0.35rem;
-      }
-	      .homeKeyFeatures .feature-card:hover,
-	      .homeKeyFeatures .feature-card:focus-within{
-	        /* Darker hover surface (less “glow”, more depth) */
-	        background:
-	          linear-gradient(135deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 46%),
-	          linear-gradient(210deg, rgba(2,6,23,.72) 0%, rgba(2,6,23,.82) 100%);
-	        border-color:rgba(102,199,232,.26);
+	    <style>
+	      /* Clean hover interactions for Unlock the Benefits cards */
+	      .homeKeyFeatures .feature-card{
+	        position:relative;
+	        isolation:isolate;
+	        transition:background .38s ease;
+	        border:0;
+	        background: transparent;
+	        box-shadow:none;
+	        cursor:pointer;
+	        display:flex;
+	        flex-direction:column;
+	        gap:0.35rem;
 	      }
+		      .homeKeyFeatures .feature-card:hover,
+		      .homeKeyFeatures .feature-card:focus-within{
+		        /* Darker hover surface (less “glow”, more depth) */
+		        background:
+		          linear-gradient(135deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 46%),
+		          linear-gradient(210deg, rgba(2,6,23,.72) 0%, rgba(2,6,23,.82) 100%);
+		      }
       /* Icon pop on hover across all cards */
       .homeKeyFeatures .feature-card:hover img,
       .homeKeyFeatures .feature-card:focus-within img{
@@ -814,11 +814,41 @@
         0%{ transform:rotate(-220deg); }
         100%{ transform:rotate(0deg); }
       }
-      .homeKeyFeatures .feature-card--4:hover .clock-hand,
-      .homeKeyFeatures .feature-card--4:focus-within .clock-hand{
-        animation:featureClockSpin 0.55s ease forwards;
-      }
-    </style>
+	      .homeKeyFeatures .feature-card--4:hover .clock-hand,
+	      .homeKeyFeatures .feature-card--4:focus-within .clock-hand{
+	        animation:featureClockSpin 0.55s ease forwards;
+	      }
+
+	      /* Single cross divider for the 2x2 grid (md+) */
+	      .homeKeyFeatures .benefits-grid{
+	        position:relative;
+	        isolation:isolate;
+	      }
+	      @media (min-width: 768px){
+	        .homeKeyFeatures .benefits-grid::before,
+	        .homeKeyFeatures .benefits-grid::after{
+	          content:"";
+	          position:absolute;
+	          pointer-events:none;
+	          background:rgba(55,65,81,.50);
+	          z-index:5;
+	        }
+	        .homeKeyFeatures .benefits-grid::before{
+	          top:0;
+	          bottom:0;
+	          left:50%;
+	          width:1px;
+	          transform:translateX(-0.5px);
+	        }
+	        .homeKeyFeatures .benefits-grid::after{
+	          left:0;
+	          right:0;
+	          top:50%;
+	          height:1px;
+	          transform:translateY(-0.5px);
+	        }
+	      }
+	    </style>
 
     <!-- Screenshot-style 2x2 card with cross dividers -->
     <div class="w-full rounded-2xl overflow-hidden mb-7" style="background:transparent; border:1px solid rgba(75,85,99,.35);">
@@ -826,11 +856,11 @@
       {% set f1 = keyFeatures.features[1] %}
       {% set f2 = keyFeatures.features[2] %}
       {% set f3 = keyFeatures.features[3] %}
-      <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50">
-        <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--tl feature-card feature-card--1">
-          <svg class="w-10 h-10 md:w-12 md:h-12 mb-1 md:mb-2" style="width:4.05rem; height:4.05rem; transform:translateY(-8px);" viewBox="0 0 48 48" aria-hidden="true">
-            <rect class="block-base" x="8" y="22" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
-            <rect class="block-base" x="8" y="32" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
+	      <div class="benefits-grid grid grid-cols-1 md:grid-cols-2">
+	        <article class="p-8 md:p-10 fade-item fade-lock puzzle-piece puzzle-piece--tl feature-card feature-card--1">
+	          <svg class="w-10 h-10 md:w-12 md:h-12 mb-1 md:mb-2" style="width:4.05rem; height:4.05rem; transform:translateY(-8px);" viewBox="0 0 48 48" aria-hidden="true">
+	            <rect class="block-base" x="8" y="22" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
+	            <rect class="block-base" x="8" y="32" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
             <rect class="block-base" x="20" y="32" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
             <rect class="block-float" x="28" y="14" width="10" height="10" rx="2" ry="2" fill="none" stroke="#53d8cc" stroke-width="1.85" />
           </svg>
@@ -1281,13 +1311,14 @@
     </div>
   </section>
 
-  <div class="container mx-auto w-full homeCustomers fade-item" style="margin-top:clamp(52px,6vw,84px);">
-    <h2 class="relative pt-20 text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title" style="margin-bottom:10px;">Trusted by Leading Brands</h2>
-    <div class="brand-carousel-block">
-      {% include "partials/home-carousel.html" %}
-    </div>
-    <p class="text-xl font-light text-center text-slate-300" style="margin:0 0 clamp(40px,5.5vw,60px);">We help companies become industry leaders by turning IT strategy into action, delivering results that drive transformation and growth.</p>
-  </div>
+	  <div class="container mx-auto w-full homeCustomers fade-item" style="margin-top:clamp(52px,6vw,84px);">
+	    <h2 class="relative pt-20 text-center font-mont font-semibold tracking-tighter text-2xl md:text-6xl mobile-equal-title" style="margin-bottom:10px;">Trusted by Leading Brands</h2>
+	    <div class="brand-carousel-block">
+	      {% set carouselId = "brandsCarouselBottom" %}
+	      {% include "partials/home-carousel.html" %}
+	    </div>
+	    <p class="text-xl font-light text-center text-slate-300" style="margin:0 0 clamp(40px,5.5vw,60px);">We help companies become industry leaders by turning IT strategy into action, delivering results that drive transformation and growth.</p>
+	  </div>
 
 </article>
 
@@ -1677,7 +1708,7 @@
             and technology that <strong class="font-bold">supports long-term growth.</strong>
           </p>
         </div>
-        <div class="techGrid grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-700/50" style="border-top:1px solid rgba(75,85,99,.35);">
+	        <div class="techGrid grid grid-cols-1 md:grid-cols-2">
           {% set s0 = services[0] %}
           {% set s1 = services[1] %}
           {% set s2 = services[2] %}
@@ -1730,35 +1761,35 @@
       #techWorks .techIntro h2{font-size:clamp(36px,3.2vw,48px);font-weight:800;color:#fff;}
       #techWorks .techIntro p{color:rgba(224,231,255,.85);font-weight:300;}
       #techWorks .techIntro p strong{color:inherit;font-weight:700;}
-      #techWorks .techCard{
-        position:relative;
-        isolation:isolate;
-        display:flex;
-        flex-direction:column;
-        min-height:100%;
-        height:100%;
-        border:1px solid rgba(75,85,99,.35);
-        border-radius:0;
-        background:transparent;
-        box-shadow:none;
-        transition:border-color .2s ease;
-        cursor:pointer;
-        overflow:hidden;
-        z-index:1;
-      }
-      #techWorks .techCard::before{
-        content:'';
-        position:absolute;
-        inset:-1px;
-        background: linear-gradient(135deg, rgba(12,22,38,.26) 0%, rgba(12,22,38,.14) 45%), linear-gradient(210deg, rgba(2,6,23,.46) 0%, rgba(2,6,23,.58) 100%);
-        opacity:0;
-        transition:opacity .28s ease;
-        z-index:0;
-      }
-      #techWorks .techCard:hover,
-      #techWorks .techCard:focus-within{
-        border-color:rgba(102,199,232,.32);
-      }
+	      #techWorks .techCard{
+	        position:relative;
+	        isolation:isolate;
+	        display:flex;
+	        flex-direction:column;
+	        min-height:100%;
+	        height:100%;
+	        border:0;
+	        border-radius:0;
+	        background:transparent;
+	        box-shadow:none;
+	        transition:box-shadow .2s ease;
+	        cursor:pointer;
+	        overflow:hidden;
+	        z-index:1;
+	      }
+	      #techWorks .techCard::before{
+	        content:'';
+	        position:absolute;
+	        inset:0;
+	        background: linear-gradient(135deg, rgba(12,22,38,.26) 0%, rgba(12,22,38,.14) 45%), linear-gradient(210deg, rgba(2,6,23,.46) 0%, rgba(2,6,23,.58) 100%);
+	        opacity:0;
+	        transition:opacity .28s ease;
+	        z-index:0;
+	      }
+	      #techWorks .techCard:hover,
+	      #techWorks .techCard:focus-within{
+	        box-shadow: inset 0 0 0 1px rgba(102,199,232,.30);
+	      }
       #techWorks .techCard:hover::before,
       #techWorks .techCard:focus-within::before{
         opacity:1;
@@ -1786,27 +1817,31 @@
         align-items:stretch;
         grid-auto-rows:1fr;
       }
-      @media (min-width:768px){
-        #techWorks .techGrid::before,
-        #techWorks .techGrid::after{
-          content:'';
-          position:absolute;
-          inset:0;
-          pointer-events:none;
-          z-index:2;
-        }
-        #techWorks .techGrid::before{
-          left:50%;
-          width:1px;
-          background:rgba(75,85,99,.35);
-        }
-        #techWorks .techGrid::after{
-          top:50%;
-          height:1px;
-          background:rgba(75,85,99,.35);
-        }
-      }
-    </style>
+	      @media (min-width:768px){
+	        #techWorks .techGrid::before,
+	        #techWorks .techGrid::after{
+	          content:'';
+	          position:absolute;
+	          pointer-events:none;
+	          background:rgba(75,85,99,.35);
+	          z-index:6;
+	        }
+	        #techWorks .techGrid::before{
+	          width:1px;
+	          top:0;
+	          bottom:0;
+	          left:50%;
+	          transform:translateX(-0.5px);
+	        }
+	        #techWorks .techGrid::after{
+	          height:1px;
+	          left:0;
+	          right:0;
+	          top:50%;
+	          transform:translateY(-0.5px);
+	        }
+	      }
+	    </style>
   </section>
 
 
@@ -2864,40 +2899,6 @@
   .heroVideo{
     min-width:120%;
     min-height:110%;
-  }
-/* Unlock the Benefits cards: hover interactions */
-.homeKeyFeatures .feature-card{
-  position:relative;
-  isolation:isolate;
-  transition:background .38s ease, border-color .38s ease, color .38s ease;
-  border:1px solid #1b2d46;
-  background:transparent;
-  box-shadow:none;
-  cursor:pointer;
-  will-change:background, color;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  gap:0.35rem;
-}
-.homeKeyFeatures .feature-card:hover,
-.homeKeyFeatures .feature-card:focus-within{
-  background:linear-gradient(135deg, rgba(12,22,38,.26) 0%, rgba(12,22,38,.14) 45%), linear-gradient(210deg, rgba(2,6,23,.46) 0%, rgba(2,6,23,.58) 100%);
-  border-color:rgba(102,199,232,.26);
-}
-      .homeKeyFeatures .feature-card:hover h3,
-      .homeKeyFeatures .feature-card:focus-within h3{
-        color:#53d8cc !important;
-      }
-  .homeKeyFeatures .feature-card img{
-    transition:transform .32s ease, filter .32s ease;
-    transform:none;
-    filter:none;
-  }
-  /* Icon pop on hover across all cards */
-  .homeKeyFeatures .feature-card:hover img,
-  .homeKeyFeatures .feature-card:focus-within img{
-    transform:scale(1.08);
   }
     section[data-cta="right-fit"] .section-shell{
       padding-left:clamp(1rem,4vw,1.5rem) !important;

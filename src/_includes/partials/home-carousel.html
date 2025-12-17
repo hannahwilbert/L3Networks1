@@ -1,5 +1,5 @@
 <!-- Slider main container -->
-<div class="w-full swiper h-28" id="swiper">
+<div class="w-full swiper h-28" data-brand-swiper id="{{ carouselId or 'swiper' }}">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
@@ -53,23 +53,32 @@
 </div>
 
 <!-- Uniform card styling + linear marquee effect -->
-<style>
-  /* Equal-sized cards + center */
-  #swiper{ mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
-           -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
-  #swiper .swiper-wrapper{ transition-timing-function: linear !important; }
-  #swiper .swiper-slide{ display:flex; align-items:center; }
-  #swiper .swiper-slide > div{ height:auto; min-height:64px; border:1px solid rgba(255,255,255,.10); border-radius:12px; background:rgba(2,6,23,.45); box-shadow:inset 0 1px 0 rgba(255,255,255,.06); padding:8px; }
-  #swiper .swiper-slide img{ display:block; max-height:36px; width:auto; opacity:.95; }
-  @media (max-width:640px){
-    #swiper{ height:90px; }
-    #swiper .swiper-slide{ width:55% !important; }
-    #swiper .swiper-slide > div{
-      min-height:48px;
-      padding:4px 6px;
-    }
-    #swiper .swiper-slide img{
-      max-height:26px;
-    }
-  }
-</style>
+	<style>
+	  /* Equal-sized cards + center */
+	  #swiper,
+	  .brand-carousel-block [data-brand-swiper]{ mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+	           -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
+	  #swiper .swiper-wrapper,
+	  .brand-carousel-block [data-brand-swiper] .swiper-wrapper{ transition-timing-function: linear !important; }
+	  #swiper .swiper-slide,
+	  .brand-carousel-block [data-brand-swiper] .swiper-slide{ display:flex; align-items:center; }
+	  #swiper .swiper-slide > div,
+	  .brand-carousel-block [data-brand-swiper] .swiper-slide > div{ height:auto; min-height:64px; border:1px solid rgba(255,255,255,.10); border-radius:12px; background:rgba(2,6,23,.45); box-shadow:inset 0 1px 0 rgba(255,255,255,.06); padding:8px; }
+	  #swiper .swiper-slide img,
+	  .brand-carousel-block [data-brand-swiper] .swiper-slide img{ display:block; max-height:36px; width:auto; opacity:.95; }
+	  @media (max-width:640px){
+	    #swiper,
+	    .brand-carousel-block [data-brand-swiper]{ height:90px; }
+	    #swiper .swiper-slide,
+	    .brand-carousel-block [data-brand-swiper] .swiper-slide{ width:55% !important; }
+	    #swiper .swiper-slide > div,
+	    .brand-carousel-block [data-brand-swiper] .swiper-slide > div{
+	      min-height:48px;
+	      padding:4px 6px;
+	    }
+	    #swiper .swiper-slide img,
+	    .brand-carousel-block [data-brand-swiper] .swiper-slide img{
+	      max-height:26px;
+	    }
+	  }
+	</style>

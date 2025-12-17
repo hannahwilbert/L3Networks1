@@ -60,13 +60,16 @@
   <script defer src="/js/swiper-bundle.min.js"></script>
   <script defer src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script defer src="/js/animate.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      const initSwiper = (sel, opts) => {
-        if (window.Swiper && document.querySelector(sel)) {
-          return new Swiper(sel, opts);
-        }
-      };
+	  <script>
+	    window.addEventListener('DOMContentLoaded', () => {
+	      const initSwiper = (sel, opts) => {
+	        if (window.Swiper && document.querySelector(sel)) {
+	          return new Swiper(sel, opts);
+	        }
+	      };
+	      const initSwiperEl = (el, opts) => {
+	        if (window.Swiper && el) return new Swiper(el, opts);
+	      };
       initSwiper('#hero', {
         slidesPerView: 1,
         spaceBetween: 0,
@@ -83,43 +86,54 @@
         }
       });
 
-      const brandSwiper = initSwiper('#swiper', {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 24,
-        loopedSlides: 20,
-        loopAdditionalSlides: 10,
-        freeMode: true,
-        freeModeMomentum: false,
-        freeModeMomentumBounce: false,
-        autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false },
-        speed: 12000,
-        allowTouchMove: false,
-        breakpoints: {
-          640: { slidesPerView: 3 },
-          768: { slidesPerView: 4 },
-          1024: { slidesPerView: 6 },
-          1280: { slidesPerView: 7 },
-        },
-        // no navigation arrows for brand marquee
-      });
-      if (brandSwiper) {
-        document.addEventListener('visibilitychange', () => {
-          if (document.visibilityState === 'visible') {
-            try {
-              brandSwiper.loopFix && brandSwiper.loopFix();
-              brandSwiper.autoplay && brandSwiper.autoplay.start();
-            } catch(_) {}
-          }
-        });
-        // periodic safeguard to keep marquee moving
-        setInterval(() => {
-          try {
-            brandSwiper.slideNext(0);
-            brandSwiper.autoplay && brandSwiper.autoplay.start();
-          } catch(_) {}
-        }, 15000);
-      }
+	      const brandSwipers = [];
+	      const brandEls = document.querySelectorAll('[data-brand-swiper]');
+	      brandEls.forEach((el) => {
+	        const slideCount = el.querySelectorAll('.swiper-slide').length;
+	        const loopSlides = Math.max(1, slideCount);
+	        const sw = initSwiperEl(el, {
+	          loop: true,
+	          slidesPerView: 1,
+	          spaceBetween: 24,
+	          loopedSlides: loopSlides,
+	          loopAdditionalSlides: loopSlides,
+	          freeMode: true,
+	          freeModeMomentum: false,
+	          freeModeMomentumBounce: false,
+	          autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false },
+	          speed: 12000,
+	          allowTouchMove: false,
+	          observer: true,
+	          observeParents: true,
+	          breakpoints: {
+	            640: { slidesPerView: 3 },
+	            768: { slidesPerView: 4 },
+	            1024: { slidesPerView: 6 },
+	            1280: { slidesPerView: 7 },
+	          },
+	          // no navigation arrows for brand marquee
+	        });
+	        if (!sw) return;
+	        brandSwipers.push(sw);
+	      });
+
+	      function ensureBrandSwiperRunning(sw){
+	        if (!sw || sw.destroyed) return;
+	        try {
+	          sw.loopFix && sw.loopFix();
+	          sw.update && sw.update();
+	          if (sw.autoplay && !sw.autoplay.running) sw.autoplay.start();
+	        } catch (_) {}
+	      }
+
+	      if (brandSwipers.length) {
+	        const kick = () => brandSwipers.forEach(ensureBrandSwiperRunning);
+	        document.addEventListener('visibilitychange', () => {
+	          if (document.visibilityState === 'visible') kick();
+	        });
+	        window.addEventListener('resize', kick);
+	        setInterval(kick, 12000);
+	      }
       initSwiper('#homeswiper', {
         loop: true,
 
