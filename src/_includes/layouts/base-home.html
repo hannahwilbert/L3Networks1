@@ -112,8 +112,14 @@
 	            1280: { slidesPerView: 7 },
 	          },
 	          // no navigation arrows for brand marquee
+	          on: {
+	            autoplayStop: function(){ this.autoplay && this.autoplay.start && this.autoplay.start(); },
+	            autoplayPause: function(){ this.autoplay && this.autoplay.start && this.autoplay.start(); },
+	          }
 	        });
 	        if (!sw) return;
+	        if (sw.autoplay && !sw.autoplay.running) sw.autoplay.start();
+	        sw.on('transitionEnd', function(){ ensureBrandSwiperRunning(sw); });
 	        brandSwipers.push(sw);
 	      });
 
