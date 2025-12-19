@@ -118,7 +118,7 @@
     <div class="mb-6 text-white">
       <p class="aboutus-section-title">Our Values in Action</p>
     </div>
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3 aboutus-values-grid">
       <div class="p-6 l3-card">
         <div class="flex items-center mb-3 text-teal-400">
           <svg xmlns="http://www.w3.org/2000/xmlns" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3 -mt-2 shrink-0">
@@ -294,7 +294,7 @@
   .aboutHero__image{
     z-index:0;
   }
-  .aboutHero__image img{
+.aboutHero__image img{
     width:100%;
     height:100%;
     object-fit:cover;
@@ -514,10 +514,20 @@
       margin-top:0;
       justify-content:flex-end;
     }
-    .aboutus-locationCard__actions--desktopOnly{
+.aboutus-locationCard__actions--desktopOnly{
       display:flex;
     }
   }
+.aboutus-values-grid{
+  align-items:stretch;
+  grid-auto-rows:1fr;
+}
+.aboutus-values-grid .l3-card{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
   @keyframes aboutGlow{
     0%{transform:translate3d(-5%, -5%, 0) scale(1);}
     50%{transform:translate3d(3%, 4%, 0) scale(1.05);}
