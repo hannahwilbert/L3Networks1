@@ -223,10 +223,10 @@
     <!-- Card -->
     <article
       x-data="{ open:false, accentColor: '{{ c.color }}' }"
-      class="overflow-hidden rounded-4xl flex flex-col"
+      class="journeyCard overflow-hidden rounded-4xl flex flex-col"
     >
       <!-- Content area with background -->
-      <div class="transition-colors rounded-t-4xl flex-1 cursor-pointer"
+      <div class="journeyPanel transition-colors rounded-t-4xl flex-1 cursor-pointer"
         role="button"
         tabindex="0"
         :aria-expanded="open.toString()"
@@ -302,7 +302,7 @@
         </div>
 
         <!-- Half-circle toggle indicator (bottom-center) -->
-        <div class="absolute -translate-x-1/2 pointer-events-none left-1/2 -bottom-1">
+        <div class="journeyToggle absolute pointer-events-none left-1/2 -bottom-1">
           <div
             class="flex items-center justify-center w-16 h-8 rounded-t-full shadow-lg"
             :class="open ? 'bg-transparent' : 'bg-black/80 text-neutral-200'"
@@ -339,6 +339,48 @@
   }
   .elevateCard__overlay.is-active{
     background:linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,30,44,0.65));
+  }
+  /* Journey card hover polish */
+  .journeyCard{
+    transition:box-shadow .22s ease;
+    position:relative;
+  }
+  .journeyCard:hover,
+  .journeyCard:focus-within{
+    box-shadow:0 16px 32px rgba(0,0,0,.26);
+  }
+  .journeyCard .elevateCard__media img{
+    transition:transform .4s ease;
+  }
+  .journeyCard:hover .elevateCard__media img,
+  .journeyCard:focus-within .elevateCard__media img{
+    transform:scale(1.06);
+  }
+  .journeyCard:hover .elevateCard__overlay,
+  .journeyCard:focus-within .elevateCard__overlay{
+    background:linear-gradient(135deg, rgba(0,0,0,0.26), rgba(0,30,44,0.48));
+  }
+  .journeyToggle{
+    left:50%;
+    right:auto;
+    transform:translate(-50%,0);
+    display:flex;
+    justify-content:center;
+    will-change:transform;
+  }
+  .journeyArrow{
+    transition:transform .24s ease;
+  }
+  .journeyCard:hover .journeyArrow,
+  .journeyCard:focus-within .journeyArrow{
+    transform:translateX(3px) translateY(-3px) rotate(10deg);
+  }
+  .journeyToggle svg{
+    transition:transform .24s ease;
+  }
+  .journeyCard:hover .journeyToggle svg,
+  .journeyCard:focus-within .journeyToggle svg{
+    transform:translateY(-3px);
   }
 </style>
 

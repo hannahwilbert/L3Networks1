@@ -22,8 +22,8 @@
 {% else %}
   {% set heroImage = '/images/products/' + productSlug + '.webp' %}
 {% endif %}
-<section style="background-image: url('{{ heroImage }}');" class="relative w-full pt-32 text-white bg-center bg-no-repeat bg-cover md:pt-16">
-  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+<section style="background-image: url('{{ heroImage }}');" class="product-hero relative w-full pt-32 text-white bg-center bg-no-repeat bg-cover md:pt-16">
+  <div class="product-hero__overlay" aria-hidden="true"></div>
   <div class="relative w-full max-w-screen-xl mx-auto px-4 pb-20 text-left md:pb-32 md:px-8 md:py-48">
     <div class="flex gap-0">
       <span class="xflex-shrink-0">
@@ -162,6 +162,45 @@
       {% endif %}
     </ol>
   </nav>
+
+  <style>
+    /* Scroll reveal animations for solutions pages */
+    .fade-item{
+      opacity:0;
+      transform:translateY(4px);
+      transition:opacity .7s cubic-bezier(.3,.75,.2,1), transform .7s cubic-bezier(.3,.75,.2,1);
+      will-change:opacity, transform;
+    }
+    .fade-item.is-visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .fade-item.delay-0{transition-delay:0s;}
+    .fade-item.delay-50{transition-delay:.05s;}
+    .fade-item.delay-100{transition-delay:.1s;}
+    .fade-item.delay-150{transition-delay:.15s;}
+    .fade-item.delay-200{transition-delay:.2s;}
+    .fade-item.delay-250{transition-delay:.25s;}
+    .fade-item.delay-300{transition-delay:.3s;}
+    .fade-item.delay-400{transition-delay:.4s;}
+    .fade-item.delay-500{transition-delay:.5s;}
+    .fade-item.delay-600{transition-delay:.6s;}
+    .fade-item.delay-700{transition-delay:.7s;}
+    .fade-item.delay-800{transition-delay:.8s;}
+    .fade-item.delay-900{transition-delay:.9s;}
+    .fade-item.delay-1200{transition-delay:1.2s;}
+    .fade-item.delay-1400{transition-delay:1.4s;}
+    .fade-item.delay-1600{transition-delay:1.6s;}
+    .fade-item.delay-1750{transition-delay:1.75s;}
+    .fade-item.delay-2000{transition-delay:2s;}
+    @media (prefers-reduced-motion: reduce){
+      .fade-item{
+        opacity:1 !important;
+        transform:none !important;
+        transition:none !important;
+      }
+    }
+  </style>
 
   <article class="w-full">
     {# Product Overview #}
@@ -307,17 +346,91 @@
     </script>
     {% elseif isHeroSolutionProduct %}
     {% set heroAccent = '#00BBA7' %}
-    <style>
-      .udHero{display:grid;grid-template-columns:1fr;gap:0;border:1px solid rgba(148,163,184,.28);border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 40px rgba(0,0,0,.45);align-items:stretch;} 
-      @media(min-width:1024px){.udHero{grid-template-columns:1fr 1fr;}}
-      .udHero__copy{padding:28px;border-right:1px solid rgba(148,163,184,.22);display:flex;flex-direction:column;justify-content:flex-start;gap:12px;background:#000;height:100%;}
+  <style>
+    .product-hero{
+      position:relative;
+      color:#fff;
+    }
+    .product-hero__overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,
+        rgba(0,0,0,.38) 0%,
+        rgba(0,0,0,.68) 40%,
+        rgba(0,0,0,.90) 70%,
+        rgba(0,0,0,1) 100%);
+      z-index:0;
+    }
+    .product-hero::after{
+      content:"";
+      position:absolute;
+      left:0; right:0; bottom:-1px;
+      height:160px;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .udHero{display:grid;grid-template-columns:1fr;gap:0;border:1px solid rgba(148,163,184,.28);border-radius:20px;overflow:hidden;background:#000;box-shadow:0 24px 40px rgba(0,0,0,.45);align-items:stretch;} 
+    @media(min-width:1024px){.udHero{grid-template-columns:1fr 1fr;}}
+    .udHero__copy{padding:28px;border-right:1px solid rgba(148,163,184,.22);display:flex;flex-direction:column;justify-content:flex-start;gap:12px;background:#000;height:100%;}
       .udHero__copy-inner{max-width:560px;}
       .udHero__title{font-size:32px;font-weight:700;margin:0 0 12px;line-height:1.15;}
       .udHero__body{color:rgba(255,255,255,.8);line-height:1.55;display:flex;flex-direction:column;gap:12px;padding:12px 0;}
       .udHero__body :where(p){margin:0;}
       .udHero__cta{color:{{ heroAccent }};border:1px solid {{ heroAccent }};border-radius:24px;padding:10px 22px;display:inline-flex;align-items:center;gap:6px;font-weight:500;text-decoration:none;width:max-content;}
       .udHero__list{display:grid;grid-template-columns:1fr;grid-auto-rows:minmax(0,1fr);align-content:stretch;align-items:stretch;background:#000;height:100%;min-height:100%;}
-      .udHero__item{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;justify-content:flex-start;padding:16px 22px;border-bottom:1px solid rgba(148,163,184,.22);background:#000;height:100%;text-align:left;}
+      .udHero__item{
+        display:grid;
+        grid-template-columns:auto 1fr;
+        gap:16px;
+        align-items:center;
+        justify-content:flex-start;
+        padding:16px 22px;
+        border-bottom:1px solid rgba(148,163,184,.22);
+        background:#000;
+        height:100%;
+        text-align:left;
+        isolation:isolate;
+        overflow:hidden;
+        transition:box-shadow .18s ease, background .18s ease;
+        position:relative;
+      }
+      .udHero__item::before{
+        content:'';
+        position:absolute;
+        inset:0;
+        background: linear-gradient(135deg, rgba(12,22,38,.26) 0%, rgba(12,22,38,.14) 45%), linear-gradient(210deg, rgba(2,6,23,.46) 0%, rgba(2,6,23,.58) 100%);
+        opacity:0;
+        transition:opacity .28s ease;
+        z-index:0;
+      }
+      .udHero__item > *{position:relative; z-index:1;}
+      .udHero__item img{
+        transition:transform .28s ease, filter .28s ease;
+        transform:none;
+        filter:none;
+      }
+      .udHero__item h3{transition:color .25s ease;}
+      .udHero__item:hover,
+      .udHero__item:focus-within{
+        box-shadow:
+          inset 0 0 0 1px rgba(102,199,232,.30),
+          0 14px 30px rgba(0,187,167,.10);
+        background:#000;
+      }
+      .udHero__item:hover::before,
+      .udHero__item:focus-within::before{
+        opacity:1;
+      }
+      .udHero__item:hover img,
+      .udHero__item:focus-within img{
+        transform:scale(1.15);
+        filter:drop-shadow(0 10px 22px rgba(0,187,167,.28));
+      }
+      .udHero__item:hover h3,
+      .udHero__item:focus-within h3{
+        color:#53d8cc !important;
+      }
       .udHero__item img{align-self:center;justify-self:start;}
       .udHero__item:last-child{border-bottom:1px solid rgba(148,163,184,.22);}
       .udHero__list h3{color:{{ heroAccent }};font-size:18px;font-weight:700;margin:0 0 8px;}
@@ -409,10 +522,10 @@
     {# <div class="w-10 h-2 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
     <hr class="mb-20 border-slate-700">
     <div class="md:max-w-2xl fade-item delay-0" style="margin-top:12px;">
-      <h2 class="mb-2 text-3xl font-semibold text-white font-mont">
+      <h2 class="mb-2 text-3xl font-semibold text-white font-mont fade-item delay-0">
         {{ keyprodsTitle | default('Solutions Designed to Keep Your Business Connected') | safe }}
       </h2>
-      <p class="mb-0 text-[18px] font-light text-slate-200 fade-item delay-100">
+      <p class="mb-0 text-[18px] font-light text-slate-200 fade-item delay-0">
         {{ keyprodsBody | default('We provide tailored network solutions that align with your organization’s Elevate journey. Each service strengthens visibility, performance, and reliability as your environment matures.') | safe }}
       </p>
     </div>
@@ -915,13 +1028,22 @@
       var article = document.createElement('article');
       article.className = 'card';
       article.classList.add('fade-item');
-      var delayClass = 'delay-' + ((idx % 4) * 100);
-      article.classList.add(delayClass);
+      // Only stagger on initial reveal; group two cards per interval
+      if (!selecting){
+        var groupDelay = Math.floor(idx / 2) * 100;
+        article.style.transitionDelay = groupDelay + 'ms';
+      } else {
+        article.style.transitionDelay = '0ms';
+      }
       if (!selecting || active){
         article.classList.add('card--visible');
       }
       if (selecting && active){
         article.classList.add('card--match');
+      }
+      // When filtering, skip re-triggering fade; show immediately
+      if (selecting){
+        article.classList.add('is-visible');
       }
 
       var h3 = document.createElement('h3');
@@ -981,7 +1103,7 @@
       cardsEl.appendChild(article);
       newCards.push(article);
     });
-    if (window.registerFadeItems){
+    if (!selecting && window.registerFadeItems){
       window.registerFadeItems(newCards);
     }
   }
@@ -1385,7 +1507,7 @@
       {% else %}
       <h2 class="mt-4 mb-3 text-3xl font-semibold text-white font-mont fade-item delay-0">{{ proof.title | safe }}</h2>
       {% if proof.sub %}
-      <h3 class="mb-12 text-[18px] font-light text-slate-200 fade-item delay-100">{{ proof.sub | safe }}</h3>
+      <h3 class="mb-12 text-[18px] font-light text-slate-200 fade-item delay-0">{{ proof.sub | safe }}</h3>
       {% endif %}
       <div class="ycCards grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         {% for c in proof.cards %}
@@ -1798,7 +1920,7 @@
     {# <div class="w-10 h-2 bg-gradient-to-r from-teal-500 to-teal-400"></div> #}
     <hr class="mb-20 border-slate-700">
     <h2 class="mt-4 mb-3 text-3xl font-semibold text-white font-mont fade-item delay-0">{{ vendorsTitle }}</h2>
-    <h3 class="mb-12 text-[18px] font-light text-slate-200 fade-item delay-100">{{ vendorsBody }}</h3>
+    <h3 class="mb-12 text-[18px] font-light text-slate-200 fade-item delay-0">{{ vendorsBody }}</h3>
 
     <div class="grid grid-cols-3 gap-8 md:grid-cols-6 fade-item delay-200">
       {% for logo in vendorsLogos %}

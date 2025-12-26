@@ -140,37 +140,54 @@
       </ul>
     </div>
     <p>Whether we are leading an IT program, securing environments, modernizing cloud platforms, or improving network resilience, Elevate keeps technology connected to business outcomes.</p>
-  </div>
-  <div class="yl3-elevateBadge" aria-label="Elevate levels">
-    <div class="yl3-elevateBadge__row yl3-elevateBadge__row--stabilize">
-      <span class="yl3-elevateBadge__icon" aria-hidden="true">
-        <svg width="28" height="22" viewBox="0 0 40 32.762" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect y="0" width="40" height="8.38092" rx="4.19046" fill="#050505"/>
-          <rect y="12.1904" width="40" height="8.38092" rx="4.19046" fill="#050505"/>
-          <rect y="24.3811" width="40" height="8.38092" rx="4.19046" fill="#050505"/>
+      </div>
+      <div class="yl3-elevateViz" aria-label="Elevate connection animation">
+        <svg id="elevateSvg" viewBox="0 0 1320 539" xmlns="http://www.w3.org/2000/svg" aria-label="Elevate Connection infographic">
+          <defs>
+            <filter id="tealGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="10" result="blur" />
+              <feColorMatrix in="blur" type="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 0.55 0" result="colored"/>
+              <feMerge>
+                <feMergeNode in="colored"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <path id="seg1" fill="none" stroke="#ff6a2d" stroke-width="36" stroke-linecap="butt" stroke-linejoin="bevel"/>
+          <path id="seg2" fill="none" stroke="#0b6ff2" stroke-width="36" stroke-linecap="butt" stroke-linejoin="bevel"/>
+          <path id="seg3" fill="none" stroke="#00d7c7" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <circle id="orangeCap" r="18" fill="#ff6a2d" opacity="0"/>
+
+          <path id="tealWash" fill="none" stroke="#00d7c7" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" opacity="0" filter="url(#tealGlow)"/>
+
+          <path id="armL" fill="none" stroke="#00d7c7" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+          <path id="armD" fill="none" stroke="#00d7c7" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" opacity="0"/>
+
+          <g id="sparkles" opacity="0">
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+            <circle class="sp" r="2" fill="rgba(255,255,255,0.9)"/>
+          </g>
+
+          <text id="lbl1" class="label" text-anchor="middle" fill="#ff6a2d" opacity="0">STABILIZE</text>
+          <text id="lbl2" class="label" text-anchor="middle" fill="#0b6ff2" opacity="0">OPTIMIZE</text>
+          <text id="lbl3" class="label" text-anchor="middle" fill="#00d7c7" opacity="0">TRANSFORM</text>
         </svg>
-      </span>
-      <span class="yl3-elevateBadge__label">Stabilize</span>
-    </div>
-    <div class="yl3-elevateBadge__row yl3-elevateBadge__row--optimize">
-      <span class="yl3-elevateBadge__icon" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M40 0C40 2.62644 39.4827 5.22716 38.4776 7.65367C37.4725 10.0802 35.9993 12.285 34.1421 14.1421C32.285 15.9993 30.0802 17.4725 27.6537 18.4776C25.2272 19.4827 22.6264 20 20 20C17.3736 20 14.7728 19.4827 12.3463 18.4776C9.91982 17.4725 7.71503 15.9993 5.85786 14.1421C4.00069 12.285 2.5275 10.0802 1.52241 7.65367C0.517315 5.22716 0 2.62644 0 0L40 0Z" fill="#050505"/>
-          <path d="M40 20C40 22.6264 39.4827 25.2272 38.4776 27.6537C37.4725 30.0802 35.9993 32.285 34.1421 34.1421C32.285 35.9993 30.0802 37.4725 27.6537 38.4776C25.2272 39.4827 22.6264 40 20 40C17.3736 40 14.7728 39.4827 12.3463 38.4776C9.91982 37.4725 7.71503 35.9993 5.85786 34.1421C4.00069 32.285 2.5275 30.0802 1.52241 27.6537C0.517315 25.2272 0 22.6264 0 20L40 20Z" fill="#050505"/>
-        </svg>
-      </span>
-      <span class="yl3-elevateBadge__label">Optimize</span>
-    </div>
-    <div class="yl3-elevateBadge__row yl3-elevateBadge__row--transform">
-      <span class="yl3-elevateBadge__icon" aria-hidden="true">
-        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="20" cy="20" r="16" fill="#050505"/>
-        </svg>
-      </span>
-      <span class="yl3-elevateBadge__label">Transform</span>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
     <section class="yl3-whyCard">
       <div class="yl3-whyCard__intro">
@@ -260,11 +277,14 @@
     line-height:1.4;
     overflow-x:hidden;
   }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&display=swap');
   .yl3-hero{
     position:relative;
     color:#fff;
     text-align:left;
     background:#000;
+    isolation:isolate;
+    overflow:hidden;
   }
   .yl3-hero--solutions{
     background-size:cover;
@@ -281,6 +301,7 @@
       rgba(0,0,0,.68) 40%,
       rgba(0,0,0,.90) 70%,
       rgba(0,0,0,1) 100%);
+    pointer-events:none;
   }
   /* extra bottom fade to blend into next section */
   .yl3-hero::after{
@@ -482,9 +503,47 @@
     border-color:#22ffd5;
     transform:translateY(-2px);
   }
+  /* Teal fill on hover for the first card CTA */
+  .yl3-gridTop .yl3-card:first-of-type .yl3-cardCta:hover,
+  .yl3-gridTop .yl3-card:first-of-type .yl3-cardCta:focus-visible{
+    background:#00bba7;
+    color:#050505;
+    border-color:#00bba7;
+    box-shadow:0 18px 32px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.08);
+  }
+  /* Special highlight for the "Learn about Elevate" CTA (second top card) */
+  .yl3-gridTop article:nth-child(2) .yl3-cardCta{
+    background:transparent;
+    border-color:#ff6a2d;
+    color:#ff6a2d;
+    box-shadow:none;
+  }
+  .yl3-gridTop article:nth-child(2) .yl3-cardCta:hover,
+  .yl3-gridTop article:nth-child(2) .yl3-cardCta:focus-visible{
+    color:#0b0b0b;
+    border-color:#ff6a2d;
+    background:#ff6a2d;
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px rgba(255,106,45,.32);
+  }
+  /* Special highlight for the "View our Expertise" CTA (first wide card in bottom row) */
+  .yl3-gridBottom article:nth-child(1) .yl3-cardCta{
+    background:transparent;
+    border-color:#0b6ff2;
+    color:#0b6ff2;
+    box-shadow:none;
+  }
+  .yl3-gridBottom article:nth-child(1) .yl3-cardCta:hover,
+  .yl3-gridBottom article:nth-child(1) .yl3-cardCta:focus-visible{
+    color:#0b0b0b;
+    border-color:#0b6ff2;
+    background:#0b6ff2;
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px rgba(11,111,242,.28);
+  }
   .yl3-elevate{
     display:grid;
-    grid-template-columns:2fr 1fr;
+    grid-template-columns:1.6fr 1.4fr;
     gap:32px;
     align-items:flex-start;
     padding:32px 0;
@@ -511,48 +570,28 @@
     margin:8px 0 16px;
     line-height:1.6;
   }
-  .yl3-elevateBadge{
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-    align-self:center;
-    justify-self:center;
-    justify-content:center;
-    min-width:260px;
-  }
-  .yl3-elevateBadge__row{
+  .yl3-elevateViz{
     display:flex;
     align-items:center;
-    gap:14px;
-    padding:18px 24px;
-    border-radius:20px;
-    font-size:18px;
-    font-weight:700;
-    color:#030303;
-    box-shadow:0 8px 22px rgba(0,0,0,.45);
+    justify-content:center;
+    width:100%;
+    max-width:2200px;
+    transform:scale(1.8);
+    transform-origin:center;
+    margin-top:120px;
   }
-  .yl3-elevateBadge__row--stabilize{
-    background:#ff5a0a;
-    color:#050505;
+  .yl3-elevateViz svg{
+    width:100%;
+    height:auto;
+    display:block;
+    background:transparent;
   }
-  .yl3-elevateBadge__row--optimize{
-    background:#1973ff;
-    color:#050505;
+  .yl3-elevateViz text{
+    font-family:'Inter','Inter var',system-ui,-apple-system,'Segoe UI','Roboto';
+    font-weight:800;
+    letter-spacing:.04em;
+    font-size:16px;
   }
-  .yl3-elevateBadge__row--transform{
-    background:#06d7c3;
-    color:#050505;
-  }
-  .yl3-elevateBadge__icon svg{display:block;}
-  .dot{
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    display:inline-block;
-  }
-  .dot--stabilize{background:var(--yl3-dot-stab);}
-  .dot--optimize{background:var(--yl3-dot-opt);}
-  .dot--transform{background:var(--yl3-dot-trans);}
 .yl3-divider{
     height:1px;
     width:100%;
@@ -921,7 +960,180 @@
     color:var(--yl3-text);
     line-height:1.55;
   }
-</style>
+  </style>
+
+<script>
+  (function(){
+    const svg = document.getElementById('elevateSvg');
+    if (!svg) return;
+
+    const clamp01 = (x) => Math.max(0, Math.min(1, x));
+    const smoothstep = (x) => {
+      x = clamp01(x);
+      return x*x*x*(x*(x*6 - 15) + 10);
+    };
+
+    const D1 = 900, D2 = 900, D3 = 1400;
+    const TOTAL = D1 + D2 + D3;
+    const LABEL_Y = 420;
+    const GAP = 125;
+    const DIAG_LEN = 320;
+    const ANG = -Math.PI / 4;
+    const dx = Math.cos(ANG), dy = Math.sin(ANG);
+    const LABEL_NUDGE = 10;
+    const ARROW_NUDGE = 10;
+    const xA = 560 + LABEL_NUDGE;
+    const xB = xA + GAP - 6; // slight left nudge for OPTIMIZE label
+    const xC = xA + GAP * 2;
+    const startX = xA + ARROW_NUDGE;
+    const startY = 310;
+    const jointX = startX + dx * DIAG_LEN;
+    const jointY = startY + dy * DIAG_LEN;
+    const ARM = 140;
+    const leftX = jointX - ARM;
+    const downY = jointY + ARM;
+    const p1x = startX + dx * (DIAG_LEN / 3);
+    const p1y = startY + dy * (DIAG_LEN / 3);
+    const p2x = startX + dx * (2 * DIAG_LEN / 3);
+    const p2y = startY + dy * (2 * DIAG_LEN / 3);
+
+    const seg1 = svg.querySelector('#seg1');
+    const seg2 = svg.querySelector('#seg2');
+    const seg3 = svg.querySelector('#seg3');
+    const tealWash = svg.querySelector('#tealWash');
+    const armL = svg.querySelector('#armL');
+    const armD = svg.querySelector('#armD');
+    const orangeCap = svg.querySelector('#orangeCap');
+    const sparkles = svg.querySelector('#sparkles');
+    const sp = Array.from(svg.querySelectorAll('.sp'));
+    const lbl1 = svg.querySelector('#lbl1');
+    const lbl2 = svg.querySelector('#lbl2');
+    const lbl3 = svg.querySelector('#lbl3');
+
+    seg1.setAttribute('d', `M ${startX} ${startY} L ${p1x} ${p1y}`);
+    seg2.setAttribute('d', `M ${p1x} ${p1y} L ${p2x} ${p2y}`);
+    seg3.setAttribute('d', `M ${p2x} ${p2y} L ${jointX} ${jointY}`);
+    tealWash.setAttribute('d', `M ${startX} ${startY} L ${jointX} ${jointY}`);
+    orangeCap.setAttribute('cx', startX);
+    orangeCap.setAttribute('cy', startY);
+
+    lbl1.setAttribute('x', xA); lbl1.setAttribute('y', LABEL_Y);
+    lbl2.setAttribute('x', xB); lbl2.setAttribute('y', LABEL_Y);
+    lbl3.setAttribute('x', xC); lbl3.setAttribute('y', LABEL_Y);
+
+    function prepStrokeDraw(el){
+      const len = el.getTotalLength();
+      el.style.strokeDasharray = `${len}`;
+      el.style.strokeDashoffset = `${len}`;
+      return len;
+    }
+
+    const len1 = prepStrokeDraw(seg1);
+    const len2 = prepStrokeDraw(seg2);
+    const len3 = prepStrokeDraw(seg3);
+    const lenW = prepStrokeDraw(tealWash);
+
+    armL.setAttribute('d', `M ${jointX} ${jointY} L ${leftX} ${jointY}`);
+    armD.setAttribute('d', `M ${jointX} ${jointY} L ${jointX} ${downY}`);
+    const lenArmL = prepStrokeDraw(armL);
+    const lenArmD = prepStrokeDraw(armD);
+
+    sp.forEach((node, i) => {
+      const u = (i + 1) / (sp.length + 1);
+      node.setAttribute('cx', startX + dx * (DIAG_LEN * u));
+      node.setAttribute('cy', startY + dy * (DIAG_LEN * u));
+    });
+
+    function setDraw(el, len, prog){
+      const p = clamp01(prog);
+      el.style.strokeDashoffset = `${len * (1 - p)}`;
+    }
+
+    let running = false;
+    let startTime = 0;
+
+    function reset(){
+      setDraw(seg1, len1, 0); seg1.style.opacity = '0';
+      setDraw(seg2, len2, 0); seg2.style.opacity = '0';
+      setDraw(seg3, len3, 0); seg3.style.opacity = '0';
+      setDraw(tealWash, lenW, 0); tealWash.style.opacity = '0';
+      setDraw(armL, lenArmL, 0); armL.style.opacity = '0';
+      setDraw(armD, lenArmD, 0); armD.style.opacity = '0';
+      orangeCap.style.opacity = '0';
+      sparkles.setAttribute('opacity', '0');
+      lbl1.style.opacity = '0'; lbl2.style.opacity = '0'; lbl3.style.opacity = '0';
+    }
+
+    function tick(now){
+      if (!running) return;
+      const tm = Math.min(now - startTime, TOTAL);
+
+      const s1 = smoothstep(tm / D1);
+      const s2 = smoothstep((tm - D1) / D2);
+      const s3 = smoothstep((tm - D1 - D2) / D3);
+
+      lbl1.style.opacity = `${clamp01((s1 - 0.05) / 0.30)}`;
+      lbl2.style.opacity = `${clamp01((s2 - 0.05) / 0.30)}`;
+      lbl3.style.opacity = `${clamp01((s3 - 0.05) / 0.30)}`;
+
+      const a1 = clamp01((s1 - 0.05) / 0.30);
+      seg1.style.opacity = `${a1 * (1 - s3)}`;
+      setDraw(seg1, len1, a1);
+      orangeCap.style.opacity = `${a1 * (1 - s3)}`;
+
+      const a2 = clamp01(s2);
+      seg2.style.opacity = `${a2 * (1 - s3)}`;
+      setDraw(seg2, len2, a2);
+
+      const a3 = clamp01(s3);
+      seg3.style.opacity = `${a3 * (1 - s3)}`;
+      setDraw(seg3, len3, a3);
+
+      tealWash.style.opacity = `${a3}`;
+      setDraw(tealWash, lenW, a3);
+
+      const spA = 0.22 * a3;
+      sparkles.setAttribute('opacity', `${spA}`);
+      sp.forEach((node, i) => {
+        const wob = 0.5 + 0.5 * Math.sin((tm * 0.006) + i * 1.7);
+        node.setAttribute('r', `${0.9 + 1.4 * wob}`);
+      });
+
+      const armGate = smoothstep((a3 - 0.55) / 0.35);
+      armL.style.opacity = `${armGate}`;
+      armD.style.opacity = `${armGate}`;
+      setDraw(armL, lenArmL, armGate);
+      setDraw(armD, lenArmD, armGate);
+
+      if (tm < TOTAL) {
+        requestAnimationFrame(tick);
+      } else {
+        running = false;
+      }
+    }
+    function startAnim(){
+      if (running) return;
+      reset();
+      running = true;
+      startTime = performance.now();
+      requestAnimationFrame(tick);
+    }
+
+    const triggerEl = document.querySelector('.yl3-elevateViz') || svg;
+    if ('IntersectionObserver' in window && triggerEl){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if (entry.isIntersecting){
+            startAnim();
+          }
+        });
+      }, { threshold: 0.35, rootMargin: '0px 0px -5% 0px' });
+      io.observe(triggerEl);
+    } else {
+      startAnim();
+    }
+  })();
+</script>
 
 {% include "partials/footer.html" %}
 {% endblock %}

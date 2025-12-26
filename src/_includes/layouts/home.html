@@ -762,7 +762,7 @@
 	      .homeKeyFeatures .feature-card{
 	        position:relative;
 	        isolation:isolate;
-	        transition:background .38s ease;
+	        transition:background .22s ease, box-shadow .22s ease;
 	        border:0;
 	        background: transparent;
 	        box-shadow:none;
@@ -770,14 +770,32 @@
 	        display:flex;
 	        flex-direction:column;
 	        gap:0.35rem;
+	        overflow:hidden;
+	        border-radius:0;
+	        padding:clamp(18px,2.8vw,28px);
+	        height:100%;
 	      }
-		      .homeKeyFeatures .feature-card:hover,
-		      .homeKeyFeatures .feature-card:focus-within{
-		        /* Darker hover surface (less “glow”, more depth) */
-		        background:
-		          linear-gradient(135deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 46%),
-		          linear-gradient(210deg, rgba(2,6,23,.72) 0%, rgba(2,6,23,.82) 100%);
-		      }
+	      .homeKeyFeatures .feature-card::before{
+	        content:"";
+	        position:absolute;
+	        inset:0;
+	        border-radius:0;
+	        background:
+	          linear-gradient(135deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.22) 46%),
+	          linear-gradient(210deg, rgba(2,6,23,.72) 0%, rgba(2,6,23,.82) 100%);
+	        opacity:0;
+	        transition:opacity .3s ease;
+	        z-index:0;
+	        pointer-events:none;
+	      }
+	      .homeKeyFeatures .feature-card:hover::before,
+	      .homeKeyFeatures .feature-card:focus-within::before{
+	        opacity:1;
+	      }
+	      .homeKeyFeatures .feature-card:hover,
+	      .homeKeyFeatures .feature-card:focus-within{
+	        box-shadow:0 16px 36px rgba(0,0,0,.28);
+	      }
       /* Icon pop on hover across all cards */
       .homeKeyFeatures .feature-card:hover img,
       .homeKeyFeatures .feature-card:focus-within img{
@@ -793,6 +811,7 @@
         transform:translateY(-2px) scale(1.07);
       }
       /* Keep text static; allow icon animation */
+      .homeKeyFeatures .feature-card > *{ position:relative; z-index:1; }
       .homeKeyFeatures .feature-card img{ transition:transform .32s ease; transform:none; }
       .homeKeyFeatures .feature-card h3{ transition:color .25s ease; margin:0; }
       .homeKeyFeatures .feature-card:hover h3,
@@ -824,7 +843,14 @@
 	        position:relative;
 	        isolation:isolate;
 	      }
+	      /* Force even quadrants so the fill stays inside the grid lines */
+	      .homeKeyFeatures .benefits-grid{
+	        grid-auto-rows:1fr;
+	      }
 	      @media (min-width: 768px){
+	        .homeKeyFeatures .benefits-grid{
+	          grid-template-rows:repeat(2,minmax(0,1fr));
+	        }
 	        .homeKeyFeatures .benefits-grid::before,
 	        .homeKeyFeatures .benefits-grid::after{
 	          content:"";
@@ -851,7 +877,7 @@
 	    </style>
 
     <!-- Screenshot-style 2x2 card with cross dividers -->
-    <div class="w-full rounded-2xl overflow-hidden mb-7" style="background:transparent; border:1px solid rgba(75,85,99,.35);">
+    <div class="w-full overflow-hidden mb-7" style="background:transparent; border:1px solid rgba(75,85,99,.35);">
       {% set f0 = keyFeatures.features[0] %}
       {% set f1 = keyFeatures.features[1] %}
       {% set f2 = keyFeatures.features[2] %}
