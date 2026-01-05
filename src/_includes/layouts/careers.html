@@ -73,18 +73,17 @@
           <div class="absolute inset-0 bg-gradient-to-r from-black/96 via-black/82 to-transparent"></div>
         </div>
         <div class="relative max-w-3xl space-y-4">
-          <h3 class="text-3xl sm:text-4xl md:text-[42px] font-bold leading-tight">A Culture of High Standards</h3>
-          <p class="text-base sm:text-lg font-thin leading-relaxed">Our strongest results come from preparation, discipline, and strong communication. Our environment rewards people who take ownership, follow through, and uphold a clear operational rhythm.</p>
-          <p class="text-base sm:text-lg font-thin leading-relaxed">This is a team that shares information, collaborates, and steps in when it counts. Every role contributes directly to the safety and security of our clients.</p>
-          <p class="text-base sm:text-lg font-thin leading-relaxed">If you want to work in an environment where professionalism matters and structure drives success, you will thrive here.</p>
+          <h3 class="text-3xl sm:text-4xl md:text-[42px] font-bold leading-tight">How We Work</h3>
+          <p class="text-base sm:text-lg font-thin leading-relaxed">We believe structure creates clarity and clarity empowers collaboration. Clear expectations, shared standards, and well-defined processes give our teams the confidence to move quickly, adapt, and work together effectively in a fast-moving environment.</p>
+          <p class="text-base sm:text-lg font-thin leading-relaxed">At the same time, we know the best work happens when people are supported and connected. Our teams collaborate across roles, share knowledge freely, and communicate openly to solve problems and drive progress. Every individual contributes to our collective success, and every role matters in delivering dependable, high-quality outcomes for our clients.</p>
         </div>
       </div>
     </section>
 
     <section class="mt-32 sm:mt-40 md:mt-48">
       <div class="relative overflow-hidden rounded-3xl border border-white/14 bg-gradient-to-r from-black/88 via-black/78 to-black/65 px-6 sm:px-10 md:px-12 py-8 sm:py-10 shadow-[0_30px_90px_-70px_rgba(0,0,0,0.9)] reveal">
-        <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(130% 100% at 0% 20%, rgba(16,185,129,0.12) 0%, rgba(0,0,0,0) 60%);"></div>
-        <div class="relative grid gap-8 lg:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div class="absolute inset-0 pointer-events-none" style="background:none;"></div>
+        <div class="relative grid gap-8 lg:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div class="flex flex-col gap-5 sm:gap-6 w-full max-w-[520px]">
             <h3 class="text-3xl sm:text-4xl md:text-[38px] font-bold leading-tight">Why Build Your Career<br class="hidden sm:block"> at <span class="text-[#00bba7]">L3 Networks</span></h3>
             <div class="relative overflow-hidden rounded-2xl border border-[#00bba7] bg-black/40 aspect-[16/9] w-full max-w-[520px] shadow-[0_25px_70px_-50px_rgba(0,0,0,0.85)]">
@@ -94,13 +93,36 @@
           </div>
           <div class="why-choose__right flex flex-col justify-center items-start w-full max-w-[620px] mx-auto">
             <ul class="why-choose__list">
-              {% for reason in reasons %}
               <li class="why-choose__row">
                 <div class="why-choose__row-copy">
-                  <p class="why-choose__text font-thin">{{ reason.text }}</p>
+                  <p class="why-choose__text font-thin"><strong>Work on meaningful initiatives</strong> that support critical business environments and make a real impact</p>
                 </div>
               </li>
-              {% endfor %}
+              <li class="why-choose__row">
+                <div class="why-choose__row-copy">
+                  <p class="why-choose__text font-thin"><strong>Join a collaborative, approachable team</strong> that values professionalism, open communication, and mutual respect</p>
+                </div>
+              </li>
+              <li class="why-choose__row">
+                <div class="why-choose__row-copy">
+                  <p class="why-choose__text font-thin"><strong>Learn from a broad base of experience</strong>, with teammates who openly share knowledge and support one another’s growth</p>
+                </div>
+              </li>
+              <li class="why-choose__row">
+                <div class="why-choose__row-copy">
+                  <p class="why-choose__text font-thin"><strong>Grow your skills through hands-on, real-world experience</strong> with modern technologies and evolving challenges</p>
+                </div>
+              </li>
+              <li class="why-choose__row">
+                <div class="why-choose__row-copy">
+                  <p class="why-choose__text font-thin"><strong>Thrive in an evolving environment</strong> that encourages adaptability, continuous improvement, and thoughtful problem-solving</p>
+                </div>
+              </li>
+              <li class="why-choose__row">
+                <div class="why-choose__row-copy">
+                  <p class="why-choose__text font-thin"><strong>Build your career with a stable organization</strong> committed to long-term growth—for both our people and our clients</p>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -123,33 +145,61 @@
     </section>
 
     <section class="mt-32 sm:mt-40 md:mt-48">
-      <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
-        <div class="yl3-thrives reveal">
-          <div class="yl3-thrives__intro">
-            <h3 class="text-3xl sm:text-4xl md:text-[38px] font-bold leading-tight">Who Thrives Here</h3>
-            <span class="yl3-thrives__accent" aria-hidden="true"></span>
+      <div class="yl3-thrives reveal">
+        <div class="yl3-thrives__intro">
+          <h3 class="text-3xl sm:text-4xl md:text-[38px] font-bold leading-tight">Who Thrives Here</h3>
+          <span class="yl3-thrives__accent" aria-hidden="true"></span>
+        </div>
+        <p class="yl3-thrives__note">People who thrive at L3 value professionalism, accountability, and teamwork, and are energized by learning and collaboration. You’ll do well here if you bring:</p>
+        <div class="yl3-thrives__grid">
+          <div class="yl3-thrives__item">
+            <span class="yl3-thrives__icon">
+              <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
+            </span>
+            <p class="yl3-thrives__text"><strong>Comfort navigating an evolving environment,</strong> with the ability to adapt while maintaining high standards</p>
           </div>
-          <p class="yl3-thrives__note">Success at L3 requires fundamentals and professionalism.</p>
-          <p class="yl3-thrives__lead">People who excel here demonstrate:</p>
-          <div class="yl3-thrives__grid">
-            {% for trait in traits %}
-            <div class="yl3-thrives__item">
-              <span class="yl3-thrives__icon">
-                <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
-              </span>
-              <p class="yl3-thrives__text">{{ trait }}</p>
-            </div>
-            {% endfor %}
+          <div class="yl3-thrives__item">
+            <span class="yl3-thrives__icon">
+              <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
+            </span>
+            <p class="yl3-thrives__text"><strong>Reliability and strong follow-through,</strong> especially in work that supports critical business environments</p>
+          </div>
+          <div class="yl3-thrives__item">
+            <span class="yl3-thrives__icon">
+              <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
+            </span>
+            <p class="yl3-thrives__text"><strong>Curiosity and a commitment to continuous learning,</strong> including sharing knowledge and learning from others</p>
+          </div>
+          <div class="yl3-thrives__item">
+            <span class="yl3-thrives__icon">
+              <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
+            </span>
+            <p class="yl3-thrives__text"><strong>A strong sense of accountability,</strong> taking ownership of your work and following through on commitments</p>
+          </div>
+          <div class="yl3-thrives__item">
+            <span class="yl3-thrives__icon">
+              <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
+            </span>
+            <p class="yl3-thrives__text"><strong>Clear, respectful communication</strong> and an approachable, team-first mindset</p>
+          </div>
+          <div class="yl3-thrives__item">
+            <span class="yl3-thrives__icon">
+              <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
+            </span>
+            <p class="yl3-thrives__text"><strong>A collaborative, practical approach to problem-solving,</strong> understanding that the best outcomes are achieved together</p>
           </div>
         </div>
-        <div class="yl3-ready reveal" data-delay="120">
-          <div class="yl3-ready__card">
-            <div class="yl3-ready__image" aria-hidden="true"></div>
-            <div class="yl3-ready__overlay"></div>
-            <div class="yl3-ready__content">
-              <h3 class="text-3xl sm:text-4xl font-bold leading-tight">Ready to Build What Comes Next?</h3>
-              <p class="text-base sm:text-lg font-thin text-neutral-200 leading-relaxed">If you want to work with a team that values precision, supports each other, and operates with purpose, we want to hear from you.</p>
-            </div>
+      </div>
+    </section>
+
+    <section class="mt-32 sm:mt-40 md:mt-48">
+      <div class="yl3-ready reveal" data-delay="120">
+        <div class="yl3-ready__card">
+          <div class="yl3-ready__image" aria-hidden="true"></div>
+          <div class="yl3-ready__overlay"></div>
+          <div class="yl3-ready__content">
+            <h3 class="text-3xl sm:text-4xl font-bold leading-tight">Ready to Build What Comes Next?</h3>
+            <p class="text-base sm:text-lg font-thin text-neutral-200 leading-relaxed">If you want to work with a team that values precision, supports each other, and operates with purpose, we want to hear from you.</p>
           </div>
         </div>
       </div>
@@ -225,6 +275,135 @@
     font-size:17px;
     line-height:1.65;
   }
+  /* Who Thrives Here */
+  .yl3-thrives{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    text-align:left;
+    align-items:flex-start;
+    padding:26px 22px 28px;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    background:#0a0a0a;
+    box-shadow:0 18px 32px rgba(0,0,0,0.4);
+  }
+  .yl3-thrives__intro{
+    text-align:left;
+    margin-bottom:6px;
+  }
+  .yl3-thrives__note{
+    margin:6px 0 8px;
+    color:rgba(214,219,233,.92);
+    font-size:17px;
+    line-height:1.65;
+    font-weight:400;
+    max-width:720px;
+  }
+  .yl3-thrives__lead{
+    margin:0 0 8px;
+    color:rgba(214,219,233,.92);
+    font-size:17px;
+    line-height:1.55;
+    font-weight:500;
+  }
+  .yl3-thrives__accent{ display:none; }
+.yl3-thrives__grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+  margin-top:12px;
+  width:calc(100% + 44px);
+  margin-left:-22px;
+  margin-bottom:-28px;
+  position:relative;
+  overflow:hidden;
+  color:rgba(214,219,233,.9);
+  font-size:16px;
+  line-height:1.6;
+}
+  @media(min-width:768px){
+    .yl3-thrives__grid{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      background-repeat:no-repeat;
+      background-size:100% 100%;
+      background-position:0 0;
+    }
+    .yl3-thrives__grid::before{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:50%;
+      width:1px;
+      background:rgba(255,255,255,0.08);
+      transform:translateX(-0.5px);
+      pointer-events:none;
+    }
+    .yl3-thrives__grid::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:0;
+      height:1px;
+      background:rgba(255,255,255,0.08);
+      box-shadow:
+        0 calc(33.333%) rgba(255,255,255,0.08),
+        0 calc(66.666%) rgba(255,255,255,0.08);
+      pointer-events:none;
+    }
+  }
+.yl3-thrives__item{
+  display:grid;
+  grid-template-columns:48px 1fr;
+  align-items:flex-start;
+  justify-content:start;
+  gap:12px;
+  padding:16px 18px;
+  margin:0;
+  border-top:1px solid rgba(255,255,255,0.08);
+  border-left:0;
+    color:rgba(214,219,233,.92);
+  }
+  .yl3-thrives__item:first-child{
+    border-top:0;
+  }
+  @media(min-width:768px){
+    .yl3-thrives__item{
+      border-left:1px solid rgba(255,255,255,0.08);
+    }
+    .yl3-thrives__item:nth-child(2n-1){
+      border-left:0;
+    }
+    .yl3-thrives__item:nth-child(1),
+    .yl3-thrives__item:nth-child(2){
+      border-top:0;
+    }
+  }
+  .yl3-thrives__icon{
+    display:grid;
+    place-items:center;
+    width:32px;
+    height:32px;
+    margin:6px auto 0;
+    justify-self:center;
+    border-radius:10px;
+    border:1px solid rgba(16,185,129,0.4);
+    background:radial-gradient(circle at 30% 30%, rgba(16,185,129,0.12), rgba(0,0,0,0.3));
+    color:#00d5be;
+    flex-shrink:0;
+  }
+  .yl3-thrives__text{
+    margin:0;
+    font-size:16px;
+    line-height:1.55;
+    font-weight:300;
+    text-align:left;
+  }
+  .yl3-thrives__text strong{
+    font-weight:700;
+  }
   .role-paths{
     align-items:flex-start;
   }
@@ -250,69 +429,52 @@
   .yl3-thrives{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:14px;
+    text-align:left;
+    align-items:flex-start;
   }
   .yl3-thrives__intro{
     text-align:left;
-    margin-bottom:4px;
+    margin-bottom:6px;
   }
   .yl3-thrives__note{
-    margin:4px 0 8px;
-    color:rgba(214,219,233,.92);
-    font-size:18px;
-    line-height:1.6;
-    font-weight:300;
-  }
-  .yl3-thrives__lead{
-    margin:0 0 8px;
+    margin:6px 0 8px;
     color:rgba(214,219,233,.92);
     font-size:17px;
-    line-height:1.55;
-    font-weight:500;
+    line-height:1.65;
+    font-weight:400;
+  }
+  .yl3-thrives__lead{
+    margin:0 0 10px;
+    color:#d1f5ee;
+    font-size:16px;
+    line-height:1.5;
+    font-weight:600;
   }
   .yl3-thrives__accent{
     display:none;
-    width:64px;
-    height:3px;
-    margin:12px auto 0;
-    background:linear-gradient(90deg, #00bba7, #67e8f9);
-    border-radius:999px;
   }
-  .yl3-thrives__grid{
+  .yl3-thrives__list{
+    list-style:disc;
+    padding-left:20px;
+    margin:0;
     display:flex;
     flex-direction:column;
     gap:10px;
-    margin-top:8px;
+    color:rgba(214,219,233,.9);
+    font-size:16px;
+    line-height:1.6;
+    max-width:880px;
   }
-  .yl3-thrives__item{
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-    padding:10px 0;
-    color:rgba(214,219,233,.92);
-  }
-  .yl3-thrives__icon{
-    display:grid;
-    place-items:center;
-    width:32px;
-    height:32px;
-    border-radius:10px;
-    border:1px solid rgba(16,185,129,0.4);
-    background:radial-gradient(circle at 30% 30%, rgba(16,185,129,0.12), rgba(0,0,0,0.3));
-    color:#00d5be;
-    flex-shrink:0;
-  }
-  .yl3-thrives__text{
-    margin:0;
-    font-size:17px;
-    line-height:1.65;
-    font-weight:300;
-    text-align:left;
+  .yl3-thrives__list li{
+    padding-left:4px;
   }
   .yl3-ready{
     display:flex;
-    align-items:stretch;
+    align-items:flex-end;
     justify-content:center;
+    align-self:stretch;
+    margin-top:0;
   }
 .yl3-ready__card{
   position:relative;
@@ -323,8 +485,10 @@
   border-radius:16px;
   overflow:hidden;
   width:100%;
-  max-width:none;
-  min-height:100%;
+  max-width:100%;
+  margin:0 auto;
+  min-height:340px;
+  height:auto;
   background:#050505;
   box-shadow:0 24px 60px -50px rgba(0,0,0,0.9);
 }
@@ -349,7 +513,7 @@
     align-items:center;
     text-align:center;
     padding:28px 24px;
-    max-width:520px;
+    max-width:880px;
     width:100%;
     margin:0 auto;
   }
