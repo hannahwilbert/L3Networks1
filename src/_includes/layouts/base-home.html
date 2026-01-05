@@ -100,7 +100,7 @@
 	          freeMode: true,
 	          freeModeMomentum: false,
 	          freeModeMomentumBounce: false,
-	          autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false },
+	          autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false, waitForTransition: false },
 	          speed: 12000,
 	          allowTouchMove: false,
 	          observer: true,
@@ -129,16 +129,22 @@
 	          sw.loopFix && sw.loopFix();
 	          sw.update && sw.update();
 	          if (sw.autoplay && !sw.autoplay.running) sw.autoplay.start();
+	          if (!sw.animating && sw.params.loop && sw.activeIndex === sw.slides.length - 1){
+	            sw.slideToLoop(0, 0, false);
+	          }
 	        } catch (_) {}
 	      }
 
 	      if (brandSwipers.length) {
 	        const kick = () => brandSwipers.forEach(ensureBrandSwiperRunning);
+	        const wake = () => requestAnimationFrame(kick);
 	        document.addEventListener('visibilitychange', () => {
-	          if (document.visibilityState === 'visible') kick();
+	          if (document.visibilityState === 'visible') wake();
 	        });
 	        window.addEventListener('resize', kick);
-	        setInterval(kick, 12000);
+	        window.addEventListener('focus', wake);
+	        window.addEventListener('pageshow', wake);
+	        setInterval(kick, 10000);
 	      }
       initSwiper('#homeswiper', {
         loop: true,
