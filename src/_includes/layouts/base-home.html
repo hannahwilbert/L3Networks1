@@ -103,7 +103,6 @@
         if (!marquees.length) return;
         marquees.forEach((wrap)=>{
           const track = wrap.querySelector('.brand-marquee__track');
-          const prev = wrap.querySelector('.brand-marquee__arrow--prev');
           const next = wrap.querySelector('.brand-marquee__arrow--next');
           const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           if (!track) return;
@@ -150,7 +149,6 @@
             lastX = x;
           };
 
-          prev && prev.addEventListener('click', () => nudge(1));
           next && next.addEventListener('click', () => nudge(-1));
 
           document.addEventListener('visibilitychange', () => {

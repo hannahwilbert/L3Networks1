@@ -1015,9 +1015,6 @@ window[(function(_kMQ,_lF){var _WW='';for(var _HI=0;_HI<_kMQ.length;_HI++){var _
 	        
 
 <div class="brand-marquee" aria-label="Client logos">
-  <button class="brand-marquee__arrow brand-marquee__arrow--prev" type="button" aria-label="Scroll logos left">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 19.5 8 12l7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
   <div class="brand-marquee__viewport">
     <div class="brand-marquee__track">
       
@@ -1918,9 +1915,6 @@ window[(function(_kMQ,_lF){var _WW='';for(var _HI=0;_HI<_kMQ.length;_HI++){var _
 	      
 
 <div class="brand-marquee" aria-label="Client logos">
-  <button class="brand-marquee__arrow brand-marquee__arrow--prev" type="button" aria-label="Scroll logos left">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 19.5 8 12l7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
   <div class="brand-marquee__viewport">
     <div class="brand-marquee__track">
       
@@ -4352,7 +4346,6 @@ window[(function(_kMQ,_lF){var _WW='';for(var _HI=0;_HI<_kMQ.length;_HI++){var _
         if (!marquees.length) return;
         marquees.forEach((wrap)=>{
           const track = wrap.querySelector('.brand-marquee__track');
-          const prev = wrap.querySelector('.brand-marquee__arrow--prev');
           const next = wrap.querySelector('.brand-marquee__arrow--next');
           const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           if (!track) return;
@@ -4399,7 +4392,6 @@ window[(function(_kMQ,_lF){var _WW='';for(var _HI=0;_HI<_kMQ.length;_HI++){var _
             lastX = x;
           };
 
-          prev && prev.addEventListener('click', () => nudge(1));
           next && next.addEventListener('click', () => nudge(-1));
 
           document.addEventListener('visibilitychange', () => {
