@@ -86,67 +86,7 @@
         }
       });
 
-	      const brandSwipers = [];
-	      const brandEls = document.querySelectorAll('[data-brand-swiper]');
-	      brandEls.forEach((el) => {
-	        const slideCount = el.querySelectorAll('.swiper-slide').length;
-	        const loopSlides = Math.max(1, slideCount);
-	        const sw = initSwiperEl(el, {
-	          loop: true,
-	          slidesPerView: 1,
-	          spaceBetween: 24,
-	          loopedSlides: loopSlides,
-	          loopAdditionalSlides: loopSlides,
-	          freeMode: true,
-	          freeModeMomentum: false,
-	          freeModeMomentumBounce: false,
-	          autoplay: { delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false, waitForTransition: false },
-	          speed: 12000,
-	          allowTouchMove: false,
-	          observer: true,
-	          observeParents: true,
-	          breakpoints: {
-	            640: { slidesPerView: 3 },
-	            768: { slidesPerView: 4 },
-	            1024: { slidesPerView: 6 },
-	            1280: { slidesPerView: 7 },
-	          },
-	          // no navigation arrows for brand marquee
-	          on: {
-	            autoplayStop: function(){ this.autoplay && this.autoplay.start && this.autoplay.start(); },
-	            autoplayPause: function(){ this.autoplay && this.autoplay.start && this.autoplay.start(); },
-	          }
-	        });
-	        if (!sw) return;
-	        if (sw.autoplay && !sw.autoplay.running) sw.autoplay.start();
-	        sw.on('transitionEnd', function(){ ensureBrandSwiperRunning(sw); });
-	        brandSwipers.push(sw);
-	      });
-
-	      function ensureBrandSwiperRunning(sw){
-	        if (!sw || sw.destroyed) return;
-	        try {
-	          sw.loopFix && sw.loopFix();
-	          sw.update && sw.update();
-	          if (sw.autoplay && !sw.autoplay.running) sw.autoplay.start();
-	          if (!sw.animating && sw.params.loop && sw.activeIndex === sw.slides.length - 1){
-	            sw.slideToLoop(0, 0, false);
-	          }
-	        } catch (_) {}
-	      }
-
-	      if (brandSwipers.length) {
-	        const kick = () => brandSwipers.forEach(ensureBrandSwiperRunning);
-	        const wake = () => requestAnimationFrame(kick);
-	        document.addEventListener('visibilitychange', () => {
-	          if (document.visibilityState === 'visible') wake();
-	        });
-	        window.addEventListener('resize', kick);
-	        window.addEventListener('focus', wake);
-	        window.addEventListener('pageshow', wake);
-	        setInterval(kick, 10000);
-	      }
-      initSwiper('#homeswiper', {
+     initSwiper('#homeswiper', {
         loop: true,
 
         // Navigation arrows
@@ -156,6 +96,72 @@
         },
 
       });
+
+      // Brand marquee controls (restart + manual nudge; arrows appear only when paused/stalled)
+      (function(){
+        const marquees = document.querySelectorAll('.brand-marquee');
+        if (!marquees.length) return;
+        marquees.forEach((wrap)=>{
+          const track = wrap.querySelector('.brand-marquee__track');
+          const prev = wrap.querySelector('.brand-marquee__arrow--prev');
+          const next = wrap.querySelector('.brand-marquee__arrow--next');
+          const prefersReduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (!track) return;
+
+          const setPaused = (paused) => {
+            track.style.animationPlayState = paused ? 'paused' : 'running';
+            wrap.classList.toggle('is-paused', paused);
+          };
+
+          const restart = () => {
+            track.style.animation = 'none';
+            void track.offsetWidth; // force reflow
+            track.style.animation = '';
+            setPaused(false);
+          };
+
+          const nudge = (dir) => {
+            const step = 220 * dir;
+            const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
+            const currentX = matrix.m41;
+            setPaused(true);
+            track.style.transition = 'transform 0.35s ease';
+            track.style.transform = `translateX(${currentX + step}px)`;
+            setTimeout(() => {
+              track.style.transition = '';
+              track.style.transform = '';
+              restart();
+            }, 380);
+          };
+
+          let lastX = null;
+          let stillCount = 0;
+          const checkStall = () => {
+            if (prefersReduce) return; // skip when reduced motion is requested
+            const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
+            const x = matrix.m41;
+            if (x === lastX) {
+              stillCount++;
+              if (stillCount >= 3) setPaused(true);
+            } else {
+              stillCount = 0;
+              if (!wrap.matches('.is-paused')) setPaused(false);
+            }
+            lastX = x;
+          };
+
+          prev && prev.addEventListener('click', () => nudge(1));
+          next && next.addEventListener('click', () => nudge(-1));
+
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState !== 'visible') return;
+            restart();
+          });
+
+          // Stall detection: if transform stops changing, surface arrows
+          setInterval(checkStall, 1400);
+        });
+      })();
 
     });
 

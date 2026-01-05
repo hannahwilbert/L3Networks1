@@ -1,84 +1,133 @@
-<!-- Slider main container -->
-<div class="w-full swiper h-28" data-brand-swiper id="{{ carouselId or 'swiper' }}">
-  <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
-    <!-- Slides -->
+{% set brands = [
+  { name: "CJC", file: "cjc.svg" },
+  { name: "ATM", file: "atm.svg" },
+  { name: "MaxPost", file: "maxpost.svg" },
+  { name: "Exodus Recovery", file: "exodus.svg" },
+  { name: "DGA", file: "dga.svg" },
+  { name: "Razor", file: "razor.svg" },
+  { name: "Roland", file: "roland.svg" },
+  { name: "AXS", file: "axs.svg" },
+  { name: "Computacenter", file: "computacenter.svg" },
+  { name: "Fremantle", file: "fremantle.svg" },
+  { name: "MNX", file: "mnx.svg" },
+  { name: "ORIGINAL Productions by Fremantle Company", file: "op.svg" }
+] %}
 
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/cjc.svg" alt="CJC"></div>
+<div class="brand-marquee" aria-label="Client logos">
+  <button class="brand-marquee__arrow brand-marquee__arrow--prev" type="button" aria-label="Scroll logos left">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 19.5 8 12l7.5-7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="brand-marquee__viewport">
+    <div class="brand-marquee__track">
+      {% for _ in [1, 2] %}
+        {% for brand in brands %}
+          <div class="brand-marquee__item">
+            <img src="{{ ('/images/home/clients/' ~ brand.file) | url }}" alt="{{ brand.name }}">
+          </div>
+        {% endfor %}
+      {% endfor %}
     </div>
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/atm.svg" alt="ATM"></div>
-    </div>
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/maxpost.svg" alt="MaxPost"></div>
-    </div>
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/exodus.svg" alt="Exodus Recovery"></div>
-    </div>
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/dga.svg" alt="DGA"></div>
-    </div>
-    
-
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/razor.svg" alt="Razor logo"></div>
-    </div>
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/roland.svg" alt="Roland logo"></div>
-    </div>
-    <div class="swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/axs.svg" alt="AXS logo"></div>
-    </div>
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/computacenter.svg" alt="Computacenter logo"></div>
-    </div>
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/fremantle.svg" alt="Fremantle logo"></div>
-    </div>
-
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/mnx.svg" alt="MNX logo"></div>
-    </div>
-    <div class="flex align-middle swiper-slide">
-      <div class="grid place-items-center w-full"><img class="block mx-auto" height="64" src="/images/home/clients/op.svg" alt="ORIGINAL Productions by Fremantle Company logo"></div>
-    </div>
-
-
- 
   </div>
-
-  <!-- arrows removed for continuous marquee -->
-
+  <button class="brand-marquee__arrow brand-marquee__arrow--next" type="button" aria-label="Scroll logos right">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5 16 12l-7.5 7.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
 </div>
 
-<!-- Uniform card styling + linear marquee effect -->
-	<style>
-	  /* Equal-sized cards + center */
-	  #swiper,
-	  .brand-carousel-block [data-brand-swiper]{ mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
-	           -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
-	  #swiper .swiper-wrapper,
-	  .brand-carousel-block [data-brand-swiper] .swiper-wrapper{ transition-timing-function: linear !important; }
-	  #swiper .swiper-slide,
-	  .brand-carousel-block [data-brand-swiper] .swiper-slide{ display:flex; align-items:center; }
-	  #swiper .swiper-slide > div,
-	  .brand-carousel-block [data-brand-swiper] .swiper-slide > div{ height:auto; min-height:64px; border:1px solid rgba(255,255,255,.10); border-radius:12px; background:rgba(2,6,23,.45); box-shadow:inset 0 1px 0 rgba(255,255,255,.06); padding:8px; }
-	  #swiper .swiper-slide img,
-	  .brand-carousel-block [data-brand-swiper] .swiper-slide img{ display:block; max-height:36px; width:auto; opacity:.95; }
-	  @media (max-width:640px){
-	    #swiper,
-	    .brand-carousel-block [data-brand-swiper]{ height:90px; }
-	    #swiper .swiper-slide,
-	    .brand-carousel-block [data-brand-swiper] .swiper-slide{ width:55% !important; }
-	    #swiper .swiper-slide > div,
-	    .brand-carousel-block [data-brand-swiper] .swiper-slide > div{
-	      min-height:48px;
-	      padding:4px 6px;
-	    }
-	    #swiper .swiper-slide img,
-	    .brand-carousel-block [data-brand-swiper] .swiper-slide img{
-	      max-height:26px;
-	    }
-	  }
-	</style>
+<style>
+  .brand-marquee{
+    --marquee-duration: 38s;
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .brand-marquee__viewport{
+    position:relative;
+    overflow:hidden;
+    flex:1 1 auto;
+    mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+  .brand-marquee__track{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    width:max-content;
+    animation:brand-marquee var(--marquee-duration) linear infinite;
+    will-change:transform;
+  }
+  .brand-marquee__item{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:160px;
+    height:auto;
+    min-height:64px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:12px;
+    background:rgba(2,6,23,.45);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+    padding:8px 12px;
+  }
+  .brand-marquee__item img{
+    display:block;
+    max-height:36px;
+    width:auto;
+    opacity:.95;
+  }
+  @keyframes brand-marquee{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (max-width:640px){
+    .brand-marquee{ height:90px; }
+    .brand-marquee__track{ gap:14px; }
+    .brand-marquee__item{
+      min-width:130px;
+      min-height:48px;
+      padding:6px 10px;
+    }
+    .brand-marquee__item img{
+      max-height:26px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .brand-marquee__track{ animation-duration:1ms; }
+  }
+  .brand-marquee__arrow{
+    width:40px;
+    height:40px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.16);
+    background:linear-gradient(145deg, rgba(15,23,42,.82), rgba(15,23,42,.64));
+    color:#e2e8f0;
+    display:grid;
+    place-items:center;
+    cursor:pointer;
+    transition:all .18s ease;
+    box-shadow:0 16px 30px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.08);
+    opacity:0;
+    pointer-events:none;
+  }
+  .brand-marquee__arrow svg{
+    width:18px;
+    height:18px;
+  }
+  .brand-marquee.is-paused .brand-marquee__arrow{
+    opacity:1;
+    pointer-events:auto;
+  }
+  .brand-marquee__arrow:hover,
+  .brand-marquee__arrow:focus-visible{
+    border-color:rgba(102,199,232,.7);
+    background:linear-gradient(145deg, rgba(19,42,66,.96), rgba(16,36,54,.82));
+    outline:2px solid rgba(102,199,232,.32);
+    outline-offset:2px;
+    transform:translateY(-1px);
+  }
+  @media (max-width:640px){
+    .brand-marquee__arrow{ width:34px; height:34px; }
+    .brand-marquee__arrow svg{ width:16px; height:16px; }
+  }
+</style>
