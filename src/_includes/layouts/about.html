@@ -158,6 +158,11 @@
             </filter>
           </defs>
 
+          <!-- Opaque placeholder silhouette (no overlap artifacts) -->
+          <path id="ghostWash" fill="none" stroke="#1E293B" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+          <path id="ghostArmL" fill="none" stroke="#1E293B" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+          <path id="ghostArmD" fill="none" stroke="#1E293B" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" opacity="1"/>
+
           <path id="seg1" fill="none" stroke="#ff6a2d" stroke-width="36" stroke-linecap="butt" stroke-linejoin="bevel"/>
           <path id="seg2" fill="none" stroke="#0b6ff2" stroke-width="36" stroke-linecap="butt" stroke-linejoin="bevel"/>
           <path id="seg3" fill="none" stroke="#00d7c7" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
@@ -206,7 +211,7 @@
         </div>
         <div class="yl3-whyPoint">
           <div class="yl3-whyPoint__icon" aria-hidden="true" data-icon="goal"></div>
-          <div class="yl3-whyPoint__text">Stay aligned to long‑term business goals</div>
+          <div class="yl3-whyPoint__text">Stay aligned to long-term business goals</div>
         </div>
         <div class="yl3-whyPoint">
           <div class="yl3-whyPoint__icon" aria-hidden="true" data-icon="notebook-pen"></div>
@@ -592,13 +597,13 @@
     letter-spacing:.04em;
     font-size:16px;
   }
-.yl3-divider{
+  .yl3-divider{
     height:1px;
     width:100%;
     background:#334155;
     margin:64px 0 64px;
   }
-.yl3-whyCard{
+  .yl3-whyCard{
     border-top:1px solid #334155;
     padding:64px 0 64px;
   }
@@ -823,7 +828,7 @@
       padding:16px 16px 18px;
     }
   }
-.yl3-built{
+  .yl3-built{
     border-top:1px solid #334155;
     padding:64px 0 64px;
   }
@@ -906,7 +911,7 @@
     z-index:2;
   }
   .yl3-accord[open] .yl3-accord__summaryBox{
-   background:#131313;
+    background:#131313;
     box-shadow:none;
     border-bottom-left-radius:var(--yl3-accord-radius);
     border-bottom-right-radius:var(--yl3-accord-radius);
@@ -960,180 +965,314 @@
     color:var(--yl3-text);
     line-height:1.55;
   }
-  </style>
+</style>
 
 <script>
-  (function(){
-    const svg = document.getElementById('elevateSvg');
-    if (!svg) return;
+(function(){
+  var svg = document.getElementById('elevateSvg');
+  if (!svg) return;
 
-    const clamp01 = (x) => Math.max(0, Math.min(1, x));
-    const smoothstep = (x) => {
-      x = clamp01(x);
-      return x*x*x*(x*(x*6 - 15) + 10);
-    };
+  var clamp01 = function(x){ return Math.max(0, Math.min(1, x)); };
+  var smoothstep = function(x){
+    x = clamp01(x);
+    return x*x*x*(x*(x*6 - 15) + 10);
+  };
 
-    const D1 = 900, D2 = 900, D3 = 1400;
-    const TOTAL = D1 + D2 + D3;
-    const LABEL_Y = 420;
-    const GAP = 125;
-    const DIAG_LEN = 320;
-    const ANG = -Math.PI / 4;
-    const dx = Math.cos(ANG), dy = Math.sin(ANG);
-    const LABEL_NUDGE = 10;
-    const ARROW_NUDGE = 10;
-    const xA = 560 + LABEL_NUDGE;
-    const xB = xA + GAP - 6; // slight left nudge for OPTIMIZE label
-    const xC = xA + GAP * 2;
-    const startX = xA + ARROW_NUDGE;
-    const startY = 310;
-    const jointX = startX + dx * DIAG_LEN;
-    const jointY = startY + dy * DIAG_LEN;
-    const ARM = 140;
-    const leftX = jointX - ARM;
-    const downY = jointY + ARM;
-    const p1x = startX + dx * (DIAG_LEN / 3);
-    const p1y = startY + dy * (DIAG_LEN / 3);
-    const p2x = startX + dx * (2 * DIAG_LEN / 3);
-    const p2y = startY + dy * (2 * DIAG_LEN / 3);
+  // Timing (same as your original)
+  var D1 = 900, D2 = 900, D3 = 1400;
+  var TOTAL = D1 + D2 + D3;
 
-    const seg1 = svg.querySelector('#seg1');
-    const seg2 = svg.querySelector('#seg2');
-    const seg3 = svg.querySelector('#seg3');
-    const tealWash = svg.querySelector('#tealWash');
-    const armL = svg.querySelector('#armL');
-    const armD = svg.querySelector('#armD');
-    const orangeCap = svg.querySelector('#orangeCap');
-    const sparkles = svg.querySelector('#sparkles');
-    const sp = Array.from(svg.querySelectorAll('.sp'));
-    const lbl1 = svg.querySelector('#lbl1');
-    const lbl2 = svg.querySelector('#lbl2');
-    const lbl3 = svg.querySelector('#lbl3');
+  // Geometry (same as your original)
+  var LABEL_Y = 420;
+  var GAP = 125;
+  var DIAG_LEN = 320;
+  var ANG = -Math.PI / 4;
+  var dx = Math.cos(ANG), dy = Math.sin(ANG);
+  var LABEL_NUDGE = 10;
+  var ARROW_NUDGE = 10;
+  var xA = 560 + LABEL_NUDGE;
+  var xB = xA + GAP - 6;
+  var xC = xA + GAP * 2;
+  var startX = xA + ARROW_NUDGE;
+  var startY = 310;
 
-    seg1.setAttribute('d', `M ${startX} ${startY} L ${p1x} ${p1y}`);
-    seg2.setAttribute('d', `M ${p1x} ${p1y} L ${p2x} ${p2y}`);
-    seg3.setAttribute('d', `M ${p2x} ${p2y} L ${jointX} ${jointY}`);
-    tealWash.setAttribute('d', `M ${startX} ${startY} L ${jointX} ${jointY}`);
-    orangeCap.setAttribute('cx', startX);
-    orangeCap.setAttribute('cy', startY);
+  var jointX = startX + dx * DIAG_LEN;
+  var jointY = startY + dy * DIAG_LEN;
 
-    lbl1.setAttribute('x', xA); lbl1.setAttribute('y', LABEL_Y);
-    lbl2.setAttribute('x', xB); lbl2.setAttribute('y', LABEL_Y);
-    lbl3.setAttribute('x', xC); lbl3.setAttribute('y', LABEL_Y);
+  var ARM = 140;
+  var leftX = jointX - ARM;
+  var downY = jointY + ARM;
 
-    function prepStrokeDraw(el){
-      const len = el.getTotalLength();
-      el.style.strokeDasharray = `${len}`;
-      el.style.strokeDashoffset = `${len}`;
-      return len;
+  var p1x = startX + dx * (DIAG_LEN / 3);
+  var p1y = startY + dy * (DIAG_LEN / 3);
+  var p2x = startX + dx * (2 * DIAG_LEN / 3);
+  var p2y = startY + dy * (2 * DIAG_LEN / 3);
+
+  // Elements
+  var ghostWash = svg.querySelector('#ghostWash');
+  var ghostArmL = svg.querySelector('#ghostArmL');
+  var ghostArmD = svg.querySelector('#ghostArmD');
+
+  var seg1 = svg.querySelector('#seg1');
+  var seg2 = svg.querySelector('#seg2');
+  var seg3 = svg.querySelector('#seg3');
+  var tealWash = svg.querySelector('#tealWash');
+  var armL = svg.querySelector('#armL');
+  var armD = svg.querySelector('#armD');
+  var orangeCap = svg.querySelector('#orangeCap');
+
+  var sparkles = svg.querySelector('#sparkles');
+  var sp = Array.prototype.slice.call(svg.querySelectorAll('.sp'));
+
+  var lbl1 = svg.querySelector('#lbl1');
+  var lbl2 = svg.querySelector('#lbl2');
+  var lbl3 = svg.querySelector('#lbl3');
+
+  if (!ghostWash || !ghostArmL || !ghostArmD) {
+    console.warn('[Elevate] Missing ghost paths. Add #ghostWash/#ghostArmL/#ghostArmD after </defs>.');
+    return;
+  }
+
+  // Geometry
+  seg1.setAttribute('d', 'M ' + startX + ' ' + startY + ' L ' + p1x + ' ' + p1y);
+  seg2.setAttribute('d', 'M ' + p1x + ' ' + p1y + ' L ' + p2x + ' ' + p2y);
+  seg3.setAttribute('d', 'M ' + p2x + ' ' + p2y + ' L ' + jointX + ' ' + jointY);
+
+  tealWash.setAttribute('d', 'M ' + startX + ' ' + startY + ' L ' + jointX + ' ' + jointY);
+  ghostWash.setAttribute('d', 'M ' + startX + ' ' + startY + ' L ' + jointX + ' ' + jointY);
+
+  armL.setAttribute('d', 'M ' + jointX + ' ' + jointY + ' L ' + leftX + ' ' + jointY);
+  armD.setAttribute('d', 'M ' + jointX + ' ' + jointY + ' L ' + jointX + ' ' + downY);
+
+  ghostArmL.setAttribute('d', 'M ' + jointX + ' ' + jointY + ' L ' + leftX + ' ' + jointY);
+  ghostArmD.setAttribute('d', 'M ' + jointX + ' ' + jointY + ' L ' + jointX + ' ' + downY);
+
+  orangeCap.setAttribute('cx', startX);
+  orangeCap.setAttribute('cy', startY);
+
+  lbl1.setAttribute('x', xA); lbl1.setAttribute('y', LABEL_Y);
+  lbl2.setAttribute('x', xB); lbl2.setAttribute('y', LABEL_Y);
+  lbl3.setAttribute('x', xC); lbl3.setAttribute('y', LABEL_Y);
+
+  // Initial sparkle placement
+  for (var i = 0; i < sp.length; i++){
+    var u = (i + 1) / (sp.length + 1);
+    sp[i].setAttribute('cx', startX + dx * (DIAG_LEN * u));
+    sp[i].setAttribute('cy', startY + dy * (DIAG_LEN * u));
+  }
+
+  var prepStrokeDraw = function(el){
+    var len = el.getTotalLength();
+    el.style.strokeDasharray = String(len);
+    el.style.strokeDashoffset = String(len);
+    return len;
+  };
+
+  var len1 = prepStrokeDraw(seg1);
+  var len2 = prepStrokeDraw(seg2);
+  var len3 = prepStrokeDraw(seg3);
+  var lenW = prepStrokeDraw(tealWash);
+  var lenArmL = prepStrokeDraw(armL);
+  var lenArmD = prepStrokeDraw(armD);
+
+  var setDraw = function(el, len, prog){
+    var p = clamp01(prog);
+    el.style.strokeDashoffset = String(len * (1 - p));
+  };
+
+  // Seamless replacement: show only the remaining tail
+  var setRemaining = function(el, len, prog){
+    var p = clamp01(prog);
+    var rem = len * (1 - p);
+    el.style.strokeDasharray = String(rem) + ' ' + String(len);
+    el.style.strokeDashoffset = String(-len * p);
+  };
+
+  // State
+  var running = false;
+  var hasPlayed = false;
+  var startTime = 0;
+
+  // Dot phase integrator (prevents jumping on speed changes)
+  var dotPhase = 0;
+  var dotLastMs = null;
+
+  // Keep dots idling after the main animation finishes
+  var dotsRunning = false;
+  var dotsStart = 0;
+  var startDelayTimer = 0;
+  var START_DELAY = 180;
+
+  var reset = function(){
+    dotPhase = 0;
+    dotLastMs = null;
+
+    dotsRunning = false;
+    dotsStart = 0;
+
+    ghostWash.style.opacity = '1';
+    ghostArmL.style.opacity = '1';
+    ghostArmD.style.opacity = '1';
+
+    ghostWash.style.strokeDasharray = String(lenW) + ' ' + String(lenW);
+    ghostWash.style.strokeDashoffset = '0';
+    ghostArmL.style.strokeDasharray = String(lenArmL) + ' ' + String(lenArmL);
+    ghostArmL.style.strokeDashoffset = '0';
+    ghostArmD.style.strokeDasharray = String(lenArmD) + ' ' + String(lenArmD);
+    ghostArmD.style.strokeDashoffset = '0';
+
+    setDraw(seg1, len1, 0); seg1.style.opacity = '0';
+    setDraw(seg2, len2, 0); seg2.style.opacity = '0';
+    setDraw(seg3, len3, 0); seg3.style.opacity = '0';
+
+    setDraw(tealWash, lenW, 0); tealWash.style.opacity = '0';
+    setDraw(armL, lenArmL, 0); armL.style.opacity = '0';
+    setDraw(armD, lenArmD, 0); armD.style.opacity = '0';
+
+    orangeCap.style.opacity = '0';
+    sparkles.setAttribute('opacity', '0');
+
+    lbl1.style.opacity = '0';
+    lbl2.style.opacity = '0';
+    lbl3.style.opacity = '0';
+  };
+
+  // Dots: FAST during teal fill, then SMOOTHLY slow after teal completes (no jumps)
+  var updateDots = function(elapsedMs, spGate, a3){
+    var spA = 0.38 * spGate;
+    sparkles.setAttribute('opacity', String(spA));
+
+    var spacing = 1 / sp.length;
+
+    var fastSpeed = 0.0012;
+    var slowSpeed = 0.00004;
+
+    // Slowdown only near the end of teal fill
+    var slowPhase = clamp01((a3 - 0.88) / 0.12);
+    var ease = smoothstep(slowPhase);
+    var speed = fastSpeed + (slowSpeed - fastSpeed) * ease;
+
+    if (dotLastMs === null) dotLastMs = elapsedMs;
+    var dt = elapsedMs - dotLastMs;
+    if (dt < 0) dt = 0;
+    dotLastMs = elapsedMs;
+
+    dotPhase = (dotPhase + dt * speed) % 1;
+
+    for (var i = 0; i < sp.length; i++){
+      var t = (dotPhase + i * spacing) % 1;
+      var cx = startX + dx * (DIAG_LEN * t);
+      var cy = startY + dy * (DIAG_LEN * t);
+
+      sp[i].setAttribute('cx', String(cx));
+      sp[i].setAttribute('cy', String(cy));
+      sp[i].setAttribute('r', '1.35');
+
+      var fade = 1 - smoothstep((t - 0.97) / 0.03);
+      sp[i].style.opacity = String((0.9 * fade) * spGate);
     }
+  };
 
-    const len1 = prepStrokeDraw(seg1);
-    const len2 = prepStrokeDraw(seg2);
-    const len3 = prepStrokeDraw(seg3);
-    const lenW = prepStrokeDraw(tealWash);
+  var tickDots = function(now){
+    if (!dotsRunning) return;
+    var elapsed = now - dotsStart;
+    updateDots(elapsed, 1, 1);
+    requestAnimationFrame(tickDots);
+  };
 
-    armL.setAttribute('d', `M ${jointX} ${jointY} L ${leftX} ${jointY}`);
-    armD.setAttribute('d', `M ${jointX} ${jointY} L ${jointX} ${downY}`);
-    const lenArmL = prepStrokeDraw(armL);
-    const lenArmD = prepStrokeDraw(armD);
+  var startAnim = null;
+  var tick = null;
 
-    sp.forEach((node, i) => {
-      const u = (i + 1) / (sp.length + 1);
-      node.setAttribute('cx', startX + dx * (DIAG_LEN * u));
-      node.setAttribute('cy', startY + dy * (DIAG_LEN * u));
-    });
+  tick = function(now){
+    if (!running) return;
 
-    function setDraw(el, len, prog){
-      const p = clamp01(prog);
-      el.style.strokeDashoffset = `${len * (1 - p)}`;
+    var tm = Math.min(now - startTime, TOTAL);
+
+    var s1 = smoothstep(tm / D1);
+    var s2 = smoothstep((tm - D1) / D2);
+    var s3 = smoothstep((tm - D1 - D2) / D3);
+
+    // Labels
+    lbl1.style.opacity = String(clamp01((s1 - 0.05) / 0.30));
+    lbl2.style.opacity = String(clamp01((s2 - 0.05) / 0.30));
+    lbl3.style.opacity = String(clamp01((s3 - 0.05) / 0.30));
+
+    // Seg 1
+    var a1 = clamp01((s1 - 0.05) / 0.30);
+    seg1.style.opacity = String(a1 * (1 - s3));
+    setDraw(seg1, len1, a1);
+    orangeCap.style.opacity = String(a1 * (1 - s3));
+
+    // Seg 2
+    var a2 = clamp01(s2);
+    seg2.style.opacity = String(a2 * (1 - s3));
+    setDraw(seg2, len2, a2);
+
+    // Seg 3
+    var a3 = clamp01(s3);
+    seg3.style.opacity = String(a3 * (1 - s3));
+    setDraw(seg3, len3, a3);
+
+    // Teal wash + placeholder replacement
+    tealWash.style.opacity = String(a3);
+    setDraw(tealWash, lenW, a3);
+    setRemaining(ghostWash, lenW, a3);
+
+    // Dots
+    var spGate = smoothstep((a3 - 0.22) / 0.55);
+    updateDots(tm, spGate, a3);
+
+    // Arms
+    var armGate = smoothstep((a3 - 0.55) / 0.35);
+    armL.style.opacity = String(armGate);
+    armD.style.opacity = String(armGate);
+    setDraw(armL, lenArmL, armGate);
+    setDraw(armD, lenArmD, armGate);
+    setRemaining(ghostArmL, lenArmL, armGate);
+    setRemaining(ghostArmD, lenArmD, armGate);
+
+    if (tm < TOTAL) {
+      requestAnimationFrame(tick);
+    } else {
+      running = false;
+
+      // Start slow idle dots after completion (optional)
+      dotsRunning = true;
+      dotsStart = performance.now();
+      requestAnimationFrame(tickDots);
     }
+  };
 
-    let running = false;
-    let startTime = 0;
-
-    function reset(){
-      setDraw(seg1, len1, 0); seg1.style.opacity = '0';
-      setDraw(seg2, len2, 0); seg2.style.opacity = '0';
-      setDraw(seg3, len3, 0); seg3.style.opacity = '0';
-      setDraw(tealWash, lenW, 0); tealWash.style.opacity = '0';
-      setDraw(armL, lenArmL, 0); armL.style.opacity = '0';
-      setDraw(armD, lenArmD, 0); armD.style.opacity = '0';
-      orangeCap.style.opacity = '0';
-      sparkles.setAttribute('opacity', '0');
-      lbl1.style.opacity = '0'; lbl2.style.opacity = '0'; lbl3.style.opacity = '0';
-    }
-
-    function tick(now){
-      if (!running) return;
-      const tm = Math.min(now - startTime, TOTAL);
-
-      const s1 = smoothstep(tm / D1);
-      const s2 = smoothstep((tm - D1) / D2);
-      const s3 = smoothstep((tm - D1 - D2) / D3);
-
-      lbl1.style.opacity = `${clamp01((s1 - 0.05) / 0.30)}`;
-      lbl2.style.opacity = `${clamp01((s2 - 0.05) / 0.30)}`;
-      lbl3.style.opacity = `${clamp01((s3 - 0.05) / 0.30)}`;
-
-      const a1 = clamp01((s1 - 0.05) / 0.30);
-      seg1.style.opacity = `${a1 * (1 - s3)}`;
-      setDraw(seg1, len1, a1);
-      orangeCap.style.opacity = `${a1 * (1 - s3)}`;
-
-      const a2 = clamp01(s2);
-      seg2.style.opacity = `${a2 * (1 - s3)}`;
-      setDraw(seg2, len2, a2);
-
-      const a3 = clamp01(s3);
-      seg3.style.opacity = `${a3 * (1 - s3)}`;
-      setDraw(seg3, len3, a3);
-
-      tealWash.style.opacity = `${a3}`;
-      setDraw(tealWash, lenW, a3);
-
-      const spA = 0.22 * a3;
-      sparkles.setAttribute('opacity', `${spA}`);
-      sp.forEach((node, i) => {
-        const wob = 0.5 + 0.5 * Math.sin((tm * 0.006) + i * 1.7);
-        node.setAttribute('r', `${0.9 + 1.4 * wob}`);
-      });
-
-      const armGate = smoothstep((a3 - 0.55) / 0.35);
-      armL.style.opacity = `${armGate}`;
-      armD.style.opacity = `${armGate}`;
-      setDraw(armL, lenArmL, armGate);
-      setDraw(armD, lenArmD, armGate);
-
-      if (tm < TOTAL) {
-        requestAnimationFrame(tick);
-      } else {
-        running = false;
-      }
-    }
-    function startAnim(){
+  startAnim = function(){
+    if (running) return;
+    if (startDelayTimer){ clearTimeout(startDelayTimer); startDelayTimer = 0; }
+    startDelayTimer = setTimeout(function(){
+      startDelayTimer = 0;
       if (running) return;
       reset();
       running = true;
       startTime = performance.now();
       requestAnimationFrame(tick);
-    }
+    }, START_DELAY);
+  };
 
-    const triggerEl = document.querySelector('.yl3-elevateViz') || svg;
-    if ('IntersectionObserver' in window && triggerEl){
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if (entry.isIntersecting){
-            startAnim();
-          }
-        });
-      }, { threshold: 0.35, rootMargin: '0px 0px -5% 0px' });
-      io.observe(triggerEl);
-    } else {
-      startAnim();
-    }
-  })();
+  // Trigger on each visibility
+  var triggerEl = document.querySelector('.yl3-elevateViz') || svg;
+  if ('IntersectionObserver' in window && triggerEl){
+    var io = new IntersectionObserver(function(entries){
+      for (var i = 0; i < entries.length; i++){
+        if (entries[i].isIntersecting){
+          startAnim();
+        }
+      }
+    }, { threshold: 0.35, rootMargin: '0px 0px -5% 0px' });
+    io.observe(triggerEl);
+  } else {
+    startAnim();
+  }
+})();
 </script>
+
 
 {% include "partials/footer.html" %}
 {% endblock %}

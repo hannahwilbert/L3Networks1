@@ -1,0 +1,142 @@
+---
+title: 'M365 Security Review'
+permalink: '/m365securityreview/index.html'
+eleventyExcludeFromCollections: true
+---
+
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<section class="relative overflow-hidden pt-12 md:pt-16 pb-6 md:pb-8 min-h-[380px] md:min-h-[460px] flex items-center bg-center bg-cover bg-no-repeat" style="background-image:url('/images/elevate/hero.png');">
+  <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-slate-900 to-cyan-400/10"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
+  <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.18), transparent 40%), radial-gradient(circle at 80% 10%, rgba(14,165,233,0.14), transparent 32%), radial-gradient(circle at 50% 90%, rgba(16,185,129,0.12), transparent 40%);"></div>
+  <div class="relative container px-4 mx-auto max-w-screen-xl text-white pt-6 md:pt-10">
+    <h1 class="text-4xl font-semibold leading-tight md:text-5xl md:leading-tight mb-0.5 mt-2">Microsoft V3 Security Review</h1>
+    <p class="text-lg text-slate-300 leading-relaxed mt-0.5 max-w-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+  </div>
+</section>
+
+<section class="container px-4 pb-24 mx-auto max-w-screen-xl text-white md:pb-28" style="padding-top:40px;">
+  <div class="grid gap-12 lg:gap-16 md:grid-cols-2 md:items-start">
+    <div class="space-y-6">
+      <div class="overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-800/70 bg-slate-900/60 backdrop-blur">
+        <img src="/images/about/aboutus.jpg" alt="Placeholder" class="w-full h-full object-cover">
+      </div>
+      <div class="space-y-3 max-w-2xl">
+        <h2 class="text-3xl font-semibold leading-tight md:text-4xl">Lorem ipsum dolor sit amet</h2>
+        <p class="text-lg text-slate-200 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+        <p class="text-lg text-slate-300 leading-relaxed">Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+      </div>
+    </div>
+    <div class="border border-slate-200/60 rounded-[20px] p-6 md:p-8 shadow-2xl bg-transparent text-white">
+      <p class="text-sm uppercase tracking-[0.22em] text-teal-300 mb-3">Book Your Review</p>
+      <h2 class="text-3xl font-semibold leading-tight md:text-4xl mb-3 text-white">Get Started</h2>
+      <p class="text-slate-200 mb-6">Complete the form to request your Microsoft V3 Security Review. We’ll follow up promptly.</p>
+      <div id="hs-m365-form"></div>
+    </div>
+  </div>
+</section>
+
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script>
+  hbspt.forms.create({
+    portalId: '242649812',
+    formId: '55ff8cc3-502f-4f6b-b7d0-765d91929095',
+    target: '#hs-m365-form',
+    inlineMessage: 'Thank you',
+    onFormReady: function($form){
+      try {
+        var iframe = document.querySelector('#hs-m365-form iframe');
+        var doc = iframe && iframe.contentWindow && iframe.contentWindow.document;
+        if (doc) {
+         var style = doc.createElement('style');
+          style.textContent = 'body, form{background:transparent !important; color:#fff !important;} .hs-form-field label{color:#fff !important;} .hs-richtext, .hs-richtext p, .hs-richtext *{background:transparent !important; color:#fff !important;} .hs-input, input, textarea, select{background:#030a18 !important; border:1px solid rgba(255,255,255,0.35) !important; color:#fff !important;} .hs-input::placeholder, input::placeholder, textarea::placeholder, select::placeholder{color:#fff !important; opacity:1 !important;} .hs-input:focus, input:focus, textarea:focus, select:focus{border-color:#7dd3fc !important; box-shadow:0 0 0 3px rgba(125,211,252,.25) !important; outline:none !important;} .hs-custom-style>div input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]), .hs-custom-style fieldset input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]){color:#fff !important; background:#030a18 !important; border:1px solid rgba(255,255,255,0.35) !important;} .hs-button, input[type=submit]{background:#030a18 !important; color:#ffffff !important; border:1px solid rgba(255,255,255,0.25) !important; box-shadow:0 10px 24px rgba(3,10,24,.35) !important;} .hs-button:hover, input[type=submit]:hover{filter:brightness(1.05) !important; transform:translateY(-1px) !important; box-shadow:0 12px 28px rgba(3,10,24,.45) !important;}';
+          doc.head.appendChild(style);
+        }
+      } catch(e){
+        console.warn('HS style inject failed', e);
+      }
+    },
+    onFormSubmit: function($form){
+      setTimeout(function() {
+        var formData = $form.serialize ? $form.serialize() : '';
+        window.location = "https://l3networks.com/m365securityreview-booking?" + formData;
+      }, 250);
+    }
+  });
+</script>
+
+<style>
+  /* Scoped HubSpot form styling (dark, transparent) */
+  #hs-m365-form form{
+    color:#ffffff;
+    display:grid;
+    gap:14px;
+  }
+  #hs-m365-form label{
+    color:#ffffff !important;
+    font-weight:600;
+    letter-spacing:.01em;
+  }
+  #hs-m365-form .hs-richtext,
+  #hs-m365-form .hs-richtext p,
+  #hs-m365-form .hs-richtext *{
+    background:transparent !important;
+    color:#ffffff !important;
+  }
+  #hs-m365-form .hs-input,
+  #hs-m365-form input,
+  #hs-m365-form textarea,
+  #hs-m365-form select{
+    background:#030a18;
+    border:1px solid rgba(255,255,255,0.35);
+    color:#ffffff;
+    border-radius:12px;
+    padding:13px 15px;
+    transition:border-color .12s ease, box-shadow .12s ease;
+  }
+  #hs-m365-form .hs-input:focus,
+  #hs-m365-form input:focus,
+  #hs-m365-form textarea:focus,
+  #hs-m365-form select:focus{
+    outline:none;
+    border-color:#7dd3fc;
+    box-shadow:0 0 0 3px rgba(125,211,252,.25);
+  }
+  #hs-m365-form .hs-input::placeholder,
+  #hs-m365-form input::placeholder,
+  #hs-m365-form textarea::placeholder{
+    color:#ffffff;
+    opacity:1;
+  }
+  .hs-custom-style>div input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]),
+  .hs-custom-style fieldset input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]){
+    color:#ffffff !important;
+    background:#030a18 !important;
+    border:1px solid rgba(255,255,255,0.35) !important;
+  }
+  #hs-m365-form .hs-error-msg{
+    color:#fca5a5;
+    font-size:13px;
+  }
+  #hs-m365-form .hs-button{
+    background:#030a18 !important;
+    color:#ffffff !important;
+    font-weight:700;
+    border:1px solid rgba(255,255,255,0.25);
+    padding:13px 18px;
+    border-radius:12px;
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    box-shadow:0 12px 32px rgba(3,10,24,.35);
+  }
+  #hs-m365-form .hs-button:hover{
+    transform:translateY(-1px);
+    box-shadow:0 12px 32px rgba(3,10,24,.45);
+    filter:brightness(1.05);
+  }
+</style>
+
+{% include "partials/footer.html" %}
+
+{% endblock %}

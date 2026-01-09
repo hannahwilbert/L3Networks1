@@ -1,0 +1,32 @@
+---
+title: 'M365 Security Review Booking'
+permalink: '/m365securityreview-booking/index.html'
+eleventyExcludeFromCollections: true
+---
+
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<div style="background:#000; color:#fff;">
+  <section class="relative overflow-hidden pt-12 md:pt-16 pb-6 md:pb-8 min-h-[380px] md:min-h-[460px] flex items-center bg-center bg-cover bg-no-repeat text-white" style="background-image:url('/images/elevate/hero.png');">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/12 via-slate-800/80 to-cyan-400/12"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.18), transparent 40%), radial-gradient(circle at 80% 10%, rgba(14,165,233,0.14), transparent 32%), radial-gradient(circle at 50% 90%, rgba(16,185,129,0.12), transparent 40%);"></div>
+    <div class="relative container px-4 mx-auto max-w-screen-xl pt-6 md:pt-10 text-center">
+      <h1 class="text-4xl font-bold leading-tight md:text-5xl" style="font-family:'Montserrat',sans-serif;">Book Your Appointment</h1>
+      <p class="mt-4 text-lg text-slate-200 max-w-3xl mx-auto" style="font-family:'Inter',sans-serif;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+    </div>
+  </section>
+
+  <section style="background:#000; color:#fff;">
+    <div class="container px-4 pt-0 pb-16 mx-auto max-w-screen-xl md:pt-0 md:pb-20">
+      <!-- Start of Meetings Embed Script -->
+      <div class="meetings-iframe-container rounded-2xl shadow-xl overflow-hidden" data-src="https://meetings-na2.hubspot.com/brandon-williams/m365security?embed=true"></div>
+      <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
+      <!-- End of Meetings Embed Script -->
+    </div>
+  </section>
+
+  {% include "partials/footer.html" %}
+</div>
+{% endblock %}
