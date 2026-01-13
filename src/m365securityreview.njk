@@ -13,7 +13,7 @@ eleventyExcludeFromCollections: true
   <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.18), transparent 40%), radial-gradient(circle at 80% 10%, rgba(14,165,233,0.14), transparent 32%), radial-gradient(circle at 50% 90%, rgba(16,185,129,0.12), transparent 40%);"></div>
   <div class="relative container px-4 mx-auto max-w-screen-xl text-white pt-6 md:pt-10">
     <h1 class="text-4xl font-semibold leading-tight md:text-5xl md:leading-tight mb-0.5 mt-2">Microsoft V3 Security Review</h1>
-    <p class="text-lg text-slate-300 leading-relaxed mt-0.5 max-w-2xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+    <p class="text-lg text-slate-300 leading-relaxed mt-0.5 max-w-2xl">A focused review of your Microsoft 365 security configuration to identify gaps, misconfigurations, and underutilized protections.</p>
   </div>
 </section>
 
@@ -21,12 +21,18 @@ eleventyExcludeFromCollections: true
   <div class="grid gap-12 lg:gap-16 md:grid-cols-2 md:items-start">
     <div class="space-y-6">
       <div class="overflow-hidden rounded-2xl shadow-2xl ring-1 ring-slate-800/70 bg-slate-900/60 backdrop-blur">
-        <img src="/images/about/aboutus.jpg" alt="Placeholder" class="w-full h-full object-cover">
+        <img src="/images/whyl3/whyl3-how.png" alt="Team collaboration" class="w-full h-60 md:h-72 object-cover">
       </div>
-      <div class="space-y-3 max-w-2xl">
-        <h2 class="text-3xl font-semibold leading-tight md:text-4xl">Lorem ipsum dolor sit amet</h2>
-        <p class="text-lg text-slate-200 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
-        <p class="text-lg text-slate-300 leading-relaxed">Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.</p>
+      <div class="space-y-4 max-w-2xl">
+        <h2 class="text-3xl font-semibold leading-tight md:text-4xl">What the Review Covers</h2>
+        <p class="text-lg text-slate-200 leading-relaxed">This assessment examines how your Microsoft 365 security controls are configured today.</p>
+        <p class="text-lg text-slate-200 leading-relaxed">We evaluate identity, access, and protection settings to identify:</p>
+        <ul class="list-disc list-inside space-y-2 text-slate-200 pl-1">
+          <li>Controls that are misconfigured or inconsistently applied</li>
+          <li>Protections that are licensed but not enabled</li>
+          <li>Gaps between current configuration and Microsoft security best practices</li>
+        </ul>
+        <p class="text-lg text-slate-200 leading-relaxed">You receive a clear summary of findings and practical recommendations you can act on immediately.</p>
       </div>
     </div>
     <div class="border border-slate-200/60 rounded-[20px] p-6 md:p-8 shadow-2xl bg-transparent text-white">
@@ -50,9 +56,12 @@ eleventyExcludeFromCollections: true
         var iframe = document.querySelector('#hs-m365-form iframe');
         var doc = iframe && iframe.contentWindow && iframe.contentWindow.document;
         if (doc) {
-         var style = doc.createElement('style');
-          style.textContent = 'body, form{background:transparent !important; color:#fff !important;} .hs-form-field label{color:#fff !important;} .hs-richtext, .hs-richtext p, .hs-richtext *{background:transparent !important; color:#fff !important;} .hs-input, input, textarea, select{background:#030a18 !important; border:1px solid rgba(255,255,255,0.35) !important; color:#fff !important;} .hs-input::placeholder, input::placeholder, textarea::placeholder, select::placeholder{color:#fff !important; opacity:1 !important;} .hs-input:focus, input:focus, textarea:focus, select:focus{border-color:#7dd3fc !important; box-shadow:0 0 0 3px rgba(125,211,252,.25) !important; outline:none !important;} .hs-custom-style>div input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]), .hs-custom-style fieldset input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]){color:#fff !important; background:#030a18 !important; border:1px solid rgba(255,255,255,0.35) !important;} .hs-button, input[type=submit]{background:#030a18 !important; color:#ffffff !important; border:1px solid rgba(255,255,255,0.25) !important; box-shadow:0 10px 24px rgba(3,10,24,.35) !important;} .hs-button:hover, input[type=submit]:hover{filter:brightness(1.05) !important; transform:translateY(-1px) !important; box-shadow:0 12px 28px rgba(3,10,24,.45) !important;}';
+        var style = doc.createElement('style');
+        style.textContent = 'body, form{background:transparent !important; color:#fff !important;} .hs-form-field label{color:#fff !important;} .hs-richtext, .hs-richtext p, .hs-richtext *{background:transparent !important; color:#fff !important;} .hs-input, input, textarea, select{background:transparent !important; border:1px solid rgba(255,255,255,0.35) !important; color:#fff !important;} .hs-input::placeholder, input::placeholder, textarea::placeholder, select::placeholder{color:#fff !important; opacity:1 !important;} .hs-input:focus, input:focus, textarea:focus, select:focus{border-color:#7dd3fc !important; box-shadow:0 0 0 3px rgba(125,211,252,.25) !important; outline:none !important;} .hs-custom-style>div input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]), .hs-custom-style fieldset input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]){color:#fff !important; background:transparent !important; border:1px solid rgba(255,255,255,0.35) !important;} .hs-button, input[type=submit]{background:#14b8a6 !important; color:#ffffff !important; border:none !important; border-radius:9999px !important; padding:12px 18px !important; box-shadow:none !important; transition:transform .15s ease, filter .15s ease !important; font-size:16px !important; font-family:\"Inter\", sans-serif !important; font-weight:500 !important;} .hs-button:hover, input[type=submit]:hover{filter:brightness(0.97) !important; transform:translateY(-1px) !important; box-shadow:none !important;}';
           doc.head.appendChild(style);
+          var center = doc.createElement('style');
+          center.textContent = '.hs-submit, .actions{display:flex !important; justify-content:center !important;} .hs-button, input[type=submit]{margin:0 auto !important; min-width: 150px !important;}';
+          doc.head.appendChild(center);
         }
       } catch(e){
         console.warn('HS style inject failed', e);
@@ -89,7 +98,7 @@ eleventyExcludeFromCollections: true
   #hs-m365-form input,
   #hs-m365-form textarea,
   #hs-m365-form select{
-    background:#030a18;
+    background:transparent;
     border:1px solid rgba(255,255,255,0.35);
     color:#ffffff;
     border-radius:12px;
@@ -113,7 +122,7 @@ eleventyExcludeFromCollections: true
   .hs-custom-style>div input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]),
   .hs-custom-style fieldset input:not([type=image]):not([type=submit]):not([type=button]):not([type=radio]):not([type=checkbox]):not([type=file]){
     color:#ffffff !important;
-    background:#030a18 !important;
+    background:transparent !important;
     border:1px solid rgba(255,255,255,0.35) !important;
   }
   #hs-m365-form .hs-error-msg{
@@ -121,19 +130,20 @@ eleventyExcludeFromCollections: true
     font-size:13px;
   }
   #hs-m365-form .hs-button{
-    background:#030a18 !important;
+    background:#14b8a6 !important;
     color:#ffffff !important;
-    font-weight:700;
-    border:1px solid rgba(255,255,255,0.25);
-    padding:13px 18px;
-    border-radius:12px;
-    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
-    box-shadow:0 12px 32px rgba(3,10,24,.35);
+    font-weight:500;
+    border:none;
+    padding:12px 18px;
+    border-radius:9999px;
+    transition:transform .15s ease, filter .15s ease;
+    box-shadow:none;
+    font-size:16px;
+    font-family:"Inter", sans-serif;
   }
   #hs-m365-form .hs-button:hover{
     transform:translateY(-1px);
-    box-shadow:0 12px 32px rgba(3,10,24,.45);
-    filter:brightness(1.05);
+    filter:brightness(0.95);
   }
 </style>
 
